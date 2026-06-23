@@ -537,9 +537,10 @@ function renderGallery() {
         style="width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block;background:#1a1008;${rotStyle}"
         onerror="this.style.background='#1a1008'">`;
     } else {
-      mediaHtml = `<img src="${item.thumb || item.u}" alt="${caption||'תמונת איפור'}" loading="lazy"
+      const _gThumb = item.thumb || item.u.replace(/\.(webp|jpe?g|png)(\?.*)?$/i, '_thumb.webp');
+      mediaHtml = `<img src="${_gThumb}" alt="${caption||'תמונת איפור'}" loading="lazy"
         style="width:100%;display:block;transition:transform .4s;opacity:0;${rotStyle}"
-        onload="this.style.opacity=1" onerror="this.style.opacity=1"/>`;
+        onload="this.style.opacity=1" onerror="this.onerror=null;this.src='${item.u}';this.style.opacity=1"/>`;
     }
     const badge = (item.carousel || item.ccount > 1)
       ? `<div class="media-badge" aria-label="פוסט עם מספר תמונות"><svg viewBox="0 0 48 48"><path d="M34.8 29.7V11c0-2.9-2.3-5.2-5.2-5.2H11c-2.9 0-5.2 2.3-5.2 5.2v18.7c0 2.9 2.3 5.2 5.2 5.2h18.7c2.8-.1 5.1-2.4 5.1-5.2zM39.2 15v16.1c0 4.5-3.7 8.2-8.2 8.2H14.9c-.6 0-.9.7-.5 1.1 1 1.1 2.4 1.8 4.1 1.8h12.7c5.5 0 9.9-4.4 9.9-9.9V18.6c0-1.6-.8-3.1-1.8-4.1-.5-.4-1.1 0-1.1.5z"/></svg></div>`
