@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta name="robots" content="noindex,nofollow">
-      <link rel="preconnect" href="https://graph.instagram.com" crossorigin>
+  <link rel="preconnect" href="https://images.yardendamri.co.il" crossorigin>
+  <link rel="preconnect" href="https://videos-new.yardendamri.co.il" crossorigin>
   <!-- Google Analytics loaded only after cookie consent -->
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -1135,8 +1135,10 @@
     }
 
     async function loadIgStats(images) {
-      // Fire and forget — don't await, gallery shows immediately
-      loadIgFeed().catch(()=>{});
+      // Fire and forget — don't await, gallery shows immediately.
+      // Defer the heavy stats fetch (~1.8MB) off the critical path.
+      if ('requestIdleCallback' in window) requestIdleCallback(() => loadIgFeed().catch(()=>{}), { timeout: 2500 });
+      else setTimeout(() => loadIgFeed().catch(()=>{}), 1200);
       loadSocial().then(()=>renderPage(currentPage)).catch(()=>{});
     }
 
