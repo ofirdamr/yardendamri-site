@@ -1,0 +1,16 @@
+{
+  "likes": {
+    "aHR0cHM6Ly92": 2,
+    "aHR0cHM6Ly9p": 1
+  },
+  "comments": {
+    "aHR0cHM6Ly92": [
+      {
+        "name": "אינה א.",
+        "text": "וואו פשוט וואו",
+        "date": "11.6.2026"
+      }
+    ]
+  },
+  "updatedAt": "2026-06-13T08:33:32.044Z"
+}

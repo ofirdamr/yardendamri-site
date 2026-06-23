@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /preview/admin.html
+Disallow: /admin.html
+Disallow: /preview/
+Allow: /
+
+Sitemap: https://yardendamri.co.il/sitemap.xml

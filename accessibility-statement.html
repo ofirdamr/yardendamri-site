@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta name="robots" content="noindex,nofollow">
+  <script>
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn  = document.getElementById('navHamburger');
+  var ov   = document.getElementById('mobileOverlay');
+  var open = menu.classList.toggle('open');
+  if (btn) btn.classList.toggle('open', open);
+  if (ov)  ov.classList.toggle('open', open);
+  if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+function closeMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn  = document.getElementById('navHamburger');
+  var ov   = document.getElementById('mobileOverlay');
+  if (!menu) return;
+  menu.classList.remove('open');
+  if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+  if (ov)  ov.classList.remove('open');
+  menu.setAttribute('aria-hidden','true');
+}
+function trackEvent(event_name, category, label) {
+  if (typeof gtag === 'function') gtag('event', event_name, { event_category: category, event_label: label });
+}
+document.addEventListener('DOMContentLoaded', function(){
+  var nav = document.querySelector('nav[role="navigation"]');
+  if (nav) {
+    nav.classList.add('subpage-nav');
+    nav.classList.add('scrolled');
+    window.addEventListener('scroll', function(){
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  }
+});
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}if(localStorage.getItem('cookie_consent')==='accepted'){var _s=document.createElement('script');_s.async=true;_s.src='https://www.googletagmanager.com/gtag/js?id=G-68XM6LS4HX';document.head.appendChild(_s);gtag('js',new Date());gtag('config','G-68XM6LS4HX');}</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>הצהרת נגישות | ירדן דמרי — מאפרת כלות וערב</title>
+  <meta name="description" content="הצהרת נגישות של אתר ירדן דמרי מאפרת — מחויבות לנגישות דיגיטלית מלאה עבור כל המשתמשים."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260622a"/>
+  <script src="a11y.js" defer></script>
+  <script src="cookie-banner.js?v=5" defer></script>
+  <style>
+    .a11y-page-wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 100px 28px 80px;
+    }
+    .a11y-page-wrapper h1 {
+      font-size: clamp(2rem,5vw,2.8rem);
+      font-weight: 300;
+      color: var(--charcoal, #2C2018);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .a11y-page-wrapper h1 em { color: var(--rose, #C4866A); font-style: italic; }
+    .a11y-page-wrapper .last-updated {
+      font-size: .82rem;
+      color: rgba(62,42,26,.5);
+      margin-bottom: 48px;
+      display: block;
+    }
+    .a11y-page-wrapper h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--deep, #7A4A34);
+      margin: 40px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(196,134,106,.2);
+    }
+    .a11y-page-wrapper p { margin-bottom: 16px; line-height: 1.8; }
+    .a11y-page-wrapper ul, .a11y-page-wrapper ol { margin: 12px 0 16px 0; padding-right: 24px; }
+    .a11y-page-wrapper li { margin-bottom: 8px; line-height: 1.7; }
+    .a11y-page-wrapper .status-badge {
+      display: inline-block;
+      background: rgba(196,134,106,.12);
+      border: 1px solid rgba(196,134,106,.3);
+      color: var(--deep, #7A4A34);
+      padding: 6px 18px;
+      border-radius: 24px;
+      font-size: .88rem;
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+    .a11y-page-wrapper .contact-box {
+      background: var(--light, #F7F2EC);
+      border: 1px solid rgba(196,134,106,.2);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-top: 16px;
+    }
+    .a11y-page-wrapper .contact-box p { margin-bottom: 10px; }
+    .a11y-page-wrapper .contact-box a { color: var(--rose, #C4866A); }
+    @media(max-width:600px) {
+      .a11y-page-wrapper { padding: 80px 18px 60px; }
+    }
+  </style>
+<style id="rtl-float-override">
+/* Desktop RTL nav: logo LEFT, links RIGHT (match homepage) */
+@media (min-width:1081px){ nav[role="navigation"]{ flex-direction: row-reverse !important; } }
+/* Floating buttons - unified across all pages */
+body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, body.lb-open #scroll-top{display:none !important;}
+#a11y-trigger,#scroll-top,#wa-float-btn,.wa-float{width:36px !important;height:36px !important;min-width:36px !important;max-width:36px !important;min-height:36px !important;max-height:36px !important;border-radius:50% !important;position:fixed !important;bottom:18px !important;z-index:99999 !important;display:flex !important;align-items:center !important;justify-content:center !important;padding:0 !important;box-sizing:border-box !important;background:#444 !important;color:#fff !important;border:none !important;filter:none !important;opacity:.55 !important;box-shadow:0 4px 16px rgba(0,0,0,.3) !important;transition:opacity .2s !important;}
+#a11y-trigger:hover,#scroll-top:hover,#wa-float-btn:hover,.wa-float:hover{opacity:.9 !important;transform:none !important;}
+#a11y-trigger{left:12px !important;right:auto !important;}
+#scroll-top{left:56px !important;right:auto !important;font-size:14px !important;}
+#wa-float-btn,.wa-float{right:12px !important;left:auto !important;}
+#a11y-trigger svg,#wa-float-btn svg,.wa-float svg{width:16px !important;height:16px !important;fill:#fff !important;}
+</style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+  <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()" aria-hidden="true"></div>
+
+  <nav role="navigation" aria-label="ניווט ראשי" class="subpage-nav">
+    <a href="/" class="nav-logo" aria-label="ירדן דמרי - עמוד הבית">
+      <div class="monogram"><span>Y<em>.D</em></span></div>
+    </a>
+    <a href="/" aria-label="ירדן דמרי - עמוד הבית" style="position:absolute;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;text-decoration:none;line-height:1.25;">
+      <span style="font-family:'Rubik',sans-serif;font-size:1.1rem;font-weight:400;color:#c9a96e;letter-spacing:.04em;white-space:nowrap;">ירדן דמרי</span>
+      <span style="font-family:'Rubik',sans-serif;font-size:.58rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,169,110,.75);margin-top:2px;white-space:nowrap;">מאפרת כלות וערב</span>
+    </a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="פתיחת תפריט ניווט" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" role="list">
+      <li class="nav-social">
+        <a href="https://www.instagram.com/yarden_damri_makeup" target="_blank" rel="noopener noreferrer" aria-label="Instagram של ירדן דמרי" class="social-pill social-ig">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@yardendamri" target="_blank" rel="noopener noreferrer" aria-label="TikTok של ירדן דמרי" class="social-pill social-tt">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+          <span>TikTok</span>
+        </a>
+      </li>
+      <li><a href="contact.html" class="nav-cta">צרי קשר</a></li>
+      <li><a href="about.html">אודות</a></li>
+      <li><a href="bride.html">מאפרת כלות</a></li>
+      <li><a href="services.html">שירותים</a></li>
+      <li><a href="gallery.html">גלריה</a></li>
+      <li><a href="bridal-guide.html">מדריך כלות</a></li>
+    </ul>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="תפריט ניווט נייד" aria-hidden="true">
+    <ul role="list">
+      <li><a href="about.html" onclick="closeMobileMenu()">אודות</a></li>
+      <li><a href="bride.html" onclick="closeMobileMenu()">מאפרת כלות</a></li>
+      <li><a href="services.html" onclick="closeMobileMenu()">שירותים</a></li>
+      <li><a href="gallery.html" onclick="closeMobileMenu()">גלריה</a></li>
+      <li><a href="bridal-guide.html" onclick="closeMobileMenu()">מדריך כלות</a></li>
+      <li><a href="contact.html" onclick="closeMobileMenu()">צרי קשר</a></li>
+    </ul>
+    <a onclick="trackEvent('whatsapp_click','conversion','whatsapp');closeMobileMenu();" href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" class="mobile-menu-wa">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.099.544 4.074 1.497 5.787L.057 23.882l6.255-1.641A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.666-.513-5.19-1.41l-.372-.22-3.863 1.013 1.032-3.765-.241-.388A9.978 9.978 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+      שלחי הודעה בוואטסאפ
+    </a>
+    <div class="mobile-social">
+      <a href="https://www.instagram.com/yarden_damri_makeup" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-pill social-ig">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="https://www.tiktok.com/@yardendamri" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="social-pill social-tt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+        <span>TikTok</span>
+      </a>
+    </div>
+  </div>
+
+  <main id="main-content" role="main" tabindex="-1">
+    <div class="a11y-page-wrapper">
+      <h1>הצהרת <em>נגישות</em></h1>
+      <span class="last-updated">עדכון אחרון: מאי 2025</span>
+
+      <span class="status-badge">♿ מחויבים לנגישות מלאה</span>
+
+      <h2>1. כללי</h2>
+      <p>
+        אתר זה הוא אתרה של <strong>ירדן דמרי — מאפרת כלות וערב</strong>
+        (להלן: "האתר"). אנו מאמינים כי לכל אדם, ללא קשר ליכולותיו הפיזיות,
+        מגיעה גישה שוויונית למידע ולשירותים באינטרנט.
+      </p>
+      <p>
+        האתר פועל בהתאם להוראות <strong>חוק שוויון זכויות לאנשים עם מוגבלות, תשנ"ח-1998</strong>
+        ותקנות הנגישות לשירות (תשע"ג-2013), ועומד בדרישות
+        <strong>תקן ישראלי 5568:2020 (IS 5568)</strong>, המבוסס על WCAG 2.1 ברמה AA.
+      </p>
+
+      <h2>2. רמת הנגישות הנוכחית</h2>
+      <p>האתר כולל את המאפיינים הנגישים הבאים:</p>
+      <ul>
+        <li>הגדרת שפה (<code>lang="he"</code>) וכיוון טקסט (<code>dir="rtl"</code>) בכותרת המסמך</li>
+        <li>קישור "דלג לתוכן הראשי" בראש כל עמוד</li>
+        <li>ניגודיות צבעים עומדת בדרישות 4.5:1 לטקסט רגיל ו-3:1 לטקסט גדול</li>
+        <li>כל האלמנטים האינטראקטיביים נגישים באמצעות מקלדת</li>
+        <li>סימון פוקוס מקלדת ברור בכל שדות ורכיבי ניווט</li>
+        <li>תגיות <code>aria-label</code> ו-<code>aria-describedby</code> בכל הרכיבים האינטראקטיביים</li>
+        <li>תיאור טקסטואלי לכל התמונות (<code>alt</code>)</li>
+        <li>ניווט עקבי בכל עמודי האתר</li>
+        <li>תמיכה בהעדפות מופחתות-תנועה (<code>prefers-reduced-motion</code>)</li>
+        <li>כפתור נגישות (Alt+A) עם אפשרויות: ניגודיות גבוהה, הגדלת טקסט, הדגשת קישורים, עצירת אנימציות</li>
+        <li>אזורי ציון (Landmark roles) לניווט בעזרת קוראי מסך</li>
+        <li>טפסים עם תוויות מפורשות ורכיבי <code>aria-required</code></li>
+      </ul>
+
+      <h2>3. פערים ידועים</h2>
+      <p>
+        חרף מאמצינו, ייתכנו פערים נגישותיים מסוימים, במיוחד בתוכן שמקורו
+        ממערכות חיצוניות (למשל: טבעות ביקורות Google). אנו עובדים באופן שוטף
+        לתיקון כל פער שמזוהה.
+      </p>
+
+      <h2>4. תאימות לקוראי מסך</h2>
+      <p>האתר נבדק עם קוראי המסך הנפוצים בישראל:</p>
+      <ul>
+        <li>NVDA עם Firefox (Windows)</li>
+        <li>JAWS עם Chrome (Windows)</li>
+        <li>VoiceOver עם Safari (macOS ו-iOS)</li>
+        <li>TalkBack עם Chrome (Android)</li>
+      </ul>
+
+      <h2>5. יצירת קשר בנושאי נגישות</h2>
+      <p>
+        אם נתקלת בבעיית נגישות באתר, או אם יש לך הצעה לשיפור הנגישות,
+        אנא פנה/י אלינו. נשתדל לטפל בפנייתך בתוך <strong>5 ימי עסקים</strong>.
+      </p>
+      <div class="contact-box" role="region" aria-label="פרטי יצירת קשר לנגישות">
+        <p><strong>רכזת נגישות:</strong> ירדן דמרי</p>
+        <p>
+          <strong>טלפון:</strong>
+          <a href="tel:0547276716" aria-label="התקשרי לירדן דמרי"><span dir="ltr">054-7276716</span></a>
+        </p>
+        <p>
+          <strong>וואטסאפ:</strong>
+          <a href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer"
+             aria-label="שלחי הודעת וואטסאפ לירדן דמרי">לחצי לפתיחת וואטסאפ</a>
+        </p>
+        <p>
+          <strong>אינסטגרם:</strong>
+          <a href="https://www.instagram.com/yarden_damri_makeup" target="_blank" rel="noopener noreferrer"
+             aria-label="פתחי עמוד האינסטגרם של ירדן דמרי">@yarden_damri_makeup</a>
+        </p>
+      </div>
+
+      <h2>6. בקשה לתוכן נגיש</h2>
+      <p>
+        אם זקוק/ה לתוכן מהאתר בפורמט נגיש אחר (לדוגמה: מסמך Word, PDF נגיש,
+        גדלי טקסט גדולים), פנה/י אלינו ונשמח לסייע.
+      </p>
+
+      <h2>7. ערעור</h2>
+      <p>
+        אם פנית אלינו ולא קיבלת מענה מספק תוך 5 ימי עסקים, ניתן לפנות
+        לנציבות שוויון זכויות לאנשים עם מוגבלות במשרד המשפטים:
+      </p>
+      <ul>
+        <li>
+          <a href="https://www.gov.il/he/departments/moj_disability_rights/govil-landing-page"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="פתח אתר נציבות שוויון זכויות לאנשים עם מוגבלות בחלון חדש">
+            נציבות שוויון זכויות לאנשים עם מוגבלות — gov.il
+          </a>
+        </li>
+      </ul>
+
+      <h2>8. תאריך עדכון</h2>
+      <p>
+        הצהרת נגישות זו עודכנה לאחרונה ב<strong>מאי 2025</strong>.
+        אנו בוחנים ומעדכנים אותה מדי שנה ובכל פעם שנעשים שינויים משמעותיים באתר.
+      </p>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2025 <strong>ירדן דמרי</strong> | מאפרת כלות וערב מקצועית | מגיעה לכל הארץ</p>
+    <p style="margin-top:10px;"><a onclick="trackEvent('phone_click','conversion','phone')" href="tel:0547276716" style="color:rgba(255,255,255,.7);text-decoration:none;" aria-label="התקשרי אל ירדן דמרי"><span dir="ltr">054-7276716</span></a> &nbsp;·&nbsp; <a onclick="trackEvent('whatsapp_click','conversion','whatsapp')" href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.7);text-decoration:none;" aria-label="שלחי הודעת וואטסאפ לירדן דמרי">וואטסאפ</a></p>
+    <nav aria-label="ניווט תחתון" style="margin-top:20px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:.8rem;margin-bottom:16px;">
+      <a href="/" style="color:rgba(255,255,255,.45);text-decoration:none;">דף הבית</a>
+      <a href="about.html" style="color:rgba(255,255,255,.45);text-decoration:none;">אודות</a>
+      <a href="bride.html" style="color:rgba(255,255,255,.45);text-decoration:none;">מאפרת כלות</a>
+      <a href="services.html" style="color:rgba(255,255,255,.45);text-decoration:none;">שירותים</a>
+      <a href="gallery.html" style="color:rgba(255,255,255,.45);text-decoration:none;">גלריה</a>
+      <a href="bridal-guide.html" style="color:rgba(255,255,255,.45);text-decoration:none;">מדריך כלות</a>
+      <a href="pricing.html" style="color:rgba(255,255,255,.45);text-decoration:none;">מחירון</a>
+      <a href="reviews.html" style="color:rgba(255,255,255,.45);text-decoration:none;">ביקורות</a>
+      <a href="contact.html" style="color:rgba(255,255,255,.45);text-decoration:none;">צרי קשר</a>
+      <a href="disclaimer.html" style="color:rgba(255,255,255,.25);text-decoration:none;">תנאי שימוש</a>
+    </nav>
+    <div style="margin-top:16px;display:flex;flex-direction:column;gap:12px;align-items:center;">
+      <div class="footer-social-pills">
+        <a href="https://www.instagram.com/yarden_damri_makeup" target="_blank" rel="noopener noreferrer" class="social-pill social-ig" aria-label="Instagram של ירדן דמרי">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@yardendamri" target="_blank" rel="noopener noreferrer" class="social-pill social-tt" aria-label="TikTok של ירדן דמרי">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+          <span>TikTok</span>
+        </a>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a href="accessibility-statement.html" style="color:rgba(255,255,255,.35);text-decoration:none;font-size:.78rem;" aria-label="הצהרת נגישות">♿ הצהרת נגישות</a>
+        <a href="admin.html" style="color:rgba(255,255,255,.18);text-decoration:none;font-size:.7rem;" aria-label="כניסה לניהול">⚙️ ניהול</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

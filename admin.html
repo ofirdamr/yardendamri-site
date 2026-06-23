@@ -1,0 +1,2161 @@
+<!DOCTYPE html><!-- v20260611-2 -->
+<html lang="he" dir="rtl">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet">
+  <meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>ניהול גלריה | ירדן דמרי</title>
+  <style>
+    :root {
+      --bg:#1a1210; --card:#231815; --border:rgba(232,200,176,.15);
+      --blush:#E8C8B0; --rose:#C4805A; --text:#F0E6DC;
+      --muted:rgba(240,230,220,.5); --green:#25D366; --red:#e05a5a; --gold:#D4AF6A;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Tahoma,sans-serif;min-height:100vh}
+    /* LOGIN */
+    #login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1008 0%,#2d1a0e 50%,#1a1008 100%)}
+    .login-box{background:rgba(255,255,255,.04);backdrop-filter:blur(20px);border:1px solid rgba(196,154,108,.2);border-radius:24px;padding:48px 40px;width:100%;max-width:400px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.5)}
+    .login-logo{font-size:2.5rem;margin-bottom:4px}
+    .login-box h1{font-size:1.5rem;font-weight:700;color:var(--blush);margin-bottom:4px;letter-spacing:.02em}
+    .login-box .subtitle{font-size:.82rem;color:var(--muted);margin-bottom:32px}
+    .login-field{position:relative;margin-bottom:14px}
+    .login-field input{width:100%;padding:14px 18px;padding-left:50px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:var(--text);font-size:1rem;text-align:right;box-sizing:border-box;transition:border-color .2s}
+    .login-field input:focus{outline:none;border-color:var(--blush);background:rgba(196,154,108,.08)}
+    .login-field .eye-btn{position:absolute;left:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);font-size:.9rem;padding:4px;width:auto;margin:0;display:flex;align-items:center}
+    .login-submit{width:100%;padding:15px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--rose),var(--blush));color:#fff;font-size:1rem;font-weight:700;cursor:pointer;margin-top:4px;margin-bottom:14px;letter-spacing:.03em;transition:opacity .2s,transform .1s}
+    .login-submit:active{transform:scale(.98);opacity:.9}
+    .login-forgot{background:transparent;border:none;color:var(--muted);font-size:.82rem;cursor:pointer;width:auto;padding:0;margin:0;text-decoration:underline}
+    .login-error{color:#ff6b6b;font-size:.82rem;margin-top:10px;padding:10px 14px;background:rgba(255,80,80,.1);border-radius:8px;border:1px solid rgba(255,80,80,.2);display:none;text-align:center}
+    .login-box button{width:100%;padding:13px;border-radius:10px;border:none;background:var(--rose);color:#fff;font-size:1rem;font-weight:700;cursor:pointer;margin-bottom:10px}
+    .login-box button.outline{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:.85rem}
+    /* RESET */
+    #reset-screen{display:none;min-height:100vh;align-items:center;justify-content:center}
+    /* MAIN */
+    #admin-main{display:none}
+    header{background:var(--card);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+    header h1{font-size:1rem;color:var(--blush)}
+    .header-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{padding:9px 18px;border-radius:8px;border:none;cursor:pointer;font-size:.82rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+    .btn-primary{background:var(--rose);color:#fff}
+    .btn-secondary{background:rgba(255,255,255,.08);color:var(--text)}
+    .btn-danger{background:var(--red);color:#fff}
+    /* TABS */
+    .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 28px}
+    .tab{padding:12px 20px;cursor:pointer;font-size:.85rem;color:var(--muted);border-bottom:2px solid transparent;transition:.2s}
+    .tab.active{color:var(--blush);border-bottom-color:var(--blush)}
+    /* TOOLBAR */
+    .toolbar{padding:14px 28px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
+    .toolbar input[type=text]{padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);font-size:.83rem;width:220px}
+    .filter-btn{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:.78rem;transition:.2s}
+    .filter-btn.active,.filter-btn:hover{background:var(--rose);color:#fff;border-color:var(--rose)}
+    .stats{font-size:.78rem;color:var(--muted);margin-right:auto}
+    /* GRID */
+    #grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;padding:18px 28px}
+    .img-card{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;border:2px solid transparent;cursor:grab;transition:border-color .2s,opacity .2s}
+    .img-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+    .img-card.pinned{border-color:var(--gold)}
+    .img-card.selected{border-color:var(--blush);box-shadow:0 0 0 3px var(--blush);}
+    .img-card.dragging{opacity:.4}
+    .img-card.drag-over{border-color:var(--blush);box-shadow:0 0 0 2px var(--blush)}
+    .card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:8px;opacity:0;transition:opacity .2s}
+    .img-card:hover .card-overlay{opacity:1}
+    .card-actions{display:flex;gap:4px;justify-content:flex-end;margin-bottom:4px}
+    .card-btn{width:28px;height:28px;border-radius:6px;border:none;cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.65)}
+    .card-btn:hover{background:rgba(0,0,0,.9)}
+    .cat-label{font-size:.65rem;background:rgba(196,128,90,.8);color:#fff;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:2px;max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+    .pin-badge{position:absolute;top:5px;right:5px;background:var(--gold);color:#000;font-size:.6rem;font-weight:700;padding:2px 5px;border-radius:4px}
+    .hidden-badge{position:absolute;top:5px;left:5px;background:var(--red);color:#fff;font-size:.6rem;font-weight:700;padding:2px 5px;border-radius:4px}
+    .video-badge{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.7);color:#fff;font-size:.65rem;padding:2px 7px;border-radius:12px;pointer-events:none;z-index:2;}
+    /* CATEGORIES TAB */
+    #tab-cats{display:none;padding:24px 28px}
+    .cat-manager{max-width:600px}
+    .cat-manager h2{font-size:1rem;color:var(--blush);margin-bottom:16px}
+    .cat-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+    .cat-item{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 14px}
+    .cat-item span{flex:1;font-size:.9rem}
+    .cat-count{font-size:.75rem;color:var(--muted)}
+    .cat-add{display:flex;gap:8px}
+    .cat-add input{flex:1;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);font-size:.9rem}
+    /* SETTINGS TAB */
+    #tab-settings{display:none;padding:24px 28px}
+    .settings-section{max-width:500px}
+    .settings-section h2{font-size:1rem;color:var(--blush);margin-bottom:16px}
+    .field-group{margin-bottom:20px}
+    .field-group label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:6px}
+    .field-group input{width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);font-size:.9rem}
+    /* CAT MODAL */
+    .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:8000;display:none;align-items:center;justify-content:center}
+    .modal-bg.open{display:flex}
+    .modal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;width:340px}
+    .modal h3{color:var(--blush);margin-bottom:16px;font-size:1rem}
+    .modal select,.modal input{width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);font-size:.9rem;margin-bottom:12px}
+    .modal-actions{display:flex;gap:8px;justify-content:flex-end}
+    .period-btn{padding:5px 12px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:.78rem;transition:all .2s}
+    .period-btn.active{background:var(--blush);color:#fff;border-color:var(--blush)}
+    /* TOAST */
+    .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--rose);color:#fff;padding:11px 26px;border-radius:28px;font-size:.88rem;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999}
+    .vid-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9000;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
+    .vid-modal-bg.open{display:flex;}
+    .vid-modal-bg video{max-width:92vw;max-height:78vh;border-radius:10px;outline:none;}
+    .vid-modal-close{position:fixed;top:18px;left:18px;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.6rem;width:46px;height:46px;border-radius:50%;cursor:pointer;line-height:1;}
+    .vid-modal-set{background:var(--gold,#B89060);color:#fff;border:none;padding:13px 28px;border-radius:30px;font-size:.95rem;font-weight:700;cursor:pointer;}
+    .card-btn.hero-active{background:var(--gold,#B89060);color:#fff;}
+    .toast.show{opacity:1}
+    @media(max-width:600px){
+      #grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));padding:12px 14px}
+      .toolbar,.tabs,header{padding-left:14px;padding-right:14px}
+    }
+  </style>
+</head>
+<body>
+<script src="cloud-storage.js?v=2"></script>
+<script src="gallery-data.js?v=1779253059"></script>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">✨</div>
+    <h1>ירדן דמרי</h1>
+    <div class="subtitle">ממשק ניהול | כניסה מאובטחת</div>
+    <div class="login-field">
+      <input type="password" id="pwd-input" placeholder="הזן סיסמה..." autocomplete="current-password" />
+      <button type="button" class="eye-btn" onclick="togglePwdVis()" id="pwd-eye" title="הצג/הסתר סיסמה">
+        <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </button>
+    </div>
+    <button class="login-submit" onclick="tryLogin()">כניסה לממשק</button>
+    <button class="login-forgot" onclick="showReset()">שכחתי סיסמה</button>
+    <div class="login-error" id="login-err"></div>
+  </div>
+</div>
+
+<!-- RESET SCREEN -->
+<div id="reset-screen" style="min-height:100vh;display:none;align-items:center;justify-content:center">
+  <div class="login-box">
+    <h1>🔑 איפוס סיסמה</h1>
+    <p>הזן את קוד האיפוס שקיבלת</p>
+    <input type="text" id="reset-code-input" placeholder="קוד איפוס..." />
+    <p style="font-size:.75rem;color:var(--muted);margin-bottom:16px">קוד האיפוס: <strong style="color:var(--blush)" id="reset-hint"></strong></p>
+    <input type="password" id="new-pwd-input" placeholder="סיסמה חדשה..." />
+    <input type="password" id="new-pwd-confirm" placeholder="אישור סיסמה..." />
+    <button onclick="doReset()">שמור סיסמה חדשה</button>
+    <button class="outline" onclick="document.getElementById('reset-screen').style.display='none';document.getElementById('login-screen').style.display='flex'">חזור</button>
+    <p class="login-error" id="reset-err"></p>
+  </div>
+</div>
+
+<!-- ADMIN MAIN -->
+<div id="admin-main">
+  <header>
+    <h1>✨ ניהול גלריה — ירדן דמרי</h1>
+    <div class="header-actions">
+      <button class="btn btn-primary" onclick="saveAndPublish()">💾 שמור ופרסם</button>
+      <a href="index.html" class="btn btn-secondary">← חזור לאתר</a>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('gallery',this)">🖼️ גלריה</div>
+    <div class="tab" onclick="switchTab('cats',this)">🏷️ קטגוריות</div>
+    <div class="tab" onclick="switchTab('analytics',this)">📊 ביצועים</div>
+    <div class="tab" onclick="switchTab('pricing',this)">💰 מחירון</div>
+    <div class="tab" onclick="switchTab('settings',this)">⚙️ הגדרות</div>
+  </div>
+
+  <!-- GALLERY TAB -->
+  <div id="tab-gallery">
+    <div class="toolbar">
+      <input type="text" id="search-input" placeholder="🔍 חיפוש..." oninput="filterGrid()" />
+      <button class="filter-btn active" onclick="setFilter('all',this)">הכל</button>
+      <button class="filter-btn" onclick="setFilter('pinned',this)">📌 נעוצות</button>
+      <button class="filter-btn" onclick="setFilter('hidden',this)">🚫 מוסתרות</button>
+      <button class="filter-btn" style="border-color:#e07b54;color:#e07b54" onclick="showDuplicates(this)">🔁 כפולות</button>
+      <div id="cat-filter-btns"></div>
+      <button class="btn btn-secondary" onclick="toggleMultiSelect()" id="multiSelectBtn" style="margin-right:auto">☑️ בחירה מרובה</button>
+      <button class="btn btn-secondary" onclick="resetOrder()">🔄 אפס סדר</button>
+      <span class="stats" id="stats-label"></span>
+    </div>
+    <!-- Multi-select action bar -->
+    <div id="multi-action-bar" style="padding:10px 28px;background:rgba(196,128,90,.12);border-bottom:1px solid var(--border);display:none;align-items:center;gap:12px;flex-wrap:wrap">
+      <span id="selected-count" style="font-size:.85rem;color:var(--blush);font-weight:600">0 נבחרו</span>
+      <span style="font-size:.75rem;color:var(--muted)">Shift+לחיצה לבחירת טווח</span>
+      <button class="btn btn-secondary" onclick="selectAllVisible()">בחר הכל</button>
+      <button class="btn btn-secondary" onclick="clearSelection()">נקה בחירה</button>
+      <button class="btn" style="background:var(--gold);color:#000" onclick="bulkHide()">🚫 הסתר</button>
+      <button class="btn" style="background:#4CAF50;color:#fff" onclick="bulkShow()">👁️ הצג</button>
+      <button class="btn" style="background:var(--blush);color:#fff" onclick="bulkPin()">📌 נעץ</button>
+      <button class="btn" style="background:#6366f1;color:#fff" onclick="bulkCatModal()">🏷️ קטגוריה</button>
+      <button class="btn" style="background:#0891b2;color:#fff" onclick="bulkRotate()">🔄 סובב</button>
+      <button class="btn" style="background:#64748b;color:#fff" onclick="bulkMoveToTop()">⬆️ הזז לראש</button>
+      <button class="btn btn-danger" onclick="bulkDelete()">🗑️ מחק</button>
+      <button class="btn btn-secondary" onclick="toggleMultiSelect()">✕ ביטול</button>
+    </div>
+    <div id="grid"></div>
+  </div>
+
+  <!-- CATEGORIES TAB -->
+  <div id="tab-cats" style="display:none;padding:24px 28px">
+    <div class="cat-manager">
+      <h2>🏷️ ניהול קטגוריות</h2>
+      <p style="font-size:.83rem;color:var(--muted);margin-bottom:20px">הוסיפי קטגוריות ואחר כך בגלריה לחצי על 🏷️ בכל תמונה כדי לשייך אותה.</p>
+      <div class="cat-list" id="cat-list"></div>
+      <div class="cat-add">
+        <input type="text" id="new-cat-input" placeholder="שם קטגוריה חדשה (למשל: כלות, פורים...)" />
+        <button class="btn btn-primary" onclick="addCategory()">+ הוסף</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANALYTICS TAB -->
+  <div id="tab-analytics" style="display:none;padding:20px 16px">
+
+    <!-- Connect / Period row -->
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:18px;">
+      <button id="ga4-connect-btn" onclick="ga4Connect()" style="background:var(--blush);color:#fff;border:none;border-radius:10px;padding:10px 18px;cursor:pointer;font-size:.85rem;font-weight:600;">🔗 התחבר לגוגל אנליטיקס</button>
+      <div style="display:flex;gap:6px;">
+        <button class="period-btn active" onclick="setPeriod(7,this)">7 ימים</button>
+        <button class="period-btn" onclick="setPeriod(30,this)">30 יום</button>
+        <button class="period-btn" onclick="setPeriod(90,this)">90 יום</button>
+      </div>
+    </div>
+
+    <div id="ga4-status" style="font-size:.78rem;color:var(--muted);margin-bottom:14px;min-height:18px;"></div>
+
+    <!-- KPI Cards -->
+    <div id="kpi-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px;"></div>
+
+    <!-- Bounce rate insight -->
+    <div id="bounce-insight" style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:.82rem;min-height:36px;"></div>
+
+    <!-- Visits Chart -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:12px;">
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:10px;">📈 ביקורים יומיים</div>
+      <canvas id="visits-chart" height="100"></canvas>
+    </div>
+
+    <!-- Traffic sources: channel + specific -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;">
+        <div style="font-size:.82rem;color:var(--muted);margin-bottom:10px;">🔍 ערוצי תנועה</div>
+        <div id="sources-list"></div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;">
+        <div style="font-size:.82rem;color:var(--muted);margin-bottom:10px;">🌐 מקורות ספציפיים</div>
+        <div id="specific-sources-list"></div>
+      </div>
+    </div>
+
+    <!-- Devices + Cities -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;">
+        <div style="font-size:.82rem;color:var(--muted);margin-bottom:10px;">📱 מכשירים</div>
+        <div id="devices-list"></div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;">
+        <div style="font-size:.82rem;color:var(--muted);margin-bottom:10px;">📍 ערים ואזורים</div>
+        <div id="cities-list"></div>
+      </div>
+    </div>
+
+    <!-- Demographics + Pages -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;">
+        <div style="font-size:.82rem;color:var(--muted);margin-bottom:10px;">👤 גיל ומגדר</div>
+        <div id="demographics-list"></div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;">
+        <div style="font-size:.82rem;color:var(--muted);margin-bottom:10px;">📄 עמודים פופולריים</div>
+        <div id="pages-list"></div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:20px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;">
+        <div style="font-size:.82rem;color:var(--muted);margin-bottom:10px;">🔑 מילות חיפוש (SEO)</div>
+        <div id="keywords-list"></div>
+      </div>
+    </div>
+
+    <a href="https://analytics.google.com/analytics/web/#/p536415544/reports/reportinghub" target="_blank"
+       style="display:block;text-align:center;background:rgba(255,255,255,.07);color:var(--muted);padding:12px;border-radius:12px;text-decoration:none;font-size:.82rem;border:1px solid var(--border);">
+      📊 פתח גוגל אנליטיקס לדוחות מלאים
+    </a>
+
+  </div>
+
+  <!-- PRICING TAB -->
+  <div id="tab-pricing" style="display:none;padding:24px 16px">
+    <h2 style="font-size:1rem;margin-bottom:20px;color:var(--text)">💰 עריכת מחירון</h2>
+    <p style="font-size:.82rem;color:var(--muted);margin-bottom:20px">כל שינוי כאן יופיע אוטומטית בדף המחירון באתר.</p>
+    <div id="pricing-editor"></div>
+    <button class="btn btn-primary" onclick="addPricingItem()" style="margin-top:16px">+ הוסף שירות</button>
+    <button class="btn" style="background:#2d7a4f;color:#fff;margin-top:8px" onclick="savePricingItems()">💾 שמור ופרסם</button>
+  </div>
+
+  <!-- SETTINGS TAB -->
+  <div id="tab-settings" style="display:none;padding:24px 28px">
+    <div class="settings-section">
+      <h2>🎬 מדיה ראשית בדף הבית (Hero)</h2>
+
+      <!-- Media type tabs -->
+      <div style="display:flex;gap:8px;margin-bottom:16px;">
+        <button id="hero-tab-video" class="btn btn-primary" onclick="switchHeroTab('video')" style="font-size:.82rem;padding:7px 16px;">🎬 וידאו</button>
+        <button id="hero-tab-image" class="btn btn-secondary" onclick="switchHeroTab('image')" style="font-size:.82rem;padding:7px 16px;">🖼️ תמונה</button>
+      </div>
+
+      <!-- Video picker -->
+      <div id="hero-panel-video" class="field-group">
+        <label>בחרי וידאו לכותרת הראשית</label>
+        <input type="search" id="hero-search" placeholder="חיפוש לפי כיתוב..." oninput="filterHeroGrid(this.value)"
+          style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;margin-bottom:10px;box-sizing:border-box;background:rgba(255,255,255,.06);color:var(--text);" />
+        <div id="hero-video-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-bottom:10px;max-height:40vh;overflow-y:auto;padding:4px;"></div>
+        <p id="hero-grid-count" style="font-size:.8rem;color:var(--muted);text-align:center;margin:0;"></p>
+      </div>
+
+      <!-- Image picker -->
+      <div id="hero-panel-image" class="field-group" style="display:none;">
+        <label>בחרי תמונה לכותרת הראשית</label>
+        <p style="font-size:.85rem;color:var(--text-muted,#888);margin-bottom:14px;">לחצי על תמונה כדי לבחור אותה.</p>
+        <div id="hero-image-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-bottom:14px;max-height:40vh;overflow-y:auto;padding:4px;"></div>
+      </div>
+
+      <!-- Live preview + auto-fit -->
+      <div id="hero-preview-section" style="display:none;margin-top:18px;padding-top:18px;border-top:1px solid var(--border);">
+        <label style="font-weight:600;display:block;margin-bottom:10px;">תצוגה מקדימה — כך ייראה ב-Hero</label>
+        <!-- 16:9 preview box -->
+        <div style="position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#111;margin-bottom:14px;">
+          <img id="hero-preview-img" src="" alt="תצוגה מקדימה" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;"/>
+          <video id="hero-preview-vid" muted loop playsinline autoplay style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;" onclick="this.play()"></video>
+          <div id="hero-preview-label" style="position:absolute;bottom:8px;right:10px;background:rgba(0,0,0,.6);color:#fff;font-size:.7rem;padding:3px 8px;border-radius:8px;pointer-events:none;"></div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px;">
+          <button class="btn btn-secondary" onclick="clearHeroMedia()">↩️ ברירת מחדל</button>
+          <span id="hero-video-status" style="font-size:.82rem;color:var(--text-muted,#888);"></span>
+        </div>
+
+        <!-- Crop/position tool -->
+        <div id="hero-position-controls" style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:8px;">
+          <label style="font-size:.82rem;font-weight:600;display:block;margin-bottom:6px;">🎯 כיוון ידני — גרור להזזה, זום להתקרבות</label>
+          <p style="font-size:.72rem;color:var(--muted);margin:0 0 8px;">תצוגה מקדימה: מסך רחב בלבד. זום לא מופעל במובייל.</p>
+
+          <!-- Drag preview box -->
+          <div id="hero-crop-box"
+            style="position:relative;width:100%;padding-top:56.25%;border-radius:8px;overflow:hidden;cursor:grab;background:#111;margin-bottom:10px;touch-action:none;user-select:none;"
+            onmousedown="heroCropStart(event)" ontouchstart="heroCropStart(event)">
+            <video id="hero-crop-vid" muted loop playsinline autoplay
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;"></video>
+            <img id="hero-crop-img"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:none;" />
+            <div style="position:absolute;inset:0;border:2px dashed rgba(196,134,106,.6);pointer-events:none;border-radius:8px;"></div>
+          </div>
+
+          <!-- Sliders -->
+          <div style="display:grid;gap:8px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="font-size:.75rem;color:var(--muted);width:60px;text-align:left;">↔ אופקי</span>
+              <input type="range" id="hero-pos-x" min="0" max="100" value="50" style="flex:1;" oninput="applyHeroCrop()">
+              <span id="hero-pos-x-val" style="font-size:.75rem;color:var(--muted);width:32px;">50%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="font-size:.75rem;color:var(--muted);width:60px;text-align:left;">↕ אנכי</span>
+              <input type="range" id="hero-pos-y" min="0" max="100" value="50" style="flex:1;" oninput="applyHeroCrop()">
+              <span id="hero-pos-y-val" style="font-size:.75rem;color:var(--muted);width:32px;">50%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="font-size:.75rem;color:var(--muted);width:60px;text-align:left;">🔍 זום</span>
+              <input type="range" id="hero-zoom" min="50" max="200" value="100" step="5" style="flex:1;" oninput="applyHeroCrop()">
+              <span id="hero-zoom-val" style="font-size:.75rem;color:var(--muted);width:32px;">1×</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:10px;">
+            <button class="btn btn-primary" onclick="saveHeroCrop()" style="flex:1;">💾 שמור כיוון</button>
+            <button class="btn" onclick="document.getElementById('hero-zoom').value=100;applyHeroCrop();" style="flex:0 0 auto;padding:0 14px;" title="איפוס זום">↺ זום</button>
+          </div>
+        </div>
+        <p style="font-size:.75rem;color:var(--text-muted,#999);margin:0;">כפתור "זיהוי פנים" — Cloudinary מזהה פנים ומרכז אוטומטית. אם לא מדויק, כווני ידנית עם הסליידרים.</p>
+      </div>
+    </div>
+
+    <div class="settings-section" style="margin-top:30px;">
+      <h2>⚙️ הגדרות</h2>
+      <div class="field-group">
+        <label>שינוי סיסמה</label>
+        <input type="password" id="settings-current-pwd" placeholder="סיסמה נוכחית" style="margin-bottom:8px" />
+        <input type="password" id="settings-new-pwd" placeholder="סיסמה חדשה" style="margin-bottom:8px" />
+        <input type="password" id="settings-confirm-pwd" placeholder="אישור סיסמה חדשה" style="margin-bottom:12px" />
+        <button class="btn btn-primary" onclick="changePwd()">שמור סיסמה</button>
+      </div>
+      <div class="field-group" style="margin-top:30px;padding-top:20px;border-top:1px solid var(--border)">
+        <label>🔄 שחזור עבודה מהמכשיר הזה</label>
+        <p style="font-size:.85rem;color:var(--text-muted,#888);margin-bottom:10px;">אם הקטגוריות והסידור שעשית בעבר נעלמו מהענן, ייתכן שהם עדיין שמורים על המכשיר הזה. הכפתור יסרוק ויראה לך מה אפשר לשחזר.</p>
+        <button class="btn btn-primary" onclick="scanLocalBackup()">🔍 סרוק עבודה שמורה</button>
+        <button class="btn btn-secondary" onclick="downloadLocalBackup()" style="margin-right:8px;">💾 הורד גיבוי לקובץ</button>
+        <p style="font-size:.78rem;color:#999;margin-top:8px;">💡 אם את ב-incognito — הורידי קודם גיבוי לקובץ! המידע ייעלם כשתסגרי את החלון.</p>
+
+        <div style="margin-top:18px;padding-top:14px;border-top:1px dashed #ddd;">
+          <label style="font-size:.9rem;font-weight:600;">☁️ שחזור מהאחסון הקודם (JSONBin)</label>
+          <p style="font-size:.82rem;color:#666;margin:8px 0 12px;">העבודה הקודמת ייתכן שעדיין שמורה במערכת האחסון הישנה. נסי לטעון משם.</p>
+          <button class="btn btn-secondary" onclick="pullFromOldJsonbin(false)">🔁 משוך מהאחסון הישן</button>
+          <button class="btn btn-danger" onclick="pullFromOldJsonbin(true)" style="margin-right:8px;">⚠️ דרוס הכל מהאחסון הישן</button>
+          <div id="pull-result" style="margin-top:10px;"></div>
+        </div>
+
+        <div style="margin-top:18px;padding-top:14px;border-top:1px dashed #ddd;">
+          <label style="font-size:.9rem;font-weight:600;">🔤 תיקון קידוד עברית</label>
+          <p style="font-size:.82rem;color:#666;margin:8px 0 12px;">אם שמות הקטגוריות מוצגים כסימנים לא מובנים (Â Â Â) — לחצי כאן לתיקון אוטומטי.</p>
+          <button class="btn btn-primary" onclick="fixHebrewEncoding()">🔤 תקני שמות קטגוריות</button>
+          <div id="fix-result" style="margin-top:10px;"></div>
+        </div>
+          <input type="file" id="restore-file-input" accept="application/json,.json" style="display:block;margin-top:10px;font-family:inherit;font-size:.85rem;" onchange="importBackupFile(this)" />
+        </div>
+
+        <div id="restore-result" style="margin-top:14px;"></div>
+      </div>
+
+      <div class="field-group" style="margin-top:30px;padding-top:20px;border-top:1px solid var(--border)">
+        <label style="color:var(--red)">אזור מסוכן</label>
+        <button class="btn btn-danger" onclick="clearAllSettings()">🗑️ מחק את כל הגדרות הגלריה</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORY MODAL -->
+<div class="modal-bg" id="cat-modal">
+  <div class="modal">
+    <h3>🏷️ שייך קטגוריה לתמונה</h3>
+    <input type="hidden" id="modal-img-url" />
+    <select id="modal-cat-select">
+      <option value="">— ללא קטגוריה —</option>
+    </select>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal()">ביטול</button>
+      <button class="btn btn-primary" onclick="saveImageCategory()">שמור</button>
+    </div>
+  </div>
+</div>
+
+<div class="vid-modal-bg" id="vid-modal" onclick="if(event.target===this)closeVideoPreview()">
+  <button class="vid-modal-close" onclick="closeVideoPreview()" title="סגור">✕</button>
+  <video id="vid-modal-player" controls playsinline></video>
+  <button class="vid-modal-set" onclick="setHeroVideoFromModal()">⭐ הגדר כווידאו ראשי</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── PASSWORD ──────────────────────────────────────────────────
+// ── AUTH — password stored as SHA-256 hash only ──────────────────
+const DEFAULT_HASH = '6b771e8d9ca4345d4217c9af5e4cf278cb1067a89abbdb1a374436ad26b39f73';
+
+async function hashPwd(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+function getStoredHash() { return localStorage.getItem('admin_pwd_hash') || DEFAULT_HASH; }
+function savePwd(p) { hashPwd(p).then(h => { localStorage.setItem('admin_pwd_hash', h); localStorage.removeItem('admin_pwd_v2'); }); }
+
+function togglePwdVis() {
+  const inp = document.getElementById('pwd-input');
+  const showing = inp.type === 'text';
+  inp.type = showing ? 'password' : 'text';
+  document.getElementById('eye-icon').style.opacity = showing ? '1' : '0.4';
+  inp.focus();
+}
+
+async function tryLogin() {
+  const input = document.getElementById('pwd-input').value;
+  const errEl = document.getElementById('login-err');
+  errEl.style.display = 'none';
+  if (!input) { errEl.textContent = 'נא להזין סיסמה'; errEl.style.display = 'block'; return; }
+
+  errEl.textContent = '⏳ בודקת...';
+  errEl.style.display = 'block';
+  errEl.style.color = '#888';
+
+  const result = await window.RemoteState.login(input);
+
+  if (result.ok) {
+    errEl.style.display = 'none';
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-main').style.display = 'block';
+    initAdmin().catch(e => console.error('initAdmin error:', e));
+    return;
+  }
+
+  document.getElementById('pwd-input').value = '';
+  document.getElementById('pwd-input').focus();
+
+  if (result.error === 'too_many_attempts') {
+    const mins = Math.ceil((result.retryAfter || 900) / 60);
+    errEl.textContent = `יותר מדי ניסיונות כושלים. נסי שוב בעוד ${mins} דקות.`;
+  } else if (result.error === 'invalid_password') {
+    errEl.textContent = 'סיסמה שגויה — נסי שוב';
+  } else if (result.error === 'network_error' || result.error === 'Failed to fetch') {
+    errEl.textContent = 'אין חיבור לאינטרנט';
+  } else {
+    errEl.textContent = 'שגיאת שרת. נסי שוב.';
+  }
+  errEl.style.color = '#c62828';
+}
+
+async function _legacyTryLogin_disabled() {
+  const input = document.getElementById('pwd-input').value;
+  const errEl = document.getElementById('login-err');
+  errEl.style.display = 'none';
+  if (!input) { errEl.textContent = 'נא להזין סיסמה'; errEl.style.display = 'block'; return; }
+  const inputHash = await hashPwd(input);
+  if (inputHash === getStoredHash()) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-main').style.display = 'block';
+    initAdmin().catch(e => console.error('initAdmin error:', e));
+  } else {
+    errEl.textContent = 'סיסמה שגויה — נסה שוב';
+    errEl.style.display = 'block';
+    document.getElementById('pwd-input').value = '';
+    document.getElementById('pwd-input').focus();
+  }
+}
+document.getElementById('pwd-input').addEventListener('keydown', e => { if(e.key==='Enter') tryLogin(); });
+
+// Reset code stored as hash only
+const RESET_HASH = '9bd92cdcc9f755f6bb1824ee29f056c7340864b1dd6d958ef4dc83b3dee2c7a6';
+
+function showReset() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('reset-screen').style.display = 'flex';
+}
+async function doReset() {
+  const code = document.getElementById('reset-code-input').value;
+  const np   = document.getElementById('new-pwd-input').value;
+  const nc   = document.getElementById('new-pwd-confirm').value;
+  const err  = document.getElementById('reset-err');
+  const codeHash = await hashPwd(code);
+  if (codeHash !== RESET_HASH) { err.textContent='קוד שגוי'; err.style.display='block'; return; }
+  if (!np || np.length < 4) { err.textContent='סיסמה קצרה מדי'; err.style.display='block'; return; }
+  if (np !== nc) { err.textContent='הסיסמאות לא תואמות'; err.style.display='block'; return; }
+  savePwd(np);
+  showToast('✅ סיסמה שונתה בהצלחה!');
+  setTimeout(() => { document.getElementById('reset-screen').style.display='none'; document.getElementById('login-screen').style.display='flex'; }, 1500);
+}
+
+async function changePwd() {
+  const cur = document.getElementById('settings-current-pwd').value;
+  const np  = document.getElementById('settings-new-pwd').value;
+  const nc  = document.getElementById('settings-confirm-pwd').value;
+  const curHash = await hashPwd(cur);
+  if (curHash !== getStoredHash()) { showToast('❌ סיסמה נוכחית שגויה'); return; }
+  if (!np || np.length < 4) { showToast('❌ סיסמה קצרה מדי'); return; }
+  if (np !== nc) { showToast('❌ הסיסמאות לא תואמות'); return; }
+  savePwd(np);
+  showToast('✅ סיסמה שונתה!');
+  ['settings-current-pwd','settings-new-pwd','settings-confirm-pwd'].forEach(id => document.getElementById(id).value='');
+}
+
+// ─── STATE ─────────────────────────────────────────────────────
+let allImages = [];
+let currentFilter = 'all';
+let currentCatFilter = '';
+let searchTerm = '';
+
+function getSettings() {
+  // Prefer RemoteState (synced to all visitors via JSONBin).
+  // RemoteState.getAdmin() returns sensible defaults. The 'rotations' and 'heroVideo' keys are also synced.
+  if (window.RemoteState && window.RemoteState.getAdmin) {
+    const a = window.RemoteState.getAdmin();
+    // include heroVideo/heroImage/heroFit/heroPosition from top-level so admin can read/write them
+    const s = window.RemoteState.getCached() || {};
+    return { ...a, heroVideo: s.heroVideo || '', heroImage: s.heroImage || '', heroFit: s.heroFit || '', heroPosition: s.heroPosition || '', heroZoom: s.heroZoom || 100 };
+  }
+  try { return JSON.parse(localStorage.getItem('gallery_admin') || '{"hidden":[],"pinned":[],"order":[],"cats":{},"catList":[]}'); }
+  catch(e) { return {hidden:[],pinned:[],order:[],cats:{},catList:[]}; }
+}
+function saveSettings(s) {
+  try { localStorage.setItem('gallery_admin', JSON.stringify(s)); } catch(e){}
+  if (window.RemoteState && window.RemoteState.update) {
+    const { heroVideo, heroImage, heroFit, heroPosition, heroZoom, ...adminFields } = s;
+    const payload = { admin: adminFields };
+    payload.heroVideo    = heroVideo    || null;
+    payload.heroImage    = heroImage    || null;
+    payload.heroPosition = heroPosition || null;
+    payload.heroZoom     = heroZoom     || null;
+    window.RemoteState.update(payload).then(result => {
+      if (result && !result.ok) {
+        if (result.error === 'not_synced') {
+          showToast('⏳ מסנכרן... רעני את הדף ונסי שוב');
+        } else {
+          showToast('⚠️ שמירה לענן נכשלה');
+        }
+      }
+    });
+  }
+}
+
+// ─── INIT ───────────────────────────────────────────────────────
+async function initAdmin() {
+  if (typeof GALLERY_IMAGES === 'undefined') {
+    document.getElementById('grid').innerHTML = '<p style="padding:20px;color:red">שגיאה: קובץ הגלריה לא נטען. רענן את הדף.</p>';
+    return;
+  }
+  // Show spinner while Worker loads settings (hidden/cats/order)
+  document.getElementById('grid').innerHTML = '<p style="padding:30px;text-align:center;opacity:.5;">⏳ טוען הגדרות...</p>';
+
+  if (window.RemoteState) {
+    const fetchResult = await window.RemoteState.fetch();
+    if (!fetchResult || !fetchResult.ok) {
+      showToast('⚠️ לא הצלחתי להתחבר לשרת — מוצג מנתונים מקומיים');
+    }
+  }
+
+  // Now render with full settings loaded
+  allImages = [...GALLERY_IMAGES];
+  renderGrid();
+  renderCatList();
+  renderCatFilters();
+  populateHeroVideoSelect();
+}
+
+// ─── GRID ───────────────────────────────────────────────────────
+let multiSelectMode = false;
+let selectedUrls = new Set();
+let lastClickedIdx = -1;
+
+function generateAltText(img, catMap) {
+  catMap = catMap || {};
+  const cat = catMap[img.u] || '';
+  const isVid = img.u.includes('/video/upload/') || img.u.match(/\.(mp4|mov|webm)$/i);
+  const mediaType = isVid ? 'סרטון' : 'תמונה';
+  const catMap2 = {
+    'כלות': 'איפור כלה', 'ערב': 'איפור ערב', 'אירועים/הפקות': 'איפור הפקה',
+    'מוסתרות': 'איפור', '': 'איפור מקצועי'
+  };
+  const desc = catMap2[cat] || 'איפור מקצועי';
+  return `${mediaType} של ${desc} מאת ירדן דמרי — מאפרת כלות וערב מאילת`;
+}
+
+function toggleMultiSelect() {
+  multiSelectMode = !multiSelectMode;
+  selectedUrls.clear();
+  lastClickedIdx = -1;
+  document.getElementById('multi-action-bar').style.display = multiSelectMode ? 'flex' : 'none';
+  document.getElementById('multiSelectBtn').style.background = multiSelectMode ? 'var(--rose)' : '';
+  document.getElementById('selected-count').textContent = '0 נבחרו';
+  renderGrid();
+}
+
+function toggleCardSelect(url, idx, e) {
+  if (e && e.shiftKey && lastClickedIdx >= 0) {
+    // Range select
+    const cards = [...document.querySelectorAll('.img-card')];
+    const minI = Math.min(lastClickedIdx, idx);
+    const maxI = Math.max(lastClickedIdx, idx);
+    cards.forEach((c, i) => {
+      if (i >= minI && i <= maxI) {
+        selectedUrls.add(c.dataset.url);
+        c.classList.add('selected');
+      }
+    });
+  } else {
+    if (selectedUrls.has(url)) selectedUrls.delete(url);
+    else selectedUrls.add(url);
+    const card = document.querySelector(`.img-card[data-url="${CSS.escape(url)}"]`);
+    if (card) card.classList.toggle('selected', selectedUrls.has(url));
+    lastClickedIdx = idx;
+  }
+  document.getElementById('selected-count').textContent = selectedUrls.size + ' נבחרו';
+}
+
+function selectAllVisible() {
+  document.querySelectorAll('.img-card').forEach(c => { selectedUrls.add(c.dataset.url); c.classList.add('selected'); });
+  document.getElementById('selected-count').textContent = selectedUrls.size + ' נבחרו';
+}
+
+function clearSelection() {
+  selectedUrls.clear();
+  document.querySelectorAll('.img-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('selected-count').textContent = '0 נבחרו';
+}
+
+function bulkShow() {
+  if (!selectedUrls.size) return;
+  const s = getSettings();
+  s.hidden = (s.hidden||[]).filter(u => !selectedUrls.has(u));
+  saveSettings(s);
+  showToast(`הוצגו ${selectedUrls.size} תמונות`);
+  selectedUrls.clear(); renderGrid();
+}
+
+function bulkHide() {
+  if (!selectedUrls.size) return;
+  const s = getSettings();
+  s.hidden = [...new Set([...(s.hidden||[]),...selectedUrls])];
+  saveSettings(s); selectedUrls.clear(); renderGrid();
+  showToast('הוסתרו תמונות');
+}
+
+function bulkDelete() {
+  if (!selectedUrls.size) return;
+  if (!confirm(`למחוק ${selectedUrls.size} תמונות?`)) return;
+  const s = getSettings();
+  s.hidden = [...new Set([...(s.hidden||[]),...selectedUrls])];
+  saveSettings(s);
+  showToast(`נמחקו ${selectedUrls.size} תמונות`);
+  selectedUrls.clear(); renderGrid();
+}
+
+// ─── BULK ACTIONS ────────────────────────────────────────────────
+function bulkPin() {
+  if (!selectedUrls.size) return;
+  const s = getSettings(); s.pinned = s.pinned || [];
+  const allPinned = selectedUrls.size > 0 && [...selectedUrls].every(u => s.pinned.includes(u));
+  if (allPinned) { s.pinned = s.pinned.filter(u => !selectedUrls.has(u)); showToast('הוסר נעץ מ-' + selectedUrls.size + ' פריטים'); }
+  else { s.pinned = [...new Set([...s.pinned, ...selectedUrls])]; showToast('📌 נעוץ ' + selectedUrls.size + ' פריטים'); }
+  saveSettings(s); renderGrid();
+}
+
+function bulkCatModal() {
+  if (!selectedUrls.size) return;
+  const s = getSettings(); const cats = s.catList || [];
+  if (!cats.length) { showToast('הוסיפי קטגוריות תחילה בלשונית קטגוריות'); return; }
+  const cat = prompt('בחר קטגוריה עבור ' + selectedUrls.size + ' פריטים. אפשרויות: ' + cats.join(', '));
+  if (!cat) return;
+  if (!s.cats) s.cats = {};
+  selectedUrls.forEach(u => { s.cats[u] = cat; });
+  saveSettings(s); showToast('🏷️ קטגוריה  + cat +  הוגדרה ל-' + selectedUrls.size + ' פריטים'); renderGrid();
+}
+
+function bulkRotate() {
+  if (!selectedUrls.size) return;
+  const s = getSettings(); if (!s.rotations) s.rotations = {};
+  selectedUrls.forEach(u => { s.rotations[u] = ((s.rotations[u] || 0) + 90) % 360; });
+  saveSettings(s); showToast('🔄 סובבו ' + selectedUrls.size + ' פריטים'); renderGrid();
+}
+
+function bulkMoveToTop() {
+  if (!selectedUrls.size) return;
+  const selected = allImages.filter(i => selectedUrls.has(i.u));
+  const rest = allImages.filter(i => !selectedUrls.has(i.u));
+  allImages = [...selected, ...rest];
+  const s = getSettings(); s.order = allImages.map(i => i.u); saveSettings(s);
+  showToast('⬆️ ' + selectedUrls.size + ' פריטים הוזזו לראש'); renderGrid();
+}
+
+function renderGrid() {
+  const s = getSettings();
+  const hiddenSet = new Set(s.hidden||[]);
+  const pinnedSet = new Set(s.pinned||[]);
+  const catMap    = s.cats||{};
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+
+  let imgs = allImages;
+  if (currentFilter==='hidden') {
+    // Hard override — show ALL hidden URLs, including those not in gallery (ghost items)
+    const inGallery = new Set(allImages.map(i=>i.u));
+    const ghostHidden = [...hiddenSet].filter(u=>!inGallery.has(u)).map(u=>({u,a:'',item_id:'',ghost:true}));
+    imgs = [...allImages.filter(i=>hiddenSet.has(i.u)), ...ghostHidden];
+    // Skip catFilter and searchTerm for hidden view
+  } else {
+    if (currentFilter==='pinned') imgs = imgs.filter(i=>pinnedSet.has(i.u));
+    else if (currentFilter==='duplicates') { const uc={}; allImages.forEach(i=>{uc[i.u]=(uc[i.u]||0)+1;}); imgs=allImages.filter(i=>uc[i.u]>1); }
+    if (currentCatFilter === '__uncategorized__') imgs = imgs.filter(i=>!(catMap[i.u]));
+    else if (currentCatFilter === 'מוסתרות') {
+      // Named category "מוסתרות" = same as hidden system filter — include ghost items
+      const inGallery = new Set(allImages.map(i=>i.u));
+      const ghostHidden = [...hiddenSet].filter(u=>!inGallery.has(u)).map(u=>({u,a:'',item_id:'',ghost:true}));
+      imgs = [...allImages.filter(i=>hiddenSet.has(i.u)), ...ghostHidden];
+    }
+    else if (currentCatFilter) imgs = imgs.filter(i=>(catMap[i.u]||'')=== currentCatFilter);
+    if (searchTerm) imgs = imgs.filter(i=>i.a.includes(searchTerm));
+  }
+
+  // Pagination — show 60 at a time
+  const ADMIN_PAGE_SIZE = 60;
+  if (!window._adminPage) window._adminPage = 0;
+  const totalPages = Math.ceil(imgs.length / ADMIN_PAGE_SIZE);
+  const pageImgs = imgs.slice(0, (window._adminPage + 1) * ADMIN_PAGE_SIZE);
+
+  // Pagination controls
+  let pagCtrl = document.getElementById('admin-pagination');
+  if (!pagCtrl) {
+    pagCtrl = document.createElement('div');
+    pagCtrl.id = 'admin-pagination';
+    pagCtrl.style.cssText = 'text-align:center;padding:16px;';
+    grid.parentNode.insertBefore(pagCtrl, grid.nextSibling);
+  }
+  if ((window._adminPage + 1) < totalPages) {
+    pagCtrl.innerHTML = `<button onclick="window._adminPage++;renderGrid();" style="background:var(--blush);color:#fff;border:none;border-radius:10px;padding:10px 24px;cursor:pointer;font-size:.9rem;">טען עוד תמונות (${imgs.length - pageImgs.length} נותרו)</button>`;
+  } else {
+    pagCtrl.innerHTML = '';
+  }
+
+  let cardIdx = 0;
+  pageImgs.forEach(img => {
+    const myIdx = cardIdx++;
+    const cat = catMap[img.u]||'';
+    const div = document.createElement('div');
+    div.className='img-card'+(hiddenSet.has(img.u)?' hidden-card':'')+(pinnedSet.has(img.u)?' pinned':'');
+    div.dataset.url=img.u; div.draggable=true;
+    const isVid = img.u.includes('/video/upload/') || img.u.match(/\.(mp4|mov|webm)$/i);
+    const thumbSrc = isVid ? (img.thumb || img.u) : img.u;
+    const altTxt = generateAltText(img, catMap);
+    const rotation = (s.rotations||{})[img.u] || 0;
+    div.innerHTML=`
+      ${isVid ? '<span class="video-badge">▶</span>' : ''}
+      <img src="${thumbSrc}" alt="${altTxt}" loading="lazy" decoding="async" style="transform:rotate(${rotation}deg);transition:transform .3s;width:100%;height:100%;object-fit:cover;"/>
+      ${pinnedSet.has(img.u)?'<span class="pin-badge">📌</span>':''}
+      ${hiddenSet.has(img.u)?'<span class="hidden-badge">🚫</span>':''}
+      <div class="card-overlay">
+        <div class="card-actions">
+          ${isVid?`<button class="card-btn" onclick="event.stopPropagation();previewVideo('${img.u}')" title="נגן וידאו">▶️</button>`:''}
+          ${isVid?`<button class="card-btn${(getSettings().heroVideo===img.u)?' hero-active':''}" onclick="event.stopPropagation();setHeroVideo('${img.u}')" title="הגדר כווידאו ראשי">${(getSettings().heroVideo===img.u)?'⭐':'☆'}</button>`:''}
+          <button class="card-btn" onclick="togglePin('${img.u}')" title="נעץ">${pinnedSet.has(img.u)?'📌':'📍'}</button>
+          <button class="card-btn" onclick="toggleHide('${img.u}')" title="הסתר">${hiddenSet.has(img.u)?'👁️':'🚫'}</button>
+          <button class="card-btn" onclick="openCatModal('${img.u}')" title="קטגוריה">🏷️</button>
+        </div>
+        ${cat?`<span class="cat-label">🏷️ ${cat}</span>`:''}
+      </div>`;
+
+    if (isVid) {
+      div.addEventListener('mouseenter', () => {
+        const imgEl = div.querySelector('img'); if (!imgEl) return;
+        const v = document.createElement('video');
+        v.src = img.u; v.muted = true; v.loop = true; v.playsInline = true;
+        v.style.cssText = imgEl.style.cssText;
+        imgEl.replaceWith(v); v.play().catch(()=>{});
+      });
+      div.addEventListener('mouseleave', () => {
+        const v = div.querySelector('video'); if (!v) return;
+        v.pause();
+        const imgEl = document.createElement('img');
+        imgEl.src = thumbSrc; imgEl.loading = 'lazy'; imgEl.decoding = 'async';
+        imgEl.style.cssText = `transform:rotate(${rotation}deg);transition:transform .3s;width:100%;height:100%;object-fit:cover;`;
+        v.replaceWith(imgEl);
+      });
+    }
+
+    if (multiSelectMode) {
+      if (selectedUrls.has(img.u)) div.classList.add('selected');
+      div.style.cursor = 'pointer';
+      div.addEventListener('click', e => { e.stopPropagation(); toggleCardSelect(img.u, myIdx, e); });
+    }
+    div.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',img.u);div.classList.add('dragging');});
+    div.addEventListener('dragend',()=>div.classList.remove('dragging'));
+    div.addEventListener('dragover',e=>{e.preventDefault();div.classList.add('drag-over');});
+    div.addEventListener('dragleave',()=>div.classList.remove('drag-over'));
+    div.addEventListener('drop',e=>{e.preventDefault();div.classList.remove('drag-over');reorder(e.dataTransfer.getData('text/plain'),img.u);});
+    grid.appendChild(div);
+  });
+
+  // stats
+  const s2=getSettings();
+  document.getElementById('stats-label').textContent=`סה"כ: ${allImages.length} | מוסתרות: ${(s2.hidden||[]).length} | נעוצות: ${(s2.pinned||[]).length} | מוצגות: ${imgs.length}`;
+}
+
+function showDuplicates(btn) {
+  window._adminPage = 0;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = 'duplicates';
+  currentCatFilter = '';
+  renderGrid();
+}
+
+function setFilter(f,btn) {
+  window._adminPage=0; currentFilter=f; currentCatFilter='';
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid();
+}
+function filterGrid(){ window._adminPage=0; searchTerm=document.getElementById('search-input').value; renderGrid(); }
+
+// ─── ACTIONS ────────────────────────────────────────────────────
+let _previewUrl = null;
+function previewVideo(url) {
+  _previewUrl = url;
+  const player = document.getElementById('vid-modal-player');
+  player.src = url;
+  document.getElementById('vid-modal').classList.add('open');
+  player.play().catch(()=>{});
+}
+function closeVideoPreview() {
+  const player = document.getElementById('vid-modal-player');
+  player.pause(); player.src = '';
+  document.getElementById('vid-modal').classList.remove('open');
+  _previewUrl = null;
+}
+function setHeroVideoFromModal() { if (_previewUrl) { setHeroVideo(_previewUrl); closeVideoPreview(); } }
+function setHeroVideo(url) {
+  const s = getSettings();
+  s.heroVideo = (s.heroVideo === url) ? null : url;
+  saveSettings(s);
+  showToast(s.heroVideo ? '⭐ הוגדר כווידאו ראשי!' : 'בוטל וידאו ראשי');
+  renderGrid();
+}
+function togglePin(url){
+  const s=getSettings(); s.pinned=s.pinned||[];
+  const i=s.pinned.indexOf(url);
+  if(i>=0)s.pinned.splice(i,1); else s.pinned.unshift(url);
+  saveSettings(s); renderGrid(); showToast(i>=0?'הוסר הנעץ':'📌 נעוץ!');
+}
+function toggleHide(url){
+  const s=getSettings(); s.hidden=s.hidden||[];
+  const i=s.hidden.indexOf(url);
+  if(i>=0)s.hidden.splice(i,1); else s.hidden.push(url);
+  saveSettings(s); renderGrid(); showToast(i>=0?'👁️ מוצגת שוב':'🚫 הוסתרה');
+}
+function reorder(fromUrl,toUrl){
+  const fi=allImages.findIndex(i=>i.u===fromUrl), ti=allImages.findIndex(i=>i.u===toUrl);
+  if(fi<0||ti<0||fi===ti)return;
+  const item=allImages.splice(fi,1)[0]; allImages.splice(ti,0,item);
+  const s=getSettings(); s.order=allImages.map(i=>i.u); saveSettings(s);
+  renderGrid(); showToast('✅ סדר עודכן');
+}
+function resetOrder(){
+  if(!confirm('לאפס סדר?'))return;
+  const s=getSettings(); s.order=[]; saveSettings(s);
+  initAdmin().then(()=>showToast('🔄 סדר אופס'));
+}
+function saveAndPublish(){
+  showToast('✅ שינויים נשמרו! רפרש את האתר הראשי.');
+}
+function clearAllSettings(){
+  if(!confirm('למחוק את כל הגדרות הגלריה (הסתרות, נעוצים, קטגוריות, סדר)? פעולה זו תשפיע על כל המבקרים באתר!'))return;
+  localStorage.removeItem('gallery_admin');
+  if (window.RemoteState && window.RemoteState.update) {
+    window.RemoteState.update({ admin: {hidden:[],pinned:[],order:[],cats:{},catList:[]} }).then(()=>{
+      initAdmin(); showToast('🗑️ אופס הכל (גם בענן)');
+    });
+  } else {
+    initAdmin(); showToast('🗑️ אופס הכל');
+  }
+}
+
+// ─── HERO VIDEO PICKER (visual grid) ──────────────────────────
+function heroVidThumb(url){
+  if (url.includes('cloudinary.com'))
+    return url.replace('/video/upload/', '/video/upload/so_0,w_240,h_160,c_fill,f_jpg,q_auto/').replace(/\.(mp4|mov|webm)$/i, '.jpg');
+  const fileName = url.split('/').pop();
+  const itemId = fileName.replace(/^yarden_(?:makeup_)?/, '').replace(/\.mp4$/, '');
+  return 'https://images.yardendamri.co.il/yarden_' + itemId + '_thumb.jpg';
+}
+function heroVidPreview(url){
+  if (!url.includes('cloudinary.com')) return url;
+  // Use low-res original (no new transform) so browser plays instantly
+  return url.replace('/video/upload/', '/video/upload/w_400,q_auto:low,vc_auto/');
+}
+let _heroAllVideos = [];
+let _heroCurrentFilter = '';
+
+function filterHeroGrid(query) {
+  _heroCurrentFilter = (query || '').toLowerCase();
+  renderHeroGrid();
+}
+
+function renderHeroGrid() {
+  const grid = document.getElementById('hero-video-grid');
+  const countEl = document.getElementById('hero-grid-count');
+  if (!grid) return;
+  const current = (getSettings().heroVideo) || '';
+  const MAX = 24;
+
+  const filtered = _heroCurrentFilter
+    ? _heroAllVideos.filter(v => (v.a || '').toLowerCase().includes(_heroCurrentFilter))
+    : _heroAllVideos;
+
+  const shown = filtered.slice(0, MAX);
+
+  grid.innerHTML = shown.map(v => {
+    const selected = v.u === current;
+    const caption = (v.a || '').substring(0, 40).replace(/"/g, '&quot;');
+    return `
+      <div class="hero-vid-card" data-url="${v.u.replace(/"/g, '&quot;')}"
+           onclick="selectHeroVideo(this)"
+           style="position:relative;cursor:pointer;border-radius:8px;overflow:hidden;
+                  border:3px solid ${selected ? '#C4866A' : 'transparent'};
+                  width:100%;height:120px;background:#222;" title="${caption}">
+        <img src="${heroVidThumb(v.u)}" alt="${caption}" loading="lazy"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"/>
+        <span style="position:absolute;top:5px;right:5px;background:rgba(0,0,0,.7);color:#fff;
+                     font-size:.6rem;padding:2px 6px;border-radius:8px;pointer-events:none;">▶</span>
+        ${selected ? '<span style="position:absolute;bottom:4px;left:4px;background:#C4866A;color:#fff;font-size:.6rem;padding:2px 6px;border-radius:6px;pointer-events:none;font-weight:600;">✓ פעיל</span>' : ''}
+      </div>`;
+  }).join('');
+
+  if (countEl) {
+    countEl.textContent = filtered.length > MAX
+      ? `מציג ${MAX} מתוך ${filtered.length} — חפשי לצמצום התוצאות`
+      : `${filtered.length} וידאוים`;
+  }
+}
+
+function populateHeroVideoSelect() {
+  if (typeof GALLERY_IMAGES === 'undefined') return;
+  const hidden = new Set(getSettings().hidden || []);
+  // Only show videos that are NOT hidden
+  _heroAllVideos = GALLERY_IMAGES.filter(i =>
+    i.video || (i.u && (i.u.includes('/video/upload/') || i.u.includes('videos-new.yardendamri.co.il') || i.u.includes('videos.yardendamri.co.il') || i.u.match(/\.mp4$/i)))
+  );
+  renderHeroGrid();
+  const status = document.getElementById('hero-video-status');
+  if (status) {
+    const current = getSettings().heroVideo;
+    status.textContent = current ? '✓ וידאו מותאם נבחר' : 'משתמש בברירת מחדל';
+  }
+}
+// ── pending selection before save (url + type) ──
+let _heroPending = null;
+
+// ─── HERO CROP TOOL ──────────────────────────────────────────────
+let _heroCropDrag = null;
+
+function loadHeroCropPreview(url, type) {
+  const vid = document.getElementById('hero-crop-vid');
+  const img = document.getElementById('hero-crop-img');
+  if (!vid || !img) return;
+  if (type === 'video') {
+    vid.style.display = ''; img.style.display = 'none';
+    vid.src = url.includes('/video/upload/')
+      ? url.replace('/video/upload/', '/video/upload/w_640,q_auto:low,vc_auto/')
+      : url;
+    vid.load(); vid.play().catch(()=>{});
+  } else {
+    img.style.display = ''; vid.style.display = 'none';
+    img.src = url.includes('/image/upload/')
+      ? url.replace('/image/upload/', '/image/upload/w_640,q_auto,f_auto/')
+      : url;
+  }
+  // Restore saved crop
+  const s = getSettings();
+  if (s.heroPosition) {
+    const parts = s.heroPosition.split(' ');
+    const x = parseFloat(parts[0])||50, y = parseFloat(parts[1])||50;
+    document.getElementById('hero-pos-x').value = x;
+    document.getElementById('hero-pos-y').value = y;
+  }
+  if (s.heroZoom) document.getElementById('hero-zoom').value = s.heroZoom;
+  applyHeroCrop();
+}
+
+function applyHeroCrop() {
+  const x = document.getElementById('hero-pos-x').value;
+  const y = document.getElementById('hero-pos-y').value;
+  const zoom = document.getElementById('hero-zoom').value;
+  document.getElementById('hero-pos-x-val').textContent = x + '%';
+  document.getElementById('hero-pos-y-val').textContent = y + '%';
+  document.getElementById('hero-zoom-val').textContent = (zoom/100).toFixed(1) + '×';
+
+  const pos = `${x}% ${y}%`;
+  const scale = zoom / 100;
+  const els = ['hero-crop-vid','hero-crop-img'];
+  els.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.style.objectPosition = pos; el.style.transform = `scale(${scale})`; el.style.transformOrigin = pos; }
+  });
+}
+
+function saveHeroCrop() {
+  const x = parseInt(document.getElementById('hero-pos-x').value) || 50;
+  const y = parseInt(document.getElementById('hero-pos-y').value) || 50;
+  const zoom = parseInt(document.getElementById('hero-zoom').value) || 100;
+  const s = getSettings();
+  s.heroPosition = `${x}% ${y}%`; // always percentages, never keywords
+  s.heroZoom = zoom;
+  delete s.heroFit; // remove old conflicting values
+  saveSettings(s);
+  showToast('✅ כיוון נשמר');
+}
+
+// Drag support on crop preview
+function heroCropStart(e) {
+  e.preventDefault();
+  const box = document.getElementById('hero-crop-box');
+  const rect = box.getBoundingClientRect();
+  const startX = e.touches ? e.touches[0].clientX : e.clientX;
+  const startY = e.touches ? e.touches[0].clientY : e.clientY;
+  const startPX = +document.getElementById('hero-pos-x').value;
+  const startPY = +document.getElementById('hero-pos-y').value;
+
+  function onMove(ev) {
+    const cx = ev.touches ? ev.touches[0].clientX : ev.clientX;
+    const cy = ev.touches ? ev.touches[0].clientY : ev.clientY;
+    const dx = ((startX - cx) / rect.width) * 100;
+    const dy = ((startY - cy) / rect.height) * 100;
+    document.getElementById('hero-pos-x').value = Math.max(0, Math.min(100, startPX + dx));
+    document.getElementById('hero-pos-y').value = Math.max(0, Math.min(100, startPY + dy));
+    applyHeroCrop();
+  }
+  function onEnd() {
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onEnd);
+    document.removeEventListener('touchmove', onMove);
+    document.removeEventListener('touchend', onEnd);
+  }
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onEnd);
+  document.addEventListener('touchmove', onMove, {passive:false});
+  document.addEventListener('touchend', onEnd);
+}
+
+function updateHeroPosition() { applyHeroCrop(); }
+function _heroRawPreviewUrl(url, type) {
+  // Preview: use original video at low-res (no re-encode). Image: crop to wide banner.
+  if (!url || !url.includes('cloudinary.com')) return url;
+  if (type === 'video') {
+    return url.replace('/video/upload/', '/video/upload/q_auto:low,w_640,vc_auto/');
+  } else {
+    return url.replace('/image/upload/', '/image/upload/c_fill,w_800,h_450,f_auto,q_auto/');
+  }
+}
+
+function showHeroPreview(url, type) {
+  const section = document.getElementById('hero-preview-section'); if(!section) return;
+  const imgEl = document.getElementById('hero-preview-img');
+  const vidEl = document.getElementById('hero-preview-vid');
+  const label = document.getElementById('hero-preview-label');
+  section.style.display = '';
+  if (type === 'video') {
+    const previewSrc = _heroRawPreviewUrl(url, 'video');
+    vidEl.src = previewSrc; vidEl.style.display = 'block'; vidEl.load(); setTimeout(()=>vidEl.play().catch(()=>{}), 100);
+    imgEl.style.display = 'none';
+    if (label) label.textContent = 'תצוגה מקדימה';
+  } else {
+    imgEl.src = _heroRawPreviewUrl(url, 'image');
+    imgEl.style.display = 'block';
+    vidEl.style.display = 'none'; vidEl.pause(); vidEl.src = '';
+    if (label) label.textContent = 'תצוגה מקדימה';
+  }
+}
+
+function selectHeroVideo(card){
+  const url = card.dataset.url;
+  _heroPending = { url, type: 'video' };
+  showHeroPreview(url, 'video');
+  loadHeroCropPreview(url, 'video');
+  populateHeroVideoSelect();
+  // Auto-save immediately
+  const s = getSettings();
+  s.heroVideo = url; delete s.heroImage;
+  saveSettings(s);
+}
+function selectHeroImage(card){
+  const url = card.dataset.url;
+  _heroPending = { url, type: 'image' };
+  showHeroPreview(url, 'image');
+  loadHeroCropPreview(url, 'image');
+  populateHeroImageSelect();
+  // Auto-save immediately
+  const s = getSettings();
+  s.heroImage = url; delete s.heroVideo;
+  saveSettings(s);
+}
+function applyAutoFit(){
+  if (!_heroPending) { showToast('בחרי קודם וידאו או תמונה'); return; }
+  const { url, type } = _heroPending;
+  const finalUrl = _heroAutoUrl(url, type);
+  const s = getSettings();
+  if (type === 'video') { s.heroVideo = finalUrl; delete s.heroImage; }
+  else { s.heroImage = finalUrl; delete s.heroVideo; }
+  delete s.heroFit; delete s.heroPosition;
+  saveSettings(s);
+  _heroPending = null;
+  showToast('✨ מדיה ראשית עודכנה! גלוי לכל המבקרים תוך כדקה.');
+  const status = document.getElementById('hero-video-status');
+  if (status) status.textContent = '✓ נשמר';
+  populateHeroVideoSelect(); populateHeroImageSelect();
+}
+function clearHeroVideo(){
+  clearHeroMedia();
+}
+function clearHeroMedia(){
+  const s = getSettings();
+  delete s.heroVideo; delete s.heroImage; delete s.heroFit; delete s.heroPosition;
+  saveSettings(s);
+  _heroPending = null;
+  showToast('↩️ חזרה לברירת מחדל');
+  const section = document.getElementById('hero-preview-section');
+  if (section) section.style.display = 'none';
+  const status = document.getElementById('hero-video-status');
+  if (status) status.textContent = '';
+  populateHeroVideoSelect(); populateHeroImageSelect();
+}
+function switchHeroTab(tab){
+  document.getElementById('hero-panel-video').style.display = tab==='video'?'':'none';
+  document.getElementById('hero-panel-image').style.display = tab==='image'?'':'none';
+  document.getElementById('hero-tab-video').className = tab==='video'?'btn btn-primary':'btn btn-secondary';
+  document.getElementById('hero-tab-image').className = tab==='image'?'btn btn-primary':'btn btn-secondary';
+}
+function populateHeroImageSelect(){
+  const grid = document.getElementById('hero-image-grid'); if(!grid) return;
+  if (typeof GALLERY_IMAGES === 'undefined') return;
+  const images = GALLERY_IMAGES.filter(i => !i.video && !i.u.includes('/video/upload/'));
+  const current = (getSettings().heroImage) || '';
+  const pendingUrl = _heroPending && _heroPending.type==='image' ? _heroPending.url : null;
+  grid.innerHTML = images.map(img => {
+    const isSaved = img.u === current || (current && current.includes(img.u.split('/upload/')[1]));
+    const isPending = pendingUrl && (img.u === pendingUrl);
+    const highlighted = isSaved || isPending;
+    const caption = (img.a || '').substring(0,40).replace(/"/g,'&quot;');
+    const thumb = img.u.includes('cloudinary.com')
+      ? img.u.replace('/image/upload/','/image/upload/w_240,h_160,c_fill,f_jpg,q_auto/')
+      : img.u;
+    return `<div class="hero-vid-card" data-url="${img.u.replace(/"/g,'&quot;')}"
+         onclick="selectHeroImage(this)"
+         style="position:relative;cursor:pointer;border-radius:8px;overflow:hidden;border:3px solid ${highlighted?'#C4866A':'transparent'};width:100%;height:120px;background:#222;"
+         title="${caption}">
+      <img src="${thumb}" alt="${caption}" loading="lazy"
+           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"/>
+      ${highlighted?'<span style="position:absolute;bottom:4px;left:4px;background:#C4866A;color:#fff;font-size:.6rem;padding:2px 6px;border-radius:6px;pointer-events:none;font-weight:600;">'+(isSaved?'✓ פעיל':'👁 תצוגה')+'</span>':''}
+    </div>`;
+  }).join('');
+}
+function saveHeroFit(){ /* removed — use applyAutoFit instead */ }
+function saveHeroPosition(){ /* removed — use applyAutoFit instead */ }
+
+// ─── DIAGNOSTIC + RESTORE ──────────────────────────────────────
+// ─── FIX GARBLED HEBREW ENCODING ──────────────────────────────
+function tryFixStr(s) {
+  if (!s || typeof s !== 'string') return s;
+  try {
+    // Garbled Hebrew = UTF-8 bytes stored as Latin-1 chars.
+    // Fix: escape() converts each char to %XX, decodeURIComponent converts back to UTF-8.
+    const fixed = decodeURIComponent(escape(s));
+    // Only use the fix if it produced something different and looks like real text
+    return fixed !== s ? fixed : s;
+  } catch(e) { return s; }
+}
+
+async function fixHebrewEncoding() {
+  const out = document.getElementById('fix-result');
+  out.innerHTML = '<p style="color:#888;">⏳ מתקנת קידוד...</p>';
+
+  const s = getSettings();
+  let changed = 0;
+
+  // Fix catList (array of strings)
+  if (s.catList) {
+    s.catList = s.catList.map(c => { const f = tryFixStr(c); if (f !== c) changed++; return f; });
+  }
+
+  // Fix cats (object: url → catName)
+  if (s.cats) {
+    const fixed = {};
+    Object.entries(s.cats).forEach(([url, cat]) => {
+      const fixedCat = tryFixStr(cat);
+      if (fixedCat !== cat) changed++;
+      fixed[url] = fixedCat;
+    });
+    s.cats = fixed;
+  }
+
+  if (changed === 0) {
+    out.innerHTML = '<p style="color:#2e7d32;background:#e8f5e9;padding:10px;border-radius:6px;">✅ לא נמצאו שמות שצריך לתקן.</p>';
+    return;
+  }
+
+  // Save fixed data to localStorage + cloud
+  try { localStorage.setItem('gallery_admin', JSON.stringify(s)); } catch(e){}
+
+  const res = await window.RemoteState.update({ admin: s });
+  if (!res || !res.ok) {
+    out.innerHTML = `<p style="color:#c62828;background:#ffebee;padding:10px;border-radius:6px;">❌ שמירה נכשלה: ${res?.error || 'unknown'}</p>`;
+    return;
+  }
+
+  await window.RemoteState.forceReload();
+  await initAdmin();
+  out.innerHTML = `<p style="color:#2e7d32;background:#e8f5e9;padding:12px;border-radius:6px;font-weight:600;">✅ תוקנו ${changed} שמות! כעת מוצגים בעברית תקינה.</p>`;
+  showToast('🔤 קידוד עברית תוקן!');
+}
+
+async function pullFromOldJsonbin(force = false){
+  const out = document.getElementById('pull-result');
+  out.innerHTML = '<p style="color:#888;">⏳ טוענת מהאחסון הישן...</p>';
+
+  const JSONBIN_KEY = '$2a$10$EUS8yhBdm130KXj7GB56iOGDZEB4Nlkid81ccEKHu/E6x1F6Sxdcm';
+  const JSONBIN_BIN = '69f88e09aaba8821976cbc68';
+
+  try {
+    const r = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN}/latest`, {
+      headers: { 'X-Master-Key': JSONBIN_KEY },
+      cache: 'no-cache'
+    });
+    if (!r.ok) {
+      out.innerHTML = `<p style="color:#c62828;">❌ JSONBin שגיאה: ${r.status}</p>`;
+      return;
+    }
+    const d = await r.json();
+    const record = d.record || {};
+
+    // Expand any compressed item_ids back to full URLs.
+    // Some entries may be: raw numeric IG ids, base36-encoded ids, or full URLs.
+    if (typeof GALLERY_IMAGES === 'undefined') {
+      out.innerHTML = `<p style="color:#c62828;">❌ קובץ הגלריה לא נטען</p>`;
+      return;
+    }
+    const id2u = {};
+    GALLERY_IMAGES.forEach(i => {
+      const raw = i.item_id || i.id;
+      if (raw && i.u) {
+        id2u[raw] = i.u; // raw numeric id
+        try { id2u[BigInt(raw).toString(36)] = i.u; } catch(e){} // base36
+      }
+    });
+    function maybeExpand(s) {
+      if (!s || typeof s !== 'string') return s;
+      if (s.startsWith('http')) return s;
+      return id2u[s] || s;
+    }
+    function expandArr(arr) { return Array.isArray(arr) ? arr.map(maybeExpand) : (arr || []); }
+    function expandMap(m) {
+      if (!m || typeof m !== 'object') return {};
+      const out = {};
+      Object.keys(m).forEach(k => out[maybeExpand(k)] = m[k]);
+      return out;
+    }
+
+    const admin = record.admin || {};
+    const adminExpanded = {
+      hidden:    expandArr(admin.hidden),
+      pinned:    expandArr(admin.pinned),
+      order:     expandArr(admin.order),
+      cats:      expandMap(admin.cats),
+      catList:   admin.catList || [],
+      rotations: expandMap(admin.rotations)
+    };
+
+    const catsCount = Object.keys(adminExpanded.cats).length;
+    const catListCount = adminExpanded.catList.length;
+    const hiddenCount = adminExpanded.hidden.length;
+    const orderCount = adminExpanded.order.length;
+
+    if (!catsCount && !catListCount && !hiddenCount && !orderCount && !record.pricing && !record.reviews) {
+      out.innerHTML = `<p style="color:#c62828;background:#ffebee;padding:10px;border-radius:6px;">❌ האחסון הישן ריק. אין מה לשחזר.</p>`;
+      return;
+    }
+
+    if (!confirm(`${force ? '⚠️ זה ידרוס את כל הנתונים הנוכחיים בענן ויחליף בנתונים מהאחסון הישן.\n\n' : ''}למצוא לטעון לענן החדש:\n• ${catListCount} קטגוריות\n• ${catsCount} תמונות מסווגות\n• ${hiddenCount} מוסתרות\n• ${orderCount} פריטים בסדר מותאם\n${record.pricing ? '• מחירון\n' : ''}${record.reviews ? '• ' + record.reviews.length + ' ביקורות\n' : ''}\nבטוחה?`)) {
+      out.innerHTML = '';
+      return;
+    }
+
+    out.innerHTML = '<p style="color:#888;">⏳ שולחת לענן החדש...</p>';
+
+    // In force mode: clear local cache first so garbled data doesn't merge in
+    if (force) {
+      try { localStorage.removeItem('cloud_state_v2'); } catch(e){}
+      if (window.RemoteState) window.RemoteState.forceReload && await window.RemoteState.forceReload();
+    }
+
+    const payload = { admin: adminExpanded };
+    if (record.pricing)   payload.pricing   = record.pricing;
+    if (record.reviews)   payload.reviews   = record.reviews;
+    if (record.heroVideo) payload.heroVideo = record.heroVideo;
+
+    const res = await window.RemoteState.update(payload);
+    if (!res || !res.ok) {
+      out.innerHTML = `<p style="color:#c62828;background:#ffebee;padding:10px;border-radius:6px;">❌ שמירה נכשלה: ${res?.error || 'unknown'}</p>`;
+      return;
+    }
+
+    await window.RemoteState.forceReload();
+    await initAdmin();
+
+    const restored = window.RemoteState.getAdmin();
+    out.innerHTML = `<p style="color:#2e7d32;background:#e8f5e9;padding:12px;border-radius:6px;font-weight:600;">✅ שוחזר! ${Object.keys(restored.cats||{}).length} תמונות מסווגות, ${(restored.catList||[]).length} קטגוריות. הכל כעת מאוחסן ב-GitHub.</p>`;
+    showToast('🎉 העבודה שוחזרה מהאחסון הישן');
+  } catch(e) {
+    out.innerHTML = `<p style="color:#c62828;">❌ שגיאה: ${e.message}</p>`;
+  }
+}
+
+async function importBackupFile(inputEl){
+  const file = inputEl.files && inputEl.files[0];
+  if (!file) return;
+  const out = document.getElementById('restore-result');
+  out.innerHTML = '<p style="color:#888;">קוראת קובץ...</p>';
+  try {
+    const text = await file.text();
+    const data = JSON.parse(text);
+    const ga = data.gallery_admin || data;
+    if (!ga || typeof ga !== 'object') throw new Error('פורמט לא תקין');
+
+    const catsCount = Object.keys(ga.cats || {}).length;
+    const catListCount = (ga.catList || []).length;
+
+    if (!catsCount && !catListCount) {
+      out.innerHTML = '<p style="color:#c62828;">❌ הקובץ ריק או לא תקין.</p>';
+      return;
+    }
+
+    if (!confirm(`לטעון מהקובץ:\n• ${catListCount} קטגוריות\n• ${catsCount} תמונות מסווגות\n• ${(ga.hidden||[]).length} מוסתרות\n\nזה ידרוס את הענן. בטוחה?`)) {
+      out.innerHTML = ''; inputEl.value = ''; return;
+    }
+
+    out.innerHTML = '<p style="color:#888;">⏳ שולחת לענן... אנא המתיני.</p>';
+
+    // Also save to local backup
+    try { localStorage.setItem('gallery_admin', JSON.stringify(ga)); } catch(e){}
+    if (data.pricing_packages) {
+      try { localStorage.setItem('pricing_packages', JSON.stringify(data.pricing_packages)); } catch(e){}
+    }
+
+    const adminPayload = {
+      hidden:    ga.hidden    || [],
+      pinned:    ga.pinned    || [],
+      order:     ga.order     || [],
+      cats:      ga.cats      || {},
+      catList:   ga.catList   || [],
+      rotations: ga.rotations || {}
+    };
+    const fullPayload = { admin: adminPayload };
+    if (data.pricing_packages) fullPayload.pricing = data.pricing_packages;
+
+    const res = await window.RemoteState.update(fullPayload);
+    if (!res || !res.ok) {
+      out.innerHTML = `<p style="color:#c62828;background:#ffebee;padding:10px;border-radius:6px;">❌ שגיאת שמירה: ${res?.error || 'unknown'}.</p>`;
+      return;
+    }
+
+    await window.RemoteState.forceReload();
+    await initAdmin();
+
+    const restored = window.RemoteState.getAdmin();
+    out.innerHTML = `<p style="color:#2e7d32;background:#e8f5e9;padding:12px;border-radius:6px;font-weight:600;">✅ יובא ואושר! ${Object.keys(restored.cats||{}).length} תמונות מסווגות, ${(restored.catList||[]).length} קטגוריות. כעת מופיע בכל הביקורים באתר.</p>`;
+    showToast('🎉 הגיבוי יובא לענן');
+    inputEl.value = '';
+  } catch(e) {
+    out.innerHTML = `<p style="color:#c62828;">❌ שגיאה בקריאת הקובץ: ${e.message}</p>`;
+  }
+}
+
+function downloadLocalBackup(){
+  let local = {};
+  try { local = JSON.parse(localStorage.getItem('gallery_admin') || '{}'); } catch(e){
+    alert('שגיאה: לא ניתן לקרוא מהמכשיר'); return;
+  }
+  const data = {
+    exportedAt: new Date().toISOString(),
+    source: location.href,
+    gallery_admin: local,
+    pricing_packages: JSON.parse(localStorage.getItem('pricing_packages')||'null')
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `yarden-damri-backup-${new Date().toISOString().split('T')[0]}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  const cats = Object.keys(local.cats||{}).length;
+  showToast(`💾 גיבוי הורד! ${cats} תמונות מסווגות`);
+}
+
+function scanLocalBackup(){
+  const out = document.getElementById('restore-result');
+  out.innerHTML = '<p style="color:#888;">סורקת...</p>';
+
+  // What's on this device (localStorage backup)
+  let local = {};
+  try { local = JSON.parse(localStorage.getItem('gallery_admin') || '{}'); } catch(e){}
+  const localCatsCount = Object.keys(local.cats || {}).length;
+  const localCatList = local.catList || [];
+
+  // What's in the cloud RIGHT NOW (from latest remote fetch)
+  const remote = (window.RemoteState && window.RemoteState.getAdmin) ? window.RemoteState.getAdmin() : {};
+  const remoteCatsCount = Object.keys(remote.cats || {}).length;
+  const remoteCatList = remote.catList || [];
+
+  // Per-category counts: how many photos in each category, both places
+  function perCat(catsMap, catList) {
+    const counts = {};
+    catList.forEach(c => counts[c] = 0);
+    Object.values(catsMap).forEach(c => { if (counts[c] !== undefined) counts[c]++; else counts[c] = (counts[c]||0)+1; });
+    return counts;
+  }
+  const localPerCat = perCat(local.cats || {}, localCatList);
+  const remotePerCat = perCat(remote.cats || {}, remoteCatList);
+
+  function renderCats(counts) {
+    const keys = Object.keys(counts);
+    if (!keys.length) return '<em style="color:#888;">אין</em>';
+    return keys.map(k => `<div style="font-size:.8rem;">${k}: <strong>${counts[k]}</strong></div>`).join('');
+  }
+
+  const localEmpty = localCatsCount === 0 && localCatList.length === 0 && (local.hidden||[]).length === 0 && (local.pinned||[]).length === 0;
+
+  out.innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+      <div style="background:#e8f5e9;border:1px solid #81c784;border-radius:8px;padding:12px;">
+        <p style="font-weight:600;margin-bottom:8px;color:#1b5e20;">📱 על המכשיר (גיבוי):</p>
+        <div style="font-size:.85rem;line-height:1.6;color:#1b5e20;">
+          <div>${localCatList.length} שמות קטגוריות</div>
+          <div>${localCatsCount} תמונות מסווגות</div>
+          <div>${(local.hidden||[]).length} מוסתרות</div>
+          <div style="margin-top:6px;padding-top:6px;border-top:1px solid #a5d6a7;">${renderCats(localPerCat)}</div>
+        </div>
+      </div>
+      <div style="background:#fff3e0;border:1px solid #ffb74d;border-radius:8px;padding:12px;">
+        <p style="font-weight:600;margin-bottom:8px;color:#e65100;">☁️ בענן (כרגע מוצג):</p>
+        <div style="font-size:.85rem;line-height:1.6;color:#e65100;">
+          <div>${(remote.catList||[]).length} שמות קטגוריות</div>
+          <div>${remoteCatsCount} תמונות מסווגות</div>
+          <div>${(remote.hidden||[]).length} מוסתרות</div>
+          <div style="margin-top:6px;padding-top:6px;border-top:1px solid #ffcc80;">${renderCats(remotePerCat)}</div>
+        </div>
+      </div>
+    </div>`;
+
+  if (localEmpty) {
+    out.innerHTML += `<p style="color:#c62828;background:#ffebee;padding:10px;border-radius:6px;">❌ אין גיבוי במכשיר הזה.</p>`;
+    return;
+  }
+
+  // Always show the restore button — even if counts match, cloud may have garbled Hebrew
+  out.innerHTML += `
+    <div style="background:#fff8e1;border:1px solid #f9c74f;border-radius:8px;padding:12px;margin-top:8px;">
+      <p style="font-size:.9rem;margin-bottom:10px;">📱 מכשיר: <strong>${localCatsCount}</strong> מסווגות &nbsp;|&nbsp; ☁️ ענן: <strong>${remoteCatsCount}</strong> מסווגות</p>
+      <button class="btn btn-danger" onclick="restoreOverwrite()" style="width:100%;padding:14px;font-size:1rem;">⚠️ שחזר מהמכשיר לענן (ידרוס את הענן)</button>
+    </div>`;
+}
+
+async function restoreOverwrite(){
+  if (!confirm('זה ימחק את הקטגוריות שבענן ויחליף בקטגוריות מהמכשיר. בטוחה?')) return;
+
+  const out = document.getElementById('restore-result');
+  out.innerHTML = '<p style="color:#888;">⏳ שולחת לענן... אנא המתיני.</p>';
+
+  let local = {};
+  try { local = JSON.parse(localStorage.getItem('gallery_admin') || '{}'); } catch(e){}
+
+  const adminPayload = {
+    hidden:    local.hidden    || [],
+    pinned:    local.pinned    || [],
+    order:     local.order     || [],
+    cats:      local.cats      || {},
+    catList:   local.catList   || [],
+    rotations: local.rotations || {}
+  };
+
+  // Send to cloud and WAIT for actual confirmation
+  const res = await window.RemoteState.update({ admin: adminPayload });
+
+  if (!res || !res.ok) {
+    out.innerHTML = `<p style="color:#c62828;background:#ffebee;padding:10px;border-radius:6px;">❌ שגיאת שמירה: ${res?.error || 'unknown'}. נסי שוב.</p>`;
+    return;
+  }
+
+  // Force a fresh fetch from cloud to confirm what was saved
+  await window.RemoteState.forceReload();
+
+  // Re-render the entire admin so user sees the restored data
+  await initAdmin();
+
+  const restored = window.RemoteState.getAdmin();
+  out.innerHTML = `<p style="color:#2e7d32;background:#e8f5e9;padding:12px;border-radius:6px;font-weight:600;">✅ שוחזר ואושר! ${Object.keys(restored.cats||{}).length} תמונות מסווגות, ${(restored.catList||[]).length} קטגוריות. כעת מופיע בכל הביקורים באתר.</p>`;
+  showToast('🎉 העבודה שלך שוחזרה לענן');
+}
+
+// ─── CATEGORIES ─────────────────────────────────────────────────
+function renderCatList(){
+  const s=getSettings(); const cats=s.catList||[]; const catMap=s.cats||{};
+  const privateCats=new Set(s.privateCats||[]);
+  const list=document.getElementById('cat-list'); if(!list)return;
+  list.innerHTML='';
+  if(cats.length===0){list.innerHTML='<p style="color:var(--muted);font-size:.85rem">אין קטגוריות עדיין. הוסיפי למטה.</p>';return;}
+  cats.forEach(cat=>{
+    const count=Object.values(catMap).filter(c=>c===cat).length;
+    const isPrivate=privateCats.has(cat);
+    const div=document.createElement('div'); div.className='cat-item';
+    div.innerHTML=`<span>${cat}</span><span class="cat-count">${count} תמונות</span>
+      <button class="btn" style="padding:5px 10px;font-size:.75rem;background:${isPrivate?'#888':'#2d7a4f'};color:#fff;border:none;" onclick="toggleCatPrivate('${cat}')" title="${isPrivate?'פרטי — לא גלוי באתר':'ציבורי — גלוי באתר'}">${isPrivate?'🔒 פרטי':'🌐 ציבורי'}</button>
+      <button class="btn" style="padding:5px 10px;font-size:.75rem;background:#555;color:#fff;border:none;" onclick="renameCat('${cat}')">✏️</button>
+      <button class="btn btn-secondary" style="padding:5px 10px;font-size:.75rem" onclick="deleteCat('${cat}')">🗑️</button>`;
+    list.appendChild(div);
+  });
+}
+function toggleCatPrivate(cat){
+  const s=getSettings(); s.privateCats=s.privateCats||[];
+  const i=s.privateCats.indexOf(cat);
+  if(i>=0)s.privateCats.splice(i,1); else s.privateCats.push(cat);
+  const nowPrivate = s.privateCats.includes(cat);
+  saveSettings(s); renderCatList(); showToast(nowPrivate?'🔒 קטגוריה הוגדרה כפרטית':'🌐 קטגוריה הוגדרה כציבורית');
+}
+function renderCatFilters(){
+  const s=getSettings(); const cats=s.catList||[];
+  const container=document.getElementById('cat-filter-btns'); if(!container)return;
+  container.innerHTML='';
+  const noneBtn=document.createElement('button'); noneBtn.className='filter-btn'; noneBtn.textContent='ללא קטגוריה';
+  noneBtn.onclick=()=>{ currentCatFilter='__uncategorized__'; currentFilter='all'; document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); noneBtn.classList.add('active'); renderGrid(); };
+  container.appendChild(noneBtn);
+  cats.forEach(cat=>{
+    const btn=document.createElement('button'); btn.className='filter-btn'; btn.textContent='🏷️ '+cat;
+    btn.onclick=()=>{ currentCatFilter=cat; currentFilter='all'; document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); renderGrid(); };
+    container.appendChild(btn);
+  });
+}
+function addCategory(){
+  const inp=document.getElementById('new-cat-input'); const name=inp.value.trim(); if(!name)return;
+  const s=getSettings(); s.catList=s.catList||[];
+  if(s.catList.includes(name)){showToast('קטגוריה כבר קיימת');return;}
+  s.catList.push(name); saveSettings(s); inp.value='';
+  renderCatList(); renderCatFilters(); showToast('✅ קטגוריה נוספה');
+}
+function renameCat(cat){
+  const n=(prompt('שם חדש:',cat)||'').trim();
+  if(!n||n===cat)return;
+  const s=getSettings();
+  const i=s.catList.indexOf(cat); if(i!==-1)s.catList[i]=n;
+  for(const u of Object.keys(s.cats||{})){if(s.cats[u]===cat)s.cats[u]=n;}
+  if(s.privateCats){const pi=s.privateCats.indexOf(cat);if(pi!==-1)s.privateCats[pi]=n;}
+  saveSettings(s); renderCatList(); renderCatFilters(); showToast('✅ שונה ל־'+n);
+}
+function deleteCat(name){
+  if(!confirm(`למחוק קטגוריה "${name}"? התמונות ישארו אבל ייאבד הסיווג.`))return;
+  const s=getSettings();
+  s.catList=(s.catList||[]).filter(c=>c!==name);
+  Object.keys(s.cats||{}).forEach(url=>{ if(s.cats[url]===name)delete s.cats[url]; });
+  saveSettings(s); renderCatList(); renderCatFilters(); showToast('🗑️ קטגוריה נמחקה');
+}
+function openCatModal(url){
+  const s=getSettings(); const cats=s.catList||[];
+  document.getElementById('modal-img-url').value=url;
+  const sel=document.getElementById('modal-cat-select');
+  sel.innerHTML='<option value="">— ללא קטגוריה —</option>';
+  cats.forEach(cat=>{ const opt=document.createElement('option'); opt.value=opt.textContent=cat; if((s.cats||{})[url]===cat)opt.selected=true; sel.appendChild(opt); });
+  document.getElementById('cat-modal').classList.add('open');
+}
+function closeModal(){ document.getElementById('cat-modal').classList.remove('open'); }
+function saveImageCategory(){
+  const url=document.getElementById('modal-img-url').value;
+  const cat=document.getElementById('modal-cat-select').value;
+  const s=getSettings(); s.cats=s.cats||{};
+  if(cat) s.cats[url]=cat; else delete s.cats[url];
+  saveSettings(s); closeModal(); renderGrid(); showToast(cat?`🏷️ שויך ל${cat}`:'🏷️ סיווג הוסר');
+}
+document.getElementById('cat-modal').addEventListener('click',e=>{ if(e.target===document.getElementById('cat-modal'))closeModal(); });
+
+// ─── TABS ────────────────────────────────────────────────────────
+function switchTab(name,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  // Hide all tab panels (find by id pattern, not hardcoded list)
+  document.querySelectorAll('[id^="tab-"]').forEach(panel=>{
+    panel.style.display = (panel.id === 'tab-'+name) ? 'block' : 'none';
+  });
+  if(name==='cats') renderCatList();
+  if(name==='analytics') initAnalytics();
+  if(name==='pricing') { renderPricingEditor(); }
+  if(name==='settings') {
+    populateHeroVideoSelect(); populateHeroImageSelect();
+    const s=getSettings();
+    if(s.heroImage) switchHeroTab('image'); else switchHeroTab('video');
+    // Show preview of current saved media
+    const cur = s.heroImage || s.heroVideo;
+    if (cur) {
+      const type = s.heroImage ? 'image' : 'video';
+      showHeroPreview(cur, type);
+      const status = document.getElementById('hero-video-status');
+      if (status) status.textContent = '✓ ' + (type==='image'?'תמונה':'וידאו') + ' פעיל';
+    }
+  }
+}
+
+// ─── ANALYTICS ───────────────────────────────────────────────────
+const GA4_CLIENT_ID = '243162243510-kdto966o5fofbu62rbvfegvstp9nlmnm.apps.googleusercontent.com';
+const GA4_PROPERTY  = '536415544';
+let ga4Token = localStorage.getItem('ga4_token') || null;
+let analyticsPeriod = 7;
+
+function setPeriod(days, btn) {
+  analyticsPeriod = days;
+  document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  initAnalytics();
+}
+
+// ── OAuth connect ──────────────────────────────────────
+function ga4Connect() {
+  const scope = 'https://www.googleapis.com/auth/analytics.readonly';
+  const redirect = encodeURIComponent('https://yardendamri.co.il/admin.html');
+  const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GA4_CLIENT_ID}&redirect_uri=${redirect}&response_type=token&scope=${encodeURIComponent(scope)}&prompt=select_account`;
+  window.location.href = url;
+}
+
+// Handle token from OAuth redirect (safe - wrapped in try/catch)
+try {
+  const hash = window.location.hash;
+  if (hash.includes('access_token=')) {
+    const params = new URLSearchParams(hash.substring(1));
+    const token = params.get('access_token');
+    const exp = parseInt(params.get('expires_in') || '3600');
+    if (token) {
+      localStorage.setItem('ga4_token', token);
+      localStorage.setItem('ga4_token_exp', Date.now() + exp * 1000);
+      ga4Token = token;
+      history.replaceState(null, '', location.pathname);
+    }
+  }
+  const exp = parseInt(localStorage.getItem('ga4_token_exp') || '0');
+  if (Date.now() > exp) { localStorage.removeItem('ga4_token'); localStorage.removeItem('ga4_token_exp'); ga4Token = null; }
+} catch(e) { console.warn('OAuth init error:', e); }
+
+// ── GA4 Data API call ─────────────────────────────────
+async function ga4Report(dimensions, metrics, dateRange, orderBy) {
+  const body = {
+    dateRanges: [dateRange],
+    dimensions: dimensions.map(n => ({ name: n })),
+    metrics: metrics.map(n => ({ name: n })),
+    limit: 10
+  };
+  if (orderBy) body.orderBys = orderBy;
+  const res = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${GA4_PROPERTY}:runReport`, {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${ga4Token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) { const e = await res.json(); throw new Error(e.error?.message || res.status); }
+  return res.json();
+}
+
+function ga4DateRange(days) {
+  const end = new Date(); const start = new Date(Date.now() - days * 86400000);
+  const fmt = d => d.toISOString().split('T')[0];
+  return { startDate: fmt(start), endDate: fmt(end) };
+}
+
+// ── Main init ─────────────────────────────────────────
+async function initAnalytics() {
+  const btn = document.getElementById('ga4-connect-btn');
+  const status = document.getElementById('ga4-status');
+
+  if (!ga4Token) {
+    btn.style.display = 'inline-block';
+    status.textContent = '⚠️ לא מחובר — לחץ "התחבר" כדי לראות נתוני אמת';
+    renderLocalFallback();
+    return;
+  }
+
+  btn.textContent = '✅ מחובר לגוגל';
+  btn.style.background = '#2d7a4f';
+  status.textContent = '⏳ טוען נתונים...';
+
+  try {
+    const days = analyticsPeriod;
+    const dr = ga4DateRange(days);
+
+    // Run all reports in parallel
+    const [overviewRes, sourceRes, specificSrcRes, deviceRes, cityRes, demoRes, pageRes, dailyRes] = await Promise.all([
+      ga4Report(['date'], ['sessions','activeUsers','newUsers','bounceRate','averageSessionDuration'], dr,
+        [{ dimension: { dimensionName: 'date' }, desc: false }]),
+      ga4Report(['sessionDefaultChannelGroup'], ['sessions'], dr,
+        [{ metric: { metricName: 'sessions' }, desc: true }]),
+      ga4Report(['sessionSource'], ['sessions'], dr,
+        [{ metric: { metricName: 'sessions' }, desc: true }]),
+      ga4Report(['deviceCategory'], ['sessions'], dr,
+        [{ metric: { metricName: 'sessions' }, desc: true }]),
+      ga4Report(['country','region','city'], ['sessions'], dr,
+        [{ metric: { metricName: 'sessions' }, desc: true }]),
+      ga4Report(['userAgeBracket','userGender'], ['activeUsers'], dr,
+        [{ metric: { metricName: 'activeUsers' }, desc: true }]),
+      ga4Report(['pagePath'], ['screenPageViews'], dr,
+        [{ metric: { metricName: 'screenPageViews' }, desc: true }]),
+      ga4Report(['date'], ['sessions'], dr,
+        [{ dimension: { dimensionName: 'date' }, desc: false }])
+    ]);
+
+    status.textContent = `✅ נתונים עדכניים — ${days} הימים האחרונים`;
+
+    // KPIs from overview
+    let totalSessions=0, totalUsers=0, newUsers=0, avgBounce=0, avgDur=0, count=0;
+    (overviewRes.rows||[]).forEach(r => {
+      totalSessions += parseInt(r.metricValues[0].value||0);
+      totalUsers    += parseInt(r.metricValues[1].value||0);
+      newUsers      += parseInt(r.metricValues[2].value||0);
+      avgBounce     += parseFloat(r.metricValues[3].value||0);
+      avgDur        += parseFloat(r.metricValues[4].value||0);
+      count++;
+    });
+    avgBounce = count ? Math.round(avgBounce/count*100) : 0;
+    const avgDurSec = count ? Math.round(avgDur/count) : 0;
+    const durStr = `${Math.floor(avgDurSec/60)}:${String(avgDurSec%60).padStart(2,'0')}`;
+
+    renderKpis([
+      { icon:'👥', value: totalUsers.toLocaleString(), label:'משתמשים ייחודיים' },
+      { icon:'📊', value: totalSessions.toLocaleString(), label:'סשנים' },
+      { icon:'🆕', value: newUsers.toLocaleString(), label:'משתמשים חדשים' },
+      { icon:'↩️', value: avgBounce+'%', label:'שיעור נטישה' },
+      { icon:'⏱️', value: durStr, label:'זמן ממוצע' },
+      { icon:'📈', value: Math.round(newUsers/Math.max(totalUsers,1)*100)+'%', label:'% חדשים' },
+    ]);
+
+    // Bounce rate insight
+    const bounceEl = document.getElementById('bounce-insight');
+    let bounceColor, bounceMsg, bounceAction;
+    if (avgBounce >= 70) {
+      bounceColor='#c0392b'; bounceMsg=`שיעור נטישה גבוה (${avgBounce}%) — רוב הגולשים עוזבים מיד`;
+      bounceAction='בדקי: מהירות טעינה, רלוונטיות תוכן, כפתור WhatsApp בולט';
+    } else if (avgBounce >= 50) {
+      bounceColor='#e67e22'; bounceMsg=`שיעור נטישה בינוני (${avgBounce}%) — יש מה לשפר`;
+      bounceAction='הוסיפי CTA ברור בכל עמוד — "שליחת הודעה", "לקביעת תור"';
+    } else if (avgBounce > 0) {
+      bounceColor='#2d7a4f'; bounceMsg=`שיעור נטישה טוב (${avgBounce}%) — גולשים מתעניינים`;
+      bounceAction='המשיכי לפרסם תוכן חדש לשמור על המעורבות';
+    } else {
+      bounceColor='var(--muted)'; bounceMsg='אין עדיין נתוני נטישה'; bounceAction='';
+    }
+    bounceEl.innerHTML = `<span style="color:${bounceColor};font-weight:600">${bounceMsg}</span>${bounceAction?`<br><span style="font-size:.75rem;color:var(--muted);margin-top:4px;display:block">💡 ${bounceAction}</span>`:''}`;
+
+
+    // Daily chart
+    const labels=[], vals=[];
+    (dailyRes.rows||[]).forEach(r => {
+      const d = r.dimensionValues[0].value; // YYYYMMDD
+      labels.push(`${d.slice(6)}/${d.slice(4,6)}`);
+      vals.push(parseInt(r.metricValues[0].value||0));
+    });
+    renderBarChart('visits-chart', labels, vals);
+
+    // Traffic sources — Hebrew labels
+    const srcHe = { 'Organic Search':'🔍 חיפוש גוגל', 'Direct':'🔗 ישיר', 'Organic Social':'📱 סושיאל', 'Referral':'🌐 אתרים אחרים', 'Email':'📧 אימייל', 'Paid Search':'💰 פרסום', 'Paid Social':'💰 סושיאל ממומן', 'Unassigned':'❓ לא ידוע' };
+    const srcObj = {};
+    let srcTotal = 0;
+    (sourceRes.rows||[]).forEach(r => {
+      const ch = r.dimensionValues[0].value;
+      const v = parseInt(r.metricValues[0].value||0);
+      srcObj[srcHe[ch]||('🌐 '+ch)] = v;
+      srcTotal += v;
+    });
+    renderBars('sources-list', srcObj, srcTotal, 'אין נתונים');
+
+    // Devices
+    const devHe = { 'mobile':'📱 נייד', 'desktop':'💻 מחשב', 'tablet':'📲 טאבלט' };
+    const devObj = {}; let devTotal=0;
+    (deviceRes.rows||[]).forEach(r => {
+      const d = r.dimensionValues[0].value;
+      const v = parseInt(r.metricValues[0].value||0);
+      devObj[devHe[d]||d] = v; devTotal+=v;
+    });
+    renderBars('devices-list', devObj, devTotal, 'אין נתונים');
+
+    // Specific sources (instagram, google, etc.)
+    const specSrcObj = {}; let specSrcTotal=0;
+    (specificSrcRes.rows||[]).slice(0,8).forEach(r => {
+      const src = r.dimensionValues[0].value;
+      const v = parseInt(r.metricValues[0].value||0);
+      if (src && src !== '(not set)' && src !== '(direct)') {
+        const icon = src.includes('instagram')?'📸':src.includes('google')?'🔍':src.includes('facebook')?'👥':src.includes('whatsapp')?'💬':'🌐';
+        specSrcObj[`${icon} ${src}`] = v; specSrcTotal+=v;
+      } else if (src === '(direct)') {
+        specSrcObj['🔗 ישיר'] = v; specSrcTotal+=v;
+      }
+    });
+    renderBars('specific-sources-list', specSrcObj, specSrcTotal, 'אין נתונים');
+
+    // Cities with region+country
+    const cityObj = {}; let cityTotal=0;
+    (cityRes.rows||[]).forEach(r => {
+      const country = r.dimensionValues[0].value;
+      const region  = r.dimensionValues[1].value;
+      const city    = r.dimensionValues[2].value;
+      if (city && city !== '(not set)') {
+        const label = city + (region && region !== '(not set)' && region !== city ? ', '+region : '');
+        cityObj['📍 '+label] = parseInt(r.metricValues[0].value||0);
+        cityTotal += parseInt(r.metricValues[0].value||0);
+      }
+    });
+    renderBars('cities-list', cityObj, cityTotal, 'אין נתוני ערים');
+
+    // Demographics (age + gender)
+    const demoObj = {}; let demoTotal=0;
+    (demoRes.rows||[]).forEach(r => {
+      const age = r.dimensionValues[0].value;
+      const gen = r.dimensionValues[1].value === 'male' ? '♂️ גבר' : r.dimensionValues[1].value === 'female' ? '♀️ אישה' : '?';
+      const v = parseInt(r.metricValues[0].value||0);
+      if (age && age !== '(not set)') { demoObj[`${gen} ${age}`] = v; demoTotal+=v; }
+    });
+    if (Object.keys(demoObj).length)
+      renderBars('demographics-list', demoObj, demoTotal, 'הפעל דמוגרפיה ב-GA4');
+    else
+      document.getElementById('demographics-list').innerHTML = '<p style="font-size:.75rem;color:var(--muted)">הפעל דוחות דמוגרפיה ב-GA4:<br><a href="https://analytics.google.com/analytics/web/#/p536415544/admin/business-objectives" target="_blank" style="color:var(--blush)">הגדרות → איסוף נתונים</a></p>';
+
+    // Pages
+    const pagesObj = {}; let pagesTotal=0;
+    (pageRes.rows||[]).forEach(r => {
+      const p = r.dimensionValues[0].value.replace(/\/$/, '') || '/';
+      const v = parseInt(r.metricValues[0].value||0);
+      pagesObj['📄 '+(p.length>25?p.substring(0,25)+'…':p)] = v; pagesTotal+=v;
+    });
+    renderBars('pages-list', pagesObj, pagesTotal, 'אין נתונים');
+
+    // Search Console setup guide in keywords section
+    document.getElementById('keywords-list').innerHTML = `
+      <p style="font-size:.8rem;color:var(--text);margin-bottom:8px;">מילות חיפוש מגיעות מ-<strong>Google Search Console</strong> — לא מ-GA4.</p>
+      <div style="font-size:.75rem;color:var(--muted);line-height:1.7;">
+        <strong style="color:var(--text);">הגדרה חד-פעמית (5 דקות):</strong><br>
+        1. כנסי ל-<a href="https://search.google.com/search-console" target="_blank" style="color:var(--blush)">search.google.com/search-console</a><br>
+        2. הוסיפי נכס → <strong>URL Prefix</strong> → הכניסי <code>https://yardendamri.co.il</code><br>
+        3. בחרי אימות <strong>HTML Tag</strong> → העתיקי את ה-meta tag<br>
+        4. שלחי לי את ה-meta tag ואני אוסיף לאתר<br>
+        5. לאחר אימות → <a href="https://search.google.com/search-console/performance/search-analytics" target="_blank" style="color:var(--blush)">ביצועים → שאילתות</a> = כל מילות החיפוש
+      </div>
+      <a href="https://search.google.com/search-console" target="_blank"
+         style="display:inline-block;margin-top:10px;background:var(--blush);color:#fff;padding:7px 14px;border-radius:8px;text-decoration:none;font-size:.78rem;">
+        📊 פתח Search Console
+      </a>`;
+
+  } catch(err) {
+    console.error('GA4 error:', err);
+    if (err.message.includes('401') || err.message.includes('403')) {
+      localStorage.removeItem('ga4_token');
+      ga4Token = null;
+      status.innerHTML = '⚠️ הטוקן פג תוקף — <a href="#" onclick="ga4Connect()" style="color:var(--blush)">התחבר שוב</a>';
+      btn.textContent = '🔗 התחבר לגוגל אנליטיקס';
+      btn.style.background = 'var(--blush)';
+    } else {
+      status.textContent = '❌ שגיאה: ' + err.message;
+    }
+    renderLocalFallback();
+  }
+}
+
+function renderLocalFallback() {
+  let visits = [];
+  try { visits = JSON.parse(localStorage.getItem('yd_visits')||'[]'); } catch(e){}
+  const days = analyticsPeriod;
+  const cutoff = Date.now() - days*86400000;
+  const filtered = visits.filter(v=>v.t>cutoff);
+  const reviews = JSON.parse(localStorage.getItem('site_reviews')||'[]');
+
+  renderKpis([
+    { icon:'👁️', value: filtered.length, label:`ביקורים (${days} ימים)` },
+    { icon:'📅', value: visits.filter(v=>v.t>Date.now()-86400000).length, label:'היום' },
+    { icon:'⭐', value: reviews.length, label:'ביקורות' },
+    { icon:'🔗', value:'–', label:'חבר GA4 לנתונים אמיתיים' },
+    { icon:'🌍', value:'–', label:'ערים' },
+    { icon:'👤', value:'–', label:'גיל/מגדר' },
+  ]);
+
+  const buckets={}; for(let i=days-1;i>=0;i--){const d=new Date(Date.now()-i*86400000);buckets[`${d.getDate()}/${d.getMonth()+1}`]=0;}
+  filtered.forEach(v=>{const d=new Date(v.t);const k=`${d.getDate()}/${d.getMonth()+1}`;if(k in buckets)buckets[k]++;});
+  renderBarChart('visits-chart', Object.keys(buckets), Object.values(buckets));
+
+  const srcHe={'Instagram':'📸 אינסטגרם','Google':'🔍 גוגל','Direct':'🔗 ישיר','WhatsApp':'💬 וואצאפ','Facebook':'👤 פייסבוק','TikTok':'🎵 טיקטוק'};
+  const srcObj={}; filtered.forEach(v=>{const l=srcHe[v.src]||('🌐 '+(v.src||'אחר'));srcObj[l]=(srcObj[l]||0)+1;});
+  renderBars('sources-list', srcObj, filtered.length, 'חבר GA4 לנתונים אמיתיים');
+  renderBars('devices-list', {}, 0, 'חבר GA4');
+  renderBars('cities-list', {}, 0, 'חבר GA4 לראות ערים');
+  document.getElementById('demographics-list').innerHTML='<p style="font-size:.75rem;color:var(--muted)">חבר GA4 לנתוני גיל ומגדר</p>';
+  document.getElementById('pages-list').innerHTML='<p style="font-size:.75rem;color:var(--muted)">חבר GA4 לנתוני עמודים</p>';
+  document.getElementById('keywords-list').innerHTML='<p style="font-size:.75rem;color:var(--muted)">זמין ב-<a href="https://search.google.com/search-console" target="_blank" style="color:var(--blush)">Search Console</a></p>';
+}
+
+function renderKpis(kpis) {
+  document.getElementById('kpi-cards').innerHTML = kpis.map(k=>`
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 10px;text-align:center;">
+      <div style="font-size:1.4rem">${k.icon}</div>
+      <div style="font-size:1.3rem;font-weight:800;color:var(--blush);margin:4px 0">${k.value}</div>
+      <div style="font-size:.7rem;color:var(--muted)">${k.label}</div>
+    </div>`).join('');
+}
+
+function renderBarChart(canvasId, labels, values) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.offsetWidth || 300;
+  const H = canvas.height;
+  canvas.width = W;
+  ctx.clearRect(0, 0, W, H);
+  const max = Math.max(...values, 1);
+  const barW = Math.max(4, Math.floor((W - 20) / labels.length) - 2);
+  values.forEach((v, i) => {
+    const barH = Math.round(((H - 28) * v) / max);
+    const x = 10 + i * (barW + 2);
+    const y = H - 24 - barH;
+    ctx.fillStyle = v > 0 ? '#C49A6C' : 'rgba(255,255,255,.06)';
+    ctx.beginPath(); ctx.roundRect(x, y, barW, Math.max(barH, 2), 2); ctx.fill();
+    if (v > 0 && barW >= 14) { ctx.fillStyle='#fff'; ctx.font='bold 9px sans-serif'; ctx.textAlign='center'; ctx.fillText(v, x+barW/2, y-2); }
+    if (i % Math.ceil(labels.length/7) === 0) { ctx.fillStyle='#666'; ctx.font='9px sans-serif'; ctx.textAlign='center'; ctx.fillText(labels[i], x+barW/2, H-6); }
+  });
+}
+
+function renderBars(elId, countObj, total, emptyMsg) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const sorted = Object.entries(countObj).sort((a,b)=>b[1]-a[1]).slice(0,7);
+  if (!sorted.length) { el.innerHTML=`<p style="font-size:.75rem;color:var(--muted)">${emptyMsg}</p>`; return; }
+  el.innerHTML = sorted.map(([label,count])=>{
+    const pct = total>0 ? Math.round((count/total)*100) : 0;
+    return `<div style="margin-bottom:8px;">
+      <div style="display:flex;justify-content:space-between;font-size:.75rem;margin-bottom:3px;">
+        <span style="color:var(--text)">${label}</span>
+        <span style="color:var(--blush);font-weight:600">${pct}%</span>
+      </div>
+      <div style="height:6px;background:rgba(255,255,255,.08);border-radius:3px;">
+        <div style="height:6px;width:${pct}%;background:var(--blush);border-radius:3px;"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+
+// ─── PRICING EDITOR ──────────────────────────────────────────────
+const DEFAULT_PRICING = [
+  {icon:'💍',name:'מאפרת כלות',desc:'כולל ניסוי + יום החתונה',price:'לפי הצעה',featured:true,includes:['ניסוי איפור מקצועי','יום החתונה','Touch-Up Kit','מגיעה אלייך']},
+  {icon:'🌙',name:'איפור ערב',desc:'לאירועים ומסיבות',price:'החל מ-₪350',featured:false,includes:['התאמה אישית','מוצרים פרימיום','עמיד לאורך הלילה']},
+  {icon:'🎬',name:'הפקות',desc:'צילומים ופרסומות',price:'לפי הצעה',featured:false,includes:['מקצוע כלפי מצלמה','לפי שעות']},
+  {icon:'🎂',name:'איפור יום הולדת',desc:'כלה של היום',price:'החל מ-₪280',featured:false,includes:['מראה חגיגי']},
+  {icon:'🖌️',name:'סדנת איפור',desc:'ללמוד לבד',price:'לפי הצעה',featured:false,includes:['אישית/קבוצתית','טכניקות מקצועיות']},
+];
+
+function getPricingItems() {
+  if (window.RemoteState && window.RemoteState.getPricing) {
+    const p = window.RemoteState.getPricing();
+    if (p && Array.isArray(p) && p.length) return p;
+  }
+  try { return JSON.parse(localStorage.getItem('pricing_packages') || 'null') || DEFAULT_PRICING; }
+  catch(e) { return DEFAULT_PRICING; }
+}
+
+let _pricingItems = null;
+let _pricingSaveTimer = null;
+
+function getPricingEditor() {
+  return document.getElementById('pricing-editor');
+}
+
+// Read all pricing values directly from DOM — single source of truth
+function readPricingFromDom() {
+  const editor = getPricingEditor();
+  if (!editor) return _pricingItems || [];
+  return Array.from(editor.querySelectorAll('.pricing-item')).map(card => ({
+    icon:     card.querySelector('.p-icon').value     || '',
+    name:     card.querySelector('.p-name').value     || '',
+    price:    card.querySelector('.p-price').value    || '',
+    desc:     card.querySelector('.p-desc').value     || '',
+    featured: card.querySelector('.p-featured').checked,
+    includes: card.querySelector('.p-includes').value.split('\n').map(s=>s.trim()).filter(Boolean),
+    addons:   card.querySelector('.p-addons').value.split('\n').filter(Boolean).map(l=>{
+      const p=l.split('|'); return {name:(p[0]||'').trim(), price:(p[1]||'').trim()};
+    }).filter(a=>a.name)
+  }));
+}
+
+function savePricingFromDom() {
+  _pricingItems = readPricingFromDom();
+  clearTimeout(_pricingSaveTimer);
+  _pricingSaveTimer = setTimeout(() => persistPricing(), 600);
+}
+
+function renderPricingEditor() {
+  if (!_pricingItems) _pricingItems = getPricingItems();
+  const editor = getPricingEditor();
+  if (!editor) return;
+
+  // Build HTML once — never rebuild while editing
+  editor.innerHTML = _pricingItems.map((item, i) => `
+    <div class="pricing-item" style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+        <input class="p-icon" value="${(item.icon||'').replace(/"/g,'&quot;')}" placeholder="אייקון" style="width:50px;text-align:center;padding:8px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text)"/>
+        <input class="p-name" value="${(item.name||'').replace(/"/g,'&quot;')}" placeholder="שם השירות" style="flex:1;min-width:120px;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text)"/>
+        <input class="p-price" value="${(item.price||'').replace(/"/g,'&quot;')}" placeholder="מחיר" style="width:130px;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text)"/>
+      </div>
+      <input class="p-desc" value="${(item.desc||'').replace(/"/g,'&quot;')}" placeholder="תיאור קצר" style="width:100%;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);margin-bottom:6px;box-sizing:border-box"/>
+      <textarea class="p-includes" rows="3" placeholder="מה כלול (שורה לכל פריט)" style="width:100%;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);resize:vertical;box-sizing:border-box">${(item.includes||[]).join('\n')}</textarea>
+      <div style="font-size:.75rem;color:var(--muted);margin:6px 0 4px;">➕ תוספות — פורמט: שם | מחיר (שורה לכל תוספת)</div>
+      <textarea class="p-addons" rows="2" placeholder="ליווי כלה | ₪200" style="width:100%;padding:8px 12px;border-radius:8px;border:1px solid rgba(196,154,108,.3);background:rgba(196,154,108,.05);color:var(--text);resize:vertical;box-sizing:border-box">${(item.addons||[]).map(a=>a.name+(a.price?' | '+a.price:'')).join('\n')}</textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+        <label style="font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:6px;cursor:pointer">
+          <input class="p-featured" type="checkbox" ${item.featured?'checked':''}/> הכי פופולרי
+        </label>
+        <button data-remove="${i}" style="background:rgba(255,80,80,.15);border:1px solid rgba(255,80,80,.3);color:#ff6b6b;border-radius:8px;padding:4px 12px;cursor:pointer;font-size:.78rem">מחק</button>
+      </div>
+    </div>`).join('');
+
+  // Single event listener on the container — no per-field inline handlers
+  editor.oninput  = () => savePricingFromDom();
+  editor.onchange = () => savePricingFromDom();
+  editor.onclick  = (e) => {
+    const btn = e.target.closest('[data-remove]');
+    if (btn) {
+      _pricingItems = readPricingFromDom();
+      _pricingItems.splice(+btn.dataset.remove, 1);
+      persistPricing();
+      renderPricingEditor();
+    }
+  };
+}
+
+function addPricingItem() {
+  if (!_pricingItems) _pricingItems = readPricingFromDom();
+  else _pricingItems = readPricingFromDom(); // always sync from DOM first
+  _pricingItems.push({icon:'✨',name:'שירות חדש',desc:'תיאור',price:'לפי הצעה',featured:false,includes:[],addons:[]});
+  persistPricing();
+  renderPricingEditor();
+}
+
+function removePricingItem(i) {
+  _pricingItems = readPricingFromDom();
+  _pricingItems.splice(i, 1);
+  persistPricing();
+  renderPricingEditor();
+}
+
+// legacy stub — no longer used but kept for safety
+function updatePricingItem(i, field, value) {
+  savePricingFromDom();
+}
+function removePricingItem(i) {
+  if (!_pricingItems) _pricingItems = getPricingItems();
+  _pricingItems.splice(i, 1);
+  persistPricing();
+  renderPricingEditor();
+}
+function addPricingItem() {
+  if (!_pricingItems) _pricingItems = getPricingItems();
+  _pricingItems.push({icon:'✨',name:'שירות חדש',desc:'תיאור',price:'לפי הצעה',featured:false,includes:[]});
+  persistPricing();
+  renderPricingEditor();
+}
+function persistPricing() {
+  // Ensure every item has all fields (no undefined/null) so cloud merge doesn't lose data
+  const clean = (_pricingItems || []).map(p => ({
+    icon:     p.icon     || '',
+    name:     p.name     || '',
+    desc:     p.desc     || '',
+    price:    p.price    || '',
+    featured: !!p.featured,
+    includes: Array.isArray(p.includes) ? p.includes : [],
+    addons:   Array.isArray(p.addons)   ? p.addons   : []
+  }));
+  try { localStorage.setItem('pricing_packages', JSON.stringify(clean)); } catch(e){}
+  if (window.RemoteState && window.RemoteState.update) {
+    // Use top-level key so it replaces entirely (not deep-merged per-item)
+    window.RemoteState.update({ pricing: clean });
+  }
+}
+function savePricingItems() {
+  if (!_pricingItems) _pricingItems = getPricingItems();
+  persistPricing();
+  showToast('✅ מחירון נשמר! גלוי לכל המבקרים תוך כדקה.');
+}
+
+// ─── TOAST ───────────────────────────────────────────────────────
+function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2400); }
+</script>
+</body>
+</html>

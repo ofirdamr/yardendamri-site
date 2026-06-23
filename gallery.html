@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta name="robots" content="noindex,nofollow">
+  <script>
+/* Nav controls (canonical, shared across all pages) */
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn  = document.getElementById('navHamburger');
+  var ov   = document.getElementById('mobileOverlay');
+  var open = menu.classList.toggle('open');
+  if (btn) btn.classList.toggle('open', open);
+  if (ov)  ov.classList.toggle('open', open);
+  if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+function closeMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn  = document.getElementById('navHamburger');
+  var ov   = document.getElementById('mobileOverlay');
+  if (!menu) return;
+  menu.classList.remove('open');
+  if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+  if (ov)  ov.classList.remove('open');
+  menu.setAttribute('aria-hidden','true');
+}
+/* GA4 tracker (no-op if gtag missing) */
+function trackEvent(event_name, category, label) {
+  if (typeof gtag === 'function') gtag('event', event_name, { event_category: category, event_label: label });
+}
+/* Scroll-based nav background + reveal-on-scroll — run after DOM is parsed */
+document.addEventListener('DOMContentLoaded', function(){
+  var nav = document.querySelector('nav[role="navigation"]');
+  if (nav) {
+    nav.classList.add('subpage-nav');
+    nav.classList.add('scrolled');
+    window.addEventListener('scroll', function(){
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  }
+  var els = document.querySelectorAll('.reveal');
+  if (els.length && ('IntersectionObserver' in window)) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function(el){ io.observe(el); });
+  }
+});
+
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}if(localStorage.getItem('cookie_consent')==='accepted'){var _s=document.createElement('script');_s.async=true;_s.src='https://www.googletagmanager.com/gtag/js?id=G-68XM6LS4HX';document.head.appendChild(_s);gtag('js',new Date());gtag('config','G-68XM6LS4HX');}</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>גלריה | ירדן דמרי – מאפרת כלות וערב באילת</title>
+  <meta name="description" content="גלריית עבודות של ירדן דמרי – מאפרת מקצועית באילת. איפור כלות, ערב, הפקות ואירועים. מעל 1000 תמונות אמיתיות מעבודות שנתיים."/>
+  <meta name="keywords" content="גלריה מאפרת אילת, תמונות איפור כלות, עבודות ירדן דמרי, איפור מקצועי תמונות"/>
+  <meta property="og:title" content="גלריה | ירדן דמרי מאפרת"/>
+  <meta property="og:url" content="https://yardendamri.co.il/gallery.html"/>
+  <link rel="canonical" href="https://yardendamri.co.il/gallery.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260622a"/>
+  
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ImageGallery","name":"גלריית עבודות ירדן דמרי","url":"https://yardendamri.co.il/gallery.html","provider":{"@type":"Person","name":"ירדן דמרי","url":"https://yardendamri.co.il"}}</script>
+  <style>
+    .filter-bar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+    .filter-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:8px 20px;border-radius:2px;cursor:pointer;font-size:.78rem;font-weight:600;letter-spacing:.06em;transition:all .25s}
+    .filter-btn.active,.filter-btn:hover{background:#111;border-color:#111;color:#fff}
+    .gallery-grid{columns:2;gap:10px;max-width:1100px;margin:0 auto;padding:0 16px}
+    @media(min-width:640px){.gallery-grid{columns:3}}
+    @media(min-width:960px){.gallery-grid{columns:4}}
+    .gallery-item{break-inside:avoid;margin-bottom:10px;position:relative;overflow:hidden;border-radius:0;cursor:pointer;background:#1a1008}
+    .gallery-item img{width:100%;display:block;transition:transform .4s,opacity .3s;opacity:0}
+    .gallery-item img.loaded{opacity:1}
+    .gallery-item:hover img{transform:scale(1.04)}
+    .gallery-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:12px}
+    .gallery-item:hover .overlay{opacity:1}
+    .overlay-text{font-size:.72rem;color:rgba(255,255,255,.85);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+    /* Instagram-style media badges (video / carousel) */
+    .media-badge{position:absolute;top:8px;right:8px;z-index:2;display:flex;pointer-events:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.55))}
+    .media-badge svg{width:21px;height:21px;fill:#fff}
+    /* LIGHTBOX */
+    .lb{display:none;position:fixed;inset:0;z-index:1000;background:#000;align-items:center;justify-content:center;overflow:hidden;overscroll-behavior:contain;touch-action:none}
+    .lb.open{display:flex}
+    .lb-bg{display:none}
+    /* Reels-style: media fills the whole screen (crop to fill) */
+    .lb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:0;z-index:1;touch-action:none;-webkit-user-drag:none;user-select:none}
+    .lb-close{position:fixed;top:16px;left:20px;color:#fff;font-size:2rem;cursor:pointer;background:none;border:none;line-height:1;padding:8px;opacity:.8;transition:opacity .2s,top .2s;z-index:10002}
+    .lb-close:hover{opacity:1}
+    body.has-ck .lb-close{top:56px}
+    .lb-prev,.lb-next{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:none;color:#fff;font-size:2rem;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:50%;transition:background .2s;z-index:1003}
+    .lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.25)}
+    .lb-prev{right:12px}.lb-next{left:12px}
+    .lb-counter{position:fixed;bottom:74px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.5);font-size:.8rem;z-index:1002}
+    body.has-ck .lb-counter{transition:bottom .2s}
+    .load-more{display:block;margin:40px auto;background:#111;border:none;color:#fff;padding:12px 40px;border-radius:2px;cursor:pointer;font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transition:opacity .2s}
+    .load-more:hover{background:#111;color:#fff}
+    .video-play{display:none}
+    .lb-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:0;outline:none;touch-action:auto;z-index:1}
+    /* Instagram/Reels-style action rail — same for photos and videos; sits on the side so the bottom stays free for video controls */
+    .lb-actions{position:fixed;right:10px;left:auto;bottom:calc(64px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;gap:20px;z-index:1004}
+    .lb-act{background:none;border:none;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;padding:0;font-size:.72rem;font-weight:500;transition:transform .12s}
+    .lb-act:active{transform:scale(.82)}
+    .lb-act svg{width:25px;height:25px;stroke:#fff;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;display:block;filter:drop-shadow(0 1px 2px rgba(0,0,0,.55))}
+    .lb-act,.lb-cnt{text-shadow:0 1px 2px rgba(0,0,0,.55)}
+    .lb-act.liked svg{fill:#ed4956;stroke:#ed4956;animation:lbPop .3s ease}
+    .lb-act.saved svg{fill:#fff}
+    @keyframes lbPop{0%{transform:scale(1)}40%{transform:scale(1.25)}100%{transform:scale(1)}}
+    .lb-cnt{font-size:.82rem;color:rgba(255,255,255,.92);min-width:6px}
+    .lb-save{margin-inline-start:0}
+    .lb.lb-video-on .lb-counter{display:none}
+    /* Desktop: show the whole photo/video centered (flex-centered, contained) instead of cover-crop */
+    @media (min-width:1081px){
+      .lb-img,.lb-video{position:relative !important;inset:auto !important;top:auto !important;left:auto !important;transform:none !important;margin:auto !important;width:auto !important;height:auto !important;max-width:94vw !important;max-height:90vh !important;object-fit:contain !important}
+    }
+    .lb-toast{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);background:rgba(20,14,10,.95);color:#F0E6DC;padding:9px 20px;border-radius:24px;font-size:.84rem;font-weight:500;opacity:0;transition:opacity .3s;pointer-events:none;z-index:1003}
+    .lb-toast.show{opacity:1}
+    /* Hide floating buttons (WhatsApp, a11y, scroll-top) while the lightbox is open so they don't cover the action bar */
+    body.lb-open .wa-float, body.lb-open #a11y-trigger, body.lb-open #scroll-top{display:none !important}
+    /* Hide nav (and its hamburger) while lightbox is open so media is truly fullscreen */
+    body.lb-open nav[role="navigation"]{display:none !important}
+  </style>
+  <style>
+  </style>
+  <script src="a11y.js" defer></script>
+  <script src="cookie-banner.js?v=5" defer></script>
+<style id="rtl-float-override">
+/* Desktop RTL nav: logo LEFT, links RIGHT (match homepage) */
+@media (min-width:1081px){ nav[role="navigation"]{ flex-direction: row-reverse !important; } }
+/* Floating buttons - unified across all pages */
+body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, body.lb-open #scroll-top{display:none !important;}
+#a11y-trigger,#scroll-top,#wa-float-btn,.wa-float{width:36px !important;height:36px !important;min-width:36px !important;max-width:36px !important;min-height:36px !important;max-height:36px !important;border-radius:50% !important;position:fixed !important;bottom:18px !important;z-index:99999 !important;display:flex !important;align-items:center !important;justify-content:center !important;padding:0 !important;box-sizing:border-box !important;background:#444 !important;color:#fff !important;border:none !important;filter:none !important;opacity:.55 !important;box-shadow:0 4px 16px rgba(0,0,0,.3) !important;transition:opacity .2s !important;}
+#a11y-trigger:hover,#scroll-top:hover,#wa-float-btn:hover,.wa-float:hover{opacity:.9 !important;transform:none !important;}
+#a11y-trigger{left:12px !important;right:auto !important;}
+#scroll-top{left:56px !important;right:auto !important;font-size:14px !important;}
+#wa-float-btn,.wa-float{right:12px !important;left:auto !important;}
+#a11y-trigger svg,#wa-float-btn svg,.wa-float svg{width:16px !important;height:16px !important;fill:#fff !important;}
+</style>
+</head>
+<body>
+
+  <!-- IS 5568: Skip navigation link -->
+  <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav role="navigation" aria-label="ניווט ראשי" class="subpage-nav">
+    <a href="/" class="nav-logo" aria-label="ירדן דמרי - עמוד הבית">
+      <div class="monogram"><span>Y<em>.D</em></span></div>
+    </a>
+    <a href="/" aria-label="ירדן דמרי - עמוד הבית" style="position:absolute;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;text-decoration:none;line-height:1.25;">
+      <span style="font-family:'Rubik',sans-serif;font-size:1.1rem;font-weight:400;color:#c9a96e;letter-spacing:.04em;white-space:nowrap;">ירדן דמרי</span>
+      <span style="font-family:'Rubik',sans-serif;font-size:.58rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,169,110,.75);margin-top:2px;white-space:nowrap;">מאפרת כלות וערב</span>
+    </a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="פתיחת תפריט ניווט" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" role="list">
+      <li class="nav-social">
+        <a href="https://www.instagram.com/yarden_damri_makeup" target="_blank" rel="noopener noreferrer" aria-label="Instagram של ירדן דמרי" class="social-pill social-ig">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@yardendamri" target="_blank" rel="noopener noreferrer" aria-label="TikTok של ירדן דמרי" class="social-pill social-tt">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+          <span>TikTok</span>
+        </a>
+      </li>
+      <li><a href="contact.html" class="nav-cta">צרי קשר</a></li>
+      <li><a href="about.html">אודות</a></li>
+      <li><a href="bride.html">מאפרת כלות</a></li>
+      <li><a href="services.html">שירותים</a></li>
+      <li><a href="gallery.html">גלריה</a></li>
+      <li><a href="bridal-guide.html">מדריך כלות</a></li>
+    </ul>
+  </nav>
+
+  <!-- Mobile slide-in menu -->
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="תפריט ניווט נייד" aria-hidden="true">
+    <ul role="list">
+      <li><a href="about.html" onclick="closeMobileMenu()">אודות</a></li>
+      <li><a href="bride.html" onclick="closeMobileMenu()">מאפרת כלות</a></li>
+      <li><a href="services.html" onclick="closeMobileMenu()">שירותים</a></li>
+      <li><a href="gallery.html" onclick="closeMobileMenu()">גלריה</a></li>
+      <li><a href="bridal-guide.html" onclick="closeMobileMenu()">מדריך כלות</a></li>
+      <li><a href="contact.html" onclick="closeMobileMenu()">צרי קשר</a></li>
+    </ul>
+    <a onclick="trackEvent('whatsapp_click','conversion','whatsapp');closeMobileMenu();" href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" class="mobile-menu-wa">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.099.544 4.074 1.497 5.787L.057 23.882l6.255-1.641A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.666-.513-5.19-1.41l-.372-.22-3.863 1.013 1.032-3.765-.241-.388A9.978 9.978 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+      שלחי הודעה בוואטסאפ
+    </a>
+    <div class="mobile-social">
+      <a href="https://www.instagram.com/yarden_damri_makeup" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-pill social-ig">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="https://www.tiktok.com/@yardendamri" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="social-pill social-tt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+        <span>TikTok</span>
+      </a>
+    </div>
+  </div>
+
+  <main id="main-content">
+  <section class="page-hero">
+    <span class="page-eyebrow">עבודות אמיתיות</span>
+    <h1 class="page-title">גלריית עבודות</h1>
+    <p class="page-lead">מעל 1,000 לוקים — כלות, ערב, הפקות ואירועים. כל תמונה היא סיפור של אישה שהרגישה בדיוק כמו שרצתה.</p>
+    <p style="max-width:600px;margin:16px auto 0;font-size:.9rem;color:var(--text);opacity:.7;line-height:1.8;">ירדן דמרי, <strong>מאפרת כלות מקצועית באילת</strong>, מתמחה באיפור כלות, איפור ערב ואיפור לאירועים. הגלריה כוללת עבודות <strong>איפור כלות אילת</strong>, איפור ערב, הפקות וסדנאות — כל לוק מותאם אישית לפנים ולאירוע.</p>
+  </section>
+
+  <section style="padding:0 0 60px;">
+    <div class="filter-bar" id="filter-bar" role="tablist" aria-label="סינון גלריה">
+      <button class="filter-btn active" data-cat="all" role="tab" aria-selected="true">הכל</button>
+      <button class="filter-btn" data-cat="__fav__" role="tab" aria-selected="false">♥ המועדפים שלי</button>
+    </div>
+    <div id="gallery-seo" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);" aria-hidden="true">
+<h2>גלריית עבודות – ירדן דמרי מאפרת כלות ואירועים באילת</h2>
+<p>תמונות ועבודות של ירדן דמרי, מאפרת מקצועית באילת. איפור כלות, איפור ערב, איפור לאירועים ועוד.</p>
+<img src="https://images.yardendamri.co.il/yarden_18119542276602555.webp" alt="לוק רך, נקי, כזה שלא נמאס ממנו גם שנים אחרי ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18081283535147280.webp" alt="לוק רך, נקי, כזה שלא נמאס ממנו גם שנים אחרי ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18097478162143234.webp" alt="לוק רך, נקי, כזה שלא נמאס ממנו גם שנים אחרי ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17909674623407297.webp" alt="לוק רך, נקי, כזה שלא נמאס ממנו גם שנים אחרי ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18071074559663632.webp" alt="⁨	יש משהו בלוק נקי שתמיד מרגיש נכון ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17913397584389406.webp" alt="⁨	יש משהו בלוק נקי שתמיד מרגיש נכון ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17860070175691454.webp" alt="⁨	יש משהו בלוק נקי שתמיד מרגיש נכון ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18528298267079544.webp" alt="⁨	יש משהו בלוק נקי שתמיד מרגיש נכון ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18359465857225096.webp" alt="יש לוקים שלא צריכים יותר מדי כדי למשוך את כל תשומת הלב ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17963724306118155.webp" alt="יש לוקים שלא צריכים יותר מדי כדי למשוך את כל תשומת הלב ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18098676005027942.webp" alt="יש לוקים שלא צריכים יותר מדי כדי למשוך את כל תשומת הלב ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18110517241722013.webp" alt="יש לוקים שלא צריכים יותר מדי כדי למשוך את כל תשומת הלב ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18113142562769799.webp" alt="אם את מחפשת איפור כלתי שיישאר מושלם כל היום – זה בדיוק זה. | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17936714931219688.webp" alt="אם את מחפשת איפור כלתי שיישאר מושלם כל היום – זה בדיוק זה. | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18085750199612088.webp" alt="אם את מחפשת איפור כלתי שיישאר מושלם כל היום – זה בדיוק זה. | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18066257132361400.webp" alt="אם את מחפשת איפור כלתי שיישאר מושלם כל היום – זה בדיוק זה. | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18107538146490385.webp" alt="⁨	איפרתי את עופרה גוזלן לליכודיאדה באילת ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17972163857995115.webp" alt="יש לוקים שלא נועדו להשתלב — הם נועדו למשוך מבט ❤️ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18438927877138557.webp" alt="יש לוקים שלא נועדו להשתלב — הם נועדו למשוך מבט ❤️ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17855000790649300.webp" alt="לוק כלה נקי, מדויק וזוהר ✨  | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17970289263029665.webp" alt="לוק כלה נקי, מדויק וזוהר ✨  | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18083543753077608.webp" alt="מראה כלתי קלאסי, נקי ועל-זמני ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18047656448743041.webp" alt="מראה כלתי קלאסי, נקי ועל-זמני ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17877017613568349.webp" alt="מראה כלתי קלאסי, נקי ועל-זמני ✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18073663340406769.webp" alt="⁨	לפני שנסעתי 3  | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18401320069177670.webp" alt="⁨	לפני שנסעתי 3  | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18070209767647052.webp" alt="⁨	לפני שנסעתי 3  | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18099599461749203.webp" alt="לפני שטסתי 2 😍 | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18319175497254394.webp" alt="לפני שטסתי 2 😍 | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18059674982398561.webp" alt="לפני שטסתי 2 😍 | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18119257351554372.webp" alt="לפני שטסתי 2 😍 | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17852854302593480.webp" alt="🦢🦢🦢 | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17847468291681336.webp" alt="🦢🦢🦢 | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17897272932246179.webp" alt="🦢🦢🦢 | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17866647147475870.webp" alt="🦢🦢🦢 | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18101816960499992.webp" alt="🦢🦢🦢 | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18115546036547007.webp" alt="MUA @yarden_damri_makeup ✨✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18114900814527163.webp" alt="MUA @yarden_damri_makeup ✨✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18086723618275248.webp" alt="MUA @yarden_damri_makeup ✨✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18057020018367161.webp" alt="LIOR ✨✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18068366813529570.webp" alt="LIOR ✨✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18093444875486552.webp" alt="LIOR ✨✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18028806278784189.webp" alt="LIOR ✨✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18132425707501657.webp" alt="LIOR ✨✨ | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18208481125316258.webp" alt="איפור שהוא מחווה לתקופות אחרות, לאיפור שהוא סיפור בכלל. | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18184538992360250.webp" alt="איפור שהוא מחווה לתקופות אחרות, לאיפור שהוא סיפור בכלל. | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18070904519129535.webp" alt="איפור שהוא מחווה לתקופות אחרות, לאיפור שהוא סיפור בכלל. | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18107937169595688.webp" alt="אליז הכלה היפה שלי  | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_17845574352649298.webp" alt="אליז הכלה היפה שלי  | מאפרת ירדן דמרי אילת" loading="lazy"/>
+<img src="https://images.yardendamri.co.il/yarden_18416545831143970.webp" alt="אליז הכלה היפה שלי  | מאפרת ירדן דמרי אילת" loading="lazy"/>
+</div>
+    <div class="gallery-grid" id="galleryGrid" role="list"></div>
+    <button class="load-more" id="loadMoreBtn" aria-label="טעיני עוד תמונות">טעיני עוד ↓</button>
+  </section>
+
+  <section style="padding:40px 24px 60px;text-align:center;">
+    <p style="color:rgba(255,255,255,.4);font-size:.82rem;">ראי גם: <a href="bride.html" style="color:rgba(255,255,255,.6);">מאפרת כלות</a> | <a href="reviews.html" style="color:rgba(255,255,255,.6);">ביקורות לקוחות</a> | <a href="services.html" style="color:rgba(255,255,255,.6);">כל השירותים</a></p>
+  </section>
+
+  <div class="share-strip">
+    <p class="share-strip-text">אהבת את הגלריה? שתפי עם חברה שמחפשת מאפרת</p>
+    <button class="share-strip-btn" onclick="sharesite()" aria-label="שתפי את הגלריה">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      שתפי עם חברה
+    </button>
+  </div>
+</main>
+
+<footer role="contentinfo">
+    <p>© 2025 <strong>ירדן דמרי</strong> | מאפרת כלות וערב מקצועית | מגיעה לכל הארץ</p>
+    <p style="margin-top:10px;"><a onclick="trackEvent('phone_click','conversion','phone')" href="tel:0547276716" style="color:rgba(255,255,255,.7);text-decoration:none;" aria-label="התקשרי אל ירדן דמרי"><span dir="ltr">054-7276716</span></a> &nbsp;·&nbsp; <a onclick="trackEvent('whatsapp_click','conversion','whatsapp')" href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.7);text-decoration:none;" aria-label="שלחי הודעת וואטסאפ לירדן דמרי">וואטסאפ</a></p>
+    <nav aria-label="ניווט תחתון" style="margin-top:20px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:.8rem;margin-bottom:16px;">
+      <a href="/" style="color:rgba(255,255,255,.45);text-decoration:none;">דף הבית</a>
+      <a href="about.html" style="color:rgba(255,255,255,.45);text-decoration:none;">אודות</a>
+      <a href="bride.html" style="color:rgba(255,255,255,.45);text-decoration:none;">מאפרת כלות</a>
+      <a href="services.html" style="color:rgba(255,255,255,.45);text-decoration:none;">שירותים</a>
+      <a href="gallery.html" style="color:rgba(255,255,255,.45);text-decoration:none;">גלריה</a>
+      <a href="bridal-guide.html" style="color:rgba(255,255,255,.45);text-decoration:none;">מדריך כלות</a>
+      <a href="pricing.html" style="color:rgba(255,255,255,.45);text-decoration:none;">מחירון</a>
+      <a href="reviews.html" style="color:rgba(255,255,255,.45);text-decoration:none;">ביקורות</a>
+      <a href="contact.html" style="color:rgba(255,255,255,.45);text-decoration:none;">צרי קשר</a>
+      <a href="disclaimer.html" style="color:rgba(255,255,255,.25);text-decoration:none;">תנאי שימוש</a>
+    </nav>
+    <div style="margin-top:16px;display:flex;flex-direction:column;gap:12px;align-items:center;">
+      <div class="footer-social-pills">
+        <a href="https://www.instagram.com/yarden_damri_makeup" target="_blank" rel="noopener noreferrer" class="social-pill social-ig" aria-label="Instagram של ירדן דמרי">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@yardendamri" target="_blank" rel="noopener noreferrer" class="social-pill social-tt" aria-label="TikTok של ירדן דמרי">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+          <span>TikTok</span>
+        </a>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a href="accessibility-statement.html" style="color:rgba(255,255,255,.35);text-decoration:none;font-size:.78rem;" aria-label="הצהרת נגישות">♿ הצהרת נגישות</a>
+        <a href="admin.html" style="color:rgba(255,255,255,.18);text-decoration:none;font-size:.7rem;" aria-label="כניסה לניהול">⚙️ ניהול</a>
+      </div>
+    </div>
+  </footer>
+
+<a href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="וואטסאפ">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.099.544 4.074 1.497 5.787L.057 23.882l6.255-1.641A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.666-.513-5.19-1.41l-.372-.22-3.863 1.013 1.032-3.765-.241-.388A9.978 9.978 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+</a>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="תצוגת תמונה">
+  <div class="lb-bg" id="lbBg" aria-hidden="true"></div>
+  <button class="lb-close" id="lbClose" aria-label="סגור">✕</button>
+  <button class="lb-prev" id="lbPrev" aria-label="הקודמת">›</button>
+  <img class="lb-img" id="lbImg" src="" alt=""/>
+  <video class="lb-video" id="lbVideo" controls playsinline style="display:none"></video>
+  <button class="lb-next" id="lbNext" aria-label="הבאה">‹</button>
+  <div class="lb-counter" id="lbCounter"></div>
+  <div class="lb-actions" id="lbActions">
+    <button class="lb-act" id="lbLike" aria-label="לייק">
+      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      <span class="lb-cnt" id="lbLikeCnt"></span>
+    </button>
+    <button class="lb-act" id="lbComment" aria-label="תגובות">
+      <svg viewBox="0 0 24 24"><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22l-1.344-4.992z"/></svg>
+      <span class="lb-cnt" id="lbCmtCnt"></span>
+    </button>
+    <button class="lb-act" id="lbShare" aria-label="שיתוף">
+      <svg viewBox="0 0 24 24"><line x1="22" y1="3" x2="9.5" y2="10.5"/><polygon points="22 3 15 21 11.5 13 3.5 9.5 22 3"/></svg>
+    </button>
+    <button class="lb-act lb-save" id="lbSave" aria-label="שמירה למועדפים">
+      <svg viewBox="0 0 24 24"><polygon points="19 21 12 16 5 21 5 3 19 3 19 21"/></svg>
+    </button>
+  </div>
+  <div class="lb-toast" id="lbToast"></div>
+</div>
+
+<script src="cloud-storage.js?v=7"></script>
+<script src="gallery-data.js?v=1782226713496"></script>
+<script>
+// ── ADMIN SETTINGS (read from RemoteState — synced across all visitors via JSONBin) ──
+function getAdminSettings() {
+  if (window.RemoteState && window.RemoteState.getAdmin) {
+    return window.RemoteState.getAdmin();
+  }
+  try { return JSON.parse(localStorage.getItem('gallery_admin') || '{}'); } catch(e) { return {}; }
+}
+function applyAdminSettings(images) {
+  const s = getAdminSettings();
+  const hidden = new Set(s.hidden || []);
+  const privateCatsSet = new Set(s.privateCats || []);
+  const catMap = s.cats || {};
+  const hiddenCats = new Set([...privateCatsSet, 'מוסתרות']);
+  return images.filter(img => !img.hidden && !hidden.has(img.u) && !hiddenCats.has(catMap[img.u]));
+}
+
+// ── CDN HELPERS ──
+function cdnUrl(url, w) {
+  if (!url) return url;
+  if (url.includes('ik.imagekit.io')) return url.replace(/\?.*/, '') + `?tr=w-${w},q-auto,f-auto`;
+  return url;
+}
+function cdnVideo(url, w) { return url || ''; }
+function cdnVideoPoster(url) {
+  if (!url) return '';
+  return url.replace(/\.mp4$/i, '.jpg');
+}
+
+// ── IG STATS ──
+let igStatsCache = null; // null = not loaded yet
+function getIgStats(item) {
+  if (!igStatsCache) return null;
+  const id = item.post_id || item.item_id || item.id;
+  if (id && igStatsCache[id]) return igStatsCache[id];
+  return null;
+}
+async function loadIgFeed() {
+  if (igStatsCache !== null) return; // already loaded
+  igStatsCache = {}; // mark as loading
+  try {
+    const res = await fetch('instagram-stats.json?v=' + Date.now(), { cache: 'no-store' });
+    if (res.ok) {
+      igStatsCache = await res.json();
+      renderGallery(); // re-render with stats
+    }
+  } catch(e) { igStatsCache = {}; }
+  loadSocial().then(()=>renderGallery()).catch(()=>{});
+}
+
+// ── SOCIAL (web-wide likes + comments via Worker) ──
+    const SOCIAL_URL = 'https://api.yardendamri.co.il/social';
+    let _socialCache = null;
+
+    async function loadSocial() {
+      if (_socialCache) return _socialCache;
+      try {
+        const r = await fetch(SOCIAL_URL + '?v=' + Math.floor(Date.now()/60000));
+        if (r.ok) _socialCache = await r.json();
+      } catch(e) {}
+      if (!_socialCache) _socialCache = {likes:{}, comments:{}};
+      return _socialCache;
+    }
+
+    async function saveSocial() {
+      try {
+        await fetch(SOCIAL_URL, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({likes: _socialCache.likes, comments: _socialCache.comments})
+        });
+      } catch(e) {}
+    }
+
+    function getLikes() { return (_socialCache||{}).likes || {}; }
+    function getComments() { return (_socialCache||{}).comments || {}; }
+    // Per-session liked tracking (show filled heart for this user this session)
+    function hasLiked(key) { try { return !!sessionStorage.getItem('liked_'+key); } catch(e) { return false; } }
+    function setLiked(key) { try { sessionStorage.setItem('liked_'+key,'1'); } catch(e) {} }
+    function clearLiked(key) { try { sessionStorage.removeItem('liked_'+key); } catch(e) {} }
+
+async function toggleLike(url) {
+  await loadSocial();
+  const key = btoa(url).substring(0,12);
+  const liked = hasLiked(key);
+  if (liked) { _socialCache.likes[key] = Math.max(0,(_socialCache.likes[key]||1)-1); clearLiked(key); }
+  else { _socialCache.likes[key] = (_socialCache.likes[key]||0)+1; setLiked(key); }
+  saveSocial();
+  renderGallery();
+}
+function openComments(url, alt) {
+  const key = btoa(url).substring(0,12);
+  const igStats = getIgStats({u:url,a:alt});
+  const igComments = igStats ? (igStats.comments||[]) : [];
+  const localComments = getComments()[key]||[];
+  const allComments = [
+    ...igComments.map(c=>({name:'@'+(c.username||c.user||''),text:c.text||'',date:c.timestamp?new Date(c.timestamp).toLocaleDateString('he-IL'):(c.date||''),ig:true})),
+    ...localComments
+  ];
+  const modal = document.createElement('div');
+  modal.setAttribute('role','dialog'); modal.setAttribute('aria-modal','true'); modal.setAttribute('aria-label','תגובות');
+  modal.style.cssText='position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,.85);display:flex;align-items:flex-end;justify-content:center;';
+  modal.innerHTML=`<div style="background:#231815;border-radius:20px 20px 0 0;width:100%;max-width:500px;padding:24px;max-height:70vh;overflow-y:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <strong style="color:#E8C8B0;font-size:1.05rem;">תגובות${igStats && igStats.comments_count ? ` <span style="opacity:.6;font-size:.85rem;font-weight:400;">(${igStats.comments_count} באינסטגרם)</span>` : ''}</strong>
+      <button onclick="this.closest('div[role=dialog]').remove()" style="background:none;border:none;color:#E8C8B0;font-size:1.4rem;cursor:pointer;padding:4px 8px;">✕</button>
+    </div>
+    ${igStats && igStats.permalink ? `<a href="${igStats.permalink}" target="_blank" rel="noopener noreferrer" style="display:block;padding:10px 14px;border-radius:10px;background:rgba(228,64,95,.15);border:1px solid rgba(228,64,95,.4);color:#E4405F;text-decoration:none;text-align:center;font-size:.88rem;margin-bottom:12px;font-weight:600;">📸 צפי בכל התגובות באינסטגרם ←</a>` : ''}
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+      ${allComments.length?allComments.map(c=>`<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;"><strong style="color:var(--blush);font-size:.88rem">${c.name}${c.ig?' <span style="font-size:.7rem;opacity:.5">📸 IG</span>':''}</strong><p style="font-size:.92rem;color:rgba(240,230,220,.8);margin-top:4px;">${c.text}</p></div>`).join(''):'<p style="opacity:.5;font-size:.9rem">אין תגובות עדיין — כתבי את הראשונה!</p>'}
+    </div>
+    <label for="cmt-name" style="display:block;font-size:.8rem;opacity:.6;margin-bottom:4px;">שמך</label>
+    <input id="cmt-name" placeholder="שם" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(232,200,176,.2);background:rgba(255,255,255,.06);color:#F0E6DC;font-size:.95rem;margin-bottom:8px;font-family:inherit;"/>
+    <label for="cmt-text" style="display:block;font-size:.8rem;opacity:.6;margin-bottom:4px;">תגובה</label>
+    <textarea id="cmt-text" placeholder="כתבי תגובה..." style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(232,200,176,.2);background:rgba(255,255,255,.06);color:#F0E6DC;font-size:.95rem;min-height:70px;resize:none;margin-bottom:10px;font-family:inherit;"></textarea>
+    <button onclick="(async()=>{const n=document.getElementById('cmt-name').value.trim(),t=document.getElementById('cmt-text').value.trim();if(!n||!t)return;const c=getComments();if(!c['${key}'])c['${key}']=[];c['${key}'].push({name:n,text:t,date:new Date().toLocaleDateString('he-IL')});if(!_socialCache.comments)_socialCache.comments={};if(!_socialCache.comments['${key}'])_socialCache.comments['${key}']=[];_socialCache.comments['${key}'].push({name:n,text:t,date:new Date().toLocaleDateString('he-IL')});saveSocial();this.closest('div[role=dialog]').remove();renderGallery();})()" style="width:100%;padding:13px;border-radius:10px;border:none;background:#C4805A;color:#fff;font-weight:700;cursor:pointer;font-size:1rem;font-family:inherit;">שלחי 💬</button>
+  </div>`;
+  document.body.appendChild(modal);
+  modal.querySelector('#cmt-name').focus();
+}
+
+// ── CATEGORY ──
+function getCat(img) {
+  // 1. Admin's explicit assignment (from JSONBin) — highest priority
+  const adminCats = getAdminSettings().cats || {};
+  if (adminCats[img.u]) return adminCats[img.u];
+  // 2. Built-in hardcoded categories from caption
+  if (img.cat) return img.cat;
+  const a = (img.a||'').toLowerCase();
+  if (/כלה|כלות|bride|חינה|wedding|👰|💍/.test(a)) return 'bride';
+  if (/הפקה|פרסומת|קליפ/.test(a)) return 'production';
+  if (/ערב|אירוע/.test(a)) return 'evening';
+  return 'all';
+}
+
+// ── STATE ──
+const PAGE_SIZE = 24;
+let renderPage = 1;
+let activeFilter = 'all';
+let allFilteredImages = [];  // collapsed: one tile per carousel (for the grid)
+let lbImages = [];           // expanded: carousel children individually (for lightbox swipe)
+let lbIndex = 0;
+
+// Collapse carousel children into a single cover tile; cover._lbIndex points to
+// the first child's position in lbImages so the lightbox can swipe through them.
+function collapseCarousels(images) {
+  const out = [], firstSeen = {};
+  images.forEach((img, i) => {
+    if (img.carousel && img.post_id) {
+      if (firstSeen[img.post_id] == null) {
+        firstSeen[img.post_id] = true;
+        out.push({ ...img, _lbIndex: i });
+      }
+    } else {
+      out.push({ ...img, _lbIndex: i });
+    }
+  });
+  return out;
+}
+
+// ── RENDER ──
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  const slice = allFilteredImages.slice(0, renderPage * PAGE_SIZE);
+  grid.innerHTML = '';
+  slice.forEach((item, idx) => {
+    const div = document.createElement('div');
+    div.className = 'gallery-item';
+    div.setAttribute('role','listitem');
+    div.setAttribute('tabindex','0');
+    const caption = (item.a||'').replace(/[<>]/g,'').trim().split('\n')[0].substring(0,80);
+    const isVideo = item.video || item.u.match(/\.mp4/i) || (item.video);
+    const rot = (getAdminSettings().rotations || {})[item.u] || 0;
+    const rotStyle = rot ? `transform:rotate(${rot}deg);` : '';
+    let mediaHtml;
+    if (isVideo) {
+      const _thumb = item.thumb || '';
+      mediaHtml = `<img src="${_thumb}" data-video="${item.u}" loading="lazy"
+        style="width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block;background:#1a1008;${rotStyle}"
+        onerror="this.style.background='#1a1008'">`;
+    } else {
+      mediaHtml = `<img src="${item.thumb || item.u}" alt="${caption||'תמונת איפור'}" loading="lazy"
+        style="width:100%;display:block;transition:transform .4s;opacity:0;${rotStyle}"
+        onload="this.style.opacity=1" onerror="this.style.opacity=1"/>`;
+    }
+    const badge = (item.carousel || item.ccount > 1)
+      ? `<div class="media-badge" aria-label="פוסט עם מספר תמונות"><svg viewBox="0 0 48 48"><path d="M34.8 29.7V11c0-2.9-2.3-5.2-5.2-5.2H11c-2.9 0-5.2 2.3-5.2 5.2v18.7c0 2.9 2.3 5.2 5.2 5.2h18.7c2.8-.1 5.1-2.4 5.1-5.2zM39.2 15v16.1c0 4.5-3.7 8.2-8.2 8.2H14.9c-.6 0-.9.7-.5 1.1 1 1.1 2.4 1.8 4.1 1.8h12.7c5.5 0 9.9-4.4 9.9-9.9V18.6c0-1.6-.8-3.1-1.8-4.1-.5-.4-1.1 0-1.1.5z"/></svg></div>`
+      : (isVideo ? `<div class="media-badge" aria-label="סרטון"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>` : '');
+    div.innerHTML = `${mediaHtml}${badge}
+      <div class="overlay"><div class="overlay-text">${caption}</div></div>`;
+    div.onmouseenter = () => {
+      div.querySelector('.overlay').style.opacity = '1';
+      const img = div.querySelector('img'); if (img) img.style.transform = `rotate(${rot}deg) scale(1.04)`;
+
+    };
+    div.onmouseleave = () => {
+      div.querySelector('.overlay').style.opacity = '0';
+      const img = div.querySelector('img'); if (img) img.style.transform = `rotate(${rot}deg) scale(1)`;
+    };
+    const realIdx = item._lbIndex != null ? item._lbIndex : lbImages.indexOf(item);
+    div.onclick = () => openLb(realIdx);
+    div.onkeypress = e => { if (e.key==='Enter'||e.key===' '){e.preventDefault();openLb(realIdx);} };
+    grid.appendChild(div);
+  });
+  const btn = document.getElementById('loadMoreBtn');
+  btn.style.display = renderPage * PAGE_SIZE >= allFilteredImages.length ? 'none' : 'block';
+  observeVideos();
+}
+
+// ── VIDEO AUTOPLAY: thumbnail first, swap to <video autoplay> when in viewport ──
+const _obsSet = new WeakSet();
+const videoObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    const el = e.target;
+    if (e.isIntersecting && el.tagName === 'IMG' && el.dataset.video) {
+      const v = document.createElement('video');
+      v.src = el.dataset.video; v.muted = true; v.loop = true;
+      v.playsInline = true; v.autoplay = true; v.preload = 'metadata';
+      v.poster = el.src || '';   // keep the thumbnail visible while the video loads (no black box)
+      v.style.cssText = el.style.cssText;
+      v.style.background = '#1a1008';
+      el.parentNode.replaceChild(v, el);
+      v.muted = true; v.play().catch(()=>{});
+      _obsSet.add(v); videoObserver.observe(v);
+    } else if (e.isIntersecting && el.tagName === 'VIDEO') {
+      el.muted = true; el.play().catch(()=>{});
+    } else if (!e.isIntersecting && el.tagName === 'VIDEO') {
+      el.pause();
+    }
+  });
+}, { threshold: 0.1 });
+function observeVideos() {
+  document.querySelectorAll('#galleryGrid img[data-video], #galleryGrid video').forEach(el => {
+    if (!_obsSet.has(el)) { _obsSet.add(el); videoObserver.observe(el); }
+  });
+}
+
+// ── FILTER ──
+function buildFilterBar() {
+  const bar = document.getElementById('filter-bar'); if (!bar) return;
+  const adminCats = getAdminSettings().catList || [];
+  // Find which cats are actually used (have at least one photo assigned)
+  const usedCats = new Set(Object.values(getAdminSettings().cats || {}));
+
+  // Remove any previously-added custom buttons
+  bar.querySelectorAll('button[data-custom-cat]').forEach(b => b.remove());
+
+  const privateCats = new Set(getAdminSettings().privateCats || []);
+  // Add admin's custom categories that have assignments and are not private
+  adminCats.forEach(cat => {
+    if (!usedCats.has(cat)) return;
+    if (privateCats.has(cat)) return;
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.setAttribute('data-cat', cat);
+    btn.setAttribute('data-custom-cat', '1');
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-selected', 'false');
+    btn.textContent = cat;
+    bar.appendChild(btn);
+  });
+
+  // Rewire ALL filter buttons (built-in + custom)
+  bar.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.onclick = () => {
+      bar.querySelectorAll('.filter-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+      applyFilter(btn.dataset.cat);
+    };
+  });
+}
+
+function applyFilter(cat) {
+  activeFilter = cat;
+  const base = typeof GALLERY_IMAGES !== 'undefined' ? applyAdminSettings(GALLERY_IMAGES) : [];
+  const adminCatMap = getAdminSettings().cats || {};
+  if (cat === '__fav__') {
+    const favs = new Set(getFavorites());
+    lbImages = base.filter(img => favs.has(img.u));
+  } else {
+    lbImages = cat === 'all' ? base : base.filter(img => adminCatMap[img.u] === cat);
+  }
+  allFilteredImages = collapseCarousels(lbImages);
+  renderPage = 1;
+  renderGallery();
+  if (cat === '__fav__' && allFilteredImages.length === 0) {
+    document.getElementById('galleryGrid').innerHTML = '<p style="grid-column:1/-1;text-align:center;opacity:.6;padding:50px 20px;font-size:.95rem;">עדיין לא שמרת תמונות למועדפים.<br>פתחי תמונה ולחצי על 🔖 כדי לשמור.</p>';
+  }
+}
+document.getElementById('loadMoreBtn').addEventListener('click', () => { renderPage++; renderGallery(); });
+
+buildFilterBar();
+
+// ── LIGHTBOX ──
+function openLb(idx) {
+  lbIndex = idx;
+  showLb();
+  document.getElementById('lb').classList.add('open');
+  document.body.classList.add('lb-open');
+  document.body.style.overflow = 'hidden';
+}
+function showLb() {
+  const item = lbImages[lbIndex];
+  const lbImg = document.getElementById('lbImg');
+  const lbVideo = document.getElementById('lbVideo');
+  const isVideo = item.video || item.u.match(/\.mp4/i) || (item.video);
+  document.getElementById('lb').classList.toggle('lb-video-on', !!isVideo);
+  if (isVideo) {
+    lbVideo.src = item.u;
+    lbVideo.poster = item.thumb || '';   // show thumbnail instead of a black spinner while buffering
+    lbVideo.preload = 'auto';
+    lbVideo.muted = false;
+    lbVideo.style.display = '';
+    lbImg.style.display = 'none';
+    lbImg.src = '';
+    lbVideo.play().catch(() => { lbVideo.muted = true; lbVideo.play().catch(() => {}); });
+  } else {
+    lbImg.src = item.u; // full Instagram-max image (the grid uses the small thumb instead)
+    lbImg.alt = (item.a||'').split('\n')[0].substring(0,80);
+    lbImg.style.display = '';
+    lbVideo.style.display = 'none';
+    lbVideo.pause(); lbVideo.src = '';
+  }
+  // Carousel: show "image X of Y in this post"
+  let label = `${lbIndex+1} / ${lbImages.length}`;
+  if (item.carousel && item.ccount > 1) label = `◻ ${(item.cidx||0)+1}/${item.ccount} · ${label}`;
+  document.getElementById('lbCounter').textContent = label;
+  updateLbActions();
+}
+function closeLb() {
+  document.getElementById('lb').classList.remove('open');
+  document.body.classList.remove('lb-open');
+  document.body.style.overflow = '';
+  const lbVideo = document.getElementById('lbVideo');
+  lbVideo.pause(); lbVideo.src = '';
+}
+
+// ── FAVORITES (saved per device) ──
+function getFavorites() { try { return JSON.parse(localStorage.getItem('gallery_favorites')||'[]'); } catch(e) { return []; } }
+function isFav(url) { return getFavorites().includes(url); }
+function toggleFav(url) {
+  let f = getFavorites();
+  if (f.includes(url)) f = f.filter(u => u !== url);
+  else f.push(url);
+  try { localStorage.setItem('gallery_favorites', JSON.stringify(f)); } catch(e) {}
+  return f.includes(url);
+}
+function lbToast(msg) {
+  const t = document.getElementById('lbToast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(window._lbToastT);
+  window._lbToastT = setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+// Clean short link → Worker share page that redirects to this exact item.
+function shareLink(item) {
+  const id = String(item.item_id || item.post_id || '').replace(/[^0-9]/g, '');
+  const isVideo = item.video || /\.mp4/i.test(item.u);
+  return 'https://api.yardendamri.co.il/s/' + (isVideo ? 'v' : 'p') + '/' + id;
+}
+async function shareItem() {
+  const item = lbImages[lbIndex];
+  if (!item) return;
+  const link = shareLink(item);
+  // Share the link only → WhatsApp/others render a clean card (thumbnail +
+  // "לחצי כאן לצפייה" title + domain). No raw path, no URL dump.
+  try {
+    if (navigator.share) { await navigator.share({ url: link }); return; }
+  } catch (e) { if (e && e.name === 'AbortError') return; }
+  window.open('https://wa.me/?text=' + encodeURIComponent(link), '_blank', 'noopener');
+}
+
+// ── LIGHTBOX ACTION BAR STATE ──
+function updateLbActions() {
+  const item = lbImages[lbIndex];
+  if (!item) return;
+  const key = btoa(item.u).substring(0,12);
+  const igStats = getIgStats(item);
+  const totalLikes = (igStats?igStats.likes:0) + (getLikes()[key]||0);
+  const cmtCount = (igStats?(igStats.comments_count||igStats.comments?.length||0):0) + ((getComments()[key]||[]).length);
+  document.getElementById('lbLike').classList.toggle('liked', hasLiked(key));
+  document.getElementById('lbLikeCnt').textContent = totalLikes || '';
+  document.getElementById('lbCmtCnt').textContent = cmtCount || '';
+  document.getElementById('lbSave').classList.toggle('saved', isFav(item.u));
+}
+document.getElementById('lbLike').addEventListener('click', async () => {
+  await toggleLike(lbImages[lbIndex].u); updateLbActions();
+});
+document.getElementById('lbComment').addEventListener('click', () => {
+  const it = lbImages[lbIndex];
+  openComments(it.u, (it.a||'').substring(0,30).replace(/['"\\\n\r]/g,' ').trim());
+});
+document.getElementById('lbShare').addEventListener('click', shareItem);
+document.getElementById('lbSave').addEventListener('click', () => {
+  const saved = toggleFav(lbImages[lbIndex].u);
+  updateLbActions();
+  lbToast(saved ? '💾 נשמר למועדפים' : 'הוסר מהמועדפים');
+});
+document.getElementById('lbClose').addEventListener('click', closeLb);
+function navLb(step){ if(!lbImages.length) return; lbIndex=(lbIndex+step+lbImages.length)%lbImages.length; showLb(); }
+document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
+document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); navLb(1); });
+document.getElementById('lb').addEventListener('click', e => { if(e.target===e.currentTarget) closeLb(); });
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lb').classList.contains('open')) return;
+  if (e.key==='Escape') closeLb();
+  if (e.key==='ArrowLeft') navLb(1);
+  if (e.key==='ArrowRight') navLb(-1);
+});
+// Touch swipe (horizontal). Listen in CAPTURE phase on document so the gesture
+// is caught even when the finger is on a playing <video> (its controls would
+// otherwise swallow the touch and block swiping).
+(function(){
+  const lbOpen = () => document.getElementById('lb').classList.contains('open');
+  let x0=0, y0=0, active=false;
+  document.addEventListener('touchstart', e => {
+    if(!lbOpen()) return;
+    const t=e.touches[0]; x0=t.clientX; y0=t.clientY; active=true;
+  }, {capture:true, passive:true});
+  document.addEventListener('touchmove', e => {
+    if(!active || !lbOpen()) return;
+    const t=e.touches[0], dx=t.clientX-x0, dy=t.clientY-y0;
+    if(Math.abs(dx) > 10 || Math.abs(dy) > 10) e.preventDefault();
+  }, {capture:true, passive:false});
+  document.addEventListener('touchend', e => {
+    if(!active) return; active=false;
+    if(!lbOpen()) return;
+    const t=e.changedTouches[0], dx=t.clientX-x0, dy=t.clientY-y0;
+    if(Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) navLb(dx < 0 ? 1 : -1);
+    else if(Math.abs(dy) > 70 && Math.abs(dy) > Math.abs(dx)) closeLb();  // swipe up/down to dismiss
+  }, {capture:true, passive:true});
+})();
+
+// ── INIT ──
+// Render immediately with cached state, then silently refresh with remote data
+buildFilterBar();
+applyFilter('all');
+loadIgFeed();
+// Deep link: ?m=<id> opens that exact media in the lightbox (used by shared links)
+function openDeepLink() {
+  const m = new URLSearchParams(location.search).get('m');
+  if (!m) return;
+  const idx = lbImages.findIndex(it => String(it.item_id) === m || String(it.post_id) === m);
+  if (idx >= 0) openLb(idx);
+}
+openDeepLink();
+(async () => {
+  if (window.RemoteState) {
+    await window.RemoteState.fetchPublic();
+    buildFilterBar();
+    applyFilter(activeFilter);
+    if (!document.getElementById('lb').classList.contains('open')) openDeepLink();
+  }
+})();
+
+function sharesite() {
+  var u = window.location.href;
+  var t = 'ירדן דמרי — מאפרת כלות וערב מאיילת | גלריית עבודות';
+  if (navigator.share) {
+    navigator.share({ title: 'ירדן דמרי', text: t, url: u }).catch(function(){});
+  } else {
+    window.open('https://wa.me/?text=' + encodeURIComponent(t + '\n' + u), '_blank');
+  }
+}
+</script>
+</body>
+</html>

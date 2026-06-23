@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta name="robots" content="noindex,nofollow">
+  <script>
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn  = document.getElementById('navHamburger');
+  var ov   = document.getElementById('mobileOverlay');
+  var open = menu.classList.toggle('open');
+  if (btn) btn.classList.toggle('open', open);
+  if (ov)  ov.classList.toggle('open', open);
+  if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+function closeMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn  = document.getElementById('navHamburger');
+  var ov   = document.getElementById('mobileOverlay');
+  if (!menu) return;
+  menu.classList.remove('open');
+  if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+  if (ov)  ov.classList.remove('open');
+  menu.setAttribute('aria-hidden','true');
+}
+function trackEvent(event_name, category, label) {
+  if (typeof gtag === 'function') gtag('event', event_name, { event_category: category, event_label: label });
+}
+document.addEventListener('DOMContentLoaded', function(){
+  var nav = document.querySelector('nav[role="navigation"]');
+  if (nav) {
+    nav.classList.add('subpage-nav');
+    nav.classList.add('scrolled');
+    window.addEventListener('scroll', function(){
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  }
+  var els = document.querySelectorAll('.reveal');
+  if (els.length && ('IntersectionObserver' in window)) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function(el){ io.observe(el); });
+  }
+});
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}if(localStorage.getItem('cookie_consent')==='accepted'){var _s=document.createElement('script');_s.async=true;_s.src='https://www.googletagmanager.com/gtag/js?id=G-68XM6LS4HX';document.head.appendChild(_s);gtag('js',new Date());gtag('config','G-68XM6LS4HX');}</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ביקורות | ירדן דמרי – מאפרת כלות וערב</title>
+  <meta name="description" content="ביקורות לקוחות על ירדן דמרי, מאפרת מקצועית באילת. לקוחות מספרות על חוויית האיפור לחתונה ולאירועים."/>
+  <meta name="keywords" content="ביקורות מאפרת כלות, ירדן דמרי ביקורות, המלצות מאפרת כלות, ביקורות איפור כלות"/>
+  <meta property="og:title" content="ביקורות | ירדן דמרי"/>
+  <meta property="og:description" content="מה הכלות אומרות על ירדן דמרי – מאפרת כלות וערב מקצועית"/>
+  <meta property="og:url" content="https://yardendamri.co.il/reviews.html"/>
+  <link rel="canonical" href="https://yardendamri.co.il/reviews.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260622a"/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"ירדן דמרי – מאפרת מקצועית","url":"https://yardendamri.co.il","telephone":"+9720547276716","address":{"@type":"PostalAddress","addressLocality":"אילת","addressCountry":"IL"}}</script>
+  <script src="a11y.js" defer></script>
+  <script src="cookie-banner.js?v=5" defer></script>
+  <script src="cloud-storage.js"></script>
+<style id="rtl-float-override">
+/* Desktop RTL nav: logo LEFT, links RIGHT (match homepage) */
+@media (min-width:1081px){ nav[role="navigation"]{ flex-direction: row-reverse !important; } }
+/* Floating buttons - unified across all pages */
+body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, body.lb-open #scroll-top{display:none !important;}
+#a11y-trigger,#scroll-top,#wa-float-btn,.wa-float{width:36px !important;height:36px !important;min-width:36px !important;max-width:36px !important;min-height:36px !important;max-height:36px !important;border-radius:50% !important;position:fixed !important;bottom:18px !important;z-index:99999 !important;display:flex !important;align-items:center !important;justify-content:center !important;padding:0 !important;box-sizing:border-box !important;background:#444 !important;color:#fff !important;border:none !important;filter:none !important;opacity:.55 !important;box-shadow:0 4px 16px rgba(0,0,0,.3) !important;transition:opacity .2s !important;}
+#a11y-trigger:hover,#scroll-top:hover,#wa-float-btn:hover,.wa-float:hover{opacity:.9 !important;transform:none !important;}
+#a11y-trigger{left:12px !important;right:auto !important;}
+#scroll-top{left:56px !important;right:auto !important;font-size:14px !important;}
+#wa-float-btn,.wa-float{right:12px !important;left:auto !important;}
+#a11y-trigger svg,#wa-float-btn svg,.wa-float svg{width:16px !important;height:16px !important;fill:#fff !important;}
+</style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+  <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()" aria-hidden="true"></div>
+
+  <nav role="navigation" aria-label="ניווט ראשי" class="subpage-nav">
+    <a href="/" class="nav-logo" aria-label="ירדן דמרי - עמוד הבית">
+      <div class="monogram"><span>Y<em>.D</em></span></div>
+    </a>
+    <a href="/" aria-label="ירדן דמרי - עמוד הבית" style="position:absolute;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;text-decoration:none;line-height:1.25;">
+      <span style="font-family:'Rubik',sans-serif;font-size:1.1rem;font-weight:400;color:#c9a96e;letter-spacing:.04em;white-space:nowrap;">ירדן דמרי</span>
+      <span style="font-family:'Rubik',sans-serif;font-size:.58rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,169,110,.75);margin-top:2px;white-space:nowrap;">מאפרת כלות וערב</span>
+    </a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="פתיחת תפריט ניווט" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" role="list">
+      <li class="nav-social">
+        <a href="https://www.instagram.com/yarden_damri_makeup" target="_blank" rel="noopener noreferrer" aria-label="Instagram של ירדן דמרי" class="social-pill social-ig">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@yardendamri" target="_blank" rel="noopener noreferrer" aria-label="TikTok של ירדן דמרי" class="social-pill social-tt">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+          <span>TikTok</span>
+        </a>
+      </li>
+      <li><a href="contact.html" class="nav-cta">צרי קשר</a></li>
+      <li><a href="about.html">אודות</a></li>
+      <li><a href="bride.html">מאפרת כלות</a></li>
+      <li><a href="services.html">שירותים</a></li>
+      <li><a href="gallery.html">גלריה</a></li>
+      <li><a href="bridal-guide.html">מדריך כלות</a></li>
+    </ul>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="תפריט ניווט נייד" aria-hidden="true">
+    <ul role="list">
+      <li><a href="about.html" onclick="closeMobileMenu()">אודות</a></li>
+      <li><a href="bride.html" onclick="closeMobileMenu()">מאפרת כלות</a></li>
+      <li><a href="services.html" onclick="closeMobileMenu()">שירותים</a></li>
+      <li><a href="gallery.html" onclick="closeMobileMenu()">גלריה</a></li>
+      <li><a href="bridal-guide.html" onclick="closeMobileMenu()">מדריך כלות</a></li>
+      <li><a href="contact.html" onclick="closeMobileMenu()">צרי קשר</a></li>
+    </ul>
+    <a onclick="trackEvent('whatsapp_click','conversion','whatsapp');closeMobileMenu();" href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" class="mobile-menu-wa">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.099.544 4.074 1.497 5.787L.057 23.882l6.255-1.641A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.666-.513-5.19-1.41l-.372-.22-3.863 1.013 1.032-3.765-.241-.388A9.978 9.978 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+      שלחי הודעה בוואטסאפ
+    </a>
+    <div class="mobile-social">
+      <a href="https://www.instagram.com/yarden_damri_makeup" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-pill social-ig">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="https://www.tiktok.com/@yardendamri" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="social-pill social-tt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.88 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+        <span>TikTok</span>
+      </a>
+    </div>
+  </div>
+
+  <style>
+    /* Reviews page — editorial cream theme */
+    .rv-hero { padding: 160px clamp(24px,8vw,100px) 80px; text-align: center; background: var(--cream); border-bottom: 1px solid #eee; }
+    .rv-rating { margin: 32px auto 0; max-width: 320px; }
+    .rv-rating-num { font-family: 'Rubik', sans-serif; font-size: 4rem; font-weight: 300; color: var(--charcoal); line-height: 1; }
+    .rv-rating-stars { font-size: 1.6rem; letter-spacing: .15em; margin: 8px 0 6px; }
+    .rv-rating-stars .filled { color: #D4A574; }
+    .rv-rating-stars .empty { color: #d8cfc4; }
+    .rv-rating-count { font-size: .8rem; color: #777; letter-spacing: .1em; text-transform: uppercase; }
+
+    .rv-body { padding: 60px clamp(24px,6vw,60px) 100px; max-width: 1100px; margin: 0 auto; background: var(--cream); }
+    .rv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-bottom: 60px; }
+    .rv-card { background: #fff; border: 1px solid #ece5dc; padding: 28px; display: flex; flex-direction: column; gap: 14px; transition: transform .3s, box-shadow .3s; }
+    .rv-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(40,25,15,.08); }
+    .rv-card-head { display: flex; align-items: center; gap: 12px; }
+    .rv-card-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: var(--warm); flex-shrink: 0; }
+    .rv-card-name { font-weight: 600; color: var(--charcoal); font-size: .92rem; font-family: 'Heebo', sans-serif; }
+    .rv-card-date { font-size: .72rem; color: #888; letter-spacing: .05em; }
+    .rv-card-stars { font-size: 1rem; letter-spacing: .1em; }
+    .rv-card-stars .filled { color: #D4A574; }
+    .rv-card-stars .empty { color: #e5dccf; }
+    .rv-card-text { font-size: .92rem; color: #444; line-height: 1.75; flex: 1; }
+
+    /* Skeleton loader */
+    .rv-skel { background: #fff; border: 1px solid #ece5dc; padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .rv-skel-bar { background: linear-gradient(90deg, #f5ede2 0%, #ebe0d0 50%, #f5ede2 100%); background-size: 200% 100%; animation: rv-shimmer 1.4s infinite; border-radius: 2px; }
+    .rv-skel-head { display: flex; align-items: center; gap: 12px; }
+    .rv-skel-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(90deg, #f5ede2 0%, #ebe0d0 50%, #f5ede2 100%); background-size: 200% 100%; animation: rv-shimmer 1.4s infinite; flex-shrink: 0; }
+    .rv-skel-line-1 { height: 12px; width: 60%; }
+    .rv-skel-line-2 { height: 10px; width: 40%; margin-top: 6px; }
+    .rv-skel-text { height: 10px; width: 100%; }
+    .rv-skel-text.short { width: 70%; }
+    @keyframes rv-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    /* CTA box — editorial light */
+    .rv-cta { text-align: center; background: #fff; border: 1px solid #ece5dc; padding: 56px 32px; max-width: 720px; margin: 0 auto; }
+    .rv-cta-icon { font-family: 'Rubik', sans-serif; font-size: 3.2rem; font-style: italic; color: var(--rose); line-height: 1; margin-bottom: 18px; }
+    .rv-cta-title { font-family: 'Rubik', sans-serif; font-size: 2rem; font-weight: 300; color: var(--charcoal); margin-bottom: 14px; letter-spacing: -.01em; }
+    .rv-cta-text { color: #555; font-size: .95rem; margin-bottom: 28px; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  </style>
+
+  <main id="main-content">
+
+    <section class="rv-hero">
+      <p class="section-eyebrow">מה אומרות הכלות שלי</p>
+      <h1 class="section-title">המילים שלכן</h1>
+      <p style="font-size:1.05rem;color:var(--text);max-width:600px;margin:16px auto 0;line-height:1.9">
+        אין דבר שמרגש אותי יותר מלקבל מכן הודעה ביום שאחרי, או לראות את התמונות שלכן קורנות ומאושרות. הנה חלק קטן מהמילים, ההודעות והאהבה שקיבלתי מהכלות שלי (שהן כבר מזמן הרבה יותר מרק לקוחות).
+      </p>
+      <p style="font-size:.95rem;color:#777;max-width:600px;margin:16px auto 0;line-height:1.85">
+        מבחינתי, דף ההמלצות הוא הלב של העבודה שלי. כל חתונה, כל ליווי כלה וכל איפור ערב למלוות הוא עולם ומלואו. כאן תוכלי לקרוא מה הכלות שלי מספרות על החוויה בבוקר החתונה, על העמידות של האיפור לאורך כל האירוע, ועל התחושה של להרגיש הכי יפה והכי את.
+      </p>
+      <div id="overall-rating" class="rv-rating"></div>
+    </section>
+
+    <section class="rv-body">
+
+      <!-- Google Reviews (loaded dynamically, skeleton while loading) -->
+      <div id="reviews-grid" class="rv-grid" aria-live="polite" aria-busy="true">
+        <div class="rv-skel"><div class="rv-skel-head"><div class="rv-skel-avatar"></div><div style="flex:1;"><div class="rv-skel-bar rv-skel-line-1"></div><div class="rv-skel-bar rv-skel-line-2"></div></div></div><div class="rv-skel-bar rv-skel-text"></div><div class="rv-skel-bar rv-skel-text"></div><div class="rv-skel-bar rv-skel-text short"></div></div>
+        <div class="rv-skel"><div class="rv-skel-head"><div class="rv-skel-avatar"></div><div style="flex:1;"><div class="rv-skel-bar rv-skel-line-1"></div><div class="rv-skel-bar rv-skel-line-2"></div></div></div><div class="rv-skel-bar rv-skel-text"></div><div class="rv-skel-bar rv-skel-text"></div><div class="rv-skel-bar rv-skel-text short"></div></div>
+        <div class="rv-skel"><div class="rv-skel-head"><div class="rv-skel-avatar"></div><div style="flex:1;"><div class="rv-skel-bar rv-skel-line-1"></div><div class="rv-skel-bar rv-skel-line-2"></div></div></div><div class="rv-skel-bar rv-skel-text"></div><div class="rv-skel-bar rv-skel-text"></div><div class="rv-skel-bar rv-skel-text short"></div></div>
+      </div>
+
+      <!-- Static SEO reviews for Google to index (visible) -->
+      <div id="reviews-seo">
+        <h3 style="font-family:'Rubik',sans-serif;font-weight:500;font-size:1.15rem;color:#111;text-align:center;margin-bottom:28px;">קצת מהאהבה ששלחתן לי:</h3>
+        <div class="rv-grid" style="margin-bottom:16px;">
+
+          <article class="rv-card" itemscope itemtype="https://schema.org/Review">
+            <meta itemprop="itemReviewed" content="ירדן דמרי מאפרת כלות"/>
+            <div class="rv-card-head"><div class="rv-card-avatar" style="background:var(--warm);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--charcoal);" aria-hidden="true">נ</div><div><div class="rv-card-name" itemprop="author">נועה כ.</div><div class="rv-card-stars" aria-label="5 כוכבים"><span class="filled">★★★★★</span></div></div></div>
+            <p class="rv-card-text" itemprop="reviewBody">ירדן את פשוט מדהימה!! הגעת אליי בבוקר החתונה עם כל כך הרבה אנרגיה טובה שהרגעת אותי ברגע. האיפור יצא בדיוק מה שרציתי — טבעי, זוהר, ומחזיק עד הריקוד האחרון. כולם שאלו אותי מי אפר אותי 😍</p>
+            <div class="rv-card-date">איפור כלות</div>
+          </article>
+
+          <article class="rv-card" itemscope itemtype="https://schema.org/Review">
+            <meta itemprop="itemReviewed" content="ירדן דמרי מאפרת כלות"/>
+            <div class="rv-card-head"><div class="rv-card-avatar" style="background:var(--warm);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--charcoal);" aria-hidden="true">מ</div><div><div class="rv-card-name" itemprop="author">מיכל ר.</div><div class="rv-card-stars" aria-label="5 כוכבים"><span class="filled">★★★★★</span></div></div></div>
+            <p class="rv-card-text" itemprop="reviewBody">לא האמנתי שאיפור יכול להחזיק 14 שעות!! ירדן הגיעה אלינו הביתה, הייתה כל כך רגועה וכיפית שהבוקר כולו היה נינוח ושמח. המראה יצא מושלם — בדיוק כמו שדיברנו בניסוי. תודה על הכל ❤️</p>
+            <div class="rv-card-date">איפור כלות</div>
+          </article>
+
+          <article class="rv-card" itemscope itemtype="https://schema.org/Review">
+            <meta itemprop="itemReviewed" content="ירדן דמרי מאפרת כלות"/>
+            <div class="rv-card-head"><div class="rv-card-avatar" style="background:var(--warm);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--charcoal);" aria-hidden="true">ש</div><div><div class="rv-card-name" itemprop="author">שירה ל.</div><div class="rv-card-stars" aria-label="5 כוכבים"><span class="filled">★★★★★</span></div></div></div>
+            <p class="rv-card-text" itemprop="reviewBody">ירדן אפרה אותי ואת כל הבנות שלי לחתונה. היא הגיעה עם חיוך, עבדה מהר ומדויק, וכל אחת קיבלה מראה שמתאים לה. אני לא מבינה איך היא עושה את זה אבל הצלחנו להיות מוכנות בזמן ולהיראות פשוט מושלמות 🙌</p>
+            <div class="rv-card-date">ליווי צוות כלה</div>
+          </article>
+
+          <article class="rv-card" itemscope itemtype="https://schema.org/Review">
+            <meta itemprop="itemReviewed" content="ירדן דמרי מאפרת כלות"/>
+            <div class="rv-card-head"><div class="rv-card-avatar" style="background:var(--warm);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--charcoal);" aria-hidden="true">ד</div><div><div class="rv-card-name" itemprop="author">דנה א.</div><div class="rv-card-stars" aria-label="5 כוכבים"><span class="filled">★★★★★</span></div></div></div>
+            <p class="rv-card-text" itemprop="reviewBody">הגעתי לפגישת ניסוי עם כל כך הרבה חרדות ויצאתי הכי מרגועה שיש. ירדן הקשיבה לי, הבינה בדיוק מה אני רוצה, ובנינו ביחד מראה שגרם לי להרגיש — סוף סוף — כמו עצמי. ביום החתונה בכיתי מרוב שמחה כשראיתי את עצמי במראה 🤍</p>
+            <div class="rv-card-date">איפור כלות + ניסוי</div>
+          </article>
+
+          <article class="rv-card" itemscope itemtype="https://schema.org/Review">
+            <meta itemprop="itemReviewed" content="ירדן דמרי מאפרת כלות"/>
+            <div class="rv-card-head"><div class="rv-card-avatar" style="background:var(--warm);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--charcoal);" aria-hidden="true">ת</div><div><div class="rv-card-name" itemprop="author">תמר ג.</div><div class="rv-card-stars" aria-label="5 כוכבים"><span class="filled">★★★★★</span></div></div></div>
+            <p class="rv-card-text" itemprop="reviewBody">ירדן אפרה אותי לחתונת אחותי ואני עדיין מקבלת תגובות על האיפור שבוע אחרי!! היא מקצוענית אמיתית — מהירה, דייקנית ועם ידיים של זהב. כבר הזמנתי אותה לחתונה שלי בשנה הבאה 😂</p>
+            <div class="rv-card-date">איפור ערב</div>
+          </article>
+
+          <article class="rv-card" itemscope itemtype="https://schema.org/Review">
+            <meta itemprop="itemReviewed" content="ירדן דמרי מאפרת כלות"/>
+            <div class="rv-card-head"><div class="rv-card-avatar" style="background:var(--warm);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--charcoal);" aria-hidden="true">א</div><div><div class="rv-card-name" itemprop="author">אור מ.</div><div class="rv-card-stars" aria-label="5 כוכבים"><span class="filled">★★★★★</span></div></div></div>
+            <p class="rv-card-text" itemprop="reviewBody">לא ציפיתי שאהיה כל כך רגועה ביום החתונה אבל ירדן פשוט יוצרת אווירה כזאת נינוחה וכיפית שבלי לשים לב כבר הייתי מוכנה ומחויכת. האיפור היה מעל כל הציפיות שלי — אלגנטי, מחזיק, ובדיוק אני.</p>
+            <div class="rv-card-date">איפור כלות</div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Site reviews submitted by visitors (from JSONBin, public) -->
+      <div id="site-reviews-wrap" style="margin-top:8px;"></div>
+
+      <!-- Write a review — on-site form (saves to site, public) -->
+      <div class="rv-cta" id="review-form-card">
+        <div class="rv-cta-icon">"</div>
+        <h2 class="rv-cta-title">איפרתי אותך והיה לנו כיף?</h2>
+        <p class="rv-cta-text">
+          מוזמנת להשאיר כמה מילים ולדרג כאן למטה, אני תמיד שמחה לשמוע מכן!
+        </p>
+        <div style="max-width:440px;margin:0 auto;text-align:right;">
+          <div style="margin-bottom:14px;">
+            <label for="rev-name" style="display:block;font-size:.85rem;color:#555;margin-bottom:4px;">שמך</label>
+            <input id="rev-name" type="text" placeholder="שם פרטי" aria-required="true"
+              style="width:100%;padding:11px 14px;border:1px solid #ddd;border-radius:8px;font-family:inherit;font-size:.95rem;box-sizing:border-box;" />
+          </div>
+          <div style="margin-bottom:14px;">
+            <span style="display:block;font-size:.85rem;color:#555;margin-bottom:6px;">דירוג</span>
+            <div id="rev-stars" role="radiogroup" aria-label="דירוג" style="display:flex;gap:6px;direction:ltr;justify-content:flex-end;">
+              <button type="button" class="rev-star" data-rating="1" aria-label="1 כוכבים" onclick="setRating(1)" style="background:none;border:none;font-size:1.8rem;cursor:pointer;color:#ddd;padding:0;line-height:1;transition:color .15s;">★</button>
+              <button type="button" class="rev-star" data-rating="2" aria-label="2 כוכבים" onclick="setRating(2)" style="background:none;border:none;font-size:1.8rem;cursor:pointer;color:#ddd;padding:0;line-height:1;transition:color .15s;">★</button>
+              <button type="button" class="rev-star" data-rating="3" aria-label="3 כוכבים" onclick="setRating(3)" style="background:none;border:none;font-size:1.8rem;cursor:pointer;color:#ddd;padding:0;line-height:1;transition:color .15s;">★</button>
+              <button type="button" class="rev-star" data-rating="4" aria-label="4 כוכבים" onclick="setRating(4)" style="background:none;border:none;font-size:1.8rem;cursor:pointer;color:#ddd;padding:0;line-height:1;transition:color .15s;">★</button>
+              <button type="button" class="rev-star" data-rating="5" aria-label="5 כוכבים" onclick="setRating(5)" style="background:none;border:none;font-size:1.8rem;cursor:pointer;color:#ddd;padding:0;line-height:1;transition:color .15s;">★</button>
+            </div>
+          </div>
+          <div style="margin-bottom:16px;">
+            <label for="rev-text" style="display:block;font-size:.85rem;color:#555;margin-bottom:4px;">הביקורת שלך</label>
+            <textarea id="rev-text" placeholder="ספרי על החוויה שלך..." aria-required="true" rows="3"
+              style="width:100%;padding:11px 14px;border:1px solid #ddd;border-radius:8px;font-family:inherit;font-size:.95rem;resize:vertical;box-sizing:border-box;"></textarea>
+          </div>
+          <button onclick="submitReview()" class="btn-primary" style="width:100%;">שלחי ביקורת 💌</button>
+          <div id="rev-msg" role="status" aria-live="polite" style="text-align:center;font-size:.85rem;margin-top:10px;min-height:1.2em;color:#7A4A34;"></div>
+        </div>
+        <p style="margin-top:18px;font-size:.82rem;color:#999;">
+          או <a id="write-review-btn" href="#" target="_blank" rel="noopener noreferrer"
+           onclick="trackEvent('review_click','engagement','write_review')"
+           style="color:var(--rose);text-decoration:underline;">כתבי ביקורת בגוגל ←</a>
+        </p>
+      </div>
+
+    </section>
+
+    <div class="share-strip">
+      <p class="share-strip-text">אהבת את הביקורות? שתפי עם חברה שמחפשת מאפרת</p>
+      <button class="share-strip-btn" onclick="sharesite()" aria-label="שתפי את דף הביקורות">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        שתפי עם חברה
+      </button>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2025 <strong>ירדן דמרי</strong> | מאפרת כלות וערב מקצועית | מגיעה לכל הארץ</p>
+    <p style="margin-top:10px;"><a onclick="trackEvent('phone_click','conversion','phone')" href="tel:0547276716" style="color:rgba(255,255,255,.7);text-decoration:none;" aria-label="התקשרי אל ירדן דמרי"><span dir="ltr">054-7276716</span></a> &nbsp;·&nbsp; <a onclick="trackEvent('whatsapp_click','conversion','whatsapp')" href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.7);text-decoration:none;" aria-label="שלחי הודעת וואטסאפ לירדן דמרי">וואטסאפ</a></p>
+    <nav aria-label="ניווט תחתון" style="margin-top:20px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:.8rem;margin-bottom:16px;">
+      <a href="/" style="color:rgba(255,255,255,.45);text-decoration:none;">דף הבית</a>
+      <a href="about.html" style="color:rgba(255,255,255,.45);text-decoration:none;">אודות</a>
+      <a href="bride.html" style="color:rgba(255,255,255,.45);text-decoration:none;">מאפרת כלות</a>
+      <a href="services.html" style="color:rgba(255,255,255,.45);text-decoration:none;">שירותים</a>
+      <a href="gallery.html" style="color:rgba(255,255,255,.45);text-decoration:none;">גלריה</a>
+      <a href="bridal-guide.html" style="color:rgba(255,255,255,.45);text-decoration:none;">מדריך כלות</a>
+      <a href="pricing.html" style="color:rgba(255,255,255,.45);text-decoration:none;">מחירון</a>
+      <a href="reviews.html" style="color:rgba(255,255,255,.45);text-decoration:none;">ביקורות</a>
+      <a href="contact.html" style="color:rgba(255,255,255,.45);text-decoration:none;">צרי קשר</a>
+      <a href="disclaimer.html" style="color:rgba(255,255,255,.25);text-decoration:none;">תנאי שימוש</a>
+    </nav>
+    <div style="margin-top:16px;display:flex;flex-direction:column;gap:12px;align-items:center;">
+      <div class="footer-social-pills">
+        <a href="https://www.instagram.com/yarden_damri_makeup" target="_blank" rel="noopener noreferrer" class="social-pill social-ig" aria-label="Instagram של ירדן דמרי">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@yardendamri" target="_blank" rel="noopener noreferrer" class="social-pill social-tt" aria-label="TikTok של ירדן דמרי">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+          <span>TikTok</span>
+        </a>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a href="accessibility-statement.html" style="color:rgba(255,255,255,.35);text-decoration:none;font-size:.78rem;" aria-label="הצהרת נגישות">♿ הצהרת נגישות</a>
+        <a href="admin.html" style="color:rgba(255,255,255,.18);text-decoration:none;font-size:.7rem;" aria-label="כניסה לניהול">⚙️ ניהול</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="וואטסאפ"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.099.544 4.074 1.497 5.787L.057 23.882l6.255-1.641A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.666-.513-5.19-1.41l-.372-.22-3.863 1.013 1.032-3.765-.241-.388A9.978 9.978 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg></a>
+
+  <script>
+    /* ────────────────────────────────────────────────────────────────
+     * SECURITY NOTE — Google Places API key is exposed client-side.
+     * This is unavoidable for static sites. Protection MUST be done
+     * in Google Cloud Console:
+     *   1. Restrict by HTTP referrer: yardendamri.co.il/*, www.yardendamri.co.il/*
+     *   2. Restrict by API: Places API (New) only
+     *   3. Set a daily quota cap (e.g., 1000 requests/day)
+     * Without these, anyone can extract this key and run up your bill.
+     * ──────────────────────────────────────────────────────────────── */
+    const PLACES_API_KEY  = 'AIzaSyCEEhecaLf_jOkEDHd0q0fcioEODD6gMwQ';
+    const PLACE_CID       = '6316231025699182586'; // verified from maps.app.goo.gl/RoDSTLPmyGuXekcX8
+    const PLACE_ID        = ''; // place id couldn't be reliably derived; live Google reviews API disabled, using on-site form
+    // CID profile URL is reliable. It opens the Google profile with the "Write a review" button at the top.
+    const READ_REVIEWS_URL  = 'https://www.google.com/maps?cid=' + PLACE_CID;
+    const WRITE_REVIEW_URL  = 'https://www.google.com/maps?cid=' + PLACE_CID;
+
+    document.getElementById('write-review-btn').href = WRITE_REVIEW_URL;
+
+    function renderStars(rating, ctx) {
+      const round = Math.round(rating);
+      return Array.from({length:5}, (_,i) =>
+        `<span class="${i < round ? 'filled' : 'empty'}">★</span>`
+      ).join('');
+    }
+
+    function escapeHtml(s) {
+      return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    async function loadReviews() {
+      if (!PLACE_ID) { showFallback(); return; } // no valid place id → use on-site reviews only
+      try {
+        const res = await fetch(
+          `https://places.googleapis.com/v1/places/${PLACE_ID}?fields=rating,userRatingCount,reviews&languageCode=he&key=${PLACES_API_KEY}`
+        );
+        if (!res.ok) { showFallback(); return; } // 403/500/etc → graceful fallback
+        const data = await res.json();
+        if (!data || data.error || !data.reviews || !data.reviews.length) { showFallback(); return; }
+
+        // Overall rating header
+        document.getElementById('overall-rating').innerHTML = `
+          <div class="rv-rating-num">${data.rating.toFixed(1)}</div>
+          <div class="rv-rating-stars">${renderStars(data.rating)}</div>
+          <div class="rv-rating-count">${data.userRatingCount} ביקורות בגוגל</div>`;
+
+        // Reviews grid
+        const grid = document.getElementById('reviews-grid');
+        grid.setAttribute('aria-busy', 'false');
+        grid.innerHTML = data.reviews.map(r => {
+          const name = escapeHtml(r.authorAttribution?.displayName || '');
+          const photo = r.authorAttribution?.photoUri || '';
+          const when = escapeHtml(r.relativePublishTimeDescription || '');
+          const text = escapeHtml(r.text?.text || '');
+          return `
+          <article class="rv-card">
+            <div class="rv-card-head">
+              ${photo ? `<img src="${photo}" alt="" class="rv-card-avatar" loading="lazy" onerror="this.style.display='none'"/>` : `<div class="rv-card-avatar"></div>`}
+              <div>
+                <div class="rv-card-name">${name}</div>
+                <div class="rv-card-date">${when}</div>
+              </div>
+            </div>
+            <div class="rv-card-stars">${renderStars(r.rating)}</div>
+            <p class="rv-card-text">${text}</p>
+          </article>`;
+        }).join('');
+
+        // Schema.org for SEO
+        const schema = {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "ירדן דמרי – מאפרת מקצועית",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": data.rating,
+            "reviewCount": data.userRatingCount
+          },
+          "review": data.reviews.map(r => ({
+            "@type": "Review",
+            "author": {"@type":"Person","name": r.authorAttribution?.displayName || ''},
+            "reviewRating": {"@type":"Rating","ratingValue": r.rating},
+            "reviewBody": r.text?.text || ''
+          }))
+        };
+        const s = document.createElement('script');
+        s.type = 'application/ld+json';
+        s.text = JSON.stringify(schema);
+        document.head.appendChild(s);
+
+      } catch(e) { showFallback(); }
+    }
+
+    function showFallback() {
+      // Google API unavailable — hide the rating header and the Google grid entirely.
+      // The on-site reviews + form below remain fully functional.
+      const ratingEl = document.getElementById('overall-rating');
+      if (ratingEl) ratingEl.innerHTML = '';
+      const grid = document.getElementById('reviews-grid');
+      if (grid) {
+        grid.setAttribute('aria-busy', 'false');
+        grid.style.gridTemplateColumns = '1fr';
+        grid.innerHTML = `
+          <div style="text-align:center;padding:32px 24px;">
+            <a href="${READ_REVIEWS_URL}" target="_blank" rel="noopener noreferrer" class="btn-outline">⭐ לצפייה בביקורות שלנו בגוגל ←</a>
+          </div>`;
+      }
+    }
+
+    // ── ON-SITE REVIEWS (visitor-submitted, public via JSONBin/RemoteState) ──
+    let chosenRating = 0;
+    let siteReviews = [];
+
+    function setRating(n) {
+      chosenRating = n;
+      document.querySelectorAll('.rev-star').forEach(s => {
+        s.style.color = (+s.dataset.rating <= n) ? '#D4A574' : '#ddd';
+        s.setAttribute('aria-checked', +s.dataset.rating === n);
+      });
+    }
+
+    function renderSiteReviews() {
+      const wrap = document.getElementById('site-reviews-wrap');
+      if (!wrap) return;
+      if (!siteReviews.length) { wrap.innerHTML = ''; return; }
+      wrap.innerHTML = `
+        <h2 style="font-family:'Frank Ruhl Libre',serif;font-weight:300;font-size:1.6rem;color:var(--charcoal);text-align:center;margin:10px 0 24px;">ביקורות מהאתר</h2>
+        <div class="rv-grid">
+          ${siteReviews.map(r => `
+            <article class="rv-card">
+              <div class="rv-card-head">
+                <div class="rv-card-avatar" style="display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--rose);">${escapeHtml((r.name||'?').charAt(0))}</div>
+                <div>
+                  <div class="rv-card-name">${escapeHtml(r.name||'')}</div>
+                  <div class="rv-card-date">${escapeHtml(r.date||'')}</div>
+                </div>
+              </div>
+              <div class="rv-card-stars">${renderStars(r.rating||5)}</div>
+              <p class="rv-card-text">${escapeHtml(r.text||'')}</p>
+            </article>`).join('')}
+        </div>`;
+    }
+
+    async function loadSiteReviews() {
+      try {
+        if (window.RemoteState) {
+          await window.RemoteState.fetchPublic();
+          siteReviews = window.RemoteState.getReviews() || [];
+        }
+      } catch(e) { siteReviews = []; }
+      renderSiteReviews();
+    }
+
+    async function submitReview() {
+      const name = document.getElementById('rev-name').value.trim();
+      const text = document.getElementById('rev-text').value.trim();
+      const msg = document.getElementById('rev-msg');
+      if (!name || !text || !chosenRating) {
+        msg.textContent = 'יש למלא שם, דירוג וטקסט';
+        return;
+      }
+      msg.textContent = 'שולחת...';
+      const newReview = { name, text, rating: chosenRating, date: new Date().toLocaleDateString('he-IL') };
+      siteReviews.unshift(newReview);
+      try {
+        if (window.RemoteState) {
+          const res = await window.RemoteState.update({ reviews: siteReviews });
+          if (!res.ok) throw new Error(res.error || 'save failed');
+        }
+        msg.style.color = '#2e7d32';
+        msg.textContent = '✓ תודה! הביקורת פורסמה.';
+        document.getElementById('rev-name').value = '';
+        document.getElementById('rev-text').value = '';
+        setRating(0); chosenRating = 0;
+        renderSiteReviews();
+        trackEvent && trackEvent('review_submit','engagement','site_review');
+      } catch(e) {
+        siteReviews.shift(); // rollback
+        msg.style.color = '#c62828';
+        msg.textContent = 'שגיאה בשליחה. נסי שוב בעוד רגע.';
+      }
+    }
+
+    loadReviews();
+    loadSiteReviews();
+
+    function sharesite() {
+      var u = window.location.href;
+      var t = 'ירדן דמרי — מאפרת כלות וערב | המילים שלכן';
+      if (navigator.share) {
+        navigator.share({ title: 'ירדן דמרי', text: t, url: u }).catch(function(){});
+      } else {
+        window.open('https://wa.me/?text=' + encodeURIComponent(t + '\n' + u), '_blank');
+      }
+    }
+  </script>
+
+</body>
+</html>
