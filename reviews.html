@@ -347,7 +347,7 @@ body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, 
      *   3. Set a daily quota cap (e.g., 1000 requests/day)
      * Without these, anyone can extract this key and run up your bill.
      * ──────────────────────────────────────────────────────────────── */
-    const PLACES_API_KEY  = 'AIzaSyCEEhecaLf_jOkEDHd0q0fcioEODD6gMwQ';
+    const PLACES_API_KEY  = ''; // removed: live Google reviews API is disabled (PLACE_ID empty); no key should ship in client code. Regenerate the old key in Google Cloud if it was ever real.
     const PLACE_CID       = '6316231025699182586'; // verified from maps.app.goo.gl/RoDSTLPmyGuXekcX8
     const PLACE_ID        = ''; // place id couldn't be reliably derived; live Google reviews API disabled, using on-site form
     // CID profile URL is reliable. It opens the Google profile with the "Write a review" button at the top.
