@@ -277,9 +277,9 @@
         var base=s.getAttribute('src')||'';
         if(!/\.mp4$/.test(base) || /_mobile\.mp4$/.test(base)) return;
         s.setAttribute('src', base.replace(/\.mp4$/,'_mobile.mp4'));
-        v.addEventListener('error', function(){
+        s.addEventListener('error', function(){
           if((s.getAttribute('src')||'')!==base){ s.setAttribute('src',base); try{ v.load(); v.play().catch(function(){}); }catch(e){} }
-        }, true);
+        });
         try{ v.load(); }catch(e){}
       }catch(e){} })();
       </script>
