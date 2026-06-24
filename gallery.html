@@ -534,7 +534,7 @@ function renderGallery() {
     let mediaHtml;
     if (isVideo) {
       const _thumb = item.thumb || '';
-      mediaHtml = `<img src="${_thumb}" data-video="${item.u}" loading="lazy"
+      mediaHtml = `<img src="${_thumb}" data-video="${item.u}" alt="${caption||'סרטון איפור — ירדן דמרי'}" loading="lazy"
         style="width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block;background:#1a1008;${rotStyle}"
         onerror="this.style.background='#1a1008'">`;
     } else {

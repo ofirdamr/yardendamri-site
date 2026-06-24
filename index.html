@@ -1217,6 +1217,7 @@
         const _thumb2 = item.thumb || '';
         const mediaEl = isVideo
           ? `<img src="${_thumb2}" data-video="${item.u}" loading="lazy"
+               alt="${getAutoAlt(item).substring(0,120)}"
                aria-label="${item.a ? item.a.substring(0,80) : 'סרטון'}"
                style="width:100%;height:100%;object-fit:cover;display:block;background:#1a1008;${_rotStyle}"
                onerror="this.style.background='#1a1008'">`
