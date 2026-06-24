@@ -263,9 +263,23 @@
           style="position:absolute;width:100%;height:100%;object-fit:cover;object-position:50% 20%;top:0;left:0;">
           <source id="heroVideoSource" src="https://videos-new.yardendamri.co.il/yarden_18100404782127411.mp4" type="video/mp4">
         </video>
-        <img id="heroImage" src="" alt="ירדן דמרי מאפרת"
+        <img id="heroImage" src="" alt="איפור כלה מאת ירדן דמרי, מאפרת כלות וערב מקצועית — מגיעה לכל הארץ"
           style="position:absolute;width:100%;height:100%;object-fit:cover;object-position:50% 20%;top:0;left:0;display:none;"/>
       </div>
+      <script>
+      /* Mobile: show a still hero poster instead of auto-downloading the ~3MB
+         video. Runs during parse so the source is stripped before it loads. */
+      (function(){ try{
+        if(!window.matchMedia('(max-width:768px)').matches) return;
+        var v=document.getElementById('heroVideo'),i=document.getElementById('heroImage'),s=document.getElementById('heroVideoSource');
+        if(!v||!i||!s) return;
+        var id=(s.getAttribute('src')||'').split('/').pop().replace(/^yarden_/,'').replace(/\.mp4$/,'');
+        if(id) i.src='https://images.yardendamri.co.il/yarden_'+id+'_thumb.jpg';
+        i.style.display='block'; v.style.display='none';
+        v.removeAttribute('autoplay'); v.removeAttribute('preload'); s.removeAttribute('src');
+        try{ v.load(); }catch(e){}
+      }catch(e){} })();
+      </script>
       <div class="hero-overlay" aria-hidden="true" style="background:rgba(0,0,0,0.42);"></div>
       <div class="hero-content">
         <p class="hero-eyebrow" style="font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,200,176,.8);margin-bottom:18px;text-align:right;">מאפרת כלות מקצועית · מגיעה לכל הארץ</p>
@@ -748,6 +762,13 @@
       } else if (vidUrl && videoEl) {
         const s = document.getElementById('heroVideoSource');
         if (!s) return;
+        // Mobile: show the poster still instead of loading the heavy video.
+        if (window.matchMedia('(max-width:768px)').matches) {
+          const mid = vidUrl.split('/').pop().replace(/^yarden_/,'').replace(/\.mp4$/,'');
+          if (imgEl) { imgEl.src = `https://images.yardendamri.co.il/yarden_${mid}_thumb.jpg`; imgEl.style.display = 'block'; }
+          videoEl.style.display = 'none'; try { videoEl.pause(); } catch(e){}
+          return;
+        }
         const newFile = vidUrl.split('/').pop();
         const curFile = (videoEl.currentSrc || videoEl.src || s.getAttribute('src') || '').split('/').pop();
         if (!curFile || newFile === curFile) { return; } // same URL — let native autoplay handle it
@@ -1193,10 +1214,14 @@
       'אירועים/הפקות': 'איפור הפקה', 'מוסתרות': 'איפור מקצועי'
     };
     function getAutoAlt(item) {
-      if (item.a && item.a.length > 3) return item.a;
       const cat = catAltMap[item.cat] || 'איפור מקצועי';
-      const media = (item.u||'').includes('/video/upload/') ? 'סרטון' : 'תמונה';
-      return `${media} — ${cat} מאת ירדן דמרי, מאפרת כלות וערב מאילת`;
+      const isVid = item.video || /\.mp4|\/video\//.test(item.u||'');
+      const credit = item.cat === 'כלות'
+        ? 'מאת ירדן דמרי, מאפרת כלות מקצועית — מגיעה לכל הארץ'
+        : 'מאת ירדן דמרי, מאפרת כלות וערב באילת';
+      const base = `${isVid ? 'סרטון' : 'תמונת'} ${cat} ${credit}`;
+      const cap = (item.a||'').replace(/[#@]\S+/g,'').replace(/https?:\S+/g,'').replace(/[<>]/g,'').replace(/\s+/g,' ').trim().slice(0,70);
+      return cap ? `${cap} — ${base}` : base;
     }
 
     function renderPage(page) {

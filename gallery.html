@@ -527,19 +527,22 @@ function renderGallery() {
     div.className = 'gallery-item';
     div.setAttribute('role','listitem');
     div.setAttribute('tabindex','0');
-    const caption = (item.a||'').replace(/[<>]/g,'').trim().split('\n')[0].substring(0,80);
+    const caption = (item.a||'').replace(/[#@]\S+/g,'').replace(/https?:\S+/g,'').replace(/[<>]/g,'').replace(/\s+/g,' ').trim().split('\n')[0].substring(0,70);
+    const _alt = (caption ? caption + ' — ' : '') + (item.cat === 'כלות'
+      ? 'איפור כלה מאת ירדן דמרי, מאפרת כלות — מגיעה לכל הארץ'
+      : 'איפור מאת ירדן דמרי, מאפרת כלות וערב באילת');
     const isVideo = item.video || item.u.match(/\.mp4/i) || (item.video);
     const rot = (getAdminSettings().rotations || {})[item.u] || 0;
     const rotStyle = rot ? `transform:rotate(${rot}deg);` : '';
     let mediaHtml;
     if (isVideo) {
       const _thumb = item.thumb || '';
-      mediaHtml = `<img src="${_thumb}" data-video="${item.u}" alt="${caption||'סרטון איפור — ירדן דמרי'}" loading="lazy"
+      mediaHtml = `<img src="${_thumb}" data-video="${item.u}" alt="${_alt}" loading="lazy"
         style="width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block;background:#1a1008;${rotStyle}"
         onerror="this.style.background='#1a1008'">`;
     } else {
       const _gThumb = item.thumb || item.u.replace(/\.(webp|jpe?g|png)(\?.*)?$/i, '_thumb.webp');
-      mediaHtml = `<img src="${_gThumb}" alt="${caption||'תמונת איפור'}" loading="lazy"
+      mediaHtml = `<img src="${_gThumb}" alt="${_alt}" loading="lazy"
         style="width:100%;display:block;transition:transform .4s;opacity:0;${rotStyle}"
         onload="this.style.opacity=1" onerror="this.onerror=null;this.src='${item.u}';this.style.opacity=1"/>`;
     }
