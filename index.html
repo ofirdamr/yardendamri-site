@@ -906,6 +906,26 @@
     let lbItems = [];
     let lbIdx = 0;
 
+    // On desktop the media is contained+centered (not full-screen), so the fixed right:10px
+    // action bar floats off to the right of the photo. This measures the media's actual right
+    // edge and snaps the actions next to it.
+    function _repositionLbActionsDesktop() {
+      if (window.innerWidth < 1081) return;
+      requestAnimationFrame(function() {
+        var lb = document.getElementById('lightbox');
+        var actions = document.getElementById('hpLbActions');
+        if (!lb || !actions) return;
+        var vid = lb.querySelector('video');
+        var img = lb.querySelector('img');
+        var media = (vid && vid.style.display !== 'none' && vid.src) ? vid
+                  : (img && img.style.display !== 'none' && img.src) ? img : null;
+        if (!media) return;
+        var rect = media.getBoundingClientRect();
+        if (rect.width < 10) { setTimeout(_repositionLbActionsDesktop, 120); return; }
+        actions.style.right = Math.max(8, window.innerWidth - rect.right - 10) + 'px';
+      });
+    }
+
     function openLightbox(url, alt, idx) {
       trackEvent('gallery_open', 'engagement', alt ? alt.substring(0,50) : 'gallery');
       if (typeof idx === 'number') lbIdx = idx;
@@ -917,6 +937,7 @@
       lb.focus();
       _updateLbNav();
       updateHpLbActions();
+      _repositionLbActionsDesktop();
     }
 
     function _showLightboxContent(url, alt) {
@@ -947,6 +968,7 @@
         img.style.display = 'block';
         img.src = url; // full Instagram-max image (the grid uses the small thumb instead)
         img.alt = alt;
+        img.onload = _repositionLbActionsDesktop;
       }
       lb.querySelector('.lb-caption').textContent = alt.substring(0, 120);
     }
@@ -973,6 +995,7 @@
       _showLightboxContent(item.u, item.a || '');
       _updateLbNav();
       updateHpLbActions();
+      _repositionLbActionsDesktop();
     }
 
     function closeLightbox() {

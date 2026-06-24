@@ -656,6 +656,23 @@ document.getElementById('loadMoreBtn').addEventListener('click', () => { renderP
 buildFilterBar();
 
 // ── LIGHTBOX ──
+function repositionLbActionsDesktop() {
+  if (window.innerWidth < 1081) return;
+  requestAnimationFrame(function() {
+    var lb = document.getElementById('lb');
+    var actions = document.getElementById('lbActions');
+    if (!lb || !actions) return;
+    var vid = document.getElementById('lbVideo');
+    var img = document.getElementById('lbImg');
+    var media = (vid && vid.style.display !== 'none' && vid.src) ? vid
+              : (img && img.style.display !== 'none' && img.src) ? img : null;
+    if (!media) return;
+    var rect = media.getBoundingClientRect();
+    if (rect.width < 10) { setTimeout(repositionLbActionsDesktop, 120); return; }
+    actions.style.right = Math.max(8, window.innerWidth - rect.right - 10) + 'px';
+  });
+}
+
 function openLb(idx) {
   lbIndex = idx;
   showLb();
@@ -682,9 +699,11 @@ function showLb() {
     lbImg.src = item.u; // full Instagram-max image (the grid uses the small thumb instead)
     lbImg.alt = (item.a||'').split('\n')[0].substring(0,80);
     lbImg.style.display = '';
+    lbImg.onload = repositionLbActionsDesktop;
     lbVideo.style.display = 'none';
     lbVideo.pause(); lbVideo.src = '';
   }
+  repositionLbActionsDesktop();
   // Carousel: show "image X of Y in this post"
   let label = `${lbIndex+1} / ${lbImages.length}`;
   if (item.carousel && item.ccount > 1) label = `◻ ${(item.cidx||0)+1}/${item.ccount} · ${label}`;
@@ -761,7 +780,7 @@ document.getElementById('lbSave').addEventListener('click', () => {
   lbToast(saved ? '💾 נשמר למועדפים' : 'הוסר מהמועדפים');
 });
 document.getElementById('lbClose').addEventListener('click', closeLb);
-function navLb(step){ if(!lbImages.length) return; lbIndex=(lbIndex+step+lbImages.length)%lbImages.length; showLb(); }
+function navLb(step){ if(!lbImages.length) return; lbIndex=(lbIndex+step+lbImages.length)%lbImages.length; showLb(); repositionLbActionsDesktop(); }
 document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
 document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); navLb(1); });
 document.getElementById('lb').addEventListener('click', e => { if(e.target===e.currentTarget) closeLb(); });
