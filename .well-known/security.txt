@@ -1,0 +1,5 @@
+# Security contact for yardendamri.co.il
+Contact: mailto:ofirdamr@gmail.com
+Expires: 2027-06-24T00:00:00Z
+Preferred-Languages: he, en
+Canonical: https://yardendamri.co.il/.well-known/security.txt
