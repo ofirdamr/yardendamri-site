@@ -356,7 +356,7 @@ body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, 
 </div>
 
 <script src="cloud-storage.js?v=7"></script>
-<script src="gallery-data.js?v=1782359744551"></script>
+<script src="gallery-data.js?v=1782367175425"></script>
 <script>
 // ── ADMIN SETTINGS (read from RemoteState — synced across all visitors via JSONBin) ──
 function getAdminSettings() {
@@ -537,9 +537,9 @@ function renderGallery() {
     let mediaHtml;
     if (isVideo) {
       const _thumb = item.thumb || '';
-      mediaHtml = `<img src="${_thumb}" data-video="${item.u}" alt="${_alt}" loading="lazy"
+      mediaHtml = `<img src="${_thumb}" data-video="${item.u}" alt="${_alt}" loading="lazy" decoding="async"
         style="width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block;background:#1a1008;${rotStyle}"
-        onerror="this.style.background='#1a1008'">`;
+        onerror="if(!this.dataset.fb&&this.src.indexOf('_thumb.webp')>-1){this.dataset.fb=1;this.src=this.src.replace('_thumb.webp','_thumb.jpg');}else{this.style.background='#1a1008';}">`;
     } else {
       const _gThumb = item.thumb || item.u.replace(/\.(webp|jpe?g|png)(\?.*)?$/i, '_thumb.webp');
       mediaHtml = `<img src="${_gThumb}" alt="${_alt}" loading="lazy"

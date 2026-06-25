@@ -825,7 +825,7 @@
     })();
     window.addEventListener('load', upgradeHeroToHD);
   </script>
-  <script src="gallery-data.js?v=1782359744551"></script>
+  <script src="gallery-data.js?v=1782367175425"></script>
 
   <script>
     // ── MOBILE MENU ──────────────────────────────
@@ -1265,11 +1265,11 @@
 
         const _thumb2 = item.thumb || '';
         const mediaEl = isVideo
-          ? `<img src="${_thumb2}" data-video="${item.u}" loading="lazy"
+          ? `<img src="${_thumb2}" data-video="${item.u}" loading="lazy" decoding="async"
                alt="${getAutoAlt(item).substring(0,120)}"
                aria-label="${item.a ? item.a.substring(0,80) : 'סרטון'}"
                style="width:100%;height:100%;object-fit:cover;display:block;background:#1a1008;${_rotStyle}"
-               onerror="this.style.background='#1a1008'">`
+               onerror="if(!this.dataset.fb&&this.src.indexOf('_thumb.webp')>-1){this.dataset.fb=1;this.src=this.src.replace('_thumb.webp','_thumb.jpg');}else{this.style.background='#1a1008';}">`
           : `<img src="${item.thumb || item.u.replace(/\.(webp|jpe?g|png)(\?.*)?$/i, '_thumb.webp')}" alt="${getAutoAlt(item).substring(0,120)}" loading="lazy" decoding="async"
                style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;${_rotStyle}"
                onerror="this.onerror=null;this.src='${item.u}'" />`;
