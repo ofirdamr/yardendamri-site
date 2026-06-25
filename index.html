@@ -259,9 +259,9 @@
     <section id="hero" aria-label="כותרת ראשית">
       <!-- hero-media-wrap: controls pan & zoom via inline style -->
       <div id="heroMediaWrap" style="position:absolute;inset:0;overflow:hidden;background:#111;">
-        <video id="heroVideo" poster="https://images.yardendamri.co.il/yarden_18100404782127411_thumb.jpg" autoplay muted loop playsinline preload="none" poster="https://images.yardendamri.co.il/yarden_18094353658922515_thumb.jpg"
+        <video id="heroVideo" poster="https://images.yardendamri.co.il/yarden_18094353658922515_thumb.jpg" autoplay muted loop playsinline preload="none"
           style="position:absolute;width:100%;height:100%;object-fit:cover;object-position:50% 20%;top:0;left:0;">
-          <source id="heroVideoSource" src="https://videos-new.yardendamri.co.il/yarden_18100404782127411.mp4" type="video/mp4">
+          <source id="heroVideoSource" src="https://videos-new.yardendamri.co.il/yarden_18094353658922515.mp4" type="video/mp4">
         </video>
         <img id="heroImage" src="" alt="איפור כלה מאת ירדן דמרי, מאפרת כלות וערב מקצועית — מגיעה לכל הארץ"
           style="position:absolute;width:100%;height:100%;object-fit:cover;object-position:50% 20%;top:0;left:0;display:none;"/>
@@ -765,11 +765,16 @@
       } else if (vidUrl && videoEl) {
         const s = document.getElementById('heroVideoSource');
         if (!s) return;
-        const newFile = vidUrl.split('/').pop();
-        const curFile = (videoEl.currentSrc || videoEl.src || s.getAttribute('src') || '').split('/').pop();
-        if (!curFile || newFile === curFile) { return; } // same URL — let native autoplay handle it
+        // Compare by item ID only — NOT the full filename. The baked-in source may be a
+        // _mobile.mp4 / _hd.mp4 variant of the same video; those are the SAME hero and must
+        // not trigger a reload (a reload here is exactly the old/new double-flash). Only swap
+        // when the admin actually chose a DIFFERENT video.
+        const idOf = (u) => { const m = (u || '').match(/yarden_(\d+)/); return m ? m[1] : ''; };
+        const newId = idOf(vidUrl);
+        const curId = idOf(videoEl.currentSrc || videoEl.src || s.getAttribute('src') || '');
+        if (!newId || (curId && newId === curId)) { return; } // same hero — let native autoplay handle it
         // Derive poster from images bucket
-        const itemId = newFile.replace(/^yarden_/, '').replace(/\.mp4$/, '');
+        const itemId = newId;
         const poster = `https://images.yardendamri.co.il/yarden_${itemId}_thumb.jpg`;
         videoEl.setAttribute('poster', poster);
         s.src = vidUrl;
@@ -820,7 +825,7 @@
     })();
     window.addEventListener('load', upgradeHeroToHD);
   </script>
-  <script src="gallery-data.js?v=1782330817417"></script>
+  <script src="gallery-data.js?v=1782359744551"></script>
 
   <script>
     // ── MOBILE MENU ──────────────────────────────
