@@ -1257,7 +1257,7 @@
       items.forEach((item, idx) => {
         const div = document.createElement('div');
         div.setAttribute('role', 'listitem');
-        div.style.cssText = 'position:relative;overflow:hidden;border-radius:16px;aspect-ratio:1;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:transform .3s,box-shadow .3s;touch-action:manipulation;background:#241910;background-image:linear-gradient(100deg,#241910 30%,#33251a 50%,#241910 70%);background-size:200% 100%;animation:shimmer 1.5s linear infinite;';
+        div.style.cssText = 'position:relative;overflow:hidden;border-radius:16px;aspect-ratio:1;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:transform .3s,box-shadow .3s;touch-action:manipulation;background:#efe7df;background-image:linear-gradient(100deg,#efe7df 30%,#faf5f0 50%,#efe7df 70%);background-size:200% 100%;animation:shimmer 1.5s linear infinite;';
 
         const isVideo = item.video || item.u.includes('.mp4') || item.u.includes('/video/upload/');
         const _rot = (getAdminSettings().rotations || {})[item.u] || 0;
@@ -1328,7 +1328,7 @@
               v.playsInline = true; v.autoplay = true; v.preload = 'metadata';
               v.poster = el.src || '';   // keep thumbnail visible while loading (no black box)
               v.style.cssText = el.style.cssText;
-              v.style.background = '#1a1008';
+              v.style.background = '#efe7df';
               v.style.opacity = '1';   // the <img> may still be mid fade-in (opacity 0); force the video visible
               el.parentNode.replaceChild(v, el);
               v.muted = true; v.play().catch(()=>{});
