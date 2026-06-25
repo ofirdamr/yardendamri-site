@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-25T23:28:58.371Z",
+  "updatedAt": "2026-06-25T23:36:32.004Z",
   "admin": {
     "hidden": [
       "https://images.yardendamri.co.il/yarden_17843112559037829.webp",
@@ -3390,9 +3390,5 @@
       }
     ]
   },
-  "content": {
-    "home.hero.subtitle": "{\n  \"suggestions\": [\n    \"אני מגיעה עד אלייך, עם מגע מקצועי ומוצרים נ",
-    "home.about.title": "{\n  \"suggestions\": [\n    \"היופי טמון בך, אני כאן כדי להאיר אותו",
-    "home.services.subtitle": "{\n  \"suggestions\": [\n    \"איפור יוקרתי עד אלייך, בכל פינה ברחבי הארץ"
-  }
+  "content": {}
 }
