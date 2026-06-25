@@ -803,3 +803,6 @@ p > a[href^="tel:"][style] {
   background: #f0e6df;
   color: var(--charcoal);
 }
+
+/* Grid skeleton placeholder shimmer (gallery tiles while the thumbnail loads) */
+@keyframes shimmer{to{background-position:-200% 0}}
