@@ -1329,6 +1329,7 @@
               v.poster = el.src || '';   // keep thumbnail visible while loading (no black box)
               v.style.cssText = el.style.cssText;
               v.style.background = '#1a1008';
+              v.style.opacity = '1';   // the <img> may still be mid fade-in (opacity 0); force the video visible
               el.parentNode.replaceChild(v, el);
               v.muted = true; v.play().catch(()=>{});
               v.dataset._obs = '1'; _galleryVidObserver.observe(v);

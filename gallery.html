@@ -588,6 +588,7 @@ const videoObserver = new IntersectionObserver(entries => {
       v.poster = el.src || '';   // keep the thumbnail visible while the video loads (no black box)
       v.style.cssText = el.style.cssText;
       v.style.background = '#1a1008';
+      v.style.opacity = '1';   // the <img> may still be mid fade-in (opacity 0); force the video visible
       el.parentNode.replaceChild(v, el);
       v.muted = true; v.play().catch(()=>{});
       _obsSet.add(v); videoObserver.observe(v);
