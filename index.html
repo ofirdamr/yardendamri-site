@@ -21,8 +21,8 @@
   <link rel="icon" type="image/png" sizes="192x192" href="favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ירדן דמרי | מאפרת כלות מקצועית – איפור כלות, ערב והפקות בכל הארץ</title>
-  <meta name="description" content="ירדן דמרי – מאפרת כלות וערב מקצועית המגיעה לכל הארץ. מתמחה באיפור כלות, איפור ערב, הפקות וסדנאות. מראה זוהר, טבעי ובלתי נשכח." />
+  <title data-edit="home.meta.title" data-edit-label="כותרת הדף (SEO title)">ירדן דמרי | מאפרת כלות מקצועית – איפור כלות, ערב והפקות בכל הארץ</title>
+  <meta name="description" data-edit="home.meta.description" data-edit-label="תיאור הדף (SEO description)" content="ירדן דמרי – מאפרת כלות וערב מקצועית המגיעה לכל הארץ. מתמחה באיפור כלות, איפור ערב, הפקות וסדנאות. מראה זוהר, טבעי ובלתי נשכח." />
   <meta name="keywords" content="מאפרת כלות, איפור כלות, מאפרת מקצועית, איפור ערב, מאפרת לאירועים, ירדן דמרי מאפרת, איפור כלה, ניסוי איפור כלות, מאפרת מגיעה עד הבית, מאפרת לכל הארץ" />
   <meta name="author" content="ירדן דמרי" />
   <meta name="robots" content="index, follow" />
@@ -32,6 +32,8 @@
   <meta property="og:description" content="מאפרת כלות וערב מקצועית המגיעה לכל הארץ. מראה זוהר, טבעי ובלתי נשכח." />
   <meta property="og:image" content="https://yardendamri.co.il/share-preview.jpg" />
   <link rel="canonical" href="https://yardendamri.co.il/" />
+  <!-- Manager-editable text overrides (admin panel → תוכן). Applies on load; baked text is the default. -->
+  <script src="site-content.js?v=1"></script>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -296,12 +298,12 @@
       </script>
       <div class="hero-overlay" aria-hidden="true" style="background:rgba(0,0,0,0.42);"></div>
       <div class="hero-content">
-        <p class="hero-eyebrow" style="font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,200,176,.8);margin-bottom:18px;text-align:right;">מאפרת כלות מקצועית · מגיעה לכל הארץ</p>
-        <h1 class="hero-title">ביום הכי חשוב<br/>שלך — את ראויה<br/>להרגיש מושלמת</h1>
-        <p class="hero-subtitle">אני מגיעה אלייך, עם מוצרי פרימיום וניסיון עשיר,<br/>כדי שתיראי בדיוק כמו שתמיד דמיינת</p>
+        <p class="hero-eyebrow" data-edit="home.hero.eyebrow" data-edit-label="שורת פתיחה (Hero)" style="font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,200,176,.8);margin-bottom:18px;text-align:right;">מאפרת כלות מקצועית · מגיעה לכל הארץ</p>
+        <h1 class="hero-title" data-edit="home.hero.title" data-edit-label="כותרת ראשית (Hero)">ביום הכי חשוב<br/>שלך — את ראויה<br/>להרגיש מושלמת</h1>
+        <p class="hero-subtitle" data-edit="home.hero.subtitle" data-edit-label="תת-כותרת (Hero)">אני מגיעה אלייך, עם מוצרי פרימיום וניסיון עשיר,<br/>כדי שתיראי בדיוק כמו שתמיד דמיינת</p>
         <div class="hero-btns">
-          <a onclick="trackEvent('whatsapp_click','conversion','hero_cta')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%90%D7%99%D7%A4%D7%95%D7%A8%20%D7%9B%D7%9C%D7%94" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding:16px 36px;">לקביעת פגישה</a>
-          <a href="#about" class="btn-outline" style="padding:16px 36px;border-color:rgba(255,255,255,.55);color:#fff;">קראי עליי</a>
+          <a onclick="trackEvent('whatsapp_click','conversion','hero_cta')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%90%D7%99%D7%A4%D7%95%D7%A8%20%D7%9B%D7%9C%D7%94" target="_blank" rel="noopener noreferrer" class="btn-primary" data-edit="home.hero.cta_primary" data-edit-label="כפתור ראשי (Hero)" style="padding:16px 36px;">לקביעת פגישה</a>
+          <a href="#about" class="btn-outline" data-edit="home.hero.cta_secondary" data-edit-label="כפתור משני (Hero)" style="padding:16px 36px;border-color:rgba(255,255,255,.55);color:#fff;">קראי עליי</a>
         </div>
       </div>
     </section>
@@ -328,24 +330,24 @@
         <div class="about-card"><img src="https://images.yardendamri.co.il/about-yarden.png" alt="ירדן דמרי מאפרת" loading="lazy" /></div>
         <div class="about-accent"></div>
         <div class="about-small-card">
-          <div class="small-card-num">100%</div>
-          <div class="small-card-label">שביעות רצון</div>
+          <div class="small-card-num" data-edit="home.about.stat_num" data-edit-label="מספר סטטיסטיקה (אודות)">100%</div>
+          <div class="small-card-label" data-edit="home.about.stat_label" data-edit-label="תווית סטטיסטיקה (אודות)">שביעות רצון</div>
         </div>
       </div>
       <div class="about-content reveal">
-        <p class="section-eyebrow">אודות</p>
-        <h2 id="about-title" class="section-title">את יפה.<br/>אני כאן<br/>להראות את זה.</h2>
-        <p class="section-body">
+        <p class="section-eyebrow" data-edit="home.about.eyebrow" data-edit-label="שורת פתיחה (אודות)">אודות</p>
+        <h2 id="about-title" class="section-title" data-edit="home.about.title" data-edit-label="כותרת (אודות)">את יפה.<br/>אני כאן<br/>להראות את זה.</h2>
+        <p class="section-body" data-edit="home.about.body" data-edit-label="טקסט (אודות)">
           שמי ירדן. מאפרת מקצועית שמגיעה אלייך — לבית, לאולם, לכל מקום בישראל. מוצרי פרימיום, יד בטוחה, ובוקר שתזכרי לתמיד.
         </p>
         <div class="about-pills" role="list" aria-label="תחומי התמחות" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;">
-          <span class="pill" role="listitem">✦ עור זוהר וטבעי</span>
-          <span class="pill" role="listitem">✦ מחזיק כל הלילה</span>
-          <span class="pill" role="listitem">✦ מגיעה עד אלייך</span>
-          <span class="pill" role="listitem">✦ ניסוי לפני החתונה</span>
+          <span class="pill" role="listitem" data-edit="home.about.pill1" data-edit-label="תווית 1 (אודות)">✦ עור זוהר וטבעי</span>
+          <span class="pill" role="listitem" data-edit="home.about.pill2" data-edit-label="תווית 2 (אודות)">✦ מחזיק כל הלילה</span>
+          <span class="pill" role="listitem" data-edit="home.about.pill3" data-edit-label="תווית 3 (אודות)">✦ מגיעה עד אלייך</span>
+          <span class="pill" role="listitem" data-edit="home.about.pill4" data-edit-label="תווית 4 (אודות)">✦ ניסוי לפני החתונה</span>
         </div>
         <div style="margin-top:32px;">
-          <a href="about.html" class="btn-outline">קראי עליי ←</a>
+          <a href="about.html" class="btn-outline" data-edit="home.about.cta" data-edit-label="כפתור (אודות)">קראי עליי ←</a>
         </div>
       </div>
     </section>
@@ -353,59 +355,59 @@
     <!-- SERVICES -->
     <section id="services" aria-labelledby="services-title">
       <div class="services-header reveal">
-        <p class="section-eyebrow">מה אני מציעה</p>
-        <h2 id="services-title" class="section-title">השירותים שלי</h2>
-        <p style="font-size:1rem;opacity:.65;margin-top:10px;max-width:520px;margin-inline:auto;">מגיעה אלייך עם כל הציוד — בכל מקום בישראל</p>
+        <p class="section-eyebrow" data-edit="home.services.eyebrow" data-edit-label="שורת פתיחה (שירותים)">מה אני מציעה</p>
+        <h2 id="services-title" class="section-title" data-edit="home.services.title" data-edit-label="כותרת (שירותים)">השירותים שלי</h2>
+        <p data-edit="home.services.subtitle" data-edit-label="תת-כותרת (שירותים)" style="font-size:1rem;opacity:.65;margin-top:10px;max-width:520px;margin-inline:auto;">מגיעה אלייך עם כל הציוד — בכל מקום בישראל</p>
       </div>
       <div class="services-grid">
 
         <!-- BRIDAL — featured card -->
         <article class="service-card featured reveal">
-          <p style="font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;opacity:.9;">הפופולרי ביותר</p>
-          <h3 class="service-name">איפור כלות</h3>
-          <p class="service-desc">כלה שלי — זה לא עוד אירוע. אני מגיעה אלייך בבוקר החתונה מוכנה לחלוטין, עם מוצרי פרימיום ומגע רגוע שיתן לך את הביטחון שאת צריכה. המראה מחזיק מהבוקר ועד הריקוד האחרון.</p>
-          <ul style="list-style:none;padding:0;margin:0 0 20px;font-size:.88rem;opacity:.75;line-height:1.9;">
+          <p data-edit="home.services.bridal_badge" data-edit-label="תגית (כלות)" style="font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;opacity:.9;">הפופולרי ביותר</p>
+          <h3 class="service-name" data-edit="home.services.bridal_name" data-edit-label="שם שירות (כלות)">איפור כלות</h3>
+          <p class="service-desc" data-edit="home.services.bridal_desc" data-edit-label="תיאור (כלות)">כלה שלי — זה לא עוד אירוע. אני מגיעה אלייך בבוקר החתונה מוכנה לחלוטין, עם מוצרי פרימיום ומגע רגוע שיתן לך את הביטחון שאת צריכה. המראה מחזיק מהבוקר ועד הריקוד האחרון.</p>
+          <ul data-edit="home.services.bridal_list" data-edit-label="רשימת יתרונות (כלות)" style="list-style:none;padding:0;margin:0 0 20px;font-size:.88rem;opacity:.75;line-height:1.9;">
             <li>✓ ניסוי איפור לפני החתונה</li>
             <li>✓ מגיעה לבית הכלה / אולם</li>
             <li>✓ מוצרי פרימיום בלבד</li>
             <li>✓ מראה שמחזיק כל הלילה</li>
           </ul>
-          <a href="pricing.html" onclick="trackEvent('pricing_click','navigation','bridal_service')" class="service-cta">חבילות ומחירים</a>
+          <a href="pricing.html" onclick="trackEvent('pricing_click','navigation','bridal_service')" class="service-cta" data-edit="home.services.bridal_cta" data-edit-label="כפתור (כלות)">חבילות ומחירים</a>
         </article>
 
         <!-- TRIAL -->
         <article class="service-card reveal">
-          <h3 class="service-name">ניסוי איפור</h3>
-          <p class="service-desc">פגישת ניסוי היא השקעה שמשתלמת. נבנה יחד את המראה שלך, נבדוק מה מתאים לסגנון ולשמלה — כדי שביום החתונה לא יהיו הפתעות, רק אושר.</p>
-          <a onclick="trackEvent('whatsapp_click','conversion','trial_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%A0%D7%99%D7%A1%D7%95%D7%99%20%D7%90%D7%99%D7%A4%D7%95%D7%A8" target="_blank" rel="noopener noreferrer" class="service-cta">לתיאום ניסוי</a>
+          <h3 class="service-name" data-edit="home.services.trial_name" data-edit-label="שם שירות (ניסוי)">ניסוי איפור</h3>
+          <p class="service-desc" data-edit="home.services.trial_desc" data-edit-label="תיאור (ניסוי)">פגישת ניסוי היא השקעה שמשתלמת. נבנה יחד את המראה שלך, נבדוק מה מתאים לסגנון ולשמלה — כדי שביום החתונה לא יהיו הפתעות, רק אושר.</p>
+          <a onclick="trackEvent('whatsapp_click','conversion','trial_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%A0%D7%99%D7%A1%D7%95%D7%99%20%D7%90%D7%99%D7%A4%D7%95%D7%A8" target="_blank" rel="noopener noreferrer" class="service-cta" data-edit="home.services.trial_cta" data-edit-label="כפתור (ניסוי)">לתיאום ניסוי</a>
         </article>
 
         <!-- EVENTS -->
         <article class="service-card reveal">
-          <h3 class="service-name">איפור ערב ואירועים</h3>
-          <p class="service-desc">חתונת חברה, בר מצווה, מסיבה, אירוע עסקי — כל סיבה היא סיבה טובה להיראות מושלמת. איפור אלגנטי שמתאים בדיוק לאירוע ולסגנון שלך.</p>
-          <a href="pricing.html" onclick="trackEvent('pricing_click','navigation','events_service')" class="service-cta">חבילות ומחירים</a>
+          <h3 class="service-name" data-edit="home.services.events_name" data-edit-label="שם שירות (ערב ואירועים)">איפור ערב ואירועים</h3>
+          <p class="service-desc" data-edit="home.services.events_desc" data-edit-label="תיאור (ערב ואירועים)">חתונת חברה, בר מצווה, מסיבה, אירוע עסקי — כל סיבה היא סיבה טובה להיראות מושלמת. איפור אלגנטי שמתאים בדיוק לאירוע ולסגנון שלך.</p>
+          <a href="pricing.html" onclick="trackEvent('pricing_click','navigation','events_service')" class="service-cta" data-edit="home.services.events_cta" data-edit-label="כפתור (ערב ואירועים)">חבילות ומחירים</a>
         </article>
 
         <!-- PRODUCTIONS -->
         <article class="service-card reveal">
-          <h3 class="service-name">הפקות וצילומים</h3>
-          <p class="service-desc">ניסיון עשיר בעבודה מול מצלמה — קליפים, פרסומות, צילומי אופנה ועבודה עם אמנים ואנשי ציבור. מראה שנראה מדהים גם על המסך.</p>
-          <a onclick="trackEvent('whatsapp_click','conversion','prod_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%91%D7%94%D7%A4%D7%A7%D7%94" target="_blank" rel="noopener noreferrer" class="service-cta">פרטים להפקה</a>
+          <h3 class="service-name" data-edit="home.services.prod_name" data-edit-label="שם שירות (הפקות)">הפקות וצילומים</h3>
+          <p class="service-desc" data-edit="home.services.prod_desc" data-edit-label="תיאור (הפקות)">ניסיון עשיר בעבודה מול מצלמה — קליפים, פרסומות, צילומי אופנה ועבודה עם אמנים ואנשי ציבור. מראה שנראה מדהים גם על המסך.</p>
+          <a onclick="trackEvent('whatsapp_click','conversion','prod_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%91%D7%94%D7%A4%D7%A7%D7%94" target="_blank" rel="noopener noreferrer" class="service-cta" data-edit="home.services.prod_cta" data-edit-label="כפתור (הפקות)">פרטים להפקה</a>
         </article>
 
         <!-- BIRTHDAYS -->
         <article class="service-card reveal">
-          <h3 class="service-name">ימי הולדת</h3>
-          <p class="service-desc">יום ההולדת שלך — רגע שראוי לזכור. איפור שמתאים לאופי ולסגנון שלך, שיגרום לך להרגיש כוכבת בדיוק ביום שמגיע לך.</p>
-          <a onclick="trackEvent('whatsapp_click','conversion','bday_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%91%D7%90%D7%99%D7%A4%D7%95%D7%A8%20%D7%99%D7%95%D7%9D%20%D7%94%D7%95%D7%9C%D7%93%D7%AA" target="_blank" rel="noopener noreferrer" class="service-cta">לתיאום</a>
+          <h3 class="service-name" data-edit="home.services.bday_name" data-edit-label="שם שירות (ימי הולדת)">ימי הולדת</h3>
+          <p class="service-desc" data-edit="home.services.bday_desc" data-edit-label="תיאור (ימי הולדת)">יום ההולדת שלך — רגע שראוי לזכור. איפור שמתאים לאופי ולסגנון שלך, שיגרום לך להרגיש כוכבת בדיוק ביום שמגיע לך.</p>
+          <a onclick="trackEvent('whatsapp_click','conversion','bday_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%91%D7%90%D7%99%D7%A4%D7%95%D7%A8%20%D7%99%D7%95%D7%9D%20%D7%94%D7%95%D7%9C%D7%93%D7%AA" target="_blank" rel="noopener noreferrer" class="service-cta" data-edit="home.services.bday_cta" data-edit-label="כפתור (ימי הולדת)">לתיאום</a>
         </article>
 
         <!-- WORKSHOPS -->
         <article class="service-card reveal">
-          <h3 class="service-name">סדנאות איפור</h3>
-          <p class="service-desc">רוצה ללמוד? סדנאות אישיות וקבוצתיות — טכניקות מקצועיות שתוכלי ליישם בעצמך ביום-יום. מהנה, מעשי ומלמד.</p>
-          <a onclick="trackEvent('whatsapp_click','conversion','workshop_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%91%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%99%D7%A4%D7%95%D7%A8" target="_blank" rel="noopener noreferrer" class="service-cta">הרשמה לסדנה</a>
+          <h3 class="service-name" data-edit="home.services.workshop_name" data-edit-label="שם שירות (סדנאות)">סדנאות איפור</h3>
+          <p class="service-desc" data-edit="home.services.workshop_desc" data-edit-label="תיאור (סדנאות)">רוצה ללמוד? סדנאות אישיות וקבוצתיות — טכניקות מקצועיות שתוכלי ליישם בעצמך ביום-יום. מהנה, מעשי ומלמד.</p>
+          <a onclick="trackEvent('whatsapp_click','conversion','workshop_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%91%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%99%D7%A4%D7%95%D7%A8" target="_blank" rel="noopener noreferrer" class="service-cta" data-edit="home.services.workshop_cta" data-edit-label="כפתור (סדנאות)">הרשמה לסדנה</a>
         </article>
 
       </div>
@@ -413,8 +415,8 @@
 
     <!-- CTA STRIP -->
     <div class="cta-strip" role="complementary" aria-label="קריאה לפעולה">
-      <p class="cta-strip-text">כלה? אירוע? ניסוי? — <strong>מגיעה אלייך, בכל מקום בישראל</strong></p>
-      <a onclick="trackEvent('whatsapp_click','conversion','whatsapp')" href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" class="cta-strip-btn">פתחי וואטסאפ</a>
+      <p class="cta-strip-text" data-edit="home.cta_strip.text" data-edit-label="טקסט פס קריאה לפעולה">כלה? אירוע? ניסוי? — <strong>מגיעה אלייך, בכל מקום בישראל</strong></p>
+      <a onclick="trackEvent('whatsapp_click','conversion','whatsapp')" href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" class="cta-strip-btn" data-edit="home.cta_strip.button" data-edit-label="כפתור פס קריאה לפעולה">פתחי וואטסאפ</a>
     </div>
 
     <!-- PHILOSOPHY -->
@@ -427,32 +429,32 @@
                style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;opacity:0.55;"
                loading="lazy" />
           <div style="position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;height:100%;min-height:520px;padding:48px 32px 44px;text-align:right;">
-            <p class="section-eyebrow" id="philosophy-title" style="color:rgba(232,200,176,0.75);margin-bottom:18px;text-align:right;">הפילוסופיה שלי</p>
-            <blockquote style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.45rem;line-height:1.7;color:#fff;margin:0 0 24px;border:none;padding:0;max-width:420px;text-align:right;">
+            <p class="section-eyebrow" id="philosophy-title" data-edit="home.philosophy.eyebrow" data-edit-label="שורת פתיחה (פילוסופיה)" style="color:rgba(232,200,176,0.75);margin-bottom:18px;text-align:right;">הפילוסופיה שלי</p>
+            <blockquote data-edit="home.philosophy.quote" data-edit-label="ציטוט (פילוסופיה)" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.45rem;line-height:1.7;color:#fff;margin:0 0 24px;border:none;padding:0;max-width:420px;text-align:right;">
               אני לא כאן כדי לשנות אותך —<br/>
               אני כאן כדי שתסתכלי בראי ותגידי:<br/>
               <em style="color:rgba(232,200,176,0.9);">"זאת אני. ואני יפה."</em>
             </blockquote>
-            <p style="font-size:0.78rem;letter-spacing:0.18em;color:rgba(255,255,255,0.5);text-transform:uppercase;text-align:right;">ירדן דמרי — מאפרת מקצועית</p>
+            <p data-edit="home.philosophy.attribution" data-edit-label="חתימה (פילוסופיה)" style="font-size:0.78rem;letter-spacing:0.18em;color:rgba(255,255,255,0.5);text-transform:uppercase;text-align:right;">ירדן דמרי — מאפרת מקצועית</p>
           </div>
         </div>
         <!-- Attributes strip -->
         <div class="philosophy-attrs-grid" style="display:grid;grid-template-columns:1fr 1fr;background:#f9f5f0;" role="list" aria-label="נתונים מרכזיים">
           <div role="listitem" style="padding:32px 24px;border-left:1px solid rgba(0,0,0,0.07);border-bottom:1px solid rgba(0,0,0,0.07);">
-            <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8976a;margin:0 0 8px;">מגיעה לכל מקום</p>
-            <p style="font-size:0.9rem;color:#555;margin:0;line-height:1.6;">מהצפון ועד הדרום, ישירות אלייך.</p>
+            <p data-edit="home.philosophy.attr1_title" data-edit-label="כותרת יתרון 1 (פילוסופיה)" style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8976a;margin:0 0 8px;">מגיעה לכל מקום</p>
+            <p data-edit="home.philosophy.attr1_body" data-edit-label="טקסט יתרון 1 (פילוסופיה)" style="font-size:0.9rem;color:#555;margin:0;line-height:1.6;">מהצפון ועד הדרום, ישירות אלייך.</p>
           </div>
           <div role="listitem" style="padding:32px 24px;border-bottom:1px solid rgba(0,0,0,0.07);">
-            <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8976a;margin:0 0 8px;">מוצרי פרימיום</p>
-            <p style="font-size:0.9rem;color:#555;margin:0;line-height:1.6;">עמידים, איכותיים ומצטלמים מושלם.</p>
+            <p data-edit="home.philosophy.attr2_title" data-edit-label="כותרת יתרון 2 (פילוסופיה)" style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8976a;margin:0 0 8px;">מוצרי פרימיום</p>
+            <p data-edit="home.philosophy.attr2_body" data-edit-label="טקסט יתרון 2 (פילוסופיה)" style="font-size:0.9rem;color:#555;margin:0;line-height:1.6;">עמידים, איכותיים ומצטלמים מושלם.</p>
           </div>
           <div role="listitem" style="padding:32px 24px;border-left:1px solid rgba(0,0,0,0.07);">
-            <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8976a;margin:0 0 8px;">בראש שקט</p>
-            <p style="font-size:0.9rem;color:#555;margin:0;line-height:1.6;">ליווי אישי וקשוב מהרגע הראשון.</p>
+            <p data-edit="home.philosophy.attr3_title" data-edit-label="כותרת יתרון 3 (פילוסופיה)" style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8976a;margin:0 0 8px;">בראש שקט</p>
+            <p data-edit="home.philosophy.attr3_body" data-edit-label="טקסט יתרון 3 (פילוסופיה)" style="font-size:0.9rem;color:#555;margin:0;line-height:1.6;">ליווי אישי וקשוב מהרגע הראשון.</p>
           </div>
           <div role="listitem" style="padding:32px 24px;">
-            <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8976a;margin:0 0 8px;">האנרגיה הנכונה</p>
-            <p style="font-size:0.9rem;color:#555;margin:0;line-height:1.6;">בוקר רגוע, כיפי ובלי טיפת לחץ.</p>
+            <p data-edit="home.philosophy.attr4_title" data-edit-label="כותרת יתרון 4 (פילוסופיה)" style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#b8976a;margin:0 0 8px;">האנרגיה הנכונה</p>
+            <p data-edit="home.philosophy.attr4_body" data-edit-label="טקסט יתרון 4 (פילוסופיה)" style="font-size:0.9rem;color:#555;margin:0;line-height:1.6;">בוקר רגוע, כיפי ובלי טיפת לחץ.</p>
           </div>
         </div>
       </div>
@@ -471,13 +473,13 @@
         </iframe>
       </div>
       <div class="reveal">
-        <p class="section-eyebrow">אזור פעילות</p>
-        <h2 id="area-title" class="section-title">מגיעה אלייך<br/>בכל מקום בישראל</h2>
+        <p class="section-eyebrow" data-edit="home.area.eyebrow" data-edit-label="שורת פתיחה (אזור פעילות)">אזור פעילות</p>
+        <h2 id="area-title" class="section-title" data-edit="home.area.title" data-edit-label="כותרת (אזור פעילות)">מגיעה אלייך<br/>בכל מקום בישראל</h2>
         <div class="area-points" role="list">
           <div class="area-point" role="listitem">
             <div class="area-text">
-              <strong>שירות פרימיום עד הבית</strong>
-              <span>מגיעה איתך לכל לוקיישן שתבחרי – מהצפון ועד הדרום, לבית, לאולם או לאולפן, כדי להעניק לך שקט נפשי וחוויה מושלמת.</span>
+              <strong data-edit="home.area.point_title" data-edit-label="כותרת נקודה (אזור פעילות)">שירות פרימיום עד הבית</strong>
+              <span data-edit="home.area.point_body" data-edit-label="טקסט נקודה (אזור פעילות)">מגיעה איתך לכל לוקיישן שתבחרי – מהצפון ועד הדרום, לבית, לאולם או לאולפן, כדי להעניק לך שקט נפשי וחוויה מושלמת.</span>
             </div>
           </div>
         </div>
@@ -487,9 +489,9 @@
     <!-- GALLERY -->
     <section id="gallery" class="gallery-section" aria-labelledby="gallery-title">
       <div style="text-align:center; margin-bottom:40px;" class="reveal">
-        <p class="section-eyebrow" style="justify-content:center;">העבודות שלי</p>
-        <h2 id="gallery-title" class="section-title">גלריה העבודות</h2>
-        <p style="font-size:1rem; opacity:.65; margin-top:12px;">כלות · ערב · הפקות | לחצי לצפייה מלאה</p>
+        <p class="section-eyebrow" data-edit="home.gallery.eyebrow" data-edit-label="שורת פתיחה (גלריה)" style="justify-content:center;">העבודות שלי</p>
+        <h2 id="gallery-title" class="section-title" data-edit="home.gallery.title" data-edit-label="כותרת (גלריה)">גלריה העבודות</h2>
+        <p data-edit="home.gallery.subtitle" data-edit-label="תת-כותרת (גלריה)" style="font-size:1rem; opacity:.65; margin-top:12px;">כלות · ערב · הפקות | לחצי לצפייה מלאה</p>
       </div>
       <div id="gallery-filters" class="gallery-filters" role="group" aria-label="סינון גלריה"></div>
       <div id="ig-gallery" class="ig-gallery-grid" role="list" aria-label="גלריית תמונות"></div>
@@ -497,7 +499,7 @@
       <div style="text-align:center;margin-top:50px;" id="pagination" role="navigation" aria-label="עמודים"></div>
 
       <div class="share-strip" style="margin-top:48px;border-top:1px solid rgba(196,128,90,.12);padding-top:40px;">
-        <p class="share-strip-text">אהבת את מה שראית? שתפי עם חברה שמחפשת מאפרת</p>
+        <p class="share-strip-text" data-edit="home.gallery.share_text" data-edit-label="טקסט שיתוף (גלריה)">אהבת את מה שראית? שתפי עם חברה שמחפשת מאפרת</p>
         <button class="share-strip-btn" onclick="sharesite()" aria-label="שתפי את האתר">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           שתפי עם חברה
@@ -508,9 +510,9 @@
     <!-- REVIEWS -->
     <section id="reviews" style="padding:80px 40px; background:rgba(255,255,255,.02);" aria-labelledby="reviews-title">
       <div style="text-align:center; margin-bottom:50px;" class="reveal">
-        <p class="section-eyebrow" style="justify-content:center;">מה הכלות אומרות</p>
-        <h2 id="reviews-title" class="section-title">ביקורות כלות אמיתיות</h2>
-        <p style="font-size:.95rem;opacity:.6;margin-top:10px;">כבר מאות כלות סמכו עליי ביום הגדול שלהן</p>
+        <p class="section-eyebrow" data-edit="home.reviews.eyebrow" data-edit-label="שורת פתיחה (ביקורות)" style="justify-content:center;">מה הכלות אומרות</p>
+        <h2 id="reviews-title" class="section-title" data-edit="home.reviews.title" data-edit-label="כותרת (ביקורות)">ביקורות כלות אמיתיות</h2>
+        <p data-edit="home.reviews.subtitle" data-edit-label="תת-כותרת (ביקורות)" style="font-size:.95rem;opacity:.6;margin-top:10px;">כבר מאות כלות סמכו עליי ביום הגדול שלהן</p>
         <div id="avg-rating" style="font-size:1.4rem; margin-top:12px; color:var(--gold); letter-spacing:4px;" aria-label="דירוג כוללי">★★★★★</div>
         <a href="https://g.page/r/CfrXGS6nwqdXEBE/review" target="_blank" rel="noopener noreferrer"
            style="display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:10px 24px;border:1px solid rgba(184,144,96,0.35);color:var(--gold);text-decoration:none;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;font-family:'Rubik',sans-serif;border-radius:2px;">
@@ -525,15 +527,15 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;max-width:900px;margin:0 auto;" class="reveal">
         <article style="background:#fff;border:1px solid #ede8e3;border-radius:2px;padding:28px 24px;">
           <div style="color:var(--gold);font-size:.85rem;margin-bottom:12px;letter-spacing:2px;">★★★★★</div>
-          <p style="font-size:.9rem;color:#555;line-height:1.8;margin-bottom:16px;">ירדן הגיעה אליי בבוקר החתונה עם כל כך הרבה אנרגיה טובה שהרגעה אותי ברגע. האיפור יצא בדיוק מה שרציתי — טבעי, זוהר, ומחזיק עד הריקוד האחרון. כולם שאלו אותי מי אפר אותי.</p>
-          <div style="font-size:.8rem;font-weight:600;color:var(--text);font-family:'Rubik',sans-serif;">נועה כ.</div>
-          <div style="font-size:.72rem;color:var(--blush);margin-top:2px;letter-spacing:.05em;">איפור כלות</div>
+          <p data-edit="home.reviews.t1_text" data-edit-label="ביקורת 1 — טקסט" style="font-size:.9rem;color:#555;line-height:1.8;margin-bottom:16px;">ירדן הגיעה אליי בבוקר החתונה עם כל כך הרבה אנרגיה טובה שהרגעה אותי ברגע. האיפור יצא בדיוק מה שרציתי — טבעי, זוהר, ומחזיק עד הריקוד האחרון. כולם שאלו אותי מי אפר אותי.</p>
+          <div data-edit="home.reviews.t1_name" data-edit-label="ביקורת 1 — שם" style="font-size:.8rem;font-weight:600;color:var(--text);font-family:'Rubik',sans-serif;">נועה כ.</div>
+          <div data-edit="home.reviews.t1_tag" data-edit-label="ביקורת 1 — סוג" style="font-size:.72rem;color:var(--blush);margin-top:2px;letter-spacing:.05em;">איפור כלות</div>
         </article>
         <article style="background:#fff;border:1px solid #ede8e3;border-radius:2px;padding:28px 24px;">
           <div style="color:var(--gold);font-size:.85rem;margin-bottom:12px;letter-spacing:2px;">★★★★★</div>
-          <p style="font-size:.9rem;color:#555;line-height:1.8;margin-bottom:16px;">הגעתי לפגישת ניסוי עם המון חרדות ויצאתי הכי מרגועה שיש. ירדן הקשיבה לי, הבינה בדיוק מה אני רוצה, ובנינו ביחד מראה שגרם לי להרגיש — סוף סוף — כמו עצמי. ביום החתונה בכיתי מרוב שמחה.</p>
-          <div style="font-size:.8rem;font-weight:600;color:var(--text);font-family:'Rubik',sans-serif;">דנה א.</div>
-          <div style="font-size:.72rem;color:var(--blush);margin-top:2px;letter-spacing:.05em;">איפור כלות + ניסוי</div>
+          <p data-edit="home.reviews.t2_text" data-edit-label="ביקורת 2 — טקסט" style="font-size:.9rem;color:#555;line-height:1.8;margin-bottom:16px;">הגעתי לפגישת ניסוי עם המון חרדות ויצאתי הכי מרגועה שיש. ירדן הקשיבה לי, הבינה בדיוק מה אני רוצה, ובנינו ביחד מראה שגרם לי להרגיש — סוף סוף — כמו עצמי. ביום החתונה בכיתי מרוב שמחה.</p>
+          <div data-edit="home.reviews.t2_name" data-edit-label="ביקורת 2 — שם" style="font-size:.8rem;font-weight:600;color:var(--text);font-family:'Rubik',sans-serif;">דנה א.</div>
+          <div data-edit="home.reviews.t2_tag" data-edit-label="ביקורת 2 — סוג" style="font-size:.72rem;color:var(--blush);margin-top:2px;letter-spacing:.05em;">איפור כלות + ניסוי</div>
         </article>
       </div>
     </section>
@@ -541,7 +543,7 @@
     <!-- CONTACT -->
     <section id="contact" aria-labelledby="contact-title">
       <div style="margin-bottom:48px" class="reveal">
-        <h2 id="contact-title" class="section-title">בואי נדבר?</h2>
+        <h2 id="contact-title" class="section-title" data-edit="home.contact.title" data-edit-label="כותרת (צרי קשר)">בואי נדבר?</h2>
       </div>
       <div class="contact-inner">
         <div class="reveal">
@@ -553,13 +555,13 @@
 
             <p style="font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin:0 0 20px;font-family:'Rubik',sans-serif;">Makeup Artist</p>
             <h3 style="font-family:'Rubik',sans-serif;font-size:1.9rem;font-weight:300;letter-spacing:0.06em;color:var(--text);margin:0 0 4px;">ירדן דמרי</h3>
-            <p style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--blush);margin:0 0 32px;font-family:'Rubik',sans-serif;">מאפרת כלות וערב מקצועית</p>
+            <p data-edit="home.contact.card_role" data-edit-label="תפקיד בכרטיס (צרי קשר)" style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--blush);margin:0 0 32px;font-family:'Rubik',sans-serif;">מאפרת כלות וערב מקצועית</p>
             <div style="width:32px;height:1px;background:rgba(184,144,96,0.4);margin-bottom:32px;"></div>
             <div style="display:flex;flex-direction:column;gap:14px;font-size:0.88rem;color:#666;font-family:'Rubik',sans-serif;">
               <span><span dir="ltr">054-7276716</span></span>
-              <span>מגיעה לכל הארץ</span>
+              <span data-edit="home.contact.card_area" data-edit-label="אזור שירות בכרטיס (צרי קשר)">מגיעה לכל הארץ</span>
               <span>@yarden_damri_makeup</span>
-              <span>כלות · ערב · הפקות · אירועים</span>
+              <span data-edit="home.contact.card_services" data-edit-label="שורת שירותים בכרטיס (צרי קשר)">כלות · ערב · הפקות · אירועים</span>
             </div>
             <div style="margin-top:36px;display:flex;flex-direction:column;gap:10px;">
               <a href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer"
@@ -577,7 +579,7 @@
         </div>
 
         <div class="reveal">
-          <p class="contact-intro">השאירי פרטים כאן, או לחצי על כפתור הוואטסאפ ונתחיל לתכנן את הלוק המנצח שלך.</p>
+          <p class="contact-intro" data-edit="home.contact.intro" data-edit-label="טקסט פתיחה לטופס (צרי קשר)">השאירי פרטים כאן, או לחצי על כפתור הוואטסאפ ונתחיל לתכנן את הלוק המנצח שלך.</p>
           <form onsubmit="return false;" novalidate aria-label="טופס יצירת קשר">
             <div class="form-row">
               <div class="form-group">

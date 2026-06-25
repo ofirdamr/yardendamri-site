@@ -170,6 +170,7 @@
     <div class="tab" onclick="switchTab('cats',this)">🏷️ קטגוריות</div>
     <div class="tab" onclick="switchTab('analytics',this)">📊 ביצועים</div>
     <div class="tab" onclick="switchTab('pricing',this)">💰 מחירון</div>
+    <div class="tab" onclick="switchTab('content',this)">📝 תוכן</div>
     <div class="tab" onclick="switchTab('settings',this)">⚙️ הגדרות</div>
   </div>
 
@@ -428,6 +429,21 @@
         <button class="btn btn-danger" onclick="clearAllSettings()">🗑️ מחק את כל הגדרות הגלריה</button>
       </div>
     </div>
+  </div>
+
+  <!-- CONTENT TAB — editable site text (manual + voice + AI copywriter) -->
+  <div id="tab-content" style="display:none;padding:24px 28px">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px;">
+      <h2 style="margin:0;">📝 עריכת תוכן האתר</h2>
+      <select id="content-page" onchange="renderContentEditor()" style="background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-family:inherit;font-size:.85rem;"></select>
+      <button class="btn btn-secondary" onclick="renderContentEditor()" style="font-size:.8rem;">🔄 רענן</button>
+      <button class="btn btn-primary" id="content-save-btn" onclick="saveContentEdits()" style="margin-right:auto;">💾 שמור שינויים</button>
+    </div>
+    <p style="font-size:.83rem;color:var(--muted);margin:0 0 20px;line-height:1.7;">
+      ערכי כל טקסט באתר — ידנית, בהקלדה. אפשר גם ללחוץ 🎤 ולהכתיב בקול, או 🤖 כדי לקבל הצעת ניסוח מקופירייטר ה-AI.
+      השינויים נשמרים מיד עם הלחיצה על «שמור שינויים» ומתעדכנים באתר החי.
+    </p>
+    <div id="content-editor"><p style="color:var(--muted)">טוען…</p></div>
   </div>
 </div>
 
@@ -1659,6 +1675,7 @@ function switchTab(name,el){
   if(name==='cats') renderCatList();
   if(name==='analytics') initAnalytics();
   if(name==='pricing') { renderPricingEditor(); }
+  if(name==='content') { initContentEditor(); }
   if(name==='settings') {
     populateHeroVideoSelect(); populateHeroImageSelect();
     const s=getSettings();
@@ -2156,6 +2173,206 @@ function savePricingItems() {
 
 // ─── TOAST ───────────────────────────────────────────────────────
 function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2400); }
+</script>
+
+<!-- ═══ CONTENT EDITOR — editable site text (manual + voice + AI copywriter) ═══ -->
+<script>
+(function(){
+  'use strict';
+  const WORKER_URL = 'https://api.yardendamri.co.il';
+
+  // Pilot: homepage only. Add pages here as they get data-edit tags.
+  const CONTENT_PAGES = [{ url:'/', label:'דף הבית' }];
+
+  // Hebrew names for the second key segment ("home.<section>.<field>").
+  const SECTION_NAMES = {
+    meta:'SEO — כותרת ותיאור', hero:'כותרת ראשית (Hero)', about:'אודות', services:'שירותים',
+    cta_strip:'פס קריאה לפעולה', philosophy:'הפילוסופיה שלי', area:'אזור פעילות',
+    gallery:'גלריה', reviews:'ביקורות', contact:'צרי קשר'
+  };
+
+  let _defaults = {};   // key -> baked default text
+  let _labels   = {};   // key -> Hebrew label
+  let _idx = 0;
+  let _rec = null;      // active SpeechRecognition
+
+  function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  // innerHTML/attr → plain editable text. Block boundaries & <br> become newlines.
+  function htmlToPlain(html){
+    let s = String(html||'');
+    s = s.replace(/<\s*br\s*\/?>/gi, '\n')
+         .replace(/<\/(li|p|div|h[1-6]|blockquote)\s*>/gi, '\n')
+         .replace(/<[^>]+>/g, '');
+    const tmp = document.createElement('textarea'); tmp.innerHTML = s; s = tmp.value; // decode entities
+    return s.replace(/\n[ \t]+/g, '\n').replace(/[ \t]+\n/g, '\n').replace(/\n{2,}/g, '\n').trim();
+  }
+
+  function overrides(){ const c=(window.RemoteState&&window.RemoteState.getCached&&window.RemoteState.getCached())||{}; return c.content||{}; }
+
+  function initContentEditor(){
+    const sel = document.getElementById('content-page');
+    if (sel && !sel.options.length){
+      CONTENT_PAGES.forEach(p=>{ const o=document.createElement('option'); o.value=p.url; o.textContent=p.label; sel.appendChild(o); });
+    }
+    renderContentEditor();
+  }
+
+  async function renderContentEditor(){
+    const host = document.getElementById('content-editor');
+    const sel  = document.getElementById('content-page');
+    const url  = (sel && sel.value) || '/';
+    host.innerHTML = '<p style="color:var(--muted)">טוען טקסטים מהאתר…</p>';
+    _defaults = {}; _labels = {}; _idx = 0;
+
+    let doc;
+    try {
+      const res = await fetch(url + (url.indexOf('?')>=0?'&':'?') + 't=' + Date.now(), { cache:'no-cache' });
+      if (!res.ok) throw new Error('HTTP '+res.status);
+      doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+    } catch(e){
+      host.innerHTML = '<p style="color:var(--red)">לא ניתן לטעון את הדף ('+esc(e.message)+'). נסי «רענן».</p>';
+      return;
+    }
+
+    const ov = overrides();
+    const nodes = doc.querySelectorAll('[data-edit]');
+    if (!nodes.length){ host.innerHTML = '<p style="color:var(--muted)">לא נמצאו שדות טקסט הניתנים לעריכה בדף זה.</p>'; return; }
+
+    const groups = []; const byId = {};
+    nodes.forEach(el=>{
+      const key = el.getAttribute('data-edit'); if(!key) return;
+      const seg = key.split('.')[1] || 'other';
+      const def = (el.tagName==='META') ? (el.getAttribute('content')||'') : htmlToPlain(el.innerHTML);
+      const label = el.getAttribute('data-edit-label') || key;
+      _defaults[key] = def; _labels[key] = label;
+      const cur = Object.prototype.hasOwnProperty.call(ov,key) ? ov[key] : def;
+      if(!byId[seg]){ byId[seg] = { name: SECTION_NAMES[seg]||seg, fields: [] }; groups.push(byId[seg]); }
+      byId[seg].fields.push({ key, label, value: cur });
+    });
+
+    let html = '';
+    groups.forEach(g=>{
+      html += '<div style="margin-bottom:26px;">'
+            + '<h3 style="margin:0 0 12px;font-size:1rem;color:var(--gold);border-bottom:1px solid var(--border);padding-bottom:8px;">'+esc(g.name)+'</h3>';
+      g.fields.forEach(f=>{
+        const id = 'ce_'+(_idx++);
+        const lines = Math.min(8, Math.max(2, String(f.value).split('\n').length + (f.value.length>90?1:0)));
+        html += '<div style="margin-bottom:16px;">'
+          + '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:5px;">'
+          +   '<label style="font-size:.82rem;color:var(--blush);font-weight:600;">'+esc(f.label)+'</label>'
+          +   '<code style="font-size:.64rem;color:var(--muted);">'+esc(f.key)+'</code>'
+          + '</div>'
+          + '<div style="display:flex;gap:8px;align-items:flex-start;">'
+          +   '<textarea id="'+id+'" data-key="'+esc(f.key)+'" rows="'+lines+'" dir="rtl" oninput="markContentChanged()" '
+          +     'style="flex:1;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px;font-family:inherit;font-size:.9rem;line-height:1.65;resize:vertical;">'+esc(f.value)+'</textarea>'
+          +   '<div style="display:flex;flex-direction:column;gap:6px;">'
+          +     '<button class="btn btn-secondary" title="הקלדה קולית" onclick="toggleDictation(this,\''+id+'\')" style="padding:8px 11px;">🎤</button>'
+          +     '<button class="btn btn-secondary" title="ייעוץ קופירייטר AI" onclick="toggleAIPanel(this,\''+id+'\')" style="padding:8px 11px;">🤖</button>'
+          +     '<button class="btn btn-secondary" title="איפוס לברירת מחדל" onclick="resetContentField(\''+id+'\')" style="padding:8px 11px;">↺</button>'
+          +   '</div>'
+          + '</div>'
+          + '<div id="ai_'+id+'" style="display:none;margin-top:10px;padding:12px;background:rgba(196,128,90,.08);border:1px solid var(--border);border-radius:8px;"></div>'
+          + '</div>';
+      });
+      html += '</div>';
+    });
+    host.innerHTML = html;
+  }
+
+  function markContentChanged(){ const b=document.getElementById('content-save-btn'); if(b && b.textContent.indexOf('*')<0) b.textContent='💾 שמור שינויים *'; }
+
+  function resetContentField(id){ const ta=document.getElementById(id); if(!ta) return; ta.value=_defaults[ta.dataset.key]||''; markContentChanged(); }
+
+  async function saveContentEdits(){
+    if(!(window.RemoteState && window.RemoteState.hasToken && window.RemoteState.hasToken())){ showToast('יש להתחבר מחדש כדי לשמור'); return; }
+    const ov = overrides(); const out = {};
+    document.querySelectorAll('#content-editor textarea[data-key]').forEach(ta=>{
+      const key=ta.dataset.key, val=ta.value, def=_defaults[key];
+      if(val!==def || Object.prototype.hasOwnProperty.call(ov,key)) out[key]=val;
+    });
+    if(!Object.keys(out).length){ showToast('אין שינויים לשמירה'); return; }
+    const btn=document.getElementById('content-save-btn'); const prev=btn.textContent; btn.disabled=true; btn.textContent='שומר…';
+    const r = await window.RemoteState.update({ content: out });
+    btn.disabled=false;
+    if(r && r.ok){ btn.textContent='💾 שמור שינויים'; showToast('✅ התוכן נשמר! מתעדכן באתר תוך כדקה.'); }
+    else { btn.textContent=prev; showToast('❌ שמירה נכשלה: '+((r&&r.error)||'שגיאה')); }
+  }
+
+  // ── Voice dictation (Web Speech API, Hebrew) ──────────────────────
+  function toggleDictation(btn, taId){
+    const ta = document.getElementById(taId);
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if(!SR){ showToast('הדפדפן לא תומך בהקלדה קולית. נסי בכרום במחשב.'); return; }
+    if(_rec){ try{ _rec.stop(); }catch(e){} return; }
+    const rec = new SR(); _rec = rec;
+    rec.lang='he-IL'; rec.interimResults=true; rec.continuous=true;
+    const base = ta.value ? ta.value + ' ' : '';
+    btn.dataset.bg = btn.style.background; btn.style.background='var(--red,#c0392b)'; btn.textContent='⏺';
+    rec.onresult = (e)=>{ let txt=''; for(let i=e.resultIndex;i<e.results.length;i++){ txt += e.results[i][0].transcript; } ta.value = base + txt; };
+    rec.onerror  = ()=>{ showToast('שגיאת הקלטה — בדקי הרשאת מיקרופון'); };
+    rec.onend    = ()=>{ btn.style.background = btn.dataset.bg||''; btn.textContent='🎤'; _rec=null; markContentChanged(); };
+    try{ rec.start(); }catch(e){ _rec=null; btn.style.background=btn.dataset.bg||''; btn.textContent='🎤'; }
+  }
+
+  // ── AI copywriter consult (via Worker → Claude) ───────────────────
+  function toggleAIPanel(btn, taId){
+    const panel = document.getElementById('ai_'+taId);
+    if(panel.style.display==='none'){
+      panel.style.display='block';
+      panel.innerHTML =
+          '<div style="font-size:.8rem;color:var(--muted);margin-bottom:8px;">תארי מה תרצי — סגנון, אורך, דגש. אפשר להשאיר ריק לקבלת הצעה כללית.</div>'
+        + '<textarea id="aip_'+taId+'" rows="2" dir="rtl" placeholder="לדוגמה: חם ואישי, קצר, עם קריאה לפעולה" style="width:100%;box-sizing:border-box;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:9px;font-family:inherit;font-size:.86rem;"></textarea>'
+        + '<button class="btn btn-primary" onclick="requestCopy(\''+taId+'\')" style="margin-top:8px;font-size:.82rem;">✨ קבל הצעה</button>'
+        + '<div id="air_'+taId+'" style="margin-top:10px;"></div>';
+    } else { panel.style.display='none'; }
+  }
+
+  async function requestCopy(taId){
+    const ta = document.getElementById(taId); const key = ta.dataset.key;
+    const prompt = (document.getElementById('aip_'+taId)||{}).value || '';
+    const out = document.getElementById('air_'+taId);
+    if(!(window.RemoteState && window.RemoteState.hasToken && window.RemoteState.hasToken())){ out.innerHTML='<span style="color:var(--red)">יש להתחבר מחדש.</span>'; return; }
+    out.innerHTML = '<span style="color:var(--muted)">הקופירייטר חושב… ✍️</span>';
+    let data;
+    try{
+      const res = await fetch(WORKER_URL + '/copywriter', {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer '+window.RemoteState.getPwd() },
+        body: JSON.stringify({ key, label:_labels[key]||key, current: ta.value, prompt })
+      });
+      if(res.status===404){ out.innerHTML='<span style="color:var(--muted)">שירות הקופירייטר עדיין לא הופעל (ממתין לפריסת ה-Worker).</span>'; return; }
+      if(res.status===401||res.status===403){ out.innerHTML='<span style="color:var(--red)">פג תוקף ההתחברות. התחברי מחדש.</span>'; return; }
+      if(!res.ok){ out.innerHTML='<span style="color:var(--red)">שגיאה ('+res.status+').</span>'; return; }
+      data = await res.json();
+    } catch(e){ out.innerHTML='<span style="color:var(--red)">שגיאת רשת: '+esc(e.message)+'</span>'; return; }
+
+    let list = data.suggestions || (data.suggestion ? [data.suggestion] : (data.text ? [data.text] : []));
+    if(!list.length){ out.innerHTML='<span style="color:var(--muted)">לא התקבלה הצעה.</span>'; return; }
+    out.innerHTML = list.map((s,i)=>(
+        '<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:11px;margin-bottom:8px;">'
+      +   '<div id="sug_'+taId+'_'+i+'" dir="rtl" style="white-space:pre-wrap;font-size:.9rem;line-height:1.65;color:var(--text);margin-bottom:8px;">'+esc(s)+'</div>'
+      +   '<button class="btn btn-secondary" onclick="useSuggestion(\''+taId+'\',\''+taId+'_'+i+'\')" style="font-size:.78rem;padding:6px 12px;">✓ השתמש בטקסט הזה</button>'
+      + '</div>'
+    )).join('');
+  }
+
+  function useSuggestion(taId, sugId){
+    const ta=document.getElementById(taId), sug=document.getElementById('sug_'+sugId);
+    if(ta && sug){ ta.value = sug.textContent; markContentChanged(); showToast('✅ הטקסט הוחל בשדה'); }
+  }
+
+  // expose
+  window.initContentEditor   = initContentEditor;
+  window.renderContentEditor = renderContentEditor;
+  window.markContentChanged  = markContentChanged;
+  window.resetContentField   = resetContentField;
+  window.saveContentEdits    = saveContentEdits;
+  window.toggleDictation     = toggleDictation;
+  window.toggleAIPanel       = toggleAIPanel;
+  window.requestCopy         = requestCopy;
+  window.useSuggestion       = useSuggestion;
+})();
 </script>
 </body>
 </html>
