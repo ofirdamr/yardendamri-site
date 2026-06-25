@@ -2347,7 +2347,18 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
       data = await res.json();
     } catch(e){ out.innerHTML='<span style="color:var(--red)">שגיאת רשת: '+esc(e.message)+'</span>'; return; }
 
-    let list = data.suggestions || (data.suggestion ? [data.suggestion] : (data.text ? [data.text] : []));
+    // Recover clean suggestions even if the AI handed back raw/partial JSON.
+    function _recover(s){
+      const j = s.match(/\{[\s\S]*\}/);
+      if(j){ try{ const a=JSON.parse(j[0]).suggestions; if(Array.isArray(a)) return a.map(String); }catch(e){} }
+      const k = s.indexOf('"suggestions"');
+      if(k>=0){ const items=s.slice(k).match(/"((?:[^"\\]|\\.)*)"/g)||[]; return items.slice(1).map(q=>{try{return JSON.parse(q);}catch(e){return q.replace(/^"|"$/g,'');}}).filter(Boolean); }
+      return null;
+    }
+    let raw = data.suggestions || (data.suggestion ? [data.suggestion] : (data.text ? [data.text] : []));
+    let list = [];
+    raw.forEach(s=>{ s=String(s); const r=(s.indexOf('{')>=0||s.indexOf('"suggestions"')>=0)?_recover(s):null; if(r&&r.length) list.push.apply(list,r); else list.push(s); });
+    list = list.map(s=>String(s).trim()).filter(Boolean);
     if(!list.length){ out.innerHTML='<span style="color:var(--muted)">לא התקבלה הצעה.</span>'; return; }
     out.innerHTML = list.map((s,i)=>(
         '<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:11px;margin-bottom:8px;">'
