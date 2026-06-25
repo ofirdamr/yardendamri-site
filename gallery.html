@@ -579,12 +579,17 @@ function renderGallery() {
   observeVideos();
 }
 
-// ── VIDEO AUTOPLAY: thumbnail first, swap to <video autoplay> when in viewport ──
+// ── VIDEO PREVIEW: grid shows the thumbnail; on DESKTOP it swaps to an autoplay <video> when
+// in view. On mobile/touch we keep the static thumbnail (like Instagram) — many simultaneous
+// autoplay videos don't render reliably on iOS Safari (blank tiles), and it saves data/battery.
+// Tapping any video tile opens the lightbox, which plays the full video.
 const _obsSet = new WeakSet();
+const _gridAutoplay = window.matchMedia('(min-width:1081px) and (hover:hover)').matches;
 const videoObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     const el = e.target;
     if (e.isIntersecting && el.tagName === 'IMG' && el.dataset.video) {
+      if (!_gridAutoplay) return;   // mobile: leave the thumbnail image in place
       const v = document.createElement('video');
       v.src = el.dataset.video; v.muted = true; v.loop = true;
       v.playsInline = true; v.autoplay = true; v.preload = 'metadata';
