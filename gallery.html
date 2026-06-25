@@ -536,7 +536,11 @@ function renderGallery() {
     const rotStyle = rot ? `transform:rotate(${rot}deg);` : '';
     let mediaHtml;
     if (isVideo) {
-      const _thumb = item.thumb || '';
+      // Prefer the small derived _thumb.webp (created by the R2 backfill); fall back to the
+      // stored thumb (jpg) via onerror, then to the brown placeholder. Keeps the grid light even
+      // for videos whose gallery-data `thumb` still points at the old _thumb.jpg.
+      const _vid = item.item_id || (String(item.u).match(/yarden_(\d+)/) || [])[1] || '';
+      const _thumb = _vid ? `https://images.yardendamri.co.il/yarden_${_vid}_thumb.webp` : (item.thumb || '');
       mediaHtml = `<img src="${_thumb}" data-video="${item.u}" alt="${_alt}" loading="lazy" decoding="async"
         style="width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block;background:#1a1008;${rotStyle}"
         onerror="if(!this.dataset.fb&&this.src.indexOf('_thumb.webp')>-1){this.dataset.fb=1;this.src=this.src.replace('_thumb.webp','_thumb.jpg');}else{this.style.background='#1a1008';}">`;

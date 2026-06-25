@@ -1263,7 +1263,10 @@
         const _rot = (getAdminSettings().rotations || {})[item.u] || 0;
         const _rotStyle = _rot ? `transform:rotate(${_rot}deg);` : '';
 
-        const _thumb2 = item.thumb || '';
+        // Video tiles: prefer the small derived _thumb.webp (R2 backfill); onerror falls back to
+        // the _thumb.jpg, then the brown placeholder. Images keep their own derive below.
+        const _vid2 = item.item_id || (String(item.u).match(/yarden_(\d+)/) || [])[1] || '';
+        const _thumb2 = _vid2 ? `https://images.yardendamri.co.il/yarden_${_vid2}_thumb.webp` : (item.thumb || '');
         const mediaEl = isVideo
           ? `<img src="${_thumb2}" data-video="${item.u}" loading="lazy" decoding="async"
                alt="${getAutoAlt(item).substring(0,120)}"
