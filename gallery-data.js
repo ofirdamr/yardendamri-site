@@ -6,7 +6,7 @@ const GALLERY_IMAGES = [
     "item_id": "18153908050468263",
     "post_id": "18153908050468263",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18153908050468263_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18153908050468263_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18106863977287938.mp4",
@@ -14,7 +14,7 @@ const GALLERY_IMAGES = [
     "item_id": "18106863977287938",
     "post_id": "18106863977287938",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18106863977287938_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18106863977287938_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18100404782127411.mp4",
@@ -22,7 +22,7 @@ const GALLERY_IMAGES = [
     "item_id": "18100404782127411",
     "post_id": "18100404782127411",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18100404782127411_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18100404782127411_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17972187162071494.mp4",
@@ -30,7 +30,7 @@ const GALLERY_IMAGES = [
     "item_id": "17972187162071494",
     "post_id": "17972187162071494",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17972187162071494_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17972187162071494_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18095410015962853.webp",
@@ -48,7 +48,7 @@ const GALLERY_IMAGES = [
     "item_id": "18124163572566762",
     "post_id": "18399908116155226",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18124163572566762_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_18124163572566762_thumb.webp",
     "carousel": true,
     "cidx": 1,
     "ccount": 2
@@ -59,7 +59,7 @@ const GALLERY_IMAGES = [
     "item_id": "17881563132435942",
     "post_id": "17881563132435942",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17881563132435942_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17881563132435942_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18082854338447188.mp4",
@@ -67,7 +67,7 @@ const GALLERY_IMAGES = [
     "item_id": "18082854338447188",
     "post_id": "18082854338447188",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18082854338447188_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18082854338447188_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18103958203807211.mp4",
@@ -75,7 +75,7 @@ const GALLERY_IMAGES = [
     "item_id": "18103958203807211",
     "post_id": "18103958203807211",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18103958203807211_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18103958203807211_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18119542276602555.webp",
@@ -203,7 +203,7 @@ const GALLERY_IMAGES = [
     "item_id": "18321495295280260",
     "post_id": "18321495295280260",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18321495295280260_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18321495295280260_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18094353658922515.mp4",
@@ -211,7 +211,7 @@ const GALLERY_IMAGES = [
     "item_id": "18094353658922515",
     "post_id": "18094353658922515",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18094353658922515_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18094353658922515_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18113142562769799.webp",
@@ -306,7 +306,7 @@ const GALLERY_IMAGES = [
     "item_id": "17923237620299374",
     "post_id": "17988685346980055",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17923237620299374_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_17923237620299374_thumb.webp",
     "carousel": true,
     "cidx": 2,
     "ccount": 3
@@ -347,7 +347,7 @@ const GALLERY_IMAGES = [
     "item_id": "18080335340527795",
     "post_id": "17921662467293318",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18080335340527795_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_18080335340527795_thumb.webp",
     "carousel": true,
     "cidx": 3,
     "ccount": 4
@@ -358,7 +358,7 @@ const GALLERY_IMAGES = [
     "item_id": "18007005827712973",
     "post_id": "18007005827712973",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18007005827712973_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18007005827712973_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18081110306628918.mp4",
@@ -366,7 +366,7 @@ const GALLERY_IMAGES = [
     "item_id": "18081110306628918",
     "post_id": "18081110306628918",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18081110306628918_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18081110306628918_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18073663340406769.webp",
@@ -404,7 +404,7 @@ const GALLERY_IMAGES = [
     "item_id": "17951003097110919",
     "post_id": "17951003097110919",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17951003097110919_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17951003097110919_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18099599461749203.webp",
@@ -452,7 +452,7 @@ const GALLERY_IMAGES = [
     "item_id": "18094095407071118",
     "post_id": "18094095407071118",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18094095407071118_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18094095407071118_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17962027107029610.mp4",
@@ -460,7 +460,7 @@ const GALLERY_IMAGES = [
     "item_id": "17962027107029610",
     "post_id": "17962027107029610",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17962027107029610_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17962027107029610_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17852854302593480.webp",
@@ -548,7 +548,7 @@ const GALLERY_IMAGES = [
     "item_id": "18041005787725479",
     "post_id": "18041005787725479",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18041005787725479_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18041005787725479_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18057020018367161.webp",
@@ -606,7 +606,7 @@ const GALLERY_IMAGES = [
     "item_id": "18072479633109405",
     "post_id": "18072479633109405",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18072479633109405_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18072479633109405_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18208481125316258.webp",
@@ -644,7 +644,7 @@ const GALLERY_IMAGES = [
     "item_id": "18007958420674760",
     "post_id": "18007958420674760",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18007958420674760_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18007958420674760_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18107937169595688.webp",
@@ -702,7 +702,7 @@ const GALLERY_IMAGES = [
     "item_id": "18052203428680514",
     "post_id": "18047006876704042",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18052203428680514_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_18052203428680514_thumb.webp",
     "carousel": true,
     "cidx": 2,
     "ccount": 3
@@ -753,7 +753,7 @@ const GALLERY_IMAGES = [
     "item_id": "18112186504545212",
     "post_id": "18112186504545212",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18112186504545212_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18112186504545212_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18101284834831611.webp",
@@ -771,7 +771,7 @@ const GALLERY_IMAGES = [
     "item_id": "18097031560849264",
     "post_id": "18112479550611613",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18097031560849264_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_18097031560849264_thumb.webp",
     "carousel": true,
     "cidx": 1,
     "ccount": 4
@@ -802,7 +802,7 @@ const GALLERY_IMAGES = [
     "item_id": "18091433518748989",
     "post_id": "18091433518748989",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18091433518748989_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18091433518748989_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18077253407209474.webp",
@@ -820,7 +820,7 @@ const GALLERY_IMAGES = [
     "item_id": "18089170315804159",
     "post_id": "18547912003014324",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18089170315804159_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_18089170315804159_thumb.webp",
     "carousel": true,
     "cidx": 1,
     "ccount": 2
@@ -889,7 +889,7 @@ const GALLERY_IMAGES = [
     "item_id": "17931130230119842",
     "post_id": "17931130230119842",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17931130230119842_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17931130230119842_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18065253887174502.mp4",
@@ -897,7 +897,7 @@ const GALLERY_IMAGES = [
     "item_id": "18065253887174502",
     "post_id": "18065253887174502",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18065253887174502_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18065253887174502_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17916083346232511.webp",
@@ -1079,7 +1079,7 @@ const GALLERY_IMAGES = [
     "item_id": "17863480359456013",
     "post_id": "18167753632388448",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17863480359456013_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_17863480359456013_thumb.webp",
     "carousel": true,
     "cidx": 1,
     "ccount": 2
@@ -1090,7 +1090,7 @@ const GALLERY_IMAGES = [
     "item_id": "18352618189204100",
     "post_id": "18352618189204100",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18352618189204100_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18352618189204100_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18084391139042604.webp",
@@ -1148,7 +1148,7 @@ const GALLERY_IMAGES = [
     "item_id": "18083562146044840",
     "post_id": "18083562146044840",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18083562146044840_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18083562146044840_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18077899397239126.webp",
@@ -1193,7 +1193,7 @@ const GALLERY_IMAGES = [
     "item_id": "18050686262362707",
     "post_id": "18050686262362707",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18050686262362707_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18050686262362707_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17979040103924723.mp4",
@@ -1201,7 +1201,7 @@ const GALLERY_IMAGES = [
     "item_id": "17979040103924723",
     "post_id": "17979040103924723",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17979040103924723_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17979040103924723_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18050220944354024.mp4",
@@ -1209,7 +1209,7 @@ const GALLERY_IMAGES = [
     "item_id": "18050220944354024",
     "post_id": "18050220944354024",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18050220944354024_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18050220944354024_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18163505596390829.webp",
@@ -1293,7 +1293,7 @@ const GALLERY_IMAGES = [
     "item_id": "18111317398576874",
     "post_id": "18111317398576874",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18111317398576874_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18111317398576874_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18066760163370790.webp",
@@ -1311,7 +1311,7 @@ const GALLERY_IMAGES = [
     "item_id": "18044662028688001",
     "post_id": "17991573404714514",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18044662028688001_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_18044662028688001_thumb.webp",
     "carousel": true,
     "cidx": 1,
     "ccount": 2
@@ -1389,7 +1389,7 @@ const GALLERY_IMAGES = [
     "item_id": "17887425150245663",
     "post_id": "17913227031212383",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17887425150245663_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_17887425150245663_thumb.webp",
     "carousel": true,
     "cidx": 2,
     "ccount": 3
@@ -1400,7 +1400,7 @@ const GALLERY_IMAGES = [
     "item_id": "17995033085726232",
     "post_id": "17995033085726232",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17995033085726232_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17995033085726232_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18098408797653834.webp",
@@ -1438,7 +1438,7 @@ const GALLERY_IMAGES = [
     "item_id": "18105527473523097",
     "post_id": "18105527473523097",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18105527473523097_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18105527473523097_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18125459323488028.mp4",
@@ -1446,7 +1446,7 @@ const GALLERY_IMAGES = [
     "item_id": "18125459323488028",
     "post_id": "18125459323488028",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18125459323488028_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18125459323488028_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18094300474736832.webp",
@@ -1484,7 +1484,7 @@ const GALLERY_IMAGES = [
     "item_id": "17975121365771707",
     "post_id": "17872066089429173",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17975121365771707_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_17975121365771707_thumb.webp",
     "carousel": true,
     "cidx": 1,
     "ccount": 3
@@ -1495,7 +1495,7 @@ const GALLERY_IMAGES = [
     "item_id": "17984385209733654",
     "post_id": "17872066089429173",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17984385209733654_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_17984385209733654_thumb.webp",
     "carousel": true,
     "cidx": 2,
     "ccount": 3
@@ -1596,7 +1596,7 @@ const GALLERY_IMAGES = [
     "item_id": "18066648758006007",
     "post_id": "18066648758006007",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18066648758006007_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18066648758006007_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18074521808109339.webp",
@@ -1634,7 +1634,7 @@ const GALLERY_IMAGES = [
     "item_id": "17852020425486077",
     "post_id": "17852020425486077",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17852020425486077_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17852020425486077_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17912696106193072.webp",
@@ -1649,7 +1649,7 @@ const GALLERY_IMAGES = [
     "item_id": "18087535243633225",
     "post_id": "18087535243633225",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18087535243633225_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18087535243633225_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18314568328240653.mp4",
@@ -1657,7 +1657,7 @@ const GALLERY_IMAGES = [
     "item_id": "18314568328240653",
     "post_id": "18314568328240653",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18314568328240653_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18314568328240653_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18052903892185381.mp4",
@@ -1665,7 +1665,7 @@ const GALLERY_IMAGES = [
     "item_id": "18052903892185381",
     "post_id": "18052903892185381",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18052903892185381_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18052903892185381_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17914896966156834.mp4",
@@ -1673,7 +1673,7 @@ const GALLERY_IMAGES = [
     "item_id": "17914896966156834",
     "post_id": "17914896966156834",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17914896966156834_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17914896966156834_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18281915932257730.webp",
@@ -1861,7 +1861,7 @@ const GALLERY_IMAGES = [
     "item_id": "18081680317884692",
     "post_id": "18081680317884692",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18081680317884692_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18081680317884692_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18147382273393408.mp4",
@@ -1869,7 +1869,7 @@ const GALLERY_IMAGES = [
     "item_id": "18147382273393408",
     "post_id": "18147382273393408",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18147382273393408_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18147382273393408_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18073871527977213.webp",
@@ -1897,7 +1897,7 @@ const GALLERY_IMAGES = [
     "item_id": "17942192087901078",
     "post_id": "17942192087901078",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17942192087901078_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17942192087901078_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18053917646594004.mp4",
@@ -1905,7 +1905,7 @@ const GALLERY_IMAGES = [
     "item_id": "18053917646594004",
     "post_id": "18053917646594004",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18053917646594004_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18053917646594004_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18037732355372175.webp",
@@ -1933,7 +1933,7 @@ const GALLERY_IMAGES = [
     "item_id": "18085593385774043",
     "post_id": "18085593385774043",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18085593385774043_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18085593385774043_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18481222096070029.mp4",
@@ -1941,7 +1941,7 @@ const GALLERY_IMAGES = [
     "item_id": "18481222096070029",
     "post_id": "18481222096070029",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18481222096070029_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18481222096070029_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18470304967079488.webp",
@@ -1979,7 +1979,7 @@ const GALLERY_IMAGES = [
     "item_id": "18255976480304993",
     "post_id": "18255976480304993",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18255976480304993_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18255976480304993_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17974347077744838.webp",
@@ -1994,7 +1994,7 @@ const GALLERY_IMAGES = [
     "item_id": "18129873199428567",
     "post_id": "18129873199428567",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18129873199428567_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18129873199428567_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18097401229596628.mp4",
@@ -2002,7 +2002,7 @@ const GALLERY_IMAGES = [
     "item_id": "18097401229596628",
     "post_id": "18097401229596628",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18097401229596628_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18097401229596628_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18083099290839272.mp4",
@@ -2010,7 +2010,7 @@ const GALLERY_IMAGES = [
     "item_id": "18083099290839272",
     "post_id": "18083099290839272",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18083099290839272_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18083099290839272_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18510763915001883.webp",
@@ -2038,7 +2038,7 @@ const GALLERY_IMAGES = [
     "item_id": "18074812873915154",
     "post_id": "18074812873915154",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18074812873915154_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18074812873915154_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18083063197766194.mp4",
@@ -2046,7 +2046,7 @@ const GALLERY_IMAGES = [
     "item_id": "18083063197766194",
     "post_id": "18083063197766194",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18083063197766194_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18083063197766194_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18062040937949080.mp4",
@@ -2054,7 +2054,7 @@ const GALLERY_IMAGES = [
     "item_id": "18062040937949080",
     "post_id": "18062040937949080",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18062040937949080_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18062040937949080_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18176260213332650.webp",
@@ -2082,7 +2082,7 @@ const GALLERY_IMAGES = [
     "item_id": "18087033274649938",
     "post_id": "18087033274649938",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18087033274649938_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18087033274649938_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18025971779499826.mp4",
@@ -2090,7 +2090,7 @@ const GALLERY_IMAGES = [
     "item_id": "18025971779499826",
     "post_id": "18025971779499826",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18025971779499826_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18025971779499826_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18509820733019524.webp",
@@ -2225,7 +2225,7 @@ const GALLERY_IMAGES = [
     "item_id": "18016465199519964",
     "post_id": "18016465199519964",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18016465199519964_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18016465199519964_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18075458080892182.webp",
@@ -2260,7 +2260,7 @@ const GALLERY_IMAGES = [
     "item_id": "18049640639598657",
     "post_id": "18049640639598657",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18049640639598657_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18049640639598657_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18043901993451443.webp",
@@ -2348,7 +2348,7 @@ const GALLERY_IMAGES = [
     "item_id": "18366240094120508",
     "post_id": "18366240094120508",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18366240094120508_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18366240094120508_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18084661123568172.webp",
@@ -2396,7 +2396,7 @@ const GALLERY_IMAGES = [
     "item_id": "17917007199085444",
     "post_id": "18074261548857834",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17917007199085444_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_17917007199085444_thumb.webp",
     "carousel": true,
     "cidx": 2,
     "ccount": 3
@@ -2447,7 +2447,7 @@ const GALLERY_IMAGES = [
     "item_id": "17972194907845869",
     "post_id": "17972194907845869",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17972194907845869_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17972194907845869_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17889610182230514.mp4",
@@ -2455,7 +2455,7 @@ const GALLERY_IMAGES = [
     "item_id": "17889610182230514",
     "post_id": "17889610182230514",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17889610182230514_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17889610182230514_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18451318717072445.webp",
@@ -2493,7 +2493,7 @@ const GALLERY_IMAGES = [
     "item_id": "17961679754904787",
     "post_id": "17961679754904787",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17961679754904787_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17961679754904787_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18060998279046029.webp",
@@ -2541,7 +2541,7 @@ const GALLERY_IMAGES = [
     "item_id": "18123223159390650",
     "post_id": "18123223159390650",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18123223159390650_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18123223159390650_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17926961241035936.mp4",
@@ -2549,7 +2549,7 @@ const GALLERY_IMAGES = [
     "item_id": "17926961241035936",
     "post_id": "17926961241035936",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17926961241035936_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17926961241035936_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17881074837255151.mp4",
@@ -2557,7 +2557,7 @@ const GALLERY_IMAGES = [
     "item_id": "17881074837255151",
     "post_id": "17881074837255151",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17881074837255151_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17881074837255151_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18158032123347058.webp",
@@ -2635,7 +2635,7 @@ const GALLERY_IMAGES = [
     "item_id": "18124942108419105",
     "post_id": "18124942108419105",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18124942108419105_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18124942108419105_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17964791453853321.mp4",
@@ -2643,7 +2643,7 @@ const GALLERY_IMAGES = [
     "item_id": "17964791453853321",
     "post_id": "17964791453853321",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17964791453853321_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17964791453853321_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18006486551540020.webp",
@@ -2671,7 +2671,7 @@ const GALLERY_IMAGES = [
     "item_id": "18051459217977595",
     "post_id": "18051459217977595",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18051459217977595_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18051459217977595_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17972293742825499.webp",
@@ -2686,7 +2686,7 @@ const GALLERY_IMAGES = [
     "item_id": "18019082264677508",
     "post_id": "18019082264677508",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18019082264677508_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18019082264677508_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17896759932054612.webp",
@@ -2724,7 +2724,7 @@ const GALLERY_IMAGES = [
     "item_id": "17843633244421006",
     "post_id": "17843633244421006",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17843633244421006_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17843633244421006_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18029763632317157.mp4",
@@ -2732,7 +2732,7 @@ const GALLERY_IMAGES = [
     "item_id": "18029763632317157",
     "post_id": "18029763632317157",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18029763632317157_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18029763632317157_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18090627814554737.mp4",
@@ -2740,7 +2740,7 @@ const GALLERY_IMAGES = [
     "item_id": "18090627814554737",
     "post_id": "18090627814554737",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18090627814554737_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18090627814554737_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18030994454537916.webp",
@@ -2828,7 +2828,7 @@ const GALLERY_IMAGES = [
     "item_id": "17942470127825237",
     "post_id": "17942470127825237",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17942470127825237_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17942470127825237_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18290457631172806.mp4",
@@ -2836,7 +2836,7 @@ const GALLERY_IMAGES = [
     "item_id": "18290457631172806",
     "post_id": "18290457631172806",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18290457631172806_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18290457631172806_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17921601366014641.webp",
@@ -2904,7 +2904,7 @@ const GALLERY_IMAGES = [
     "item_id": "17843448321399023",
     "post_id": "17843448321399023",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17843448321399023_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17843448321399023_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18117872557438067.webp",
@@ -2972,7 +2972,7 @@ const GALLERY_IMAGES = [
     "item_id": "18051764198120874",
     "post_id": "18051764198120874",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18051764198120874_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18051764198120874_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18066102463827856.mp4",
@@ -2980,7 +2980,7 @@ const GALLERY_IMAGES = [
     "item_id": "18066102463827856",
     "post_id": "18066102463827856",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18066102463827856_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18066102463827856_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18042385703193057.mp4",
@@ -2988,7 +2988,7 @@ const GALLERY_IMAGES = [
     "item_id": "18042385703193057",
     "post_id": "18042385703193057",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18042385703193057_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18042385703193057_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18096528205491100.webp",
@@ -3023,7 +3023,7 @@ const GALLERY_IMAGES = [
     "item_id": "18476521378063827",
     "post_id": "18476521378063827",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18476521378063827_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18476521378063827_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18259152247281025.webp",
@@ -3068,7 +3068,7 @@ const GALLERY_IMAGES = [
     "item_id": "18100998754463907",
     "post_id": "18100998754463907",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18100998754463907_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18100998754463907_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18470452993008281.mp4",
@@ -3076,7 +3076,7 @@ const GALLERY_IMAGES = [
     "item_id": "18470452993008281",
     "post_id": "18470452993008281",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18470452993008281_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18470452993008281_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17950654229883412.webp",
@@ -3091,7 +3091,7 @@ const GALLERY_IMAGES = [
     "item_id": "18023192474552073",
     "post_id": "18023192474552073",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18023192474552073_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18023192474552073_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18031379714419736.webp",
@@ -3149,7 +3149,7 @@ const GALLERY_IMAGES = [
     "item_id": "18048212089887658",
     "post_id": "18048212089887658",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18048212089887658_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18048212089887658_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17935853048826259.mp4",
@@ -3157,7 +3157,7 @@ const GALLERY_IMAGES = [
     "item_id": "17935853048826259",
     "post_id": "17935853048826259",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17935853048826259_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17935853048826259_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17858917509299268.mp4",
@@ -3165,7 +3165,7 @@ const GALLERY_IMAGES = [
     "item_id": "17858917509299268",
     "post_id": "17858917509299268",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17858917509299268_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17858917509299268_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18012122501443933.webp",
@@ -3180,7 +3180,7 @@ const GALLERY_IMAGES = [
     "item_id": "18048858820847861",
     "post_id": "18048858820847861",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18048858820847861_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18048858820847861_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18024804956605697.webp",
@@ -3298,7 +3298,7 @@ const GALLERY_IMAGES = [
     "item_id": "17981433710765861",
     "post_id": "17981433710765861",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17981433710765861_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17981433710765861_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18056638180880145.webp",
@@ -3326,7 +3326,7 @@ const GALLERY_IMAGES = [
     "item_id": "18052730194910902",
     "post_id": "18052730194910902",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18052730194910902_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18052730194910902_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18314720182093428.webp",
@@ -3428,7 +3428,7 @@ const GALLERY_IMAGES = [
     "item_id": "18320657914153592",
     "post_id": "18320657914153592",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18320657914153592_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18320657914153592_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17923712759844949.webp",
@@ -3443,7 +3443,7 @@ const GALLERY_IMAGES = [
     "item_id": "17981721281592756",
     "post_id": "17981721281592756",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17981721281592756_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17981721281592756_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18035124422507465.webp",
@@ -3465,7 +3465,7 @@ const GALLERY_IMAGES = [
     "item_id": "18042664717961242",
     "post_id": "18042664717961242",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18042664717961242_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18042664717961242_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17874033198117555.webp",
@@ -3661,7 +3661,7 @@ const GALLERY_IMAGES = [
     "item_id": "18032937596089388",
     "post_id": "18032937596089388",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18032937596089388_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18032937596089388_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17874989160099074.mp4",
@@ -3669,7 +3669,7 @@ const GALLERY_IMAGES = [
     "item_id": "17874989160099074",
     "post_id": "17874989160099074",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17874989160099074_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17874989160099074_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18021723191076282.webp",
@@ -3684,7 +3684,7 @@ const GALLERY_IMAGES = [
     "item_id": "17960385701652588",
     "post_id": "17960385701652588",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17960385701652588_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17960385701652588_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18036961057939724.webp",
@@ -3712,7 +3712,7 @@ const GALLERY_IMAGES = [
     "item_id": "17870093871128603",
     "post_id": "17870093871128603",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17870093871128603_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17870093871128603_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18029108069122365.webp",
@@ -3767,7 +3767,7 @@ const GALLERY_IMAGES = [
     "item_id": "17999402264629794",
     "post_id": "17999402264629794",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17999402264629794_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17999402264629794_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18047757481701525.webp",
@@ -3892,7 +3892,7 @@ const GALLERY_IMAGES = [
     "item_id": "18232601095258045",
     "post_id": "18232601095258045",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18232601095258045_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18232601095258045_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18033384559814733.webp",
@@ -4368,7 +4368,7 @@ const GALLERY_IMAGES = [
     "item_id": "18088519216423250",
     "post_id": "18088519216423250",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18088519216423250_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18088519216423250_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17952692570750751.mp4",
@@ -4376,7 +4376,7 @@ const GALLERY_IMAGES = [
     "item_id": "17952692570750751",
     "post_id": "17952692570750751",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17952692570750751_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17952692570750751_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18423219484056776.webp",
@@ -4451,7 +4451,7 @@ const GALLERY_IMAGES = [
     "item_id": "18041779267638749",
     "post_id": "18041779267638749",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18041779267638749_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18041779267638749_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18013915130173373.webp",
@@ -4535,7 +4535,7 @@ const GALLERY_IMAGES = [
     "item_id": "18406013989019225",
     "post_id": "18406013989019225",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18406013989019225_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18406013989019225_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18034192918759884.webp",
@@ -4612,7 +4612,7 @@ const GALLERY_IMAGES = [
     "item_id": "17901816815927060",
     "post_id": "17901816815927060",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17901816815927060_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17901816815927060_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18062434963445208.webp",
@@ -4640,7 +4640,7 @@ const GALLERY_IMAGES = [
     "item_id": "18000387995159407",
     "post_id": "18000387995159407",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18000387995159407_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18000387995159407_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17998193537519957.webp",
@@ -4677,7 +4677,7 @@ const GALLERY_IMAGES = [
     "item_id": "18089393785405813",
     "post_id": "18089393785405813",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18089393785405813_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18089393785405813_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17998711664377785.webp",
@@ -4705,7 +4705,7 @@ const GALLERY_IMAGES = [
     "item_id": "18036019414640625",
     "post_id": "18036019414640625",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18036019414640625_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18036019414640625_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18049254109541920.webp",
@@ -4720,7 +4720,7 @@ const GALLERY_IMAGES = [
     "item_id": "17931717392697260",
     "post_id": "17931717392697260",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17931717392697260_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17931717392697260_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17919375854755418.webp",
@@ -4748,7 +4748,7 @@ const GALLERY_IMAGES = [
     "item_id": "18208094986286266",
     "post_id": "18208094986286266",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18208094986286266_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18208094986286266_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17988271130313555.webp",
@@ -4763,7 +4763,7 @@ const GALLERY_IMAGES = [
     "item_id": "18038735971612181",
     "post_id": "18038735971612181",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18038735971612181_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18038735971612181_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18080567533412003.mp4",
@@ -4771,7 +4771,7 @@ const GALLERY_IMAGES = [
     "item_id": "18080567533412003",
     "post_id": "18080567533412003",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18080567533412003_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18080567533412003_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18010957042996442.webp",
@@ -4961,7 +4961,7 @@ const GALLERY_IMAGES = [
     "item_id": "17988062165333196",
     "post_id": "17988062165333196",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17988062165333196_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17988062165333196_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17945563202563415.webp",
@@ -4990,7 +4990,7 @@ const GALLERY_IMAGES = [
     "item_id": "18207841129300408",
     "post_id": "18207841129300408",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18207841129300408_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18207841129300408_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17886199490863821.mp4",
@@ -5023,7 +5023,7 @@ const GALLERY_IMAGES = [
     "item_id": "17922706817735856",
     "post_id": "17922706817735856",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17922706817735856_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17922706817735856_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17931876749617249.mp4",
@@ -5031,7 +5031,7 @@ const GALLERY_IMAGES = [
     "item_id": "17931876749617249",
     "post_id": "17931876749617249",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17931876749617249_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17931876749617249_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17952290075630726.webp",
@@ -5059,7 +5059,7 @@ const GALLERY_IMAGES = [
     "item_id": "17852120351995004",
     "post_id": "17852120351995004",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17852120351995004_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17852120351995004_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18195474445252523.webp",
@@ -5087,7 +5087,7 @@ const GALLERY_IMAGES = [
     "item_id": "17962284101378256",
     "post_id": "17962284101378256",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17962284101378256_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17962284101378256_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17991435707015862.webp",
@@ -5135,7 +5135,7 @@ const GALLERY_IMAGES = [
     "item_id": "18287671468117935",
     "post_id": "18287671468117935",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18287671468117935_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18287671468117935_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17898241769807598.webp",
@@ -5190,7 +5190,7 @@ const GALLERY_IMAGES = [
     "item_id": "18223354348172950",
     "post_id": "18223354348172950",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18223354348172950_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18223354348172950_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18027434467524285.webp",
@@ -5454,7 +5454,7 @@ const GALLERY_IMAGES = [
     "item_id": "18348195352003637",
     "post_id": "18348195352003637",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18348195352003637_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18348195352003637_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18041824093426624.webp",
@@ -5476,7 +5476,7 @@ const GALLERY_IMAGES = [
     "item_id": "18056576707386021",
     "post_id": "18056576707386021",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18056576707386021_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18056576707386021_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18249862501156661.webp",
@@ -5672,7 +5672,7 @@ const GALLERY_IMAGES = [
     "item_id": "18265004014189100",
     "post_id": "17950739612412086",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18265004014189100_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_18265004014189100_thumb.webp",
     "carousel": true,
     "cidx": 1,
     "ccount": 2
@@ -5870,7 +5870,7 @@ const GALLERY_IMAGES = [
     "item_id": "17978912668754172",
     "post_id": "17978912668754172",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17978912668754172_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17978912668754172_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18018026884471408.mp4",
@@ -6019,7 +6019,7 @@ const GALLERY_IMAGES = [
     "item_id": "17961741011013570",
     "post_id": "17961741011013570",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17961741011013570_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17961741011013570_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17904951338662736.webp",
@@ -6034,7 +6034,7 @@ const GALLERY_IMAGES = [
     "item_id": "17942078459377419",
     "post_id": "17942078459377419",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17942078459377419_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17942078459377419_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17970268162855055.webp",
@@ -6109,7 +6109,7 @@ const GALLERY_IMAGES = [
     "item_id": "18047147005366668",
     "post_id": "18047147005366668",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18047147005366668_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18047147005366668_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17963153026900876.webp",
@@ -6144,7 +6144,7 @@ const GALLERY_IMAGES = [
     "item_id": "17975139385733561",
     "post_id": "17975139385733561",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17975139385733561_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17975139385733561_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17927432000377513.mp4",
@@ -6152,7 +6152,7 @@ const GALLERY_IMAGES = [
     "item_id": "17927432000377513",
     "post_id": "17927432000377513",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17927432000377513_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17927432000377513_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17958997783977898.mp4",
@@ -6176,7 +6176,7 @@ const GALLERY_IMAGES = [
     "item_id": "17964979837864363",
     "post_id": "17964979837864363",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17964979837864363_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17964979837864363_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17983192786594557.webp",
@@ -6393,7 +6393,7 @@ const GALLERY_IMAGES = [
     "item_id": "17933985842208595",
     "post_id": "17933985842208595",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17933985842208595_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17933985842208595_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17961360508860497.webp",
@@ -6469,7 +6469,7 @@ const GALLERY_IMAGES = [
     "item_id": "18202407301165685",
     "post_id": "18202407301165685",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18202407301165685_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18202407301165685_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17965351075740875.webp",
@@ -6491,7 +6491,7 @@ const GALLERY_IMAGES = [
     "item_id": "17889221576663420",
     "post_id": "17889221576663420",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17889221576663420_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17889221576663420_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17952693181942761.webp",
@@ -6506,7 +6506,7 @@ const GALLERY_IMAGES = [
     "item_id": "17926634336510793",
     "post_id": "17926634336510793",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17926634336510793_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17926634336510793_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17930401709354680.webp",
@@ -6542,7 +6542,7 @@ const GALLERY_IMAGES = [
     "item_id": "17921988884331185",
     "post_id": "17921988884331185",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17921988884331185_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17921988884331185_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17986345630516071.webp",
@@ -6557,7 +6557,7 @@ const GALLERY_IMAGES = [
     "item_id": "18057294679320065",
     "post_id": "18057294679320065",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18057294679320065_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18057294679320065_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17863984775743402.webp",
@@ -6930,7 +6930,7 @@ const GALLERY_IMAGES = [
     "item_id": "17895906671607201",
     "post_id": "17895906671607201",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17895906671607201_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17895906671607201_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17946823156772234.webp",
@@ -7090,7 +7090,7 @@ const GALLERY_IMAGES = [
     "item_id": "17982997249467436",
     "post_id": "17982997249467436",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17982997249467436_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17982997249467436_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18118792582278037.mp4",
@@ -7098,7 +7098,7 @@ const GALLERY_IMAGES = [
     "item_id": "18118792582278037",
     "post_id": "18118792582278037",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18118792582278037_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18118792582278037_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17968496554527011.webp",
@@ -7127,7 +7127,7 @@ const GALLERY_IMAGES = [
     "item_id": "17909489306430964",
     "post_id": "17909489306430964",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17909489306430964_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17909489306430964_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17975286610464431.mp4",
@@ -7202,7 +7202,7 @@ const GALLERY_IMAGES = [
     "item_id": "17856088127696120",
     "post_id": "17856088127696120",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17856088127696120_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17856088127696120_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17931140362995247.mp4",
@@ -7408,7 +7408,7 @@ const GALLERY_IMAGES = [
     "item_id": "17919242336030231",
     "post_id": "17919242336030231",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17919242336030231_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17919242336030231_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17920116973908262.webp",
@@ -7423,7 +7423,7 @@ const GALLERY_IMAGES = [
     "item_id": "17968397749470504",
     "post_id": "17968397749470504",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17968397749470504_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17968397749470504_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17895003566336057.mp4",
@@ -7431,7 +7431,7 @@ const GALLERY_IMAGES = [
     "item_id": "17895003566336057",
     "post_id": "17895003566336057",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17895003566336057_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17895003566336057_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17910810572178900.webp",
@@ -7446,7 +7446,7 @@ const GALLERY_IMAGES = [
     "item_id": "17872732358606959",
     "post_id": "17872732358606959",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17872732358606959_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17872732358606959_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17917778678038491.webp",
@@ -7470,7 +7470,7 @@ const GALLERY_IMAGES = [
     "item_id": "18152709667205132",
     "post_id": "18152709667205132",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18152709667205132_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_18152709667205132_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17928949000754211.mp4",
@@ -7595,7 +7595,7 @@ const GALLERY_IMAGES = [
     "item_id": "17927117578692898",
     "post_id": "18169414363157664",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17927117578692898_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_17927117578692898_thumb.webp",
     "carousel": true,
     "cidx": 0,
     "ccount": 2
@@ -7636,7 +7636,7 @@ const GALLERY_IMAGES = [
     "item_id": "17931562918644910",
     "post_id": "17895080429162987",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17931562918644910_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_17931562918644910_thumb.webp",
     "carousel": true,
     "cidx": 2,
     "ccount": 3
@@ -7667,7 +7667,7 @@ const GALLERY_IMAGES = [
     "item_id": "17987996179364374",
     "post_id": "17883974216338558",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17987996179364374_thumb.jpg",
+    "thumb": "https://images.yardendamri.co.il/yarden_17987996179364374_thumb.webp",
     "carousel": true,
     "cidx": 2,
     "ccount": 3
@@ -8200,7 +8200,7 @@ const GALLERY_IMAGES = [
     "item_id": "17926049950524424",
     "post_id": "17926049950524424",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17926049950524424_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17926049950524424_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17887393988012875.mp4",
@@ -8347,7 +8347,7 @@ const GALLERY_IMAGES = [
     "item_id": "17943323485429342",
     "post_id": "17943323485429342",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17943323485429342_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17943323485429342_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17950904701408049.webp",
@@ -9600,7 +9600,7 @@ const GALLERY_IMAGES = [
     "item_id": "17973048385238637",
     "post_id": "17973048385238637",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17973048385238637_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17973048385238637_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17848314520387879.webp",
@@ -9846,7 +9846,7 @@ const GALLERY_IMAGES = [
     "item_id": "17959989202236563",
     "post_id": "17959989202236563",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17959989202236563_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17959989202236563_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_18005070970146219.webp",
@@ -9891,7 +9891,7 @@ const GALLERY_IMAGES = [
     "item_id": "17864073601317071",
     "post_id": "17864073601317071",
     "video": true,
-    "thumb": ""
+    "thumb": "https://images.yardendamri.co.il/yarden_17864073601317071_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17852024335344690.mp4",
@@ -9997,7 +9997,7 @@ const GALLERY_IMAGES = [
     "item_id": "17916897814266731",
     "post_id": "17916897814266731",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17916897814266731_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17916897814266731_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17973167485196639.mp4",
@@ -10005,7 +10005,7 @@ const GALLERY_IMAGES = [
     "item_id": "17973167485196639",
     "post_id": "17973167485196639",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17973167485196639_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17973167485196639_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17985325786081688.webp",
@@ -10339,7 +10339,7 @@ const GALLERY_IMAGES = [
     "item_id": "17905003144208575",
     "post_id": "17905003144208575",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17905003144208575_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17905003144208575_thumb.webp"
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_17965998208033732.mp4",
@@ -10454,7 +10454,7 @@ const GALLERY_IMAGES = [
     "item_id": "17952544468003564",
     "post_id": "17952544468003564",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17952544468003564_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17952544468003564_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17935472275120082.webp",
@@ -11039,7 +11039,7 @@ const GALLERY_IMAGES = [
     "item_id": "17899338655184361",
     "post_id": "17899338655184361",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17899338655184361_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17899338655184361_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17908099471125128.webp",
@@ -11132,7 +11132,7 @@ const GALLERY_IMAGES = [
     "item_id": "17906917255113346",
     "post_id": "17906917255113346",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17906917255113346_thumb.jpg"
+    "thumb": "https://images.yardendamri.co.il/yarden_17906917255113346_thumb.webp"
   },
   {
     "u": "https://images.yardendamri.co.il/yarden_17920712821039311.webp",
