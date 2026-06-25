@@ -73,9 +73,12 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
     @media(min-width:640px){.gallery-grid{columns:3}}
     @media(min-width:960px){.gallery-grid{columns:4}}
     .gallery-item{break-inside:avoid;margin-bottom:10px;position:relative;overflow:hidden;border-radius:0;cursor:pointer;background:#241910;background-image:linear-gradient(100deg,#241910 30%,#3a2a1e 50%,#241910 70%);background-size:200% 100%;animation:shimmer 1.5s linear infinite}
-    .gallery-item img,.gallery-item video{position:relative;z-index:1}
+    /* Reveal media with a fade that ALWAYS ends visible (animation fill 'both' overrides any
+       inline opacity:0) — never depends on an onload event firing, so tiles can't get stuck brown. */
+    .gallery-item img,.gallery-item video{position:relative;z-index:1;animation:tilefade .5s ease-out both}
     @keyframes shimmer{to{background-position:-200% 0}}
-    .gallery-item img{width:100%;display:block;transition:transform .4s,opacity .3s;opacity:0}
+    @keyframes tilefade{from{opacity:0}to{opacity:1}}
+    .gallery-item img{width:100%;display:block;transition:transform .4s}
     .gallery-item img.loaded{opacity:1}
     .gallery-item:hover img{transform:scale(1.04)}
     .gallery-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:12px}
@@ -358,7 +361,7 @@ body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, 
 </div>
 
 <script src="cloud-storage.js?v=7"></script>
-<script src="gallery-data.js?v=1782367834890"></script>
+<script src="gallery-data.js?v=1782379831970"></script>
 <script>
 // ── ADMIN SETTINGS (read from RemoteState — synced across all visitors via JSONBin) ──
 function getAdminSettings() {
@@ -544,13 +547,13 @@ function renderGallery() {
       const _vid = item.item_id || (String(item.u).match(/yarden_(\d+)/) || [])[1] || '';
       const _thumb = _vid ? `https://images.yardendamri.co.il/yarden_${_vid}_thumb.webp` : (item.thumb || '');
       mediaHtml = `<img src="${_thumb}" data-video="${item.u}" alt="${_alt}" loading="lazy" decoding="async"
-        style="width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block;opacity:0;transition:opacity .45s;${rotStyle}"
-        onload="this.style.opacity=1" onerror="if(!this.dataset.fb&&this.src.indexOf('_thumb.webp')>-1){this.dataset.fb=1;this.src=this.src.replace('_thumb.webp','_thumb.jpg');}else{this.style.opacity=1;}">`;
+        style="width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block;${rotStyle}"
+        onerror="if(!this.dataset.fb&&this.src.indexOf('_thumb.webp')>-1){this.dataset.fb=1;this.src=this.src.replace('_thumb.webp','_thumb.jpg');}">`;
     } else {
       const _gThumb = item.thumb || item.u.replace(/\.(webp|jpe?g|png)(\?.*)?$/i, '_thumb.webp');
       mediaHtml = `<img src="${_gThumb}" alt="${_alt}" loading="lazy"
-        style="width:100%;display:block;transition:transform .4s;opacity:0;${rotStyle}"
-        onload="this.style.opacity=1" onerror="this.onerror=null;this.src='${item.u}';this.style.opacity=1"/>`;
+        style="width:100%;display:block;transition:transform .4s;${rotStyle}"
+        onerror="this.onerror=null;this.src='${item.u}'"/>`;
     }
     const badge = (item.carousel || item.ccount > 1)
       ? `<div class="media-badge" aria-label="פוסט עם מספר תמונות"><svg viewBox="0 0 48 48"><path d="M34.8 29.7V11c0-2.9-2.3-5.2-5.2-5.2H11c-2.9 0-5.2 2.3-5.2 5.2v18.7c0 2.9 2.3 5.2 5.2 5.2h18.7c2.8-.1 5.1-2.4 5.1-5.2zM39.2 15v16.1c0 4.5-3.7 8.2-8.2 8.2H14.9c-.6 0-.9.7-.5 1.1 1 1.1 2.4 1.8 4.1 1.8h12.7c5.5 0 9.9-4.4 9.9-9.9V18.6c0-1.6-.8-3.1-1.8-4.1-.5-.4-1.1 0-1.1.5z"/></svg></div>`

@@ -806,3 +806,6 @@ p > a[href^="tel:"][style] {
 
 /* Grid skeleton placeholder shimmer (gallery tiles while the thumbnail loads) */
 @keyframes shimmer{to{background-position:-200% 0}}
+
+/* Bulletproof tile reveal — always ends at opacity 1, never depends on onload */
+@keyframes tilefade{from{opacity:0}to{opacity:1}}
