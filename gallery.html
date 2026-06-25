@@ -361,7 +361,7 @@ body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, 
 </div>
 
 <script src="cloud-storage.js?v=7"></script>
-<script src="gallery-data.js?v=1782379831970"></script>
+<script src="gallery-data.js?v=1782398483735"></script>
 <script>
 // ── ADMIN SETTINGS (read from RemoteState — synced across all visitors via JSONBin) ──
 function getAdminSettings() {
@@ -579,36 +579,34 @@ function renderGallery() {
   observeVideos();
 }
 
-// ── VIDEO PREVIEW: grid shows the thumbnail; on DESKTOP it swaps to an autoplay <video> when
-// in view. On mobile/touch we keep the static thumbnail (like Instagram) — many simultaneous
-// autoplay videos don't render reliably on iOS Safari (blank tiles), and it saves data/battery.
-// Tapping any video tile opens the lightbox, which plays the full video.
+// ── VIDEO PREVIEW: the thumbnail <img> ALWAYS stays. When a tile is in view we lay an autoplaying
+// <video> ON TOP of it and reveal the video only once it actually starts playing ('playing' event).
+// So if iOS can't autoplay (Low Power Mode, too many at once, throttling), the thumbnail simply
+// stays visible — a tile can never go blank. Tap still opens the lightbox for the full video.
 const _obsSet = new WeakSet();
-const _gridAutoplay = window.matchMedia('(min-width:1081px) and (hover:hover)').matches;
 const videoObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     const el = e.target;
-    if (e.isIntersecting && el.tagName === 'IMG' && el.dataset.video) {
-      if (!_gridAutoplay) return;   // mobile: leave the thumbnail image in place
+    if (el.tagName !== 'IMG' || !el.dataset.video) return;
+    if (e.isIntersecting) {
+      if (el._ov) { el._ov.play().catch(()=>{}); return; }
       const v = document.createElement('video');
-      v.src = el.dataset.video; v.muted = true; v.loop = true;
-      v.playsInline = true; v.autoplay = true; v.preload = 'metadata';
-      v.poster = el.src || '';   // keep the thumbnail visible while the video loads (no black box)
-      v.style.cssText = el.style.cssText;
-      v.style.background = '#efe7df';
-      v.style.opacity = '1';   // the <img> may still be mid fade-in (opacity 0); force the video visible
-      el.parentNode.replaceChild(v, el);
-      v.muted = true; v.play().catch(()=>{});
-      _obsSet.add(v); videoObserver.observe(v);
-    } else if (e.isIntersecting && el.tagName === 'VIDEO') {
-      el.muted = true; el.play().catch(()=>{});
-    } else if (!e.isIntersecting && el.tagName === 'VIDEO') {
-      el.pause();
+      v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true; v.preload = 'metadata';
+      v.setAttribute('muted',''); v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline','');
+      v.src = el.dataset.video;
+      v.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s;z-index:1;animation:none;' + (el.style.transform ? ('transform:'+el.style.transform+';') : '');
+      v.addEventListener('playing', () => { v.style.opacity = '1'; });
+      el.parentNode.appendChild(v);
+      el._ov = v;
+      v.play().catch(()=>{});
+    } else if (el._ov) {
+      try { el._ov.pause(); } catch(_){}
+      el._ov.style.opacity = '0';
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.2 });
 function observeVideos() {
-  document.querySelectorAll('#galleryGrid img[data-video], #galleryGrid video').forEach(el => {
+  document.querySelectorAll('#galleryGrid img[data-video]').forEach(el => {
     if (!_obsSet.has(el)) { _obsSet.add(el); videoObserver.observe(el); }
   });
 }
