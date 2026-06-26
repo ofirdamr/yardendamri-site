@@ -1918,20 +1918,12 @@ async function initAnalytics() {
     });
     renderBars('pages-list', pagesObj, pagesTotal, 'אין נתונים');
 
-    // Search Console setup guide in keywords section
+    // Keywords live only in Search Console — link straight to the queries report.
     document.getElementById('keywords-list').innerHTML = `
-      <p style="font-size:.8rem;color:var(--text);margin-bottom:8px;">מילות חיפוש מגיעות מ-<strong>Google Search Console</strong> — לא מ-GA4.</p>
-      <div style="font-size:.75rem;color:var(--muted);line-height:1.7;">
-        <strong style="color:var(--text);">הגדרה חד-פעמית (5 דקות):</strong><br>
-        1. כנסי ל-<a href="https://search.google.com/search-console" target="_blank" style="color:var(--blush)">search.google.com/search-console</a><br>
-        2. הוסיפי נכס → <strong>URL Prefix</strong> → הכניסי <code>https://yardendamri.co.il</code><br>
-        3. בחרי אימות <strong>HTML Tag</strong> → העתיקי את ה-meta tag<br>
-        4. שלחי לי את ה-meta tag ואני אוסיף לאתר<br>
-        5. לאחר אימות → <a href="https://search.google.com/search-console/performance/search-analytics" target="_blank" style="color:var(--blush)">ביצועים → שאילתות</a> = כל מילות החיפוש
-      </div>
-      <a href="https://search.google.com/search-console" target="_blank"
-         style="display:inline-block;margin-top:10px;background:var(--blush);color:#fff;padding:7px 14px;border-radius:8px;text-decoration:none;font-size:.78rem;">
-        📊 פתח Search Console
+      <p style="font-size:.8rem;color:var(--text);margin-bottom:10px;line-height:1.7;">מילות החיפוש שאנשים הקלידו בגוגל זמינות ב-<strong>Google Search Console</strong> (לא ב-GA4).</p>
+      <a href="https://search.google.com/search-console/performance/search-analytics?resource_id=sc-domain:yardendamri.co.il" target="_blank"
+         style="display:inline-block;background:var(--blush);color:#fff;padding:9px 16px;border-radius:8px;text-decoration:none;font-size:.82rem;">
+        🔎 מילות החיפוש שלי (שאילתות)
       </a>`;
 
   } catch(err) {
