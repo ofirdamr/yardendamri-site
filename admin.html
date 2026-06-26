@@ -2243,7 +2243,13 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
       return;
     }
 
-    const ov = overrides();
+    // Pull the freshest saved content straight from the Worker (private repo, no publish lag)
+    // so re-login never shows a stale view. Falls back to cache if the Worker is unreachable.
+    let ov = overrides();
+    try {
+      const sr = await fetch(WORKER_URL + '/settings', { cache:'no-cache' });
+      if (sr.ok) { const sd = await sr.json(); if (sd && sd.content) ov = sd.content; }
+    } catch(e){}
     const nodes = doc.querySelectorAll('[data-edit]');
     if (!nodes.length){ host.innerHTML = '<p style="color:var(--muted)">לא נמצאו שדות טקסט הניתנים לעריכה בדף זה.</p>'; return; }
 
@@ -2388,7 +2394,8 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
     if(panel.style.display==='none'){
       panel.style.display='block';
       panel.innerHTML =
-          '<div style="font-size:.8rem;color:var(--muted);margin-bottom:8px;">תארי מה תרצי — סגנון, אורך, דגש. אפשר להשאיר ריק לקבלת הצעה כללית.</div>'
+          '<div style="text-align:left;margin-bottom:4px;"><button onclick="document.getElementById(\'ai_'+taId+'\').style.display=\'none\'" style="background:none;border:none;color:var(--muted);font-size:.9rem;cursor:pointer;padding:2px 4px;">✕ סגור</button></div>'
+        + '<div style="font-size:.8rem;color:var(--muted);margin-bottom:8px;">תארי מה תרצי — סגנון, אורך, דגש. אפשר להשאיר ריק לקבלת הצעה כללית.</div>'
         + '<textarea id="aip_'+taId+'" rows="2" dir="rtl" placeholder="לדוגמה: חם ואישי, קצר, עם קריאה לפעולה" style="width:100%;box-sizing:border-box;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:9px;font-family:inherit;font-size:.86rem;"></textarea>'
         + '<button class="btn btn-secondary" title="הכתבה קולית" onclick="toggleDictation(this,\'aip_'+taId+'\')" style="margin-top:8px;margin-left:8px;font-size:.82rem;">🎤 הכתיבי</button>'
         + '<button class="btn btn-primary" onclick="requestCopy(\''+taId+'\')" style="margin-top:8px;font-size:.82rem;">✨ קבל הצעה</button>'
