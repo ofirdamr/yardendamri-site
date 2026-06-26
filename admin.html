@@ -2297,7 +2297,13 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
     host.innerHTML = html;
   }
 
-  function markContentChanged(){ const b=document.getElementById('content-save-btn'); if(b && b.textContent.indexOf('*')<0) b.textContent='💾 שמור שינויים *'; }
+  let _autoSaveTimer = null;
+  function markContentChanged(){
+    const b=document.getElementById('content-save-btn');
+    if(b && b.textContent.indexOf('*')<0 && b.textContent.indexOf('שומר')<0 && b.textContent.indexOf('נשמר')<0) b.textContent='💾 שמור שינויים *';
+    clearTimeout(_autoSaveTimer);
+    _autoSaveTimer = setTimeout(function(){ saveContentEdits(true); }, 2500); // auto-save 2.5s after last edit
+  }
 
   function ceCount(ta){
     const limit = +(ta.dataset.seoLimit||0); if(!limit) return;
@@ -2309,19 +2315,22 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
 
   function resetContentField(id){ const ta=document.getElementById(id); if(!ta) return; ta.value=_defaults[ta.dataset.key]||''; markContentChanged(); }
 
-  async function saveContentEdits(){
-    if(!(window.RemoteState && window.RemoteState.hasToken && window.RemoteState.hasToken())){ showToast('יש להתחבר מחדש כדי לשמור'); return; }
+  async function saveContentEdits(silent){
+    if(!(window.RemoteState && window.RemoteState.hasToken && window.RemoteState.hasToken())){ if(!silent) showToast('יש להתחבר מחדש כדי לשמור'); return; }
     const ov = overrides(); const out = {};
     document.querySelectorAll('#content-editor textarea[data-key]').forEach(ta=>{
       const key=ta.dataset.key, val=ta.value, def=_defaults[key];
       if(val!==def || Object.prototype.hasOwnProperty.call(ov,key)) out[key]=val;
     });
-    if(!Object.keys(out).length){ showToast('אין שינויים לשמירה'); return; }
-    const btn=document.getElementById('content-save-btn'); const prev=btn.textContent; btn.disabled=true; btn.textContent='שומר…';
+    if(!Object.keys(out).length){ if(!silent) showToast('אין שינויים לשמירה'); return; }
+    const btn=document.getElementById('content-save-btn'); if(btn){ btn.disabled=true; btn.textContent='💾 שומר…'; }
     const r = await window.RemoteState.update({ content: out });
-    btn.disabled=false;
-    if(r && r.ok){ btn.textContent='💾 שמור שינויים'; showToast('✅ התוכן נשמר! מתעדכן באתר תוך כדקה.'); }
-    else { btn.textContent=prev; showToast('❌ שמירה נכשלה: '+((r&&r.error)||'שגיאה')); }
+    if(btn) btn.disabled=false;
+    if(r && r.ok){
+      if(btn){ btn.textContent='✓ נשמר'; setTimeout(function(){ if(btn.textContent==='✓ נשמר') btn.textContent='💾 שמור שינויים'; }, 2500); }
+      showToast(silent ? '✓ נשמר אוטומטית' : '✅ התוכן נשמר! מתעדכן באתר תוך כדקה.');
+    }
+    else { if(btn) btn.textContent='💾 שמור שינויים *'; showToast('❌ שמירה נכשלה: '+((r&&r.error)||'שגיאה')); }
   }
 
   // ── Voice dictation: record audio → Gemini transcribes (context-aware, punctuated) ──
