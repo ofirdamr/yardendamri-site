@@ -2343,7 +2343,10 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
       });
       if(res.status===404){ out.innerHTML='<span style="color:var(--muted)">שירות הקופירייטר עדיין לא הופעל (ממתין לפריסת ה-Worker).</span>'; return; }
       if(res.status===401||res.status===403){ out.innerHTML='<span style="color:var(--red)">פג תוקף ההתחברות. התחברי מחדש.</span>'; return; }
-      if(!res.ok){ out.innerHTML='<span style="color:var(--red)">שגיאה ('+res.status+').</span>'; return; }
+      if(!res.ok){
+        let info=''; try{ const ed=await res.json(); info=(ed.error||'')+(ed.detail?(' — '+ed.detail):''); }catch(e){}
+        out.innerHTML='<span style="color:var(--red)">שגיאה ('+res.status+')'+(info?(': '+esc(info)):'')+'</span>'; return;
+      }
       data = await res.json();
     } catch(e){ out.innerHTML='<span style="color:var(--red)">שגיאת רשת: '+esc(e.message)+'</span>'; return; }
 
