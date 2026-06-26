@@ -2274,13 +2274,14 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
       g.fields.forEach(f=>{
         const id = 'ce_'+(_idx++);
         const lines = Math.min(8, Math.max(2, String(f.value).split('\n').length + (f.value.length>90?1:0)));
+        const seoLimit = /\.meta\.title$/.test(f.key) ? 60 : (/\.meta\.description$/.test(f.key) ? 160 : 0);
         html += '<div style="margin-bottom:16px;">'
           + '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:5px;">'
           +   '<label style="font-size:.82rem;color:var(--blush);font-weight:600;">'+esc(f.label)+'</label>'
           +   '<code style="font-size:.64rem;color:var(--muted);">'+esc(f.key)+'</code>'
           + '</div>'
           + '<div style="display:flex;gap:8px;align-items:flex-start;">'
-          +   '<textarea id="'+id+'" data-key="'+esc(f.key)+'" rows="'+lines+'" dir="rtl" oninput="markContentChanged()" '
+          +   '<textarea id="'+id+'" data-key="'+esc(f.key)+'" data-seo-limit="'+seoLimit+'" rows="'+lines+'" dir="rtl" oninput="markContentChanged();ceCount(this)" '
           +     'style="flex:1;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px;font-family:inherit;font-size:.9rem;line-height:1.65;resize:vertical;">'+esc(f.value)+'</textarea>'
           +   '<div style="display:flex;flex-direction:column;gap:6px;">'
           +     '<button class="btn btn-secondary" title="הקלדה קולית" onclick="toggleDictation(this,\''+id+'\')" style="padding:8px 11px;">🎤</button>'
@@ -2288,6 +2289,7 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
           +     '<button class="btn btn-secondary" title="איפוס לברירת מחדל" onclick="resetContentField(\''+id+'\')" style="padding:8px 11px;">↺</button>'
           +   '</div>'
           + '</div>'
+          + (seoLimit ? ('<div id="cnt_'+id+'" style="font-size:.72rem;margin-top:4px;text-align:left;color:'+(f.value.length>seoLimit?'var(--red,#c0392b)':'var(--muted)')+';">'+f.value.length+' / '+seoLimit+' תווים'+(f.value.length>seoLimit?' ⚠️ ארוך מדי':'')+'</div>') : '')
           + '<div id="ai_'+id+'" style="display:none;margin-top:10px;padding:12px;background:rgba(196,128,90,.08);border:1px solid var(--border);border-radius:8px;"></div>'
           + '</div>';
       });
@@ -2297,6 +2299,14 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
   }
 
   function markContentChanged(){ const b=document.getElementById('content-save-btn'); if(b && b.textContent.indexOf('*')<0) b.textContent='💾 שמור שינויים *'; }
+
+  function ceCount(ta){
+    const limit = +(ta.dataset.seoLimit||0); if(!limit) return;
+    const c = document.getElementById('cnt_'+ta.id); if(!c) return;
+    const len = ta.value.length, over = len>limit;
+    c.style.color = over ? 'var(--red,#c0392b)' : 'var(--muted)';
+    c.textContent = len + ' / ' + limit + ' תווים' + (over ? ' ⚠️ ארוך מדי' : '');
+  }
 
   function resetContentField(id){ const ta=document.getElementById(id); if(!ta) return; ta.value=_defaults[ta.dataset.key]||''; markContentChanged(); }
 
@@ -2445,6 +2455,7 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
   window.initContentEditor   = initContentEditor;
   window.renderContentEditor = renderContentEditor;
   window.markContentChanged  = markContentChanged;
+  window.ceCount             = ceCount;
   window.resetContentField   = resetContentField;
   window.saveContentEdits    = saveContentEdits;
   window.toggleDictation     = toggleDictation;
