@@ -2181,14 +2181,30 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
   'use strict';
   const WORKER_URL = 'https://api.yardendamri.co.il';
 
-  // Pilot: homepage only. Add pages here as they get data-edit tags.
-  const CONTENT_PAGES = [{ url:'/', label:'דף הבית' }];
+  // Editor auto-discovers data-edit fields on each page listed here.
+  const CONTENT_PAGES = [
+    { url:'/',                            label:'דף הבית' },
+    { url:'about.html',                   label:'אודות' },
+    { url:'bride.html',                   label:'מאפרת כלות' },
+    { url:'services.html',                label:'שירותים' },
+    { url:'gallery.html',                 label:'גלריה' },
+    { url:'bridal-guide.html',            label:'מדריך כלות' },
+    { url:'pricing.html',                 label:'מחירון' },
+    { url:'reviews.html',                 label:'ביקורות' },
+    { url:'contact.html',                 label:'צרי קשר' },
+    { url:'disclaimer.html',              label:'תנאי שימוש' },
+    { url:'accessibility-statement.html', label:'הצהרת נגישות' },
+    { url:'cookies-policy.html',          label:'מדיניות עוגיות' },
+  ];
 
   // Hebrew names for the second key segment ("home.<section>.<field>").
   const SECTION_NAMES = {
-    meta:'SEO — כותרת ותיאור', hero:'כותרת ראשית (Hero)', about:'אודות', services:'שירותים',
+    meta:'SEO — כותרת ותיאור', hero:'כותרת ראשית', about:'אודות', services:'שירותים',
     cta_strip:'פס קריאה לפעולה', philosophy:'הפילוסופיה שלי', area:'אזור פעילות',
-    gallery:'גלריה', reviews:'ביקורות', contact:'צרי קשר'
+    gallery:'גלריה', reviews:'ביקורות', contact:'צרי קשר',
+    story:'הסיפור', experience:'החוויה', cta:'קריאה לפעולה', faq:'שאלות נפוצות',
+    intro:'פתיחה', steps:'שלבים', packages:'חבילות', form:'טופס', body:'תוכן',
+    sec1:'מקטע 1', sec2:'מקטע 2', sec3:'מקטע 3', sec4:'מקטע 4', sec5:'מקטע 5'
   };
 
   let _defaults = {};   // key -> baked default text
