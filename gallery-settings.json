@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-25T23:36:32.004Z",
+  "updatedAt": "2026-06-26T12:41:18.450Z",
   "admin": {
     "hidden": [
       "https://images.yardendamri.co.il/yarden_17843112559037829.webp",
@@ -3390,5 +3390,7 @@
       }
     ]
   },
-  "content": {}
+  "content": {
+    "home.meta.title": "ירדן דמרי – מאפרת כלות וערב | מגיעה לכל רחבי הארץ "
+  }
 }
