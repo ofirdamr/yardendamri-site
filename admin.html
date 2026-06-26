@@ -2299,20 +2299,68 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
     else { btn.textContent=prev; showToast('❌ שמירה נכשלה: '+((r&&r.error)||'שגיאה')); }
   }
 
-  // ── Voice dictation (Web Speech API, Hebrew) ──────────────────────
-  function toggleDictation(btn, taId){
+  // ── Voice dictation: record audio → Gemini transcribes (context-aware, punctuated) ──
+  let _mediaRec = null, _mediaChunks = [];
+  async function toggleDictation(btn, taId){
     const ta = document.getElementById(taId);
-    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if(!SR){ showToast('הדפדפן לא תומך בהקלדה קולית. נסי בכרום במחשב.'); return; }
-    if(_rec){ try{ _rec.stop(); }catch(e){} return; }
-    const rec = new SR(); _rec = rec;
-    rec.lang='he-IL'; rec.interimResults=true; rec.continuous=true;
-    const base = ta.value ? ta.value + ' ' : '';
-    btn.dataset.bg = btn.style.background; btn.style.background='var(--red,#c0392b)'; btn.textContent='⏺';
-    rec.onresult = (e)=>{ let txt=''; for(let i=e.resultIndex;i<e.results.length;i++){ txt += e.results[i][0].transcript; } ta.value = base + txt; };
-    rec.onerror  = ()=>{ showToast('שגיאת הקלטה — בדקי הרשאת מיקרופון'); };
-    rec.onend    = ()=>{ btn.style.background = btn.dataset.bg||''; btn.textContent='🎤'; _rec=null; markContentChanged(); };
-    try{ rec.start(); }catch(e){ _rec=null; btn.style.background=btn.dataset.bg||''; btn.textContent='🎤'; }
+    if(_mediaRec){ try{ _mediaRec.stop(); }catch(e){} return; } // tap again = stop
+    if(!navigator.mediaDevices || !window.MediaRecorder){ showToast('הדפדפן לא תומך בהקלטה קולית.'); return; }
+    let stream;
+    try{ stream = await navigator.mediaDevices.getUserMedia({ audio:true }); }
+    catch(e){ showToast('אין הרשאת מיקרופון — אשרי גישה למיקרופון.'); return; }
+    _mediaChunks = [];
+    const rec = new MediaRecorder(stream); _mediaRec = rec;
+    rec.ondataavailable = e => { if(e.data && e.data.size) _mediaChunks.push(e.data); };
+    rec.onstop = async () => {
+      try{ stream.getTracks().forEach(t=>t.stop()); }catch(e){}
+      _mediaRec = null;
+      const blob = new Blob(_mediaChunks, { type: (_mediaChunks[0] && _mediaChunks[0].type) || 'audio/webm' });
+      btn.style.background = btn.dataset.bg||''; btn.textContent='⏳'; btn.disabled = true;
+      try{
+        const wav = await _blobToWav(blob);
+        const r = await fetch(WORKER_URL + '/transcribe', {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer '+window.RemoteState.getPwd() },
+          body: JSON.stringify({ audio: wav.b64, mime: wav.mime }),
+        });
+        const d = await r.json().catch(()=>({}));
+        if(r.ok && d.ok && d.text){ ta.value = (ta.value ? ta.value+' ' : '') + d.text; markContentChanged(); showToast('✅ תומלל'); }
+        else { showToast('תמלול נכשל: ' + ((d && (d.detail||d.error)) || ('שגיאה '+r.status))); }
+      }catch(e){ showToast('שגיאת תמלול: ' + e.message); }
+      btn.textContent='🎤'; btn.disabled=false;
+    };
+    rec.start();
+    btn.dataset.bg = btn.style.background; btn.style.background='var(--red,#c0392b)'; btn.textContent='⏹';
+    showToast('🎙️ מקליט… לחצי שוב לסיום');
+  }
+
+  // Decode recorded audio → mono WAV (Gemini-supported) → base64.
+  async function _blobToWav(blob){
+    const buf = await blob.arrayBuffer();
+    const AC = window.AudioContext || window.webkitAudioContext;
+    const actx = new AC();
+    const decoded = await actx.decodeAudioData(buf);
+    const len = decoded.length, ch = decoded.numberOfChannels;
+    const mono = new Float32Array(len);
+    for(let c=0;c<ch;c++){ const data = decoded.getChannelData(c); for(let i=0;i<len;i++) mono[i] += data[i]/ch; }
+    const wav = _encodeWav(mono, decoded.sampleRate);
+    try{ actx.close(); }catch(e){}
+    return { b64: _abToB64(wav), mime: 'audio/wav' };
+  }
+  function _encodeWav(samples, sampleRate){
+    const ab = new ArrayBuffer(44 + samples.length*2); const v = new DataView(ab);
+    const w = (o,s)=>{ for(let i=0;i<s.length;i++) v.setUint8(o+i, s.charCodeAt(i)); };
+    w(0,'RIFF'); v.setUint32(4,36+samples.length*2,true); w(8,'WAVE'); w(12,'fmt ');
+    v.setUint32(16,16,true); v.setUint16(20,1,true); v.setUint16(22,1,true);
+    v.setUint32(24,sampleRate,true); v.setUint32(28,sampleRate*2,true);
+    v.setUint16(32,2,true); v.setUint16(34,16,true); w(36,'data'); v.setUint32(40,samples.length*2,true);
+    let o=44; for(let i=0;i<samples.length;i++){ let s=Math.max(-1,Math.min(1,samples[i])); v.setInt16(o, s<0?s*0x8000:s*0x7FFF, true); o+=2; }
+    return ab;
+  }
+  function _abToB64(buf){
+    let bin=''; const bytes=new Uint8Array(buf); const chunk=0x8000;
+    for(let i=0;i<bytes.length;i+=chunk){ bin += String.fromCharCode.apply(null, bytes.subarray(i,i+chunk)); }
+    return btoa(bin);
   }
 
   // ── AI copywriter consult (via Worker → Claude) ───────────────────
@@ -2323,6 +2371,7 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
       panel.innerHTML =
           '<div style="font-size:.8rem;color:var(--muted);margin-bottom:8px;">תארי מה תרצי — סגנון, אורך, דגש. אפשר להשאיר ריק לקבלת הצעה כללית.</div>'
         + '<textarea id="aip_'+taId+'" rows="2" dir="rtl" placeholder="לדוגמה: חם ואישי, קצר, עם קריאה לפעולה" style="width:100%;box-sizing:border-box;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:9px;font-family:inherit;font-size:.86rem;"></textarea>'
+        + '<button class="btn btn-secondary" title="הכתבה קולית" onclick="toggleDictation(this,\'aip_'+taId+'\')" style="margin-top:8px;margin-left:8px;font-size:.82rem;">🎤 הכתיבי</button>'
         + '<button class="btn btn-primary" onclick="requestCopy(\''+taId+'\')" style="margin-top:8px;font-size:.82rem;">✨ קבל הצעה</button>'
         + '<div id="air_'+taId+'" style="margin-top:10px;"></div>';
     } else { panel.style.display='none'; }
