@@ -2267,6 +2267,7 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
         const id = 'ce_'+(_idx++);
         const lines = Math.min(8, Math.max(2, String(f.value).split('\n').length + (f.value.length>90?1:0)));
         const seoLimit = /\.meta\.title$/.test(f.key) ? 60 : (/\.meta\.description$/.test(f.key) ? 160 : 0);
+        const isNameField = /(_name$|\.name$)/.test(f.key); // reviewer/person names — no AI rewrite
         html += '<div style="margin-bottom:16px;">'
           + '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:5px;">'
           +   '<label style="font-size:.82rem;color:var(--blush);font-weight:600;">'+esc(f.label)+'</label>'
@@ -2277,7 +2278,7 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
           +     'style="flex:1;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px;font-family:inherit;font-size:.9rem;line-height:1.65;resize:vertical;">'+esc(f.value)+'</textarea>'
           +   '<div style="display:flex;flex-direction:column;gap:6px;">'
           +     '<button class="btn btn-secondary" title="הקלדה קולית" onclick="toggleDictation(this,\''+id+'\')" style="padding:8px 11px;">🎤</button>'
-          +     '<button class="btn btn-secondary" title="ייעוץ קופירייטר AI" onclick="toggleAIPanel(this,\''+id+'\')" style="padding:8px 11px;">🤖</button>'
+          +     (isNameField ? '' : '<button class="btn btn-secondary" title="ייעוץ קופירייטר AI" onclick="toggleAIPanel(this,\''+id+'\')" style="padding:8px 11px;">🤖</button>')
           +     '<button class="btn btn-secondary" title="איפוס לברירת מחדל" onclick="resetContentField(\''+id+'\')" style="padding:8px 11px;">↺</button>'
           +   '</div>'
           + '</div>'
