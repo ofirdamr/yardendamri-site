@@ -463,6 +463,13 @@
       #reviews > div { max-width: 1300px; margin-left: auto; margin-right: auto; }
     }
 
+    /* Narrow desktop (e.g. 13"): the absolutely-centered brand name collides with the
+       right-side nav links. Hide it in that range — the monogram logo still brands the nav.
+       Shows again on wide screens (≥1400px) where there's room. */
+    @media (min-width: 1081px) and (max-width: 1500px) {
+      .nav-brand-center { display: none !important; }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1080px) {
       /* Sections with max-width should expand to full width on mobile */
