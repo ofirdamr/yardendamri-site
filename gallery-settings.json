@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-27T05:48:35.784Z",
+  "updatedAt": "2026-06-27T05:49:13.065Z",
   "admin": {
     "hidden": [
       "https://images.yardendamri.co.il/yarden_17843112559037829.webp",
@@ -3397,6 +3397,7 @@
     "home.hero.title": "ביום הכי חשוב\nשלך - את ראויה\nלהרגיש מושלמת",
     "home.hero.subtitle": "איתך בכל רגע מרגש, עם איפור שישקף את היופי הייחודי שלך, ביום המיוחד שלך",
     "home.hero.cta_secondary": "קראי עליי",
-    "home.hero.cta_primary": "דברי איתי"
+    "home.hero.cta_primary": "דברי איתי",
+    "home.about.title": "אני כאן כדי לדייק את היופי שבך."
   }
 }
