@@ -433,11 +433,12 @@
 
   <!-- CONTENT TAB — editable site text (manual + voice + AI copywriter) -->
   <div id="tab-content" style="display:none;padding:24px 28px">
-    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px;">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px;position:sticky;top:0;z-index:50;background:var(--bg,#1a1210);padding:10px 0;">
       <h2 style="margin:0;">📝 עריכת תוכן האתר</h2>
       <select id="content-page" onchange="renderContentEditor()" style="background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-family:inherit;font-size:.85rem;"></select>
       <button class="btn btn-secondary" onclick="renderContentEditor()" style="font-size:.8rem;">🔄 רענן</button>
       <button class="btn btn-primary" id="content-save-btn" onclick="saveContentEdits()" style="margin-right:auto;">💾 שמור שינויים</button>
+      <span id="content-save-status" style="font-size:.82rem;font-weight:600;color:var(--muted);white-space:nowrap;">✓ הכל שמור</span>
     </div>
     <p style="font-size:.83rem;color:var(--muted);margin:0 0 20px;line-height:1.7;">
       ערכי כל טקסט באתר — ידנית, בהקלדה. אפשר גם ללחוץ 🎤 ולהכתיב בקול, או 🤖 כדי לקבל הצעת ניסוח מקופירייטר ה-AI.
@@ -2297,10 +2298,19 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
     host.innerHTML = html;
   }
 
+  function setSaveStatus(s){
+    const el=document.getElementById('content-save-status'); if(!el) return;
+    if(s==='dirty'){ el.textContent='✏️ עריכה… נשמר אוטומטית'; el.style.color='var(--blush)'; }
+    else if(s==='saving'){ el.textContent='💾 שומר…'; el.style.color='var(--muted)'; }
+    else if(s==='saved'){ el.textContent='✓ נשמר '+new Date().toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'}); el.style.color='#4CAF50'; }
+    else if(s==='error'){ el.textContent='❌ שמירה נכשלה — נסי שוב'; el.style.color='var(--red,#c0392b)'; }
+  }
+
   let _autoSaveTimer = null;
   function markContentChanged(){
     const b=document.getElementById('content-save-btn');
     if(b && b.textContent.indexOf('*')<0 && b.textContent.indexOf('שומר')<0 && b.textContent.indexOf('נשמר')<0) b.textContent='💾 שמור שינויים *';
+    setSaveStatus('dirty');
     clearTimeout(_autoSaveTimer);
     _autoSaveTimer = setTimeout(function(){ saveContentEdits(true); }, 2500); // auto-save 2.5s after last edit
   }
@@ -2324,13 +2334,15 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
     });
     if(!Object.keys(out).length){ if(!silent) showToast('אין שינויים לשמירה'); return; }
     const btn=document.getElementById('content-save-btn'); if(btn){ btn.disabled=true; btn.textContent='💾 שומר…'; }
+    setSaveStatus('saving');
     const r = await window.RemoteState.update({ content: out });
     if(btn) btn.disabled=false;
     if(r && r.ok){
       if(btn){ btn.textContent='✓ נשמר'; setTimeout(function(){ if(btn.textContent==='✓ נשמר') btn.textContent='💾 שמור שינויים'; }, 2500); }
+      setSaveStatus('saved');
       showToast(silent ? '✓ נשמר אוטומטית' : '✅ התוכן נשמר! מתעדכן באתר תוך כדקה.');
     }
-    else { if(btn) btn.textContent='💾 שמור שינויים *'; showToast('❌ שמירה נכשלה: '+((r&&r.error)||'שגיאה')); }
+    else { if(btn) btn.textContent='💾 שמור שינויים *'; setSaveStatus('error'); showToast('❌ שמירה נכשלה: '+((r&&r.error)||'שגיאה')); }
   }
 
   // ── Voice dictation: record audio → Gemini transcribes (context-aware, punctuated) ──
