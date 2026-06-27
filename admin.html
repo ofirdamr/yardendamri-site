@@ -2371,8 +2371,8 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
         });
         const d = await r.json().catch(()=>({}));
         if(r.ok && d.ok && d.text){ ta.value = (ta.value ? ta.value+' ' : '') + d.text; markContentChanged(); showToast('✅ תומלל'); }
-        else { showToast('תמלול נכשל: ' + ((d && (d.detail||d.error)) || ('שגיאה '+r.status))); }
-      }catch(e){ showToast('שגיאת תמלול: ' + e.message); }
+        else { showToast(aiErrMsg(r.status, (d && ((d.error||'')+' '+(d.detail||'')))||'')); }
+      }catch(e){ showToast('בעיית חיבור. נסי שוב בעוד רגע.'); }
       btn.textContent='🎤'; btn.disabled=false;
     };
     rec.start();
@@ -2409,6 +2409,18 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
     return btoa(bin);
   }
 
+  // Friendly, short Hebrew message for any AI service error (no raw JSON to the user).
+  function aiErrMsg(status, info){
+    const s = String(info||'').toLowerCase();
+    if(status===429 || /quota|rate.?limit|too many|resource_exhausted|exceeded/.test(s))
+      return 'יש כרגע יותר מדי בקשות. המתיני רגע אחד ונסי שוב.';
+    if(status===503 || /unavailable|overload|high demand|busy|503/.test(s))
+      return 'השירות עמוס כרגע. נסי שוב בעוד כמה רגעים.';
+    if(status>=500 || /upstream|timeout|timed out|gateway/.test(s))
+      return 'תקלה זמנית בשירות. נסי שוב בעוד רגע.';
+    return 'משהו השתבש. נסי שוב בעוד רגע.';
+  }
+
   // ── AI copywriter consult (via Worker → Claude) ───────────────────
   function toggleAIPanel(btn, taId){
     const panel = document.getElementById('ai_'+taId);
@@ -2440,11 +2452,11 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
       if(res.status===404){ out.innerHTML='<span style="color:var(--muted)">שירות הקופירייטר עדיין לא הופעל (ממתין לפריסת ה-Worker).</span>'; return; }
       if(res.status===401||res.status===403){ out.innerHTML='<span style="color:var(--red)">פג תוקף ההתחברות. התחברי מחדש.</span>'; return; }
       if(!res.ok){
-        let info=''; try{ const ed=await res.json(); info=(ed.error||'')+(ed.detail?(' — '+ed.detail):''); }catch(e){}
-        out.innerHTML='<span style="color:var(--red)">שגיאה ('+res.status+')'+(info?(': '+esc(info)):'')+'</span>'; return;
+        let info=''; try{ const ed=await res.json(); info=(ed.error||'')+' '+(ed.detail||''); }catch(e){}
+        out.innerHTML='<span style="color:var(--red)">'+esc(aiErrMsg(res.status, info))+'</span>'; return;
       }
       data = await res.json();
-    } catch(e){ out.innerHTML='<span style="color:var(--red)">שגיאת רשת: '+esc(e.message)+'</span>'; return; }
+    } catch(e){ out.innerHTML='<span style="color:var(--red)">בעיית חיבור לרשת. בדקי את החיבור ונסי שוב.</span>'; return; }
 
     // Recover clean suggestions even if the AI handed back raw/partial JSON.
     function _recover(s){
