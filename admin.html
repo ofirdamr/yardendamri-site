@@ -62,7 +62,7 @@
     .stats{font-size:.78rem;color:var(--muted);margin-right:auto}
     /* GRID */
     #grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;padding:18px 28px}
-    .img-card{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;border:2px solid transparent;cursor:grab;transition:border-color .2s,opacity .2s}
+    .img-card{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;border:2px solid transparent;cursor:grab;transition:border-color .2s,opacity .2s;-webkit-touch-callout:none;user-select:none}
     .img-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
     .img-card.pinned{border-color:var(--gold)}
     .img-card.selected{border-color:var(--blush);box-shadow:0 0 0 3px var(--blush);}
@@ -769,9 +769,9 @@ function saveSettings(s) {
     const { clone, startX, startY, origLeft, origTop } = _touchDrag;
     clone.style.left = (origLeft + t.clientX - startX) + 'px';
     clone.style.top  = (origTop  + t.clientY - startY) + 'px';
-    clone.style.visibility = 'hidden';
+    clone.style.display = 'none';
     const el = document.elementFromPoint(t.clientX, t.clientY);
-    clone.style.visibility = '';
+    clone.style.display = '';
     const card = el ? el.closest('.img-card') : null;
     if (_touchDrag.targetCard && _touchDrag.targetCard !== card) _touchDrag.targetCard.classList.remove('drag-over');
     if (card && card !== _touchDrag.div) { card.classList.add('drag-over'); _touchDrag.targetCard = card; }
