@@ -80,26 +80,75 @@
 
   // ── Authentication ────────────────────────────────────────────
 
-  async function login(password) {
+  async function login(password, totpCode) {
     try {
+      const body = { password };
+      if (totpCode) body.totpCode = totpCode;
       const r = await fetch(WORKER_URL + '/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify(body),
       });
       if (r.status === 429) {
         const d = await r.json().catch(() => ({}));
         return { ok: false, error: 'too_many_attempts', retryAfter: d.retryAfter || 900 };
       }
-      if (r.status === 401) return { ok: false, error: 'invalid_password' };
+      if (r.status === 401) {
+        const d = await r.json().catch(() => ({}));
+        return { ok: false, error: d.error === 'invalid_totp' ? 'invalid_totp' : 'invalid_password' };
+      }
       if (!r.ok) return { ok: false, error: 'server_error_' + r.status };
       const data = await r.json();
+      if (data.needsTotp) return { ok: false, needsTotp: true };
       if (!data.token) return { ok: false, error: 'no_token' };
       setToken(data.token);
       return { ok: true };
     } catch(e) {
       return { ok: false, error: e.message || 'network_error' };
     }
+  }
+
+  async function totpGetSetup() {
+    try {
+      const token = getToken();
+      if (!token) return { ok: false, error: 'unauthorized' };
+      const r = await fetch(WORKER_URL + '/totp-setup', {
+        headers: { 'Authorization': 'Bearer ' + token },
+      });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok) return { ok: false, error: data.error || 'error' };
+      return { ok: true, ...data };
+    } catch(e) { return { ok: false, error: 'network_error' }; }
+  }
+
+  async function totpEnable(secret, code) {
+    try {
+      const token = getToken();
+      if (!token) return { ok: false, error: 'unauthorized' };
+      const r = await fetch(WORKER_URL + '/totp-setup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({ secret, code }),
+      });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok) return { ok: false, error: data.error || 'error' };
+      return { ok: true };
+    } catch(e) { return { ok: false, error: 'network_error' }; }
+  }
+
+  async function totpDisable(code) {
+    try {
+      const token = getToken();
+      if (!token) return { ok: false, error: 'unauthorized' };
+      const r = await fetch(WORKER_URL + '/totp-disable', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({ code }),
+      });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok) return { ok: false, error: data.error || 'error' };
+      return { ok: true };
+    } catch(e) { return { ok: false, error: 'network_error' }; }
   }
 
   async function logout() {
@@ -178,6 +227,9 @@
     login,
     logout,
     hasToken: () => !!getToken(),
+    totpGetSetup,
+    totpEnable,
+    totpDisable,
 
     // Backward-compat shims (cloud-storage.js used getPwd/setPwd — keep callers working)
     getPwd:   getToken,
