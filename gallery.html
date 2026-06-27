@@ -377,7 +377,13 @@ function applyAdminSettings(images) {
   const privateCatsSet = new Set(s.privateCats || []);
   const catMap = s.cats || {};
   const hiddenCats = new Set([...privateCatsSet, 'מוסתרות']);
-  return images.filter(img => !img.hidden && !hidden.has(img.u) && !hiddenCats.has(catMap[img.u]));
+  let filtered = images.filter(img => !img.hidden && !hidden.has(img.u) && !hiddenCats.has(catMap[img.u]));
+  const order = s.order || [];
+  if (order.length) {
+    const idx = new Map(order.map((u, i) => [u, i]));
+    filtered.sort((a, b) => (idx.has(a.u) ? idx.get(a.u) : Infinity) - (idx.has(b.u) ? idx.get(b.u) : Infinity));
+  }
+  return filtered;
 }
 
 // ── CDN HELPERS ──

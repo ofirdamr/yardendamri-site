@@ -717,6 +717,7 @@ let allImages = [];
 let currentFilter = 'all';
 let currentCatFilter = '';
 let searchTerm = '';
+let _touchDrag = null, _touchDragTimer = null, _touchDragStart = null;
 
 function getSettings() {
   // Prefer RemoteState (synced to all visitors via JSONBin).
@@ -751,6 +752,45 @@ function saveSettings(s) {
   }
 }
 
+// ─── TOUCH DRAG (mobile long-press) ────────────────────────────
+(function() {
+  document.addEventListener('touchmove', e => {
+    if (_touchDragTimer && _touchDragStart) {
+      const t = e.touches[0];
+      const dx = t.clientX - _touchDragStart.clientX, dy = t.clientY - _touchDragStart.clientY;
+      if (Math.sqrt(dx*dx + dy*dy) > 8) {
+        clearTimeout(_touchDragTimer); _touchDragTimer = null; _touchDragStart = null;
+      }
+      return;
+    }
+    if (!_touchDrag) return;
+    e.preventDefault();
+    const t = e.touches[0];
+    const { clone, startX, startY, origLeft, origTop } = _touchDrag;
+    clone.style.left = (origLeft + t.clientX - startX) + 'px';
+    clone.style.top  = (origTop  + t.clientY - startY) + 'px';
+    clone.style.visibility = 'hidden';
+    const el = document.elementFromPoint(t.clientX, t.clientY);
+    clone.style.visibility = '';
+    const card = el ? el.closest('.img-card') : null;
+    if (_touchDrag.targetCard && _touchDrag.targetCard !== card) _touchDrag.targetCard.classList.remove('drag-over');
+    if (card && card !== _touchDrag.div) { card.classList.add('drag-over'); _touchDrag.targetCard = card; }
+    else _touchDrag.targetCard = null;
+  }, {passive: false});
+
+  function endTouchDrag() {
+    if (_touchDragTimer) { clearTimeout(_touchDragTimer); _touchDragTimer = null; }
+    _touchDragStart = null;
+    if (!_touchDrag) return;
+    const { fromUrl, div, clone, targetCard } = _touchDrag;
+    clone.remove(); div.classList.remove('dragging');
+    if (targetCard) { targetCard.classList.remove('drag-over'); reorder(fromUrl, targetCard.dataset.url); }
+    _touchDrag = null;
+  }
+  document.addEventListener('touchend', endTouchDrag);
+  document.addEventListener('touchcancel', endTouchDrag);
+})();
+
 // ─── INIT ───────────────────────────────────────────────────────
 async function initAdmin() {
   if (typeof GALLERY_IMAGES === 'undefined') {
@@ -767,8 +807,13 @@ async function initAdmin() {
     }
   }
 
-  // Now render with full settings loaded
+  // Now render with full settings loaded, applying saved order
   allImages = [...GALLERY_IMAGES];
+  const _savedOrder = getSettings().order || [];
+  if (_savedOrder.length) {
+    const _oi = new Map(_savedOrder.map((u, i) => [u, i]));
+    allImages.sort((a, b) => (_oi.has(a.u) ? _oi.get(a.u) : Infinity) - (_oi.has(b.u) ? _oi.get(b.u) : Infinity));
+  }
   renderGrid();
   renderCatList();
   renderCatFilters();
@@ -1004,6 +1049,23 @@ function renderGrid() {
     div.addEventListener('dragover',e=>{e.preventDefault();div.classList.add('drag-over');});
     div.addEventListener('dragleave',()=>div.classList.remove('drag-over'));
     div.addEventListener('drop',e=>{e.preventDefault();div.classList.remove('drag-over');reorder(e.dataTransfer.getData('text/plain'),img.u);});
+    div.addEventListener('touchstart', e => {
+      if (multiSelectMode || e.target.closest('.card-btn')) return;
+      const tx = e.touches[0].clientX, ty = e.touches[0].clientY;
+      _touchDragStart = { clientX: tx, clientY: ty };
+      _touchDragTimer = setTimeout(() => {
+        _touchDragTimer = null;
+        if (!_touchDragStart) return;
+        _touchDragStart = null;
+        const rect = div.getBoundingClientRect();
+        const clone = div.cloneNode(true);
+        clone.style.cssText = `position:fixed;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;height:${rect.height}px;opacity:.82;pointer-events:none;z-index:9999;border-radius:10px;transform:scale(1.08);box-shadow:0 12px 40px rgba(0,0,0,.5);`;
+        document.body.appendChild(clone);
+        div.classList.add('dragging');
+        navigator.vibrate && navigator.vibrate(30);
+        _touchDrag = { fromUrl: img.u, div, clone, startX: tx, startY: ty, origLeft: rect.left, origTop: rect.top, targetCard: null };
+      }, 400);
+    }, {passive: true});
     grid.appendChild(div);
   });
 
