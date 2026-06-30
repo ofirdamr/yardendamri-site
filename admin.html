@@ -808,12 +808,21 @@ async function initAdmin() {
     }
   }
 
-  // Now render with full settings loaded, applying saved order
+  // Now render with full settings loaded, applying saved order.
+  // Items not in the saved order are newly-synced and not yet arranged — keep them
+  // in natural order at the top (matching the public site), then arranged items.
   allImages = [...GALLERY_IMAGES];
   const _savedOrder = getSettings().order || [];
   if (_savedOrder.length) {
     const _oi = new Map(_savedOrder.map((u, i) => [u, i]));
-    allImages.sort((a, b) => (_oi.has(a.u) ? _oi.get(a.u) : Infinity) - (_oi.has(b.u) ? _oi.get(b.u) : Infinity));
+    allImages = allImages.map((img, natural) => ({ img, natural })).sort((a, b) => {
+      const ia = _oi.has(a.img.u) ? _oi.get(a.img.u) : -1;
+      const ib = _oi.has(b.img.u) ? _oi.get(b.img.u) : -1;
+      if (ia === -1 && ib === -1) return a.natural - b.natural;
+      if (ia === -1) return -1;
+      if (ib === -1) return 1;
+      return ia - ib;
+    }).map(x => x.img);
   }
   renderGrid();
   renderCatList();

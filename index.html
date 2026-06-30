@@ -911,8 +911,19 @@
       let filtered = images.filter(img => !img.hidden && !hidden.has(img.u) && !hiddenCats.has(catMap[img.u]));
       const order = s.order || [];
       if (order.length) {
+        // Apply admin's custom order. Items NOT in the saved order are newly-synced
+        // posts the admin hasn't arranged yet — keep them in natural (newest-first)
+        // order at the TOP so new content (often video) stays visible, then the
+        // explicitly-arranged items follow.
         const idx = new Map(order.map((u, i) => [u, i]));
-        filtered.sort((a, b) => (idx.has(a.u) ? idx.get(a.u) : Infinity) - (idx.has(b.u) ? idx.get(b.u) : Infinity));
+        filtered = filtered.map((img, natural) => ({ img, natural })).sort((a, b) => {
+          const ia = idx.has(a.img.u) ? idx.get(a.img.u) : -1;
+          const ib = idx.has(b.img.u) ? idx.get(b.img.u) : -1;
+          if (ia === -1 && ib === -1) return a.natural - b.natural;
+          if (ia === -1) return -1;
+          if (ib === -1) return 1;
+          return ia - ib;
+        }).map(x => x.img);
       }
       return filtered;
     }
