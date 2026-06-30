@@ -62,8 +62,8 @@
     .stats{font-size:.78rem;color:var(--muted);margin-right:auto}
     /* GRID */
     #grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;padding:18px 28px}
-    .img-card{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;border:2px solid transparent;cursor:grab;transition:border-color .2s,opacity .2s;-webkit-touch-callout:none;user-select:none}
-    .img-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+    .img-card{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;border:2px solid transparent;cursor:grab;transition:border-color .2s,opacity .2s;-webkit-touch-callout:none;user-select:none;-webkit-user-drag:none}
+    .img-card img,.img-card video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none}
     .img-card.pinned{border-color:var(--gold)}
     .img-card.selected{border-color:var(--blush);box-shadow:0 0 0 3px var(--blush);}
     .img-card.dragging{opacity:.4}
@@ -718,6 +718,7 @@ let currentFilter = 'all';
 let currentCatFilter = '';
 let searchTerm = '';
 let _touchDrag = null, _touchDragTimer = null, _touchDragStart = null;
+const _isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
 
 function getSettings() {
   // Prefer RemoteState (synced to all visitors via JSONBin).
@@ -1000,7 +1001,7 @@ function renderGrid() {
     const cat = catMap[img.u]||'';
     const div = document.createElement('div');
     div.className='img-card'+(hiddenSet.has(img.u)?' hidden-card':'')+(pinnedSet.has(img.u)?' pinned':'');
-    div.dataset.url=img.u; div.draggable=true;
+    div.dataset.url=img.u; div.draggable=!_isTouch;
     const isVid = img.u.includes('/video/upload/') || img.u.match(/\.(mp4|mov|webm)$/i);
     const thumbSrc = isVid ? (img.thumb || img.u) : img.u;
     const altTxt = generateAltText(img, catMap);

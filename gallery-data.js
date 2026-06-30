@@ -6,7 +6,8 @@ const GALLERY_IMAGES = [
     "item_id": "18153908050468263",
     "post_id": "18153908050468263",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_18153908050468263_thumb.webp"
+    "thumb": "https://images.yardendamri.co.il/yarden_18153908050468263_thumb.webp",
+    "hidden": true
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18106863977287938.mp4",
