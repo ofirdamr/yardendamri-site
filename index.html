@@ -1295,11 +1295,11 @@
       const cat = catAltMap[item.cat] || 'איפור מקצועי';
       const isVid = item.video || /\.mp4|\/video\//.test(item.u||'');
       const credit = item.cat === 'כלות'
-        ? 'מאת ירדן דמרי, מאפרת כלות מקצועית — מגיעה לכל הארץ'
+        ? 'מאת ירדן דמרי, מאפרת כלות מקצועית, מגיעה לכל הארץ'
         : 'מאת ירדן דמרי, מאפרת כלות וערב באילת';
       const base = `${isVid ? 'סרטון' : 'תמונת'} ${cat} ${credit}`;
       const cap = (item.a||'').replace(/[#@]\S+/g,'').replace(/https?:\S+/g,'').replace(/[<>]/g,'').replace(/\s+/g,' ').trim().slice(0,70);
-      return cap ? `${cap} — ${base}` : base;
+      return cap ? `${cap}, ${base}` : base;
     }
 
     function renderPage(page) {
@@ -1511,7 +1511,7 @@
           <p style="font-size:.9rem;line-height:1.8;color:#555;">${r.text}</p>
           <p style="font-size:.72rem;color:var(--blush);margin-top:12px;letter-spacing:.05em;">${r.date}</p>
         </article>`).join('')
-        : '<p style="opacity:.6;font-size:.9rem;text-align:center;font-family:Rubik,sans-serif;">אהבת את התוצאה? <a href=\"https://g.page/r/CfrXGS6nwqdXEBE/review\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--gold);text-decoration:underline;\">שתפי ב-Google</a> — זה עוזר לכלות נוספות למצוא אותי</p>';
+        : '<p style="opacity:.6;font-size:.9rem;text-align:center;font-family:Rubik,sans-serif;">אהבת את התוצאה? <a href=\"https://g.page/r/CfrXGS6nwqdXEBE/review\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--gold);text-decoration:underline;\">שתפי ב-Google</a>, זה עוזר לכלות נוספות למצוא אותי</p>';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -1594,7 +1594,7 @@
 
     function sharesite() {
       var u = 'https://yardendamri.co.il/';
-      var t = 'ירדן דמרי — מאפרת כלות וערב מאיילת';
+      var t = 'ירדן דמרי, מאפרת כלות וערב מאיילת';
       if (navigator.share) {
         navigator.share({ title: 'ירדן דמרי', text: t, url: u }).catch(function(){});
       } else {

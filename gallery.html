@@ -55,6 +55,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   <meta name="description" data-edit="gallery.meta.description" data-edit-label="תיאור הדף (SEO description)" content="גלריית עבודות של ירדן דמרי – מאפרת מקצועית באילת. איפור כלות, ערב, הפקות ואירועים. מעל 1000 תמונות אמיתיות מעבודות שנתיים."/>
   <meta name="keywords" content="גלריה מאפרת אילת, תמונות איפור כלות, עבודות ירדן דמרי, איפור מקצועי תמונות"/>
   <meta property="og:title" content="גלריה | ירדן דמרי מאפרת"/>
+  <meta property="og:image" content="https://yardendamri.co.il/share-preview.jpg"/>
   <meta property="og:url" content="https://yardendamri.co.il/gallery.html"/>
   <link rel="canonical" href="https://yardendamri.co.il/gallery.html"/>
   <script src="site-content.js?v=1"></script>
@@ -487,7 +488,7 @@ function openComments(url, alt) {
     </div>
     ${igStats && igStats.permalink ? `<a href="${igStats.permalink}" target="_blank" rel="noopener noreferrer" style="display:block;padding:10px 14px;border-radius:10px;background:rgba(228,64,95,.15);border:1px solid rgba(228,64,95,.4);color:#E4405F;text-decoration:none;text-align:center;font-size:.88rem;margin-bottom:12px;font-weight:600;">📸 צפי בכל התגובות באינסטגרם ←</a>` : ''}
     <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
-      ${allComments.length?allComments.map(c=>`<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;"><strong style="color:var(--blush);font-size:.88rem">${c.name}${c.ig?' <span style="font-size:.7rem;opacity:.5">📸 IG</span>':''}</strong><p style="font-size:.92rem;color:rgba(240,230,220,.8);margin-top:4px;">${c.text}</p></div>`).join(''):'<p style="opacity:.5;font-size:.9rem">אין תגובות עדיין — כתבי את הראשונה!</p>'}
+      ${allComments.length?allComments.map(c=>`<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;"><strong style="color:var(--blush);font-size:.88rem">${c.name}${c.ig?' <span style="font-size:.7rem;opacity:.5">📸 IG</span>':''}</strong><p style="font-size:.92rem;color:rgba(240,230,220,.8);margin-top:4px;">${c.text}</p></div>`).join(''):'<p style="opacity:.5;font-size:.9rem">אין תגובות עדיין, כתבי את הראשונה!</p>'}
     </div>
     <label for="cmt-name" style="display:block;font-size:.8rem;opacity:.6;margin-bottom:4px;">שמך</label>
     <input id="cmt-name" placeholder="שם" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(232,200,176,.2);background:rgba(255,255,255,.06);color:#F0E6DC;font-size:.95rem;margin-bottom:8px;font-family:inherit;"/>
@@ -549,8 +550,8 @@ function renderGallery() {
     div.setAttribute('role','listitem');
     div.setAttribute('tabindex','0');
     const caption = (item.a||'').replace(/[#@]\S+/g,'').replace(/https?:\S+/g,'').replace(/[<>]/g,'').replace(/\s+/g,' ').trim().split('\n')[0].substring(0,70);
-    const _alt = (caption ? caption + ' — ' : '') + (item.cat === 'כלות'
-      ? 'איפור כלה מאת ירדן דמרי, מאפרת כלות — מגיעה לכל הארץ'
+    const _alt = (caption ? caption + ', ' : '') + (item.cat === 'כלות'
+      ? 'איפור כלה מאת ירדן דמרי, מאפרת כלות, מגיעה לכל הארץ'
       : 'איפור מאת ירדן דמרי, מאפרת כלות וערב באילת');
     const isVideo = item.video || item.u.match(/\.mp4/i) || (item.video);
     const rot = (getAdminSettings().rotations || {})[item.u] || 0;
@@ -870,7 +871,7 @@ openDeepLink();
 
 function sharesite() {
   var u = window.location.href;
-  var t = 'ירדן דמרי — מאפרת כלות וערב מאיילת | גלריית עבודות';
+  var t = 'ירדן דמרי, מאפרת כלות וערב מאיילת | גלריית עבודות';
   if (navigator.share) {
     navigator.share({ title: 'ירדן דמרי', text: t, url: u }).catch(function(){});
   } else {

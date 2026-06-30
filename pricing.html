@@ -45,6 +45,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   <meta name="description" data-edit="pricing.meta.description" data-edit-label="תיאור הדף (SEO description)" content="מחירון שירותי איפור מקצועי, ירדן דמרי, מאפרת כלות ואירועים באילת. איפור כלות, ערב, הפקות וסדנאות."/>
   <meta name="keywords" content="מחירון מאפרת אילת, מחיר איפור כלות, ירדן דמרי מחירון"/>
   <meta property="og:title" content="מחירון | ירדן דמרי – מאפרת"/>
+  <meta property="og:image" content="https://yardendamri.co.il/share-preview.jpg"/>
   <meta property="og:url" content="https://yardendamri.co.il/pricing.html"/>
   <link rel="canonical" href="https://yardendamri.co.il/pricing.html"/>
   <script src="site-content.js?v=1"></script>
@@ -210,7 +211,7 @@ body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, 
 
   <script>
     const DEFAULT_PRICING = [
-      {name:'איפור כלות',desc:'חבילה מלאה — ניסוי + בוקר החתונה',price:'לפי הצעה אישית',featured:true,includes:['התאמת סגנון אישי ודיוק תווי הפנים במפגש תיאום ציפיות','שימוש בחומרי האיפור היוקרתיים והעמידים בעולם (עמיד בדמעות וריקודים!)','הדבקת ריסים פרטנית למראה טבעי ומחמיא','ערכת טאץ\'-אפ מפנקת במתנה להמשך הערב','הכנה חגיגית ומרגיעה של עור הפנים בבוקר האירוע','מגיעה אלייך — לכל מקום בישראל']},
+      {name:'איפור כלות',desc:'חבילה מלאה, ניסוי + בוקר החתונה',price:'לפי הצעה אישית',featured:true,includes:['התאמת סגנון אישי ודיוק תווי הפנים במפגש תיאום ציפיות','שימוש בחומרי האיפור היוקרתיים והעמידים בעולם (עמיד בדמעות וריקודים!)','הדבקת ריסים פרטנית למראה טבעי ומחמיא','ערכת טאץ\'-אפ מפנקת במתנה להמשך הערב','הכנה חגיגית ומרגיעה של עור הפנים בבוקר האירוע','מגיעה אלייך, לכל מקום בישראל']},
       {name:'איפור ערב ואירועים',desc:'חתונת חברה, אירוע, ימי הולדת',price:'החל מ-₪350',featured:false,includes:['התאמת סגנון אישי ומדויק לפי בחירה (מראה גלאם, מעושן או נקי)','טכניקות עמידות מתקדמות לצילומים ארוכים','הדבקת ריסים איכותיים כלולה במחיר','הכנת העור ושימוש בפריימרים מותאמים לסוג העור']},
       {name:'הפקות',desc:'צילומים ופרסומות',price:'לפי הצעה',featured:false,includes:['מקצוע כלפי מצלמה','לפי שעות']},
       {name:'איפור יום הולדת',desc:'כלה של היום',price:'החל מ-₪280',featured:false,includes:['מראה חגיגי']},
@@ -233,7 +234,7 @@ body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, 
           <h2 style="font-family:\'Frank Ruhl Libre\',serif;color:#111;font-size:1.25rem;font-weight:400;margin-bottom:6px;">${item.name}</h2>
           <p style="color:#888;font-size:.85rem;margin-bottom:20px;border-bottom:1px solid #f0ece8;padding-bottom:20px;">${item.desc}</p>
           <div style="font-size:1.5rem;font-weight:300;font-family:\'Frank Ruhl Libre\',serif;color:#111;margin-bottom:20px;">${item.price}</div>
-          ${item.includes && item.includes.length ? `<ul style="list-style:none;padding:0;margin-bottom:20px;">${item.includes.map(inc => `<li style="font-size:.85rem;color:#555;padding:5px 0;display:flex;align-items:center;gap:8px;border-bottom:1px solid #f5f2ef;"><span style="color:#111;font-weight:600;">—</span>${inc}</li>`).join('')}</ul>` : ''}
+          ${item.includes && item.includes.length ? `<ul style="list-style:none;padding:0;margin-bottom:20px;">${item.includes.map(inc => `<li style="font-size:.85rem;color:#555;padding:5px 0;display:flex;align-items:center;gap:8px;border-bottom:1px solid #f5f2ef;"><span style="color:#111;font-weight:600;">-</span>${inc}</li>`).join('')}</ul>` : ''}
           ${item.addons && item.addons.length ? `<div style="border-top:1px solid #f0ece8;padding-top:16px;margin-bottom:20px;"><div style="font-size:.75rem;color:#aaa;margin-bottom:8px;letter-spacing:.06em;text-transform:uppercase;">תוספות אפשריות</div><ul style="list-style:none;padding:0;">${item.addons.map(a => `<li style="font-size:.82rem;color:#666;padding:4px 0;display:flex;justify-content:space-between;gap:8px;"><span>${a.name}</span><span style="color:#111;white-space:nowrap;">${a.price}</span></li>`).join('')}</ul></div>` : ''}
           <a href="https://wa.me/9720547276716?text=היי ירדן, אני מתעניינת ב${encodeURIComponent(item.name)}" target="_blank" rel="noopener noreferrer" onclick="trackEvent('whatsapp_click','conversion','pricing_${item.name}')" style="display:block;text-align:center;padding:14px;border-radius:2px;background:#111;color:#fff;text-decoration:none;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transition:opacity .2s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">לתיאום</a>
         </article>`).join('');
