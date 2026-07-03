@@ -105,7 +105,10 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet">
+  <!-- Fonts loaded non-render-blocking (media=print flip) so first paint isn't held on Google Fonts.
+       display=swap already handles the swap-in; text paints immediately in the fallback. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@1,400&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@1,400&display=swap"></noscript>
   <link rel="stylesheet" href="styles.css?v=20260626b" />
 
   <!-- IS 5568 Accessibility: FOUC prevention for saved preferences -->
