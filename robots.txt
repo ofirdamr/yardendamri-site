@@ -3,3 +3,4 @@ Disallow: /admin.html
 Allow: /
 
 Sitemap: https://yardendamri.co.il/sitemap.xml
+
