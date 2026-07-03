@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-03T23:41:25.368Z",
+  "updatedAt": "2026-07-03T23:41:51.404Z",
   "admin": {
     "hidden": [
       "https://images.yardendamri.co.il/yarden_17843112559037829.webp",
@@ -778,6 +778,7 @@
       "https://videos-new.yardendamri.co.il/yarden_18153908050468263.mp4"
     ],
     "pinned": [
+      "https://videos-new.yardendamri.co.il/yarden_18352618189204100.mp4",
       "https://videos-new.yardendamri.co.il/yarden_18094353658922515.mp4",
       "https://videos-new.yardendamri.co.il/yarden_18103958203807211.mp4"
     ],
