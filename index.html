@@ -797,8 +797,7 @@
       const imgEl   = document.getElementById('heroImage');
       applyHeroCropToPage(state.heroPosition, state.heroZoom);
       if (imgUrl && imgEl && videoEl) {
-        const cloudImg = imgUrl.replace('/image/upload/', '/image/upload/f_auto,q_auto,w_1920,c_fill/');
-        imgEl.src = cloudImg;
+        imgEl.src = imgUrl;
         imgEl.style.display = 'block';
         videoEl.style.display = 'none';
         videoEl.pause();
@@ -866,7 +865,7 @@
     })();
     window.addEventListener('load', upgradeHeroToHD);
   </script>
-  <script src="gallery-data.js?v=1783070786278"></script>
+  <script src="gallery-data.js?v=1783088049747"></script>
 
   <script>
     // ── MOBILE MENU ──────────────────────────────
@@ -1004,7 +1003,7 @@
     }
 
     function _showLightboxContent(url, alt) {
-      const isVideo = url.includes('/video/upload/') || url.includes('.mp4');
+      const isVideo = url.includes('.mp4');
       const lb = document.getElementById('lightbox');
       lb.classList.toggle('lb-video-on', isVideo);
       if (isVideo) {
@@ -1088,7 +1087,7 @@
     }
     function shareLink(item) {
       const id = String(item.item_id || item.post_id || '').replace(/[^0-9]/g, '');
-      const isVideo = item.video || /\.mp4/i.test(item.u) || item.u.includes('/video/upload/');
+      const isVideo = item.video || /\.mp4/i.test(item.u);
       return 'https://api.yardendamri.co.il/s/' + (isVideo ? 'v' : 'p') + '/' + id;
     }
     async function shareItem() {
@@ -1194,21 +1193,6 @@
       return m ? m[1] : null;
     }
 
-    // Optimize Cloudinary URLs: auto format (WebP/AVIF), quality, resize
-    function cdnUrl(url, w) {
-      if (!url) return url;
-      return url.replace('/upload/', `/upload/f_auto,q_auto,w_${w},c_fill/`);
-    }
-    function cdnVideo(url, w) {
-      if (!url) return url;
-      // q_auto = Cloudinary analyzes each video and picks optimal quality
-      // f_auto = serves WebP/best format for the browser
-      return url.replace('/video/upload/', `/video/upload/q_auto:good,w_480,c_fill,f_auto/`);
-    }
-    function cdnVideoPoster(url) {
-      if (!url) return '';
-      return url.replace('/video/upload/', '/video/upload/so_auto,f_jpg,w_480,h_480,c_fill,q_auto/').replace(/\.(mp4|mov|webm)$/i, '.jpg');
-    }
 
     let igStatsCache = JSON.parse(sessionStorage.getItem('ig_stats')||'{}');
     let igCaptionMap = {}; // caption_key → stats
@@ -1317,7 +1301,7 @@
         div.setAttribute('role', 'listitem');
         div.style.cssText = 'position:relative;overflow:hidden;border-radius:16px;aspect-ratio:1;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:transform .3s,box-shadow .3s;touch-action:manipulation;background:#efe7df;background-image:linear-gradient(100deg,#efe7df 30%,#faf5f0 50%,#efe7df 70%);background-size:200% 100%;animation:shimmer 1.5s linear infinite;';
 
-        const isVideo = item.video || item.u.includes('.mp4') || item.u.includes('/video/upload/');
+        const isVideo = item.video || item.u.includes('.mp4');
         const _rot = (getAdminSettings().rotations || {})[item.u] || 0;
         const _rotStyle = _rot ? `transform:rotate(${_rot}deg);` : '';
 

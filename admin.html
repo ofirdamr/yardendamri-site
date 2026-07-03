@@ -394,7 +394,7 @@
             <button class="btn" onclick="document.getElementById('hero-zoom').value=100;applyHeroCrop();" style="flex:0 0 auto;padding:0 14px;" title="איפוס זום">↺ זום</button>
           </div>
         </div>
-        <p style="font-size:.75rem;color:var(--text-muted,#999);margin:0;">כפתור "זיהוי פנים" — Cloudinary מזהה פנים ומרכז אוטומטית. אם לא מדויק, כווני ידנית עם הסליידרים.</p>
+        <p style="font-size:.75rem;color:var(--text-muted,#999);margin:0;">גררי או השתמשי בסליידרים כדי למרכז את התמונה/הווידאו בדיוק כפי שתרצי.</p>
       </div>
     </div>
 
@@ -838,7 +838,7 @@ let lastClickedIdx = -1;
 function generateAltText(img, catMap) {
   catMap = catMap || {};
   const cat = catMap[img.u] || '';
-  const isVid = img.u.includes('/video/upload/') || img.u.match(/\.(mp4|mov|webm)$/i);
+  const isVid = img.u.match(/\.(mp4|mov|webm)$/i);
   const mediaType = isVid ? 'סרטון' : 'תמונה';
   const catMap2 = {
     'כלות': 'איפור כלה', 'ערב': 'איפור ערב', 'אירועים/הפקות': 'איפור הפקה',
@@ -1011,7 +1011,7 @@ function renderGrid() {
     const div = document.createElement('div');
     div.className='img-card'+(hiddenSet.has(img.u)?' hidden-card':'')+(pinnedSet.has(img.u)?' pinned':'');
     div.dataset.url=img.u; div.draggable=!_isTouch;
-    const isVid = img.u.includes('/video/upload/') || img.u.match(/\.(mp4|mov|webm)$/i);
+    const isVid = img.u.match(/\.(mp4|mov|webm)$/i);
     const thumbSrc = isVid ? (img.thumb || img.u) : img.u;
     const altTxt = generateAltText(img, catMap);
     const rotation = (s.rotations||{})[img.u] || 0;
@@ -1165,16 +1165,9 @@ function clearAllSettings(){
 
 // ─── HERO VIDEO PICKER (visual grid) ──────────────────────────
 function heroVidThumb(url){
-  if (url.includes('cloudinary.com'))
-    return url.replace('/video/upload/', '/video/upload/so_0,w_240,h_160,c_fill,f_jpg,q_auto/').replace(/\.(mp4|mov|webm)$/i, '.jpg');
   const fileName = url.split('/').pop();
   const itemId = fileName.replace(/^yarden_(?:makeup_)?/, '').replace(/\.mp4$/, '');
   return 'https://images.yardendamri.co.il/yarden_' + itemId + '_thumb.jpg';
-}
-function heroVidPreview(url){
-  if (!url.includes('cloudinary.com')) return url;
-  // Use low-res original (no new transform) so browser plays instantly
-  return url.replace('/video/upload/', '/video/upload/w_400,q_auto:low,vc_auto/');
 }
 let _heroAllVideos = [];
 let _heroCurrentFilter = '';
@@ -1226,7 +1219,7 @@ function populateHeroVideoSelect() {
   const hidden = new Set(getSettings().hidden || []);
   // Only show videos that are NOT hidden
   _heroAllVideos = GALLERY_IMAGES.filter(i =>
-    i.video || (i.u && (i.u.includes('/video/upload/') || i.u.includes('videos-new.yardendamri.co.il') || i.u.includes('videos.yardendamri.co.il') || i.u.match(/\.mp4$/i)))
+    i.video || (i.u && (i.u.includes('videos-new.yardendamri.co.il') || i.u.includes('videos.yardendamri.co.il') || i.u.match(/\.mp4$/i)))
   );
   renderHeroGrid();
   const status = document.getElementById('hero-video-status');
@@ -1247,15 +1240,11 @@ function loadHeroCropPreview(url, type) {
   if (!vid || !img) return;
   if (type === 'video') {
     vid.style.display = ''; img.style.display = 'none';
-    vid.src = url.includes('/video/upload/')
-      ? url.replace('/video/upload/', '/video/upload/w_640,q_auto:low,vc_auto/')
-      : url;
+    vid.src = url;
     vid.load(); vid.play().catch(()=>{});
   } else {
     img.style.display = ''; vid.style.display = 'none';
-    img.src = url.includes('/image/upload/')
-      ? url.replace('/image/upload/', '/image/upload/w_640,q_auto,f_auto/')
-      : url;
+    img.src = url;
   }
   // Restore saved crop
   const s = getSettings();
@@ -1330,15 +1319,7 @@ function heroCropStart(e) {
 }
 
 function updateHeroPosition() { applyHeroCrop(); }
-function _heroRawPreviewUrl(url, type) {
-  // Preview: use original video at low-res (no re-encode). Image: crop to wide banner.
-  if (!url || !url.includes('cloudinary.com')) return url;
-  if (type === 'video') {
-    return url.replace('/video/upload/', '/video/upload/q_auto:low,w_640,vc_auto/');
-  } else {
-    return url.replace('/image/upload/', '/image/upload/c_fill,w_800,h_450,f_auto,q_auto/');
-  }
-}
+function _heroRawPreviewUrl(url) { return url; }
 
 function showHeroPreview(url, type) {
   const section = document.getElementById('hero-preview-section'); if(!section) return;
@@ -1347,12 +1328,12 @@ function showHeroPreview(url, type) {
   const label = document.getElementById('hero-preview-label');
   section.style.display = '';
   if (type === 'video') {
-    const previewSrc = _heroRawPreviewUrl(url, 'video');
+    const previewSrc = _heroRawPreviewUrl(url);
     vidEl.src = previewSrc; vidEl.style.display = 'block'; vidEl.load(); setTimeout(()=>vidEl.play().catch(()=>{}), 100);
     imgEl.style.display = 'none';
     if (label) label.textContent = 'תצוגה מקדימה';
   } else {
-    imgEl.src = _heroRawPreviewUrl(url, 'image');
+    imgEl.src = _heroRawPreviewUrl(url);
     imgEl.style.display = 'block';
     vidEl.style.display = 'none'; vidEl.pause(); vidEl.src = '';
     if (label) label.textContent = 'תצוגה מקדימה';
@@ -1420,7 +1401,7 @@ function switchHeroTab(tab){
 function populateHeroImageSelect(){
   const grid = document.getElementById('hero-image-grid'); if(!grid) return;
   if (typeof GALLERY_IMAGES === 'undefined') return;
-  const images = GALLERY_IMAGES.filter(i => !i.video && !i.u.includes('/video/upload/'));
+  const images = GALLERY_IMAGES.filter(i => !i.video && !i.u.match(/\.(mp4|mov|webm)$/i));
   const current = (getSettings().heroImage) || '';
   const pendingUrl = _heroPending && _heroPending.type==='image' ? _heroPending.url : null;
   grid.innerHTML = images.map(img => {
@@ -1428,9 +1409,7 @@ function populateHeroImageSelect(){
     const isPending = pendingUrl && (img.u === pendingUrl);
     const highlighted = isSaved || isPending;
     const caption = (img.a || '').substring(0,40).replace(/"/g,'&quot;');
-    const thumb = img.u.includes('cloudinary.com')
-      ? img.u.replace('/image/upload/','/image/upload/w_240,h_160,c_fill,f_jpg,q_auto/')
-      : img.u;
+    const thumb = img.u;
     return `<div class="hero-vid-card" data-url="${img.u.replace(/"/g,'&quot;')}"
          onclick="selectHeroImage(this)"
          style="position:relative;cursor:pointer;border-radius:8px;overflow:hidden;border:3px solid ${highlighted?'#C4866A':'transparent'};width:100%;height:120px;background:#222;"
