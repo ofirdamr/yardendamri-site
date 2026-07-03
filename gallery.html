@@ -397,10 +397,8 @@ function applyAdminSettings(images) {
 }
 
 // ── CDN HELPERS ──
-function cdnUrl(url, w) {
-  if (!url) return url;
-  if (url.includes('ik.imagekit.io')) return url.replace(/\?.*/, '') + `?tr=w-${w},q-auto,f-auto`;
-  return url;
+function cdnUrl(url) {
+  return url || '';
 }
 function cdnVideo(url, w) { return url || ''; }
 function cdnVideoPoster(url) {
