@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-30T10:26:47.200Z",
+  "updatedAt": "2026-07-03T23:40:41.356Z",
   "admin": {
     "hidden": [
       "https://images.yardendamri.co.il/yarden_17843112559037829.webp",
@@ -3875,7 +3875,11 @@
       "https://videos-new.yardendamri.co.il/yarden_18100404782127411.mp4": "איפור ערב",
       "https://videos-new.yardendamri.co.il/yarden_17972187162071494.mp4": "איפור ערב",
       "https://videos-new.yardendamri.co.il/yarden_18153908050468263.mp4": "תמונות שלי",
-      "https://videos-new.yardendamri.co.il/yarden_18106863977287938.mp4": "איפור ערב"
+      "https://videos-new.yardendamri.co.il/yarden_18106863977287938.mp4": "איפור ערב",
+      "https://images.yardendamri.co.il/yarden_18078136256665056.webp": "כלות/חתונות",
+      "https://images.yardendamri.co.il/yarden_18445994680142645.webp": "כלות/חתונות",
+      "https://videos-new.yardendamri.co.il/yarden_17979193161021000.mp4": "כלות/חתונות",
+      "https://videos-new.yardendamri.co.il/yarden_18175949518416621.mp4": "כלות/חתונות"
     },
     "catList": [
       "כלות/חתונות",
