@@ -1,6 +1,48 @@
 // Auto-generated gallery data
 const GALLERY_IMAGES = [
   {
+    "u": "https://images.yardendamri.co.il/yarden_18078136256665056.webp",
+    "a": "לא כל לפני ואחרי צריך להיות דרמטי כדי להיות יפה. \nלפעמים באיפור הנקי והשקט יש אמ",
+    "item_id": "18078136256665056",
+    "post_id": "18084368804166418",
+    "thumb": "https://images.yardendamri.co.il/yarden_18078136256665056_thumb.webp",
+    "carousel": true,
+    "cidx": 0,
+    "ccount": 4
+  },
+  {
+    "u": "https://images.yardendamri.co.il/yarden_18445994680142645.webp",
+    "a": "לא כל לפני ואחרי צריך להיות דרמטי כדי להיות יפה. \nלפעמים באיפור הנקי והשקט יש אמ",
+    "item_id": "18445994680142645",
+    "post_id": "18084368804166418",
+    "thumb": "https://images.yardendamri.co.il/yarden_18445994680142645_thumb.webp",
+    "carousel": true,
+    "cidx": 1,
+    "ccount": 4
+  },
+  {
+    "u": "https://videos-new.yardendamri.co.il/yarden_17979193161021000.mp4",
+    "a": "לא כל לפני ואחרי צריך להיות דרמטי כדי להיות יפה. \nלפעמים באיפור הנקי והשקט יש אמ",
+    "item_id": "17979193161021000",
+    "post_id": "18084368804166418",
+    "video": true,
+    "thumb": "https://images.yardendamri.co.il/yarden_17979193161021000_thumb.webp",
+    "carousel": true,
+    "cidx": 2,
+    "ccount": 4
+  },
+  {
+    "u": "https://videos-new.yardendamri.co.il/yarden_18175949518416621.mp4",
+    "a": "לא כל לפני ואחרי צריך להיות דרמטי כדי להיות יפה. \nלפעמים באיפור הנקי והשקט יש אמ",
+    "item_id": "18175949518416621",
+    "post_id": "18084368804166418",
+    "video": true,
+    "thumb": "https://images.yardendamri.co.il/yarden_18175949518416621_thumb.webp",
+    "carousel": true,
+    "cidx": 3,
+    "ccount": 4
+  },
+  {
     "u": "https://videos-new.yardendamri.co.il/yarden_18153908050468263.mp4",
     "a": "הכירו את ה Jelly job הסדרת שפתונים החדשה של \n@nyxcosmetics_il \nהפורמולה החדשה מע",
     "item_id": "18153908050468263",
