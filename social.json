@@ -1,7 +1,7 @@
 {
   "likes": {
     "aHR0cHM6Ly92": 7,
-    "aHR0cHM6Ly9p": 1
+    "aHR0cHM6Ly9p": 2
   },
   "comments": {
     "aHR0cHM6Ly92": [
@@ -12,5 +12,5 @@
       }
     ]
   },
-  "updatedAt": "2026-07-06T05:20:53.081Z"
+  "updatedAt": "2026-07-06T05:21:05.575Z"
 }
