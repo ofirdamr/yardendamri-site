@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-08T10:17:33.700Z",
+  "updatedAt": "2026-07-08T10:17:48.615Z",
   "admin": {
     "hidden": [
       "https://images.yardendamri.co.il/yarden_17843112559037829.webp",
@@ -4070,6 +4070,7 @@
     "home.services.trial_desc": "איפור ניסיון היא השקעה שמשתלמת. נבנה יחד את המראה שלך, נבדוק מה מתאים לסגנון ולשמלה, כדי שביום החתונה לא יהיו הפתעות, רק אושר.",
     "home.services.bday_name": "אירועים משפחתיים",
     "home.cta_strip.text": "כלה? איפור ניסיון? אירוע? איפור לערב בלתי נשכח?  חייגי אלי לשריין תאריך ",
-    "home.philosophy.attribution": "ירדן דמרי, מאפרת כלות וערב"
+    "home.philosophy.attribution": "ירדן דמרי, מאפרת כלות וערב",
+    "home.philosophy.attr2_title": "מוצרי פרימיום איכותיים "
   }
 }
