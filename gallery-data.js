@@ -1,6 +1,14 @@
 // Auto-generated gallery data
 const GALLERY_IMAGES = [
   {
+    "u": "https://videos-new.yardendamri.co.il/yarden_18111523847316671.mp4",
+    "a": "אחד הדברים שאני הכי אוהבת בעבודה שלי\nזה לקחת השראה מתקופה אחרת ולהפוך אותה למשהו",
+    "item_id": "18111523847316671",
+    "post_id": "18111523847316671",
+    "video": true,
+    "thumb": "https://images.yardendamri.co.il/yarden_18111523847316671_thumb.webp"
+  },
+  {
     "u": "https://videos-new.yardendamri.co.il/yarden_18019234787887273.mp4",
     "a": "⁨\t⁨\tשלקוחה שלי מהנשף נראת כמו אלזה אבל לא אלזה רגילה.. \nמחול כזאת \nאין מיוחדת כז",
     "item_id": "18019234787887273",
