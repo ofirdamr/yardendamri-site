@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-08T10:18:11.995Z",
+  "updatedAt": "2026-07-08T10:18:51.059Z",
   "admin": {
     "hidden": [
       "https://images.yardendamri.co.il/yarden_17843112559037829.webp",
@@ -4071,6 +4071,7 @@
     "home.services.bday_name": "אירועים משפחתיים",
     "home.cta_strip.text": "כלה? איפור ניסיון? אירוע? איפור לערב בלתי נשכח?  חייגי אלי לשריין תאריך ",
     "home.philosophy.attribution": "ירדן דמרי, מאפרת כלות וערב",
-    "home.philosophy.attr2_title": "מוצרי פרימיום "
+    "home.philosophy.attr2_title": "מוצרי פרימיום ",
+    "home.area.point_body": "מגיעה איתך לכל לוקיישן שתבחרי – מהצפון ועד הדרום, כדי להעניק לך שקט נפשי וחוויה מושלמת."
   }
 }
