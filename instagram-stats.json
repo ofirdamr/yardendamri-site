@@ -64787,5 +64787,21 @@
         "timestamp": "2026-07-01T16:38:32+0000"
       }
     ]
+  },
+  "18019234787887273": {
+    "likes": 3,
+    "comments_count": 2,
+    "comments": [
+      {
+        "username": "zohar_kochavi_makeup",
+        "text": "מושלםםםם",
+        "timestamp": "2026-07-07T19:57:36+0000"
+      },
+      {
+        "username": "bartzanani_hair",
+        "text": "מעלפת",
+        "timestamp": "2026-07-07T18:46:02+0000"
+      }
+    ]
   }
 }

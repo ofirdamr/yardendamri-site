@@ -1,6 +1,14 @@
 // Auto-generated gallery data
 const GALLERY_IMAGES = [
   {
+    "u": "https://videos-new.yardendamri.co.il/yarden_18019234787887273.mp4",
+    "a": "⁨\t⁨\tשלקוחה שלי מהנשף נראת כמו אלזה אבל לא אלזה רגילה.. \nמחול כזאת \nאין מיוחדת כז",
+    "item_id": "18019234787887273",
+    "post_id": "18019234787887273",
+    "video": true,
+    "thumb": "https://images.yardendamri.co.il/yarden_18019234787887273_thumb.webp"
+  },
+  {
     "u": "https://images.yardendamri.co.il/yarden_18078136256665056.webp",
     "a": "לא כל לפני ואחרי צריך להיות דרמטי כדי להיות יפה. \nלפעמים באיפור הנקי והשקט יש אמ",
     "item_id": "18078136256665056",
