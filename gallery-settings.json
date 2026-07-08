@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-08T10:06:28.650Z",
+  "updatedAt": "2026-07-08T10:06:49.150Z",
   "admin": {
     "hidden": [
       "https://images.yardendamri.co.il/yarden_17843112559037829.webp",
@@ -4065,6 +4065,7 @@
     "home.about.pill4": "✦ פגישת יעוץ והתאמה לפני החתונה",
     "bride.meta.title": "מאפרת כלות מקצועית | ירדן דמרי – איפור כלות מקצועי",
     "bride.meta.description": "ירדן דמרי – מאפרת כלות מקצועית . איפור כלה עדין, זוהר ועמיד לכל היום. מאות כלות מרוצות. לתיאום: 054-7276716",
-    "home.services.trial_cta": "לתיאום איפור ניסיון"
+    "home.services.trial_cta": "לתיאום איפור ניסיון",
+    "home.services.trial_name": "איפור ניסיון"
   }
 }
