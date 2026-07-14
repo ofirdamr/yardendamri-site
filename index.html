@@ -1382,8 +1382,17 @@
               el._ov = v;
               v.play().catch(()=>{});
             } else if (el._ov) {
-              try { el._ov.pause(); } catch(_){}
-              el._ov.style.opacity = '0';
+              // Off-screen: fully release the video so its decoder + connection are freed.
+              // The thumbnail <img> ALWAYS stays underneath (and the video was already
+              // opacity:0 off-screen), so the tile looks identical. This only frees the
+              // iOS/WebKit media-element pool that was being exhausted as tiles accumulated,
+              // which is what left on-screen tiles frozen on the poster and the lightbox blank.
+              // A fresh video is recreated (create-branch above) when the tile scrolls back in.
+              const ov = el._ov;
+              el._ov = null;
+              try { ov.pause(); } catch(_){}
+              try { ov.removeAttribute('src'); ov.load(); } catch(_){}
+              try { ov.remove(); } catch(_){}
             }
           });
         }, { threshold: 0.2 });
