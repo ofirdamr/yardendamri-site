@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-11T10:04:39.005Z",
+  "updatedAt": "2026-07-28T06:12:55.383Z",
   "admin": {
     "hidden": [
       "https://images.yardendamri.co.il/yarden_17843112559037829.webp",
@@ -775,7 +775,9 @@
       "https://images.yardendamri.co.il/yarden_17900434600014653.webp",
       "https://videos-new.yardendamri.co.il/yarden_17892239260111120.mp4",
       "https://images.yardendamri.co.il/yarden_17882731123017167.webp",
-      "https://videos-new.yardendamri.co.il/yarden_18153908050468263.mp4"
+      "https://videos-new.yardendamri.co.il/yarden_18153908050468263.mp4",
+      "https://videos-new.yardendamri.co.il/yarden_17979040103924723.mp4",
+      "https://images.yardendamri.co.il/yarden_17955074080661075.webp"
     ],
     "pinned": [
       "https://videos-new.yardendamri.co.il/yarden_17951003097110919.mp4"
@@ -3932,18 +3934,18 @@
       "addons": [
         {
           "name": "ליווי לכלה",
-          "price": "600 ₪"
+          "price": "700 ₪"
         },
         {
           "name": "איפור מלווה",
-          "price": "400 ₪"
+          "price": "450 ₪"
         },
         {
           "name": "תינתן הנחה לכלה עם 3 מלוות",
           "price": ""
         },
         {
-          "name": "מקדמה 10% לשריון תאריך לחתונה",
+          "name": "מקדמה 300₪ לשריון תאריך לחתונה",
           "price": ""
         }
       ]
@@ -4091,6 +4093,8 @@
     "gallery.meta.title": "גלריה | ירדן דמרי – מאפרת כלות וערב באילת 054-7276716",
     "gallery.hero.eyebrow": "תיק עבודות האיפור שלי",
     "services.meta.title": "שירות איפור מקצועי | ירדן דמרי – מאפרת כלות וערב 054-7276716",
-    "services.meta.description": "שירותי איפור מקצועי: איפור כלות, ערב, הפקות, ימי הולדת, פורים וסדנאות. ירדן דמרי – מאפרת מקצועית עם ניסיון עשיר."
+    "services.meta.description": "שירותי איפור מקצועי: איפור כלות, ערב, הפקות, ימי הולדת, פורים וסדנאות. ירדן דמרי – מאפרת מקצועית עם ניסיון עשיר.",
+    "home.services.subtitle": "מגיעה עד אלייך, בכל מקום בישראל",
+    "home.services.bridal_desc": "כלה שלי, זה לא עוד אירוע. אני מגיעה אלייך בבוקר החתונה מוכנה לחלוטין, עם מוצרי פרימיום ומגע רגוע שיתן לך את הביטחון שאת צריכה. האיפור מחזיק מהבוקר ועד הריקוד האחרון."
   }
 }
