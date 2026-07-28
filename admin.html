@@ -195,6 +195,7 @@
       <div id="cat-filter-btns"></div>
       <button class="btn btn-secondary" onclick="toggleMultiSelect()" id="multiSelectBtn" style="margin-right:auto">☑️ בחירה מרובה</button>
       <button class="btn btn-secondary" onclick="resetOrder()">🔄 אפס סדר</button>
+      <button class="btn" style="background:var(--rose);color:#fff;border-color:var(--rose)" onclick="openUploadModal()">📤 העלאת תמונה</button>
       <span class="stats" id="stats-label"></span>
     </div>
     <!-- Multi-select action bar -->
@@ -462,6 +463,33 @@
       השינויים נשמרים מיד עם הלחיצה על «שמור שינויים» ומתעדכנים באתר החי.
     </p>
     <div id="content-editor"><p style="color:var(--muted)">טוען…</p></div>
+  </div>
+</div>
+
+<!-- UPLOAD MODAL -->
+<div class="modal-bg" id="upload-modal" onclick="if(event.target===this)closeUploadModal()">
+  <div class="modal" style="width:360px;max-width:94vw">
+    <h3>📤 העלאת תמונה ידנית</h3>
+    <div id="upload-preview-wrap" style="display:none;margin-bottom:12px;text-align:center">
+      <img id="upload-preview-img" src="" alt="" style="max-width:100%;max-height:180px;border-radius:8px;object-fit:cover" />
+    </div>
+    <label style="display:block;font-size:.82rem;color:var(--muted);margin-bottom:6px">תמונה (JPG / PNG / WebP, עד 20MB)</label>
+    <input type="file" id="upload-file-input" accept="image/jpeg,image/png,image/webp"
+      style="width:100%;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);font-size:.85rem;margin-bottom:12px;box-sizing:border-box"
+      onchange="previewUploadFile()" />
+    <label style="display:block;font-size:.82rem;color:var(--muted);margin-bottom:6px">תיאור / alt (עברית, עד 80 תווים)</label>
+    <input type="text" id="upload-alt-input" maxlength="80" placeholder="למשל: איפור כלה, 2024"
+      style="width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);font-size:.9rem;margin-bottom:14px;box-sizing:border-box;text-align:right" dir="rtl" />
+    <div id="upload-progress-wrap" style="display:none;margin-bottom:12px">
+      <div style="background:rgba(255,255,255,.08);border-radius:4px;height:6px;overflow:hidden">
+        <div id="upload-progress-bar" style="background:var(--rose);height:100%;width:0;transition:width .3s"></div>
+      </div>
+    </div>
+    <div id="upload-status" style="font-size:.82rem;min-height:18px;margin-bottom:10px;text-align:center"></div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeUploadModal()">ביטול</button>
+      <button class="btn btn-primary" id="upload-submit-btn" onclick="submitUpload()">העלאה</button>
+    </div>
   </div>
 </div>
 
@@ -1839,6 +1867,96 @@ function openCatModal(url){
   document.getElementById('cat-modal').classList.add('open');
 }
 function closeModal(){ document.getElementById('cat-modal').classList.remove('open'); }
+
+// ─── MANUAL UPLOAD ───────────────────────────────────────────────────────────
+function openUploadModal() {
+  document.getElementById('upload-file-input').value = '';
+  document.getElementById('upload-alt-input').value = '';
+  document.getElementById('upload-preview-wrap').style.display = 'none';
+  document.getElementById('upload-progress-wrap').style.display = 'none';
+  document.getElementById('upload-status').textContent = '';
+  document.getElementById('upload-submit-btn').disabled = false;
+  document.getElementById('upload-modal').classList.add('open');
+}
+function closeUploadModal() {
+  document.getElementById('upload-modal').classList.remove('open');
+}
+function previewUploadFile() {
+  const file = document.getElementById('upload-file-input').files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('upload-preview-img').src = e.target.result;
+    document.getElementById('upload-preview-wrap').style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+async function submitUpload() {
+  const fileInput = document.getElementById('upload-file-input');
+  const altInput  = document.getElementById('upload-alt-input');
+  const statusEl  = document.getElementById('upload-status');
+  const progressWrap = document.getElementById('upload-progress-wrap');
+  const progressBar  = document.getElementById('upload-progress-bar');
+  const submitBtn    = document.getElementById('upload-submit-btn');
+
+  const file = fileInput.files[0];
+  if (!file) { statusEl.style.color = '#ff6b6b'; statusEl.textContent = 'יש לבחור קובץ תמונה'; return; }
+  if (file.size > 20 * 1024 * 1024) { statusEl.style.color = '#ff6b6b'; statusEl.textContent = 'הקובץ גדול מ-20MB'; return; }
+
+  const token = window.RemoteState && window.RemoteState.getPwd && window.RemoteState.getPwd();
+  if (!token) { statusEl.style.color = '#ff6b6b'; statusEl.textContent = 'שגיאת אימות — נסי להתחבר מחדש'; return; }
+
+  submitBtn.disabled = true;
+  progressWrap.style.display = 'block';
+  progressBar.style.width = '10%';
+  statusEl.style.color = 'var(--muted)';
+  statusEl.textContent = 'מעלה…';
+
+  const form = new FormData();
+  form.append('file', file);
+  form.append('alt', altInput.value.trim());
+
+  try {
+    progressBar.style.width = '40%';
+    const res = await fetch('https://api.yardendamri.co.il/upload-image', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token },
+      body: form,
+    });
+    progressBar.style.width = '80%';
+    const data = await res.json().catch(() => ({}));
+    progressBar.style.width = '100%';
+
+    if (res.ok && data.ok) {
+      statusEl.style.color = '#4CAF50';
+      statusEl.textContent = 'התמונה הועלתה בהצלחה. הגלריה תתעדכן תוך כמה דקות.';
+      if (data.thumb) {
+        document.getElementById('upload-preview-img').src = data.thumb;
+        document.getElementById('upload-preview-wrap').style.display = 'block';
+      }
+      fileInput.value = '';
+      altInput.value = '';
+    } else {
+      const errMap = {
+        duplicate: 'תמונה זו כבר קיימת בגלריה',
+        file_too_large: 'הקובץ גדול מ-20MB',
+        unsupported_type: 'סוג קובץ לא נתמך — יש להשתמש ב-JPG, PNG או WebP',
+        no_file: 'לא נבחר קובץ',
+        r2_not_configured: 'שגיאת הגדרות שרת — פנה לתמיכה',
+        unauthorized: 'שגיאת אימות — נסי להתחבר מחדש',
+      };
+      statusEl.style.color = '#ff6b6b';
+      statusEl.textContent = errMap[data.error] || (data.message || 'שגיאה בהעלאה — נסי שוב');
+      submitBtn.disabled = false;
+    }
+  } catch (e) {
+    progressBar.style.width = '0';
+    statusEl.style.color = '#ff6b6b';
+    statusEl.textContent = 'שגיאת רשת — נסי שוב';
+    submitBtn.disabled = false;
+  }
+}
+
 function saveImageCategory(){
   const url=document.getElementById('modal-img-url').value;
   const cat=document.getElementById('modal-cat-select').value;
