@@ -1930,8 +1930,8 @@ async function submitUpload() {
     if (res.ok && data.ok) {
       statusEl.style.color = '#4CAF50';
       statusEl.textContent = 'התמונה הועלתה בהצלחה. הגלריה תתעדכן תוך כמה דקות.';
-      if (data.thumb) {
-        document.getElementById('upload-preview-img').src = data.thumb;
+      if (data.url) {
+        document.getElementById('upload-preview-img').src = data.url;
         document.getElementById('upload-preview-wrap').style.display = 'block';
       }
       fileInput.value = '';
