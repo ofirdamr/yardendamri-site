@@ -1109,7 +1109,9 @@ function renderGrid() {
 
   // stats
   const s2=getSettings();
-  document.getElementById('stats-label').textContent=`סה"כ: ${allImages.length} | מוסתרות: ${(s2.hidden||[]).length} | נעוצות: ${(s2.pinned||[]).length} | מוצגות: ${imgs.length}`;
+  const _hiddenSet2=new Set(s2.hidden||[]);
+  const _visibleCount=allImages.filter(i=>!_hiddenSet2.has(i.u)).length;
+  document.getElementById('stats-label').textContent=`סה"כ: ${allImages.length} | מוסתרות: ${(s2.hidden||[]).length} | נעוצות: ${(s2.pinned||[]).length} | מוצגות: ${_visibleCount}`;
 }
 
 function showDuplicates(btn) {
