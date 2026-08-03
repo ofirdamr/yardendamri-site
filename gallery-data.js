@@ -1,8 +1,46 @@
 // Auto-generated gallery data
 const GALLERY_IMAGES = [
   {
+    "u": "https://images.yardendamri.co.il/yarden_18097628021628842.webp",
+    "a": "@tavor.ober \nMakeup @yarden_damri_makeup \nDress @sharon.bridal",
+    "item_id": "18097628021628842",
+    "post_id": "18087644426440480",
+    "thumb": "https://images.yardendamri.co.il/yarden_18097628021628842_thumb.webp",
+    "carousel": true,
+    "cidx": 0,
+    "ccount": 3
+  },
+  {
+    "u": "https://images.yardendamri.co.il/yarden_18126234676681952.webp",
+    "a": "@tavor.ober \nMakeup @yarden_damri_makeup \nDress @sharon.bridal",
+    "item_id": "18126234676681952",
+    "post_id": "18087644426440480",
+    "thumb": "https://images.yardendamri.co.il/yarden_18126234676681952_thumb.webp",
+    "carousel": true,
+    "cidx": 1,
+    "ccount": 3
+  },
+  {
+    "u": "https://images.yardendamri.co.il/yarden_18104328212272111.webp",
+    "a": "@tavor.ober \nMakeup @yarden_damri_makeup \nDress @sharon.bridal",
+    "item_id": "18104328212272111",
+    "post_id": "18087644426440480",
+    "thumb": "https://images.yardendamri.co.il/yarden_18104328212272111_thumb.webp",
+    "carousel": true,
+    "cidx": 2,
+    "ccount": 3
+  },
+  {
+    "u": "https://videos-new.yardendamri.co.il/yarden_18099662804167139.mp4",
+    "a": "בואו לנסות איתי הקומבו שפתיים הכי יפים שיש!! \n\n@nyxcosmetics_il #nyxprofessional",
+    "item_id": "18099662804167139",
+    "post_id": "18099662804167139",
+    "video": true,
+    "thumb": "https://images.yardendamri.co.il/yarden_18099662804167139_thumb.webp"
+  },
+  {
     "u": "https://videos-new.yardendamri.co.il/yarden_18117236173851808.mp4",
-    "a": "POV : הרגע הזה שאת מבינה שזה בול מה שרצית\n@edenswisa___ \n@dheeune",
+    "a": "⁨\tPOV : הרגע הזה שאת מבינה שזה בול מה שרצית\n@edenswisa___@dheeunene⁩",
     "item_id": "18117236173851808",
     "post_id": "18117236173851808",
     "video": true,
@@ -1334,7 +1372,8 @@ const GALLERY_IMAGES = [
     "item_id": "17979040103924723",
     "post_id": "17979040103924723",
     "video": true,
-    "thumb": "https://images.yardendamri.co.il/yarden_17979040103924723_thumb.webp"
+    "thumb": "https://images.yardendamri.co.il/yarden_17979040103924723_thumb.webp",
+    "hidden": true
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18050220944354024.mp4",
@@ -7199,7 +7238,8 @@ const GALLERY_IMAGES = [
     "a": "איפור שלי ללירון ויצמן המהממת \nחולצה של @boutique_hen ❣️\n\n#מאפרתבאילת #איפורמקצו",
     "item_id": "17955074080661075",
     "post_id": "17955074080661075",
-    "thumb": "https://images.yardendamri.co.il/yarden_17955074080661075_thumb.webp"
+    "thumb": "https://images.yardendamri.co.il/yarden_17955074080661075_thumb.webp",
+    "hidden": true
   },
   {
     "u": "https://videos-new.yardendamri.co.il/yarden_18204678247182721.mp4",
