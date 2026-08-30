@@ -683,6 +683,30 @@ document.getElementById('loadMoreBtn').addEventListener('click', () => { renderP
 
 buildFilterBar();
 
+// ── VIDEO SCHEMA (VideoObject JSON-LD for Google Video Search) ──
+(function injectVideoSchema() {
+  if (typeof GALLERY_IMAGES === 'undefined') return;
+  var videos = GALLERY_IMAGES.filter(function(v) { return v.video && !v.hidden && v.ts; });
+  if (!videos.length) return;
+  var items = videos.map(function(v) {
+    var title = (v.a || '').split('\n')[0].replace(/#\S+/g,'').trim().slice(0,110) || 'איפור מקצועי';
+    return {
+      '@type': 'VideoObject',
+      name: title,
+      description: (v.a || '').replace(/#\S+/g,'').trim().slice(0,500) || title,
+      thumbnailUrl: v.thumb || v.u.replace('.mp4','_thumb.webp'),
+      contentUrl: v.u,
+      uploadDate: v.ts,
+      embedUrl: 'https://yardendamri.co.il/gallery.html?m=' + encodeURIComponent(v.item_id),
+      publisher: { '@type': 'Person', name: 'ירדן דמרי', url: 'https://yardendamri.co.il' }
+    };
+  });
+  var s = document.createElement('script');
+  s.type = 'application/ld+json';
+  s.text = JSON.stringify({ '@context': 'https://schema.org', '@graph': items });
+  document.head.appendChild(s);
+})();
+
 // ── LIGHTBOX ──
 function repositionLbActionsDesktop() {
   if (window.innerWidth < 1081) return;
