@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <script>
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn  = document.getElementById('navHamburger');
+  var ov   = document.getElementById('mobileOverlay');
+  var open = menu.classList.toggle('open');
+  if (btn) btn.classList.toggle('open', open);
+  if (ov)  ov.classList.toggle('open', open);
+  if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+function closeMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn  = document.getElementById('navHamburger');
+  var ov   = document.getElementById('mobileOverlay');
+  if (!menu) return;
+  menu.classList.remove('open');
+  if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+  if (ov)  ov.classList.remove('open');
+  menu.setAttribute('aria-hidden','true');
+}
+function trackEvent(n,c,l){if(typeof gtag==='function')gtag('event',n,{event_category:c,event_label:l});}
+document.addEventListener('DOMContentLoaded',function(){
+  var nav=document.querySelector('nav[role="navigation"]');
+  if(nav){nav.classList.add('subpage-nav');nav.classList.add('scrolled');window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});}
+});
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}if(localStorage.getItem('cookie_consent')==='accepted'){var _s=document.createElement('script');_s.async=true;_s.src='https://www.googletagmanager.com/gtag/js?id=G-68XM6LS4HX';document.head.appendChild(_s);gtag('js',new Date());gtag('config','G-68XM6LS4HX');}
+</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>מה סגנון האיפור שלי לחתונה? | קוויז כלות – ירדן דמרי</title>
+  <meta name="description" content="עני על 5 שאלות וגלי איזה סגנון איפור כלה הכי מתאים לך – טבעי, גלאם, בוהו או קלאסי. מאפרת ירדן דמרי."/>
+  <meta property="og:title" content="מה סגנון האיפור שלי לחתונה? | קוויז כלות"/>
+  <meta property="og:description" content="5 שאלות, תוצאה שתפתיעי אותך. גלי איזה כלה את ושתפי את החברות!"/>
+  <meta property="og:image" content="https://yardendamri.co.il/share-preview.jpg"/>
+  <meta property="og:url" content="https://yardendamri.co.il/quiz.html"/>
+  <meta property="og:type" content="website"/>
+  <link rel="canonical" href="https://yardendamri.co.il/quiz.html"/>
+  <script src="site-content.js?v=1"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260626b"/>
+  <script src="a11y.js" defer></script>
+  <script src="cookie-banner.js?v=5" defer></script>
+  <style>
+    .quiz-hero{padding:140px clamp(24px,8vw,80px) 60px;text-align:center;background:#fff;}
+    .quiz-eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:#999;margin-bottom:16px;display:block}
+    .quiz-hero h1{font-size:clamp(2rem,5vw,3rem);color:var(--charcoal);margin-bottom:16px;line-height:1.2}
+    .quiz-hero p{font-size:1rem;color:var(--text);max-width:540px;margin:0 auto 36px;line-height:1.85}
+    .quiz-start-btn{display:inline-block;background:var(--charcoal);color:#fff;padding:18px 48px;border-radius:2px;text-decoration:none;font-size:.9rem;font-weight:700;letter-spacing:.05em;cursor:pointer;border:none;font-family:'Rubik',sans-serif;transition:background .2s}
+    .quiz-start-btn:hover{background:var(--rose)}
+
+    .quiz-wrap{max-width:680px;margin:0 auto;padding:0 24px 80px}
+
+    /* Progress bar */
+    .quiz-progress{height:4px;background:#eee;border-radius:2px;margin:40px 0 48px;overflow:hidden}
+    .quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--gold));border-radius:2px;transition:width .5s ease}
+
+    /* Question */
+    .quiz-q{animation:fadeIn .4s ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    .quiz-q-num{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#bbb;margin-bottom:10px}
+    .quiz-q-text{font-size:clamp(1.3rem,3.5vw,1.8rem);color:var(--charcoal);margin-bottom:32px;line-height:1.45;font-weight:600}
+
+    /* Answer options */
+    .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:500px){.quiz-options{grid-template-columns:1fr}}
+    .quiz-opt{background:#fff;border:2px solid #e8e0d8;border-radius:14px;padding:20px 18px;cursor:pointer;text-align:right;transition:all .2s;font-family:'Rubik',sans-serif;font-size:.95rem;color:var(--text);line-height:1.5}
+    .quiz-opt:hover{border-color:var(--rose);background:rgba(196,128,90,.04);transform:translateY(-2px)}
+    .quiz-opt.selected{border-color:var(--rose);background:rgba(196,128,90,.07);font-weight:600}
+    .quiz-opt-emoji{display:block;font-size:1.6rem;margin-bottom:6px}
+    .quiz-opt-label{display:block;font-weight:600;color:var(--charcoal);margin-bottom:3px}
+    .quiz-opt-sub{display:block;font-size:.82rem;color:#999}
+
+    .quiz-next{margin-top:28px;display:flex;justify-content:center}
+    .quiz-next-btn{background:var(--charcoal);color:#fff;border:none;padding:15px 44px;border-radius:2px;font-size:.88rem;font-weight:700;letter-spacing:.05em;cursor:pointer;font-family:'Rubik',sans-serif;transition:background .2s;opacity:.4;pointer-events:none}
+    .quiz-next-btn.active{opacity:1;pointer-events:auto}
+    .quiz-next-btn.active:hover{background:var(--rose)}
+
+    /* Result */
+    .quiz-result{animation:fadeIn .5s ease;text-align:center;padding:20px 0 60px}
+    .result-badge{width:110px;height:110px;border-radius:50%;margin:0 auto 24px;display:flex;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(135deg,var(--blush),var(--warm))}
+    .result-label{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--rose);margin-bottom:12px}
+    .result-name{font-size:clamp(2rem,5vw,2.8rem);color:var(--charcoal);margin-bottom:20px;font-weight:700}
+    .result-desc{font-size:1.05rem;color:var(--text);max-width:520px;margin:0 auto 16px;line-height:1.9}
+    .result-traits{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0 36px}
+    .result-trait{background:rgba(196,128,90,.1);color:var(--rose);border-radius:20px;padding:6px 16px;font-size:.82rem;font-weight:600}
+
+    .result-actions{display:flex;flex-direction:column;align-items:center;gap:14px}
+    .result-wa{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:16px 36px;border-radius:2px;text-decoration:none;font-size:.9rem;font-weight:700;letter-spacing:.04em;transition:opacity .2s}
+    .result-wa:hover{opacity:.88}
+    .result-share{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--charcoal);border:2px solid var(--charcoal);padding:14px 32px;border-radius:2px;text-decoration:none;font-size:.88rem;font-weight:700;cursor:pointer;font-family:'Rubik',sans-serif;transition:all .2s}
+    .result-share:hover{background:var(--charcoal);color:#fff}
+    .result-retry{color:#bbb;font-size:.82rem;cursor:pointer;text-decoration:underline;margin-top:6px}
+    .result-retry:hover{color:var(--rose)}
+
+    .hidden{display:none!important}
+  </style>
+<style id="rtl-float-override">
+@media (min-width:1081px){ nav[role="navigation"]{ flex-direction: row-reverse !important; } }
+body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, body.lb-open #scroll-top{display:none !important;}
+#a11y-trigger,#scroll-top,#wa-float-btn,.wa-float{width:36px !important;height:36px !important;min-width:36px !important;max-width:36px !important;min-height:36px !important;max-height:36px !important;border-radius:50% !important;position:fixed !important;bottom:18px !important;z-index:99999 !important;display:flex !important;align-items:center !important;justify-content:center !important;padding:0 !important;box-sizing:border-box !important;background:#444 !important;color:#fff !important;border:none !important;filter:none !important;opacity:.55 !important;box-shadow:0 4px 16px rgba(0,0,0,.3) !important;transition:opacity .2s !important;}
+#a11y-trigger:hover,#scroll-top:hover,#wa-float-btn:hover,.wa-float:hover{opacity:.9 !important;transform:none !important;}
+#a11y-trigger{left:12px !important;right:auto !important;}
+#scroll-top{left:56px !important;right:auto !important;font-size:14px !important;}
+#wa-float-btn,.wa-float{right:12px !important;left:auto !important;}
+#a11y-trigger svg,#wa-float-btn svg,.wa-float svg{width:16px !important;height:16px !important;fill:#fff !important;}
+</style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+  <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()" aria-hidden="true"></div>
+
+  <nav role="navigation" aria-label="ניווט ראשי" class="subpage-nav">
+    <a href="/" class="nav-logo" aria-label="ירדן דמרי - עמוד הבית">
+      <div class="monogram"><span>Y<em>.D</em></span></div>
+    </a>
+    <a href="/" class="nav-brand-center" aria-label="ירדן דמרי - עמוד הבית" style="position:absolute;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;text-decoration:none;line-height:1.25;">
+      <span style="font-family:'Rubik',sans-serif;font-size:1.1rem;font-weight:400;color:#c9a96e;letter-spacing:.04em;white-space:nowrap;">ירדן דמרי</span>
+      <span style="font-family:'Rubik',sans-serif;font-size:.58rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,169,110,.75);margin-top:2px;white-space:nowrap;">מאפרת כלות וערב</span>
+    </a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="פתיחת תפריט ניווט" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" role="list">
+      <li class="nav-social">
+        <a href="https://www.instagram.com/yarden_damri_makeup" target="_blank" rel="noopener noreferrer" aria-label="Instagram של ירדן דמרי" class="social-pill social-ig">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <span>Instagram</span>
+        </a>
+      </li>
+      <li><a href="contact.html" class="nav-cta">צרי קשר</a></li>
+      <li><a href="about.html">אודות</a></li>
+      <li><a href="bride.html">מאפרת כלות</a></li>
+      <li><a href="services.html">שירותים</a></li>
+      <li><a href="gallery.html">גלריה</a></li>
+      <li><a href="bridal-guide.html">מדריך כלות</a></li>
+    </ul>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="תפריט ניווט נייד" aria-hidden="true">
+    <ul role="list">
+      <li><a href="about.html" onclick="closeMobileMenu()">אודות</a></li>
+      <li><a href="bride.html" onclick="closeMobileMenu()">מאפרת כלות</a></li>
+      <li><a href="services.html" onclick="closeMobileMenu()">שירותים</a></li>
+      <li><a href="gallery.html" onclick="closeMobileMenu()">גלריה</a></li>
+      <li><a href="bridal-guide.html" onclick="closeMobileMenu()">מדריך כלות</a></li>
+      <li><a href="contact.html" onclick="closeMobileMenu()">צרי קשר</a></li>
+    </ul>
+    <a href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" class="mobile-menu-wa">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.099.544 4.074 1.497 5.787L.057 23.882l6.255-1.641A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.666-.513-5.19-1.41l-.372-.22-3.863 1.013 1.032-3.765-.241-.388A9.978 9.978 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+      שלחי הודעה בוואטסאפ
+    </a>
+  </div>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <div class="quiz-hero" id="quizHero">
+      <span class="quiz-eyebrow">קוויז כלות</span>
+      <h1>מה סגנון האיפור<br/>שלי לחתונה?</h1>
+      <p>5 שאלות קצרות ותגלי איזו כלה את באמת. שתפי את התוצאה עם החברות ותגרמי להן לעשות גם.</p>
+      <button class="quiz-start-btn" onclick="startQuiz()" aria-label="התחילי את הקוויז">בואי נגלה 💫</button>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="quiz-wrap hidden" id="quizWrap" aria-live="polite">
+      <div class="quiz-progress" role="progressbar" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0">
+        <div class="quiz-progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <div id="quizQuestion"></div>
+      <div class="quiz-next">
+        <button class="quiz-next-btn" id="nextBtn" onclick="nextQuestion()" disabled>המשך &larr;</button>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="quiz-wrap hidden" id="quizResult"></div>
+
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2025 <strong>ירדן דמרי</strong> | מאפרת כלות וערב מקצועית | מגיעה לכל הארץ</p>
+    <p style="margin-top:10px;"><a href="tel:0547276716" style="color:rgba(255,255,255,.7);text-decoration:none;" aria-label="התקשרי אל ירדן דמרי"><span dir="ltr">054-7276716</span></a> &nbsp;·&nbsp; <a href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.7);text-decoration:none;">וואטסאפ</a></p>
+    <nav aria-label="ניווט תחתון" style="margin-top:20px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:.8rem;margin-bottom:16px;">
+      <a href="/" style="color:rgba(255,255,255,.45);text-decoration:none;">דף הבית</a>
+      <a href="about.html" style="color:rgba(255,255,255,.45);text-decoration:none;">אודות</a>
+      <a href="bride.html" style="color:rgba(255,255,255,.45);text-decoration:none;">מאפרת כלות</a>
+      <a href="bridal-guide.html" style="color:rgba(255,255,255,.45);text-decoration:none;">מדריך כלות</a>
+      <a href="gallery.html" style="color:rgba(255,255,255,.45);text-decoration:none;">גלריה</a>
+      <a href="contact.html" style="color:rgba(255,255,255,.45);text-decoration:none;">צרי קשר</a>
+    </nav>
+  </footer>
+
+  <script>
+  var questions = [
+    {
+      num: 1,
+      text: 'האווירה של החתונה שלך?',
+      options: [
+        { emoji:'🌊', label:'חוף וים', sub:'טבעי, רוח, אור שמש', score:'natural' },
+        { emoji:'🌿', label:'גן ופארק', sub:'רומנטי, פרחים, ירוק', score:'boho' },
+        { emoji:'✨', label:'אולם יוקרתי', sub:'קריסטל, זוהר, אלגנטי', score:'glam' },
+        { emoji:'🕊️', label:'קלאסי ואינטימי', sub:'נקי, עדין, נצחי', score:'classic' }
+      ]
+    },
+    {
+      num: 2,
+      text: 'מה מרגיש הכי נכון עליך?',
+      options: [
+        { emoji:'👖', label:'ג\'ינס ויוגה', sub:'נוח, אותנטי, ספונטני', score:'natural' },
+        { emoji:'🌺', label:'שמלות פרחוניות', sub:'עדין, קצת בוהו, רומנטי', score:'boho' },
+        { emoji:'👗', label:'שחור ואלגנטי', sub:'בוטח, עז, מדויק', score:'glam' },
+        { emoji:'💎', label:'קלאסי ומסודר', sub:'נקי, מושלם, נצחי', score:'classic' }
+      ]
+    },
+    {
+      num: 3,
+      text: 'השפתיים שלך ביום החתונה?',
+      options: [
+        { emoji:'🤍', label:'ניוד טבעי', sub:'כמעט ערום, עדין', score:'natural' },
+        { emoji:'🌸', label:'ורוד עדין ולח', sub:'רומנטי, נשי, פרחוני', score:'boho' },
+        { emoji:'💋', label:'אדום קלאסי', sub:'נועז, בוטח, מחויב', score:'classic' },
+        { emoji:'✨', label:'גלוס זוהר', sub:'מבריק, מדהים, גלאם', score:'glam' }
+      ]
+    },
+    {
+      num: 4,
+      text: 'מה הכי חשוב לך באיפור?',
+      options: [
+        { emoji:'🫧', label:'עור מושלם', sub:'זוהר, טבעי, בריא', score:'natural' },
+        { emoji:'🌿', label:'מראה ארצי וחם', sub:'טרי, פרחוני, חום-זהוב', score:'boho' },
+        { emoji:'👁️', label:'עיניים שבולטות', sub:'לינר, עשן, מבט עמוק', score:'glam' },
+        { emoji:'💄', label:'Look שלם ומדויק', sub:'כל פרט במקומו', score:'classic' }
+      ]
+    },
+    {
+      num: 5,
+      text: 'איזו כלה מרגשת אותך יותר?',
+      options: [
+        { emoji:'🌊', label:'כלת החוף', sub:'שיער רוח, מעט קמח, זוהר טבעי', score:'natural' },
+        { emoji:'🌸', label:'כלת הגן', sub:'פרחים בשיער, עדינות, ורוד', score:'boho' },
+        { emoji:'👑', label:'כלת הגלאם', sub:'ריסים, מבריק, בולטת בחדר', score:'glam' },
+        { emoji:'🕊️', label:'כלת האודרי הפבורן', sub:'קלאסי, נצחי, בלתי נשכח', score:'classic' }
+      ]
+    }
+  ];
+
+  var results = {
+    natural: {
+      emoji: '🌊',
+      label: 'הסגנון שלך',
+      name: 'הכלה הטבעית',
+      desc: 'את זוהרת מבפנים ואיפור שלך רק מגביר את זה. עור מושלם ולח, סומק עדין, שפתיים ניוד ועיניים פתוחות ומלאות חיים. ביום החתונה את תיראי כמו את – רק הכי טובה שבעצמך. כלות כאלה תמיד גורמות לאורחים להגיד "היא פשוט יפה מטבע הברייה".',
+      traits: ['עור זוהר', 'שפתיים ניוד', 'מבט טבעי', 'ריסים עדינים', 'סומק שמש'],
+      wa: 'היי ירדן! עשיתי את הקוויז שלך ויצאתי "הכלה הטבעית" 🌊 אני מתעניינת לשמוע על איפור טבעי ומושלם לחתונה שלי'
+    },
+    boho: {
+      emoji: '🌸',
+      label: 'הסגנון שלך',
+      name: 'הכלה הבוהו-רומנטית',
+      desc: 'יש לך משהו פיוטי ורך שאי אפשר להתעלם ממנו. איפור חמים ופרחוני, גוונים אדמתיים, שפתיים בורדו עדין ועיניים שמרגישות כמו אמנות. את הכי יפה כשהמראה שלך מרגיש קצת כמו אגדה של יער – עדין, עמוק, ובלתי נשכח.',
+      traits: ['גוונים אדמתיים', 'עיניים שקועות', 'שפתיים ורדרדות', 'סומק דובדבן', 'מבט פיוטי'],
+      wa: 'היי ירדן! עשיתי את הקוויז שלך ויצאתי "הכלה הבוהו-רומנטית" 🌸 אני מתעניינת לשמוע על איפור חם ופיוטי לחתונה שלי'
+    },
+    glam: {
+      emoji: '✨',
+      label: 'הסגנון שלך',
+      name: 'הכלה הגלאם',
+      desc: 'את נכנסת לחדר ולכולם מסתובבים להסתכל. ריסים מלאים, עיניים מעושנות, עור עם זוהר זהוב וגלוס שנוצץ. את לא פוחדת מבולטת – ובצדק, כי כשמישהי יודעת מה שהיא רוצה, זה הכי יפה שיש. ביום החתונה את תהיי הכוכבת שם.',
+      traits: ['עיניים עשן', 'ריסים מלאים', 'עור זהוב', 'גלוס מבריק', 'נוכחות בלתי נשכחת'],
+      wa: 'היי ירדן! עשיתי את הקוויז שלך ויצאתי "הכלה הגלאם" ✨ אני מתעניינת לשמוע על איפור גלאם ובולט לחתונה שלי'
+    },
+    classic: {
+      emoji: '💎',
+      label: 'הסגנון שלך',
+      name: 'הכלה הקלאסית',
+      desc: 'הסגנון שלך הוא מעל הטרנדים. שנה מהיום, חמש שנים מהיום, עשר שנים מהיום – תסתכלי על התמונות ותאמרי "וואו". עור מושלם, שפתיים אדומות או גולשות, עיניים מוגדרות וקו עדין. את הכי קרובה לאודרי הפבורן ולגרייס קלי – וזה לא מעט.',
+      traits: ['עור פורצלן', 'שפתיים קלאסיות', 'עיניים מוגדרות', 'לינר עדין', 'בלתי נשכחת'],
+      wa: 'היי ירדן! עשיתי את הקוויז שלך ויצאתי "הכלה הקלאסית" 💎 אני מתעניינת לשמוע על איפור קלאסי ונצחי לחתונה שלי'
+    }
+  };
+
+  var answers = [];
+  var currentQ = 0;
+  var selectedOption = null;
+
+  function startQuiz() {
+    document.getElementById('quizHero').classList.add('hidden');
+    document.getElementById('quizWrap').classList.remove('hidden');
+    renderQuestion();
+    trackEvent('quiz_start','engagement','makeup_style_quiz');
+  }
+
+  function renderQuestion() {
+    var q = questions[currentQ];
+    var pct = (currentQ / questions.length) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.querySelector('.quiz-progress').setAttribute('aria-valuenow', currentQ);
+    selectedOption = null;
+    var nb = document.getElementById('nextBtn');
+    nb.classList.remove('active');
+    nb.disabled = true;
+
+    var html = '<div class="quiz-q">';
+    html += '<div class="quiz-q-num">שאלה ' + (currentQ+1) + ' מתוך ' + questions.length + '</div>';
+    html += '<div class="quiz-q-text">' + q.text + '</div>';
+    html += '<div class="quiz-options">';
+    q.options.forEach(function(opt, i) {
+      html += '<button class="quiz-opt" onclick="selectOption(this,\'' + opt.score + '\')" aria-pressed="false">';
+      html += '<span class="quiz-opt-emoji">' + opt.emoji + '</span>';
+      html += '<span class="quiz-opt-label">' + opt.label + '</span>';
+      html += '<span class="quiz-opt-sub">' + opt.sub + '</span>';
+      html += '</button>';
+    });
+    html += '</div></div>';
+    document.getElementById('quizQuestion').innerHTML = html;
+  }
+
+  function selectOption(el, score) {
+    document.querySelectorAll('.quiz-opt').forEach(function(b){ b.classList.remove('selected'); b.setAttribute('aria-pressed','false'); });
+    el.classList.add('selected');
+    el.setAttribute('aria-pressed','true');
+    selectedOption = score;
+    var nb = document.getElementById('nextBtn');
+    nb.classList.add('active');
+    nb.disabled = false;
+  }
+
+  function nextQuestion() {
+    if (!selectedOption) return;
+    answers.push(selectedOption);
+    currentQ++;
+    if (currentQ < questions.length) {
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    var counts = { natural:0, boho:0, glam:0, classic:0 };
+    answers.forEach(function(a){ counts[a]++; });
+    var top = Object.keys(counts).reduce(function(a,b){ return counts[a]>=counts[b]?a:b; });
+    var r = results[top];
+
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('quizWrap').classList.add('hidden');
+
+    var shareText = 'גיליתי שאני ' + r.name + ' ' + r.emoji + '\nמה סגנון האיפור שלך לחתונה? גלי גם: yardendamri.co.il/quiz.html';
+    var waLink = 'https://wa.me/9720547276716?text=' + encodeURIComponent(r.wa);
+
+    var html = '<div class="quiz-result">';
+    html += '<div class="result-badge">' + r.emoji + '</div>';
+    html += '<div class="result-label">' + r.label + '</div>';
+    html += '<div class="result-name">' + r.name + '</div>';
+    html += '<p class="result-desc">' + r.desc + '</p>';
+    html += '<div class="result-traits">' + r.traits.map(function(t){ return '<span class="result-trait">'+t+'</span>'; }).join('') + '</div>';
+    html += '<div class="result-actions">';
+    html += '<a href="' + waLink + '" target="_blank" rel="noopener noreferrer" class="result-wa" onclick="trackEvent(\'quiz_wa_click\',\'conversion\',\'' + top + '\')">';
+    html += '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.099.544 4.074 1.497 5.787L.057 23.882l6.255-1.641A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.666-.513-5.19-1.41l-.372-.22-3.863 1.013 1.032-3.765-.241-.388A9.978 9.978 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>';
+    html += 'שלחי לי הודעה ביוואטסאפ</a>';
+    html += '<button class="result-share" onclick="shareResult(\'' + shareText.replace(/'/g,"\\'") + '\')" aria-label="שתפי את התוצאה עם חברות">שתפי עם חברות 💌</button>';
+    html += '<span class="result-retry" onclick="resetQuiz()" role="button" tabindex="0">רוצה לנסות שוב?</span>';
+    html += '</div></div>';
+
+    var el = document.getElementById('quizResult');
+    el.innerHTML = html;
+    el.classList.remove('hidden');
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    trackEvent('quiz_complete','engagement', top);
+  }
+
+  function shareResult(text) {
+    if (navigator.share) {
+      navigator.share({ text: text, url: 'https://yardendamri.co.il/quiz.html' }).catch(function(){});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(function(){
+        alert('הטקסט הועתק! עכשיו תוכלי להדביק בוואטסאפ, אינסטגרם או כל מקום אחר.');
+      });
+    } else {
+      var wa = 'https://wa.me/?text=' + encodeURIComponent(text);
+      window.open(wa, '_blank');
+    }
+    trackEvent('quiz_share','engagement','share_button');
+  }
+
+  function resetQuiz() {
+    answers = [];
+    currentQ = 0;
+    selectedOption = null;
+    document.getElementById('quizResult').classList.add('hidden');
+    document.getElementById('quizWrap').classList.remove('hidden');
+    renderQuestion();
+  }
+  </script>
+</body>
+</html>
