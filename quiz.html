@@ -289,6 +289,7 @@ body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, 
   var answers = [];
   var currentQ = 0;
   var selectedOption = null;
+  var currentShareText = '';
 
   function startQuiz() {
     document.getElementById('quizHero').classList.add('hidden');
@@ -352,7 +353,7 @@ body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, 
     document.getElementById('progressFill').style.width = '100%';
     document.getElementById('quizWrap').classList.add('hidden');
 
-    var shareText = 'גיליתי שאני ' + r.name + ' ' + r.emoji + '\nמה סגנון האיפור שלך לחתונה? גלי גם: yardendamri.co.il/quiz.html';
+    currentShareText = 'גיליתי שאני ' + r.name + ' ' + r.emoji + '\nמה סגנון האיפור שלך לחתונה? גלי גם: yardendamri.co.il/quiz.html';
     var waLink = 'https://wa.me/9720547276716?text=' + encodeURIComponent(r.wa);
 
     var html = '<div class="quiz-result">';
@@ -365,7 +366,7 @@ body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, 
     html += '<a href="' + waLink + '" target="_blank" rel="noopener noreferrer" class="result-wa" onclick="trackEvent(\'quiz_wa_click\',\'conversion\',\'' + top + '\')">';
     html += '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.099.544 4.074 1.497 5.787L.057 23.882l6.255-1.641A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.666-.513-5.19-1.41l-.372-.22-3.863 1.013 1.032-3.765-.241-.388A9.978 9.978 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>';
     html += 'שלחי לי הודעה ביוואטסאפ</a>';
-    html += '<button class="result-share" onclick="shareResult(\'' + shareText.replace(/'/g,"\\'") + '\')" aria-label="שתפי את התוצאה עם חברות">שתפי עם חברות 💌</button>';
+    html += '<button class="result-share" id="shareBtn" onclick="shareResult()" aria-label="שתפי את התוצאה עם חברות">שתפי עם חברות 💌</button>';
     html += '<span class="result-retry" onclick="resetQuiz()" role="button" tabindex="0">רוצה לנסות שוב?</span>';
     html += '</div></div>';
 
@@ -376,18 +377,32 @@ body.lb-open #wa-float-btn, body.lb-open .wa-float, body.lb-open #a11y-trigger, 
     trackEvent('quiz_complete','engagement', top);
   }
 
-  function shareResult(text) {
+  function shareResult() {
+    var text = currentShareText;
+    var url = 'https://yardendamri.co.il/quiz.html';
+    trackEvent('quiz_share','engagement','share_button');
     if (navigator.share) {
-      navigator.share({ text: text, url: 'https://yardendamri.co.il/quiz.html' }).catch(function(){});
-    } else if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(function(){
-        alert('הטקסט הועתק! עכשיו תוכלי להדביק בוואטסאפ, אינסטגרם או כל מקום אחר.');
+      navigator.share({ title: 'מה סגנון האיפור שלי לחתונה?', text: text, url: url })
+        .catch(function(err) {
+          if (err.name !== 'AbortError') { openWaShare(text, url); }
+        });
+    } else {
+      openWaShare(text, url);
+    }
+  }
+
+  function openWaShare(text, url) {
+    var full = text + '\n' + url;
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(full).then(function() {
+        var btn = document.getElementById('shareBtn');
+        if (btn) { btn.textContent = 'הועתק ללוח! 🎉'; setTimeout(function(){ btn.textContent = 'שתפי עם חברות 💌'; }, 2500); }
+      }).catch(function() {
+        window.open('https://wa.me/?text=' + encodeURIComponent(full), '_blank');
       });
     } else {
-      var wa = 'https://wa.me/?text=' + encodeURIComponent(text);
-      window.open(wa, '_blank');
+      window.open('https://wa.me/?text=' + encodeURIComponent(full), '_blank');
     }
-    trackEvent('quiz_share','engagement','share_button');
   }
 
   function resetQuiz() {
