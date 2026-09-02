@@ -65448,5 +65448,56 @@
         "timestamp": "2026-08-26T16:46:36+0000"
       }
     ]
+  },
+  "18081342836322804": {
+    "likes": 33,
+    "comments_count": 10,
+    "comments": [
+      {
+        "username": "inbalv.styling",
+        "text": "ירדנה תביאי לי לצילומים.  תודה.",
+        "timestamp": "2026-08-31T18:39:22+0000"
+      },
+      {
+        "username": "zohar_kochavi_makeup",
+        "text": "נראה וואו",
+        "timestamp": "2026-08-31T17:42:32+0000"
+      },
+      {
+        "username": "limor_edri",
+        "text": "מושלמת❤️",
+        "timestamp": "2026-08-31T17:33:29+0000"
+      },
+      {
+        "username": "damriofir",
+        "text": "מהמם אני יקנה לאישתי רק תמליצי לי",
+        "timestamp": "2026-08-31T16:27:34+0000"
+      },
+      {
+        "username": "orian_moroni",
+        "text": "ירדנהההה",
+        "timestamp": "2026-08-31T16:26:31+0000"
+      },
+      {
+        "username": "adigolov1",
+        "text": "מושלמת אני חייבת כמה מוצרים שלהם דחוף!!",
+        "timestamp": "2026-08-31T16:26:30+0000"
+      },
+      {
+        "username": "omer_shakury",
+        "text": "וואו רכשתי לאישתי לאחרונה ויש לזה כיסוי מהמם ",
+        "timestamp": "2026-08-31T16:16:32+0000"
+      },
+      {
+        "username": "noy_shakury",
+        "text": "מושלם ברמות",
+        "timestamp": "2026-08-31T16:15:49+0000"
+      },
+      {
+        "username": "dorits3",
+        "text": "מהממת❤️",
+        "timestamp": "2026-08-31T15:37:01+0000"
+      }
+    ]
   }
 }

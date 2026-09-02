@@ -1,7 +1,22 @@
 (function () {
-  if (localStorage.getItem('cookie_consent')) return;
-
   var H = 48;
+
+  function loadGA() {
+    if (document.querySelector('script[src*="googletagmanager"]')) return;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-68XM6LS4HX';
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', 'G-68XM6LS4HX');
+  }
+
+  var saved = localStorage.getItem('cookie_consent');
+  if (saved === 'declined') return;
+  if (saved === 'accepted') { loadGA(); return; }
+
+  // First visit: load GA immediately (opt-out model), show banner for awareness
+  loadGA();
 
   var css =
     '#ck-top{' +
@@ -50,24 +65,14 @@
   banner.setAttribute('role', 'dialog');
   banner.setAttribute('aria-label', 'הסכמה לשימוש בעוגיות');
   banner.innerHTML =
-    '<span id="ck-top-text">🍪 האתר משתמש בעוגיות — <a href="/cookies-policy.html">מדיניות פרטיות</a></span>' +
-    '<button id="ck-top-accept">אני מסכימה</button>' +
-    '<button id="ck-top-close" aria-label="סגור ודחה" title="סגור">✕</button>';
+    '<span id="ck-top-text">🍪 האתר משתמש בעוגיות לשיפור חוויית הגלישה — <a href="/cookies-policy.html">מדיניות פרטיות</a></span>' +
+    '<button id="ck-top-accept">הבנתי</button>' +
+    '<button id="ck-top-close" aria-label="סגור" title="סגור">✕</button>';
 
   document.body.insertBefore(banner, document.body.firstChild);
 
-  function loadGA() {
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-68XM6LS4HX';
-    document.head.appendChild(s);
-    gtag('js', new Date());
-    gtag('config', 'G-68XM6LS4HX');
-  }
-
   function dismiss(choice) {
     localStorage.setItem('cookie_consent', choice);
-    if (choice === 'accepted') loadGA();
     banner.style.transition = 'transform .25s ease, opacity .2s ease';
     banner.style.transform = 'translateY(-100%)';
     banner.style.opacity = '0';

@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var nav=document.querySelector('nav[role="navigation"]');
   if(nav){nav.classList.add('subpage-nav');nav.classList.add('scrolled');window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});}
 });
-window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}if(localStorage.getItem('cookie_consent')==='accepted'){var _s=document.createElement('script');_s.async=true;_s.src='https://www.googletagmanager.com/gtag/js?id=G-68XM6LS4HX';document.head.appendChild(_s);gtag('js',new Date());gtag('config','G-68XM6LS4HX');}
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}if(localStorage.getItem('cookie_consent')!=='declined'){var _s=document.createElement('script');_s.async=true;_s.src='https://www.googletagmanager.com/gtag/js?id=G-68XM6LS4HX';document.head.appendChild(_s);gtag('js',new Date());gtag('config','G-68XM6LS4HX');}
 </script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
