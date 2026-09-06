@@ -328,8 +328,10 @@
 
     /* Desktop */
     @media (min-width: 640px) {
+      .page-wrap { max-width: 520px; margin: 0 auto; box-shadow: 0 0 60px rgba(0,0,0,0.08); }
       .mosaic { grid-template-rows: 300px 300px; }
       .cta-section { padding: 48px 40px; }
+      body { background: #e8e2dc; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -338,6 +340,7 @@
   </style>
 </head>
 <body>
+<div class="page-wrap">
 
 <!-- Top bar -->
 <header class="topbar">
@@ -469,5 +472,6 @@
 </script>
 
 <script src="/cookie-banner.js?v=8" defer></script>
+</div><!-- /page-wrap -->
 </body>
 </html>
