@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ירדן דמרי – מאפרת כלות ואירועים</title>
+  <meta name="robots" content="noindex"/>
+  <link rel="icon" href="/favicon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&display=swap"/>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    if (localStorage.getItem('cookie_consent') !== 'declined') {
+      var _s = document.createElement('script');
+      _s.async = true;
+      _s.src = 'https://www.googletagmanager.com/gtag/js?id=G-68XM6LS4HX';
+      document.head.appendChild(_s);
+      gtag('js', new Date());
+      gtag('config', 'G-68XM6LS4HX');
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #fdf8f5;
+      --gold:    #c9a96e;
+      --charcoal:#111111;
+      --blush:   #D4A898;
+      --rose:    #B07060;
+      --text:    #2a1a10;
+      --muted:   #7a6050;
+      --wa:      #25D366;
+      --wa-dark: #1aaa52;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Heebo', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      direction: rtl;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      background: var(--charcoal);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .monogram {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .monogram span {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-weight: 600;
+      font-size: 1rem; color: var(--gold); line-height: 1;
+    }
+    .topbar-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-weight: 300;
+      font-size: 1.25rem; color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Photo mosaic ── */
+    .mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 220px 220px;
+      gap: 3px;
+    }
+    .mosaic-big {
+      grid-row: 1 / 3;
+    }
+    .mosaic img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Hero text ── */
+    .hero-text {
+      background: var(--cream);
+      text-align: center;
+      padding: 32px 24px 24px;
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-weight: 300;
+      font-size: clamp(2rem, 8vw, 2.8rem);
+      color: var(--charcoal);
+      line-height: 1.15;
+      margin-bottom: 10px;
+      text-wrap: balance;
+    }
+    .hero-sub {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    /* ── Trust bar ── */
+    .trust {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      padding: 20px 24px;
+      border-top: 1px solid rgba(201,169,110,0.2);
+      border-bottom: 1px solid rgba(201,169,110,0.2);
+      background: var(--cream);
+    }
+    .trust-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+    .trust-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      line-height: 1;
+    }
+    .trust-label {
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+    .trust-stars {
+      font-size: 1rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    /* ── CTA section ── */
+    .cta-section {
+      padding: 32px 24px;
+      background: var(--charcoal);
+      text-align: center;
+    }
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-weight: 300;
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .cta-sub {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .btn-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto 20px;
+      padding: 16px 24px;
+      background: var(--wa);
+      color: #fff;
+      font-family: 'Heebo', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+      transition: background 0.2s;
+    }
+    .btn-wa:hover { background: var(--wa-dark); }
+    .btn-wa svg { flex-shrink: 0; }
+
+    .or-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: 360px;
+      margin: 0 auto 24px;
+    }
+    .or-divider::before, .or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.15);
+    }
+    .or-divider span {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ── Form ── */
+    .form-wrap {
+      max-width: 360px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .form-wrap input, .form-wrap select {
+      width: 100%;
+      padding: 13px 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      color: #fff;
+      font-family: 'Heebo', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      direction: rtl;
+      appearance: none;
+    }
+    .form-wrap input::placeholder { color: rgba(255,255,255,0.38); }
+    .form-wrap input:focus, .form-wrap select:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .form-wrap select option { background: #222; color: #fff; }
+    .btn-submit {
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--gold);
+      color: var(--charcoal);
+      font-family: 'Heebo', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: #e2c99a; }
+
+    /* ── Reviews ── */
+    .reviews {
+      padding: 40px 24px;
+      background: var(--cream);
+    }
+    .reviews-title {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .review-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .review-card {
+      background: #fff;
+      border: 1px solid rgba(201,169,110,0.18);
+      border-radius: 4px;
+      padding: 20px;
+    }
+    .review-stars { font-size: 0.85rem; color: var(--gold); margin-bottom: 8px; }
+    .review-text {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+    .review-name {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Bottom CTA ── */
+    .bottom-cta {
+      background: var(--cream);
+      padding: 0 24px 48px;
+      text-align: center;
+    }
+    .bottom-cta .btn-wa {
+      margin: 0 auto;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--charcoal);
+      padding: 20px 24px;
+      text-align: center;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 2;
+    }
+    .footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
+
+    /* Desktop */
+    @media (min-width: 640px) {
+      .mosaic { grid-template-rows: 300px 300px; }
+      .cta-section { padding: 48px 40px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top bar -->
+<header class="topbar">
+  <div class="monogram"><span>Y<em style="font-style:normal;font-size:.65em;">.D</em></span></div>
+  <span class="topbar-name">ירדן דמרי</span>
+</header>
+
+<!-- Photo mosaic -->
+<div class="mosaic" role="presentation">
+  <div class="mosaic-big">
+    <img src="https://images.yardendamri.co.il/yarden_18112997407975690.webp" alt="איפור כלות מקצועי – ירדן דמרי" loading="eager"/>
+  </div>
+  <div>
+    <img src="https://images.yardendamri.co.il/yarden_18094933328435557.webp" alt="איפור ערב מקצועי" loading="eager"/>
+  </div>
+  <div>
+    <img src="https://images.yardendamri.co.il/yarden_18105298487602795.webp" alt="מראה כלה טבעי ומדויק" loading="eager"/>
+  </div>
+</div>
+
+<!-- Hero text -->
+<section class="hero-text">
+  <p class="hero-eyebrow">מאפרת כלות ואירועים</p>
+  <h1 class="hero-title">המראה שחלמת עליו,<br>ביום הכי חשוב בחיייך</h1>
+  <p class="hero-sub">איפור שמחזיק כל הלילה, מראה טבעי ומדויק לכל כלה. זמינה באילת ובכל הארץ.</p>
+</section>
+
+<!-- Trust bar -->
+<div class="trust">
+  <div class="trust-item">
+    <span class="trust-stars">★★★★★</span>
+    <span class="trust-label">דירוג 5.0</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-num">200+</span>
+    <span class="trust-label">כלות מרוצות</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-num">10+</span>
+    <span class="trust-label">שנות ניסיון</span>
+  </div>
+</div>
+
+<!-- CTA section -->
+<section class="cta-section">
+  <h2 class="cta-title">בואי נדבר</h2>
+  <p class="cta-sub">שלחי הודעה ואחזור אלייך תוך שעות ספורות</p>
+
+  <a class="btn-wa" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%A4%D7%A8%D7%A1%D7%95%D7%9E%D7%AA%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener" onclick="gtag('event','whatsapp_click',{event_category:'conversion',event_label:'landing_wa_top'})">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    שלחי הודעה בוואטסאפ
+  </a>
+
+  <div class="or-divider"><span>או מלאי את הטופס</span></div>
+
+  <div class="form-wrap">
+    <input type="text" id="f-name" placeholder="שם מלא" autocomplete="name"/>
+    <input type="tel" id="f-phone" placeholder="מספר טלפון" autocomplete="tel" dir="ltr"/>
+    <input type="date" id="f-date" placeholder="תאריך החתונה"/>
+    <select id="f-service">
+      <option value="" disabled selected>סוג האירוע</option>
+      <option>איפור כלות</option>
+      <option>איפור ערב / אירוע</option>
+      <option>ניסוי איפור</option>
+      <option>הפקה / צילומים</option>
+      <option>אחר</option>
+    </select>
+    <button class="btn-submit" onclick="submitForm()">שלחי לוואטסאפ</button>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews">
+  <p class="reviews-title">לקוחות מספרות</p>
+  <div class="review-cards">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">ירדן היא פשוט קסמים. האיפור שלי לחתונה היה מושלם, החזיק כל הלילה ונראה בדיוק כמו שחלמתי. כל הצלמים עצרו לשאול מי האיפור. ממליצה בחום לכל כלה!</p>
+      <span class="review-name">נועה כ. · כלה 2025</span>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">ירדן הבינה בדיוק מה אני מחפשת גם בלי שידעתי להסביר. המראה היה טבעי, זוהר ומושלם. לא יצאתי ממנה כל כך מאושרת בחיים.</p>
+      <span class="review-name">שירה מ. · כלה 2024</span>
+    </div>
+  </div>
+</section>
+
+<!-- Bottom CTA -->
+<div class="bottom-cta">
+  <a class="btn-wa" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%A4%D7%A8%D7%A1%D7%95%D7%9E%D7%AA%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener" onclick="gtag('event','whatsapp_click',{event_category:'conversion',event_label:'landing_wa_bottom'})">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    שלחי הודעה בוואטסאפ
+  </a>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div><a href="tel:0547276716" dir="ltr">054-727-6716</a></div>
+  <div><a href="https://www.instagram.com/yarden_damri_makeup" target="_blank" rel="noopener">@yarden_damri_makeup</a></div>
+  <div><a href="/privacy-policy.html">מדיניות פרטיות</a></div>
+</footer>
+
+<script>
+  function submitForm() {
+    var name    = document.getElementById('f-name').value.trim();
+    var phone   = document.getElementById('f-phone').value.trim();
+    var date    = document.getElementById('f-date').value;
+    var service = document.getElementById('f-service').value;
+
+    if (!name || !phone) {
+      alert('נא למלא שם וטלפון');
+      return;
+    }
+
+    var parts = ['היי ירדן! 😊'];
+    parts.push('שם: ' + name);
+    parts.push('טלפון: ' + phone);
+    if (service) parts.push('סוג האירוע: ' + service);
+    if (date) {
+      var d = new Date(date);
+      parts.push('תאריך: ' + d.toLocaleDateString('he-IL'));
+    }
+
+    var msg = encodeURIComponent(parts.join('\n'));
+    gtag('event', 'form_submit', { event_category: 'conversion', event_label: 'landing_form' });
+    window.open('https://wa.me/9720547276716?text=' + msg, '_blank');
+  }
+</script>
+
+<script src="/cookie-banner.js?v=8" defer></script>
+</body>
+</html>
