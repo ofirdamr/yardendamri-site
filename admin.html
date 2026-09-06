@@ -2074,6 +2074,14 @@ async function initAnalytics() {
   btn.style.background = '#2d7a4f';
   status.textContent = '⏳ טוען נתונים...';
 
+  // Clear stale data so period switch never shows old numbers
+  document.getElementById('kpi-cards').innerHTML = [1,2,3,4,5,6].map(()=>`
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 10px;text-align:center;opacity:.3;">
+      <div style="font-size:1.4rem">⏳</div>
+      <div style="font-size:1.3rem;font-weight:800;color:var(--blush);margin:4px 0">–</div>
+      <div style="font-size:.7rem;color:var(--muted)">טוען...</div>
+    </div>`).join('');
+
   try {
     const days = analyticsPeriod;
     const dr = ga4DateRange(days);
@@ -2239,9 +2247,9 @@ async function initAnalytics() {
       btn.textContent = '🔗 התחבר לגוגל אנליטיקס';
       btn.style.background = 'var(--blush)';
     } else {
-      status.textContent = '❌ שגיאה: ' + err.message;
+      status.innerHTML = '❌ שגיאה בטעינה — <a href="#" onclick="initAnalytics()" style="color:var(--blush)">נסי שוב</a>';
     }
-    renderLocalFallback();
+    document.getElementById('kpi-cards').innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--muted);font-size:.85rem;">לא ניתן לטעון נתונים. <a href="#" onclick="initAnalytics()" style="color:var(--blush)">לחצי לניסיון חוזר</a></div>`;
   }
 }
 
