@@ -2035,12 +2035,12 @@ try {
 } catch(e) { console.warn('OAuth init error:', e); }
 
 // ── GA4 Data API call ─────────────────────────────────
-async function ga4Report(dimensions, metrics, dateRange, orderBy) {
+async function ga4Report(dimensions, metrics, dateRange, orderBy, limit) {
   const body = {
     dateRanges: [dateRange],
     dimensions: dimensions.map(n => ({ name: n })),
     metrics: metrics.map(n => ({ name: n })),
-    limit: 10
+    limit: limit || 100
   };
   if (orderBy) body.orderBys = orderBy;
   const res = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${GA4_PROPERTY}:runReport`, {
@@ -2089,7 +2089,7 @@ async function initAnalytics() {
     // Run all reports in parallel
     const [overviewRes, sourceRes, specificSrcRes, deviceRes, cityRes, demoRes, pageRes, dailyRes] = await Promise.all([
       ga4Report(['date'], ['sessions','activeUsers','newUsers','bounceRate','averageSessionDuration'], dr,
-        [{ dimension: { dimensionName: 'date' }, desc: false }]),
+        [{ dimension: { dimensionName: 'date' }, desc: false }], 500),
       ga4Report(['sessionDefaultChannelGroup'], ['sessions'], dr,
         [{ metric: { metricName: 'sessions' }, desc: true }]),
       ga4Report(['sessionSource'], ['sessions'], dr,
@@ -2097,13 +2097,13 @@ async function initAnalytics() {
       ga4Report(['deviceCategory'], ['sessions'], dr,
         [{ metric: { metricName: 'sessions' }, desc: true }]),
       ga4Report(['country','region','city'], ['sessions'], dr,
-        [{ metric: { metricName: 'sessions' }, desc: true }]),
+        [{ metric: { metricName: 'sessions' }, desc: true }], 50),
       ga4Report(['userAgeBracket','userGender'], ['activeUsers'], dr,
         [{ metric: { metricName: 'activeUsers' }, desc: true }]),
       ga4Report(['pagePath'], ['screenPageViews'], dr,
-        [{ metric: { metricName: 'screenPageViews' }, desc: true }]),
+        [{ metric: { metricName: 'screenPageViews' }, desc: true }], 20),
       ga4Report(['date'], ['sessions'], dr,
-        [{ dimension: { dimensionName: 'date' }, desc: false }])
+        [{ dimension: { dimensionName: 'date' }, desc: false }], 500)
     ]);
 
     status.textContent = `✅ נתונים עדכניים — ${days} הימים האחרונים`;
