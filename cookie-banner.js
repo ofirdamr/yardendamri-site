@@ -1,3 +1,10 @@
+window.gtag_report_conversion = function (url) {
+  if (typeof gtag === 'function') {
+    gtag('event', 'conversion', { 'send_to': 'AW-18419746709/Zu6LCKbktvAcEJWPnM9E' });
+  }
+  return false;
+};
+
 (function () {
   var H = 48;
 
@@ -88,12 +95,3 @@
   document.getElementById('ck-top-close').addEventListener('click', function () { dismiss('declined'); });
 })();
 
-window.gtag_report_conversion = function (url) {
-  var callback = function () {
-    if (typeof url !== 'undefined') { window.location = url; }
-  };
-  if (typeof gtag === 'function') {
-    gtag('event', 'conversion', { 'send_to': 'AW-18419746709/Zu6LCKbktvAcEJWPnM9E', 'event_callback': callback });
-  }
-  return false;
-};
