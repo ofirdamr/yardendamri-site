@@ -289,7 +289,7 @@
       <li><a href="bridal-guide.html" onclick="closeMobileMenu()">מדריך כלות</a></li>
       <li><a href="#contact" onclick="closeMobileMenu()">צרי קשר</a></li>
     </ul>
-    <a onclick="trackEvent('whatsapp_click','conversion','whatsapp')" href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" class="mobile-menu-wa" onclick="closeMobileMenu()">
+    <a onclick="gtag_report_conversion();trackEvent('whatsapp_click','conversion','whatsapp');closeMobileMenu();" href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" class="mobile-menu-wa">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.099.544 4.074 1.497 5.787L.057 23.882l6.255-1.641A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.666-.513-5.19-1.41l-.372-.22-3.863 1.013 1.032-3.765-.241-.388A9.978 9.978 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
       שלחי הודעה בוואטסאפ
     </a>
@@ -354,7 +354,7 @@
         <h1 class="hero-title" data-edit="home.hero.title" data-edit-label="כותרת ראשית (Hero)">ביום הכי חשוב<br/>שלך, את ראויה<br/>להרגיש מושלמת</h1>
         <p class="hero-subtitle" data-edit="home.hero.subtitle" data-edit-label="תת-כותרת (Hero)">אני מגיעה אלייך, עם מוצרי פרימיום וניסיון עשיר,<br/>כדי שתיראי בדיוק כמו שתמיד דמיינת</p>
         <div class="hero-btns">
-          <a onclick="trackEvent('whatsapp_click','conversion','hero_cta')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%90%D7%99%D7%A4%D7%95%D7%A8%20%D7%9B%D7%9C%D7%94" target="_blank" rel="noopener noreferrer" class="btn-primary" data-edit="home.hero.cta_primary" data-edit-label="כפתור ראשי (Hero)" style="padding:16px 36px;">לקביעת פגישה</a>
+          <a onclick="gtag_report_conversion();trackEvent('whatsapp_click','conversion','hero_cta')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%90%D7%99%D7%A4%D7%95%D7%A8%20%D7%9B%D7%9C%D7%94" target="_blank" rel="noopener noreferrer" class="btn-primary" data-edit="home.hero.cta_primary" data-edit-label="כפתור ראשי (Hero)" style="padding:16px 36px;">לקביעת פגישה</a>
           <a href="#about" class="btn-outline" data-edit="home.hero.cta_secondary" data-edit-label="כפתור משני (Hero)" style="padding:16px 36px;border-color:rgba(255,255,255,.55);color:#fff;">קראי עליי</a>
         </div>
       </div>
@@ -431,7 +431,7 @@
         <article class="service-card reveal">
           <h3 class="service-name" data-edit="home.services.trial_name" data-edit-label="שם שירות (ניסוי)">ניסוי איפור</h3>
           <p class="service-desc" data-edit="home.services.trial_desc" data-edit-label="תיאור (ניסוי)">פגישת ניסוי היא השקעה שמשתלמת. נבנה יחד את המראה שלך, נבדוק מה מתאים לסגנון ולשמלה, כדי שביום החתונה לא יהיו הפתעות, רק אושר.</p>
-          <a onclick="trackEvent('whatsapp_click','conversion','trial_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%A0%D7%99%D7%A1%D7%95%D7%99%20%D7%90%D7%99%D7%A4%D7%95%D7%A8" target="_blank" rel="noopener noreferrer" class="service-cta" data-edit="home.services.trial_cta" data-edit-label="כפתור (ניסוי)">לתיאום ניסוי</a>
+          <a onclick="gtag_report_conversion();trackEvent('whatsapp_click','conversion','trial_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%A0%D7%99%D7%A1%D7%95%D7%99%20%D7%90%D7%99%D7%A4%D7%95%D7%A8" target="_blank" rel="noopener noreferrer" class="service-cta" data-edit="home.services.trial_cta" data-edit-label="כפתור (ניסוי)">לתיאום ניסוי</a>
         </article>
 
         <!-- EVENTS -->
@@ -445,21 +445,21 @@
         <article class="service-card reveal">
           <h3 class="service-name" data-edit="home.services.prod_name" data-edit-label="שם שירות (הפקות)">הפקות וצילומים</h3>
           <p class="service-desc" data-edit="home.services.prod_desc" data-edit-label="תיאור (הפקות)">ניסיון עשיר בעבודה מול מצלמה, קליפים, פרסומות, צילומי אופנה ועבודה עם אמנים ואנשי ציבור. מראה שנראה מדהים גם על המסך.</p>
-          <a onclick="trackEvent('whatsapp_click','conversion','prod_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%91%D7%94%D7%A4%D7%A7%D7%94" target="_blank" rel="noopener noreferrer" class="service-cta" data-edit="home.services.prod_cta" data-edit-label="כפתור (הפקות)">פרטים להפקה</a>
+          <a onclick="gtag_report_conversion();trackEvent('whatsapp_click','conversion','prod_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%91%D7%94%D7%A4%D7%A7%D7%94" target="_blank" rel="noopener noreferrer" class="service-cta" data-edit="home.services.prod_cta" data-edit-label="כפתור (הפקות)">פרטים להפקה</a>
         </article>
 
         <!-- BIRTHDAYS -->
         <article class="service-card reveal">
           <h3 class="service-name" data-edit="home.services.bday_name" data-edit-label="שם שירות (ימי הולדת)">ימי הולדת</h3>
           <p class="service-desc" data-edit="home.services.bday_desc" data-edit-label="תיאור (ימי הולדת)">יום ההולדת שלך, רגע שראוי לזכור. איפור שמתאים לאופי ולסגנון שלך, שיגרום לך להרגיש כוכבת בדיוק ביום שמגיע לך.</p>
-          <a onclick="trackEvent('whatsapp_click','conversion','bday_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%91%D7%90%D7%99%D7%A4%D7%95%D7%A8%20%D7%99%D7%95%D7%9D%20%D7%94%D7%95%D7%9C%D7%93%D7%AA" target="_blank" rel="noopener noreferrer" class="service-cta" data-edit="home.services.bday_cta" data-edit-label="כפתור (ימי הולדת)">לתיאום</a>
+          <a onclick="gtag_report_conversion();trackEvent('whatsapp_click','conversion','bday_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%91%D7%90%D7%99%D7%A4%D7%95%D7%A8%20%D7%99%D7%95%D7%9D%20%D7%94%D7%95%D7%9C%D7%93%D7%AA" target="_blank" rel="noopener noreferrer" class="service-cta" data-edit="home.services.bday_cta" data-edit-label="כפתור (ימי הולדת)">לתיאום</a>
         </article>
 
         <!-- WORKSHOPS -->
         <article class="service-card reveal">
           <h3 class="service-name" data-edit="home.services.workshop_name" data-edit-label="שם שירות (סדנאות)">סדנאות איפור</h3>
           <p class="service-desc" data-edit="home.services.workshop_desc" data-edit-label="תיאור (סדנאות)">רוצה ללמוד? סדנאות אישיות וקבוצתיות, טכניקות מקצועיות שתוכלי ליישם בעצמך ביום-יום. מהנה, מעשי ומלמד.</p>
-          <a onclick="trackEvent('whatsapp_click','conversion','workshop_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%91%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%99%D7%A4%D7%95%D7%A8" target="_blank" rel="noopener noreferrer" class="service-cta" data-edit="home.services.workshop_cta" data-edit-label="כפתור (סדנאות)">הרשמה לסדנה</a>
+          <a onclick="gtag_report_conversion();trackEvent('whatsapp_click','conversion','workshop_service')" href="https://wa.me/9720547276716?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%AA%20%D7%91%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%99%D7%A4%D7%95%D7%A8" target="_blank" rel="noopener noreferrer" class="service-cta" data-edit="home.services.workshop_cta" data-edit-label="כפתור (סדנאות)">הרשמה לסדנה</a>
         </article>
 
       </div>
@@ -468,7 +468,7 @@
     <!-- CTA STRIP -->
     <div class="cta-strip" role="complementary" aria-label="קריאה לפעולה">
       <p class="cta-strip-text" data-edit="home.cta_strip.text" data-edit-label="טקסט פס קריאה לפעולה">כלה? אירוע? ניסוי?, <strong>מגיעה אלייך, בכל מקום בישראל</strong></p>
-      <a onclick="trackEvent('whatsapp_click','conversion','whatsapp')" href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" class="cta-strip-btn" data-edit="home.cta_strip.button" data-edit-label="כפתור פס קריאה לפעולה">פתחי וואטסאפ</a>
+      <a onclick="gtag_report_conversion();trackEvent('whatsapp_click','conversion','whatsapp')" href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer" class="cta-strip-btn" data-edit="home.cta_strip.button" data-edit-label="כפתור פס קריאה לפעולה">פתחי וואטסאפ</a>
     </div>
 
     <!-- PHILOSOPHY -->
@@ -617,7 +617,7 @@
             </div>
             <div style="margin-top:36px;display:flex;flex-direction:column;gap:10px;">
               <a href="https://wa.me/9720547276716" target="_blank" rel="noopener noreferrer"
-                 onclick="trackEvent('whatsapp_click','conversion','contact_section')"
+                 onclick="gtag_report_conversion();trackEvent('whatsapp_click','conversion','contact_section')"
                  style="display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;background:var(--text);color:#fff;text-decoration:none;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;font-family:'Rubik',sans-serif;">
                 פתחי וואטסאפ
               </a>
@@ -673,7 +673,7 @@
                 const date = document.getElementById('c-date').value || 'לא צוין';
                 const notes = document.getElementById('c-notes').value || '';
                 const msg = encodeURIComponent('היי ירדן! 😊\nשם: ' + name + '\nטלפון: ' + phone + '\nסוג שירות: ' + service + '\nתאריך אירוע: ' + date + (notes ? '\nהערות: ' + notes : ''));
-                window.open('https://wa.me/9720547276716?text='+msg,'_blank');
+                gtag_report_conversion();window.open('https://wa.me/9720547276716?text='+msg,'_blank');
               })()">
               📲 שלחי בוואטסאפ
             </button>
@@ -892,7 +892,7 @@
     })();
     window.addEventListener('load', upgradeHeroToHD);
   </script>
-  <script src="gallery-data.js?v=1788707407660"></script>
+  <script src="gallery-data.js?v=1788752133042"></script>
 
   <script>
     // ── MOBILE MENU ──────────────────────────────
@@ -1628,7 +1628,7 @@
 
   </script>
   <!-- WHATSAPP FLOAT -->
-  <button id="wa-float-btn" aria-label="שלחי הודעת וואטסאפ לירדן דמרי" onclick="trackEvent('whatsapp_click','conversion','whatsapp');window.open('https://wa.me/9720547276716','_blank','noopener,noreferrer')">
+  <button id="wa-float-btn" aria-label="שלחי הודעת וואטסאפ לירדן דמרי" onclick="gtag_report_conversion();trackEvent('whatsapp_click','conversion','whatsapp');window.open('https://wa.me/9720547276716','_blank','noopener,noreferrer')">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.099.544 4.074 1.497 5.787L.057 23.882l6.255-1.641A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.666-.513-5.19-1.41l-.372-.22-3.863 1.013 1.032-3.765-.241-.388A9.978 9.978 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
   </button>
 
