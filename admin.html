@@ -2042,11 +2042,23 @@ async function ga4Report(dimensions, metrics, dateRange, orderBy, limit) {
     metrics: metrics.map(n => ({ name: n })),
     limit: limit || 100,
     dimensionFilter: {
-      notExpression: {
-        filter: {
-          fieldName: 'sessionDefaultChannelGroup',
-          stringFilter: { matchType: 'EXACT', value: 'Unassigned' }
-        }
+      andGroup: {
+        expressions: [
+          {
+            filter: {
+              fieldName: 'country',
+              stringFilter: { matchType: 'EXACT', value: 'Israel' }
+            }
+          },
+          {
+            notExpression: {
+              filter: {
+                fieldName: 'sessionDefaultChannelGroup',
+                stringFilter: { matchType: 'EXACT', value: 'Unassigned' }
+              }
+            }
+          }
+        ]
       }
     }
   };
