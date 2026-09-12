@@ -120,7 +120,7 @@
 </head>
 <body>
 <script src="cloud-storage.js?v=2"></script>
-<script src="gallery-data.js?v=1788951490240"></script>
+<script src="gallery-data.js?v=1789184771591"></script>
 
 <!-- LOGIN -->
 <div id="login-screen">
@@ -2040,7 +2040,15 @@ async function ga4Report(dimensions, metrics, dateRange, orderBy, limit) {
     dateRanges: [dateRange],
     dimensions: dimensions.map(n => ({ name: n })),
     metrics: metrics.map(n => ({ name: n })),
-    limit: limit || 100
+    limit: limit || 100,
+    dimensionFilter: {
+      notExpression: {
+        filter: {
+          fieldName: 'sessionDefaultChannelGroup',
+          stringFilter: { matchType: 'EXACT', value: 'Unassigned' }
+        }
+      }
+    }
   };
   if (orderBy) body.orderBys = orderBy;
   const res = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${GA4_PROPERTY}:runReport`, {
@@ -2159,7 +2167,7 @@ async function initAnalytics() {
     renderBarChart('visits-chart', labels, vals);
 
     // Traffic sources — Hebrew labels
-    const srcHe = { 'Organic Search':'🔍 חיפוש גוגל', 'Direct':'🔗 ישיר', 'Organic Social':'📱 סושיאל', 'Referral':'🌐 אתרים אחרים', 'Email':'📧 אימייל', 'Paid Search':'💰 פרסום', 'Paid Social':'💰 סושיאל ממומן', 'Unassigned':'❓ לא ידוע' };
+    const srcHe = { 'Organic Search':'🔍 חיפוש גוגל', 'Direct':'🔗 ישיר', 'Organic Social':'📱 סושיאל', 'Referral':'🌐 אתרים אחרים', 'Email':'📧 אימייל', 'Paid Search':'💰 פרסום', 'Paid Social':'💰 סושיאל ממומן' };
     const srcObj = {};
     let srcTotal = 0;
     (sourceRes.rows||[]).forEach(r => {
