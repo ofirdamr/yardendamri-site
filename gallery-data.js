@@ -1,6 +1,37 @@
 // Auto-generated gallery data
 const GALLERY_IMAGES = [
   {
+    "u": "https://images.yardendamri.co.il/yarden_18410542126086544.webp",
+    "a": "כלה מדהימה בדיוק כמו שאני אוהבת\nנקייה, זוהרת ובעיקר היא! פשוט מושלמת \n\n#איפורכלה",
+    "item_id": "18410542126086544",
+    "post_id": "18126907450864493",
+    "thumb": "https://images.yardendamri.co.il/yarden_18410542126086544_thumb.webp",
+    "carousel": true,
+    "cidx": 0,
+    "ccount": 3
+  },
+  {
+    "u": "https://images.yardendamri.co.il/yarden_17990362986062792.webp",
+    "a": "כלה מדהימה בדיוק כמו שאני אוהבת\nנקייה, זוהרת ובעיקר היא! פשוט מושלמת \n\n#איפורכלה",
+    "item_id": "17990362986062792",
+    "post_id": "18126907450864493",
+    "thumb": "https://images.yardendamri.co.il/yarden_17990362986062792_thumb.webp",
+    "carousel": true,
+    "cidx": 1,
+    "ccount": 3
+  },
+  {
+    "u": "https://videos-new.yardendamri.co.il/yarden_18114877511278514.mp4",
+    "a": "כלה מדהימה בדיוק כמו שאני אוהבת\nנקייה, זוהרת ובעיקר היא! פשוט מושלמת \n\n#איפורכלה",
+    "item_id": "18114877511278514",
+    "post_id": "18126907450864493",
+    "video": true,
+    "thumb": "https://images.yardendamri.co.il/yarden_18114877511278514_thumb.webp",
+    "carousel": true,
+    "cidx": 2,
+    "ccount": 3
+  },
+  {
     "u": "https://images.yardendamri.co.il/yarden_18112997407975690.webp",
     "a": "Speechless ✨✨✨\nMUA @yarden_damri_makeup \nHair @korenmalihe \n@morel_avidani",
     "item_id": "18112997407975690",
