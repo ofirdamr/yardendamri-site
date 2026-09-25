@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-25T23:16:30.965Z",
+  "updatedAt": "2026-09-25T23:16:33.723Z",
   "admin": {
     "hidden": [
       "https://images.yardendamri.co.il/yarden_17843112559037829.webp",
@@ -4116,8 +4116,8 @@
   },
   "landingMedia": {
     "big": {
-      "url": "https://images.yardendamri.co.il/yarden_17990362986062792.webp",
-      "type": "image"
+      "url": "https://videos-new.yardendamri.co.il/yarden_18114877511278514.mp4",
+      "type": "video"
     },
     "sm1": {
       "url": "https://images.yardendamri.co.il/yarden_18094933328435557.webp",
