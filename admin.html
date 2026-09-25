@@ -510,30 +510,39 @@
     <!-- ───────────── LANDING PAGE MOSAIC PREVIEW ───────────── -->
     <div class="settings-section" style="margin-top:30px;" id="landing-picker-section">
       <h2>🖼️ תצוגה מקדימה — מוזאיקת דף נחיתה</h2>
-      <p style="font-size:.85rem;color:var(--text-muted,#888);margin-bottom:14px;">לחצי על חריץ כדי לעבור לגריד הבחירה למעלה.</p>
-      <!-- Slot shortcut buttons — switch the hero grid to that slot -->
-      <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
-        <button class="btn btn-secondary" onclick="setHeroPickerMode('land-0');document.querySelector('.settings-section').scrollIntoView({behavior:'smooth'})" style="font-size:.82rem;padding:6px 14px;">📸 גדולה</button>
-        <button class="btn btn-secondary" onclick="setHeroPickerMode('land-1');document.querySelector('.settings-section').scrollIntoView({behavior:'smooth'})" style="font-size:.82rem;padding:6px 14px;">📸 קטנה 1</button>
-        <button class="btn btn-secondary" onclick="setHeroPickerMode('land-2');document.querySelector('.settings-section').scrollIntoView({behavior:'smooth'})" style="font-size:.82rem;padding:6px 14px;">📸 קטנה 2</button>
-        <button class="btn btn-secondary" onclick="clearLandingMedia()" style="font-size:.82rem;padding:6px 14px;">↩️ איפוס</button>
+      <p style="font-size:.85rem;color:var(--text-muted,#888);margin-bottom:14px;">לחצי על חריץ כדי לבחור אותו, ואז גרור בתוכו להזזת התמונה. בחרי תמונה חדשה מהגריד למעלה.</p>
+      <!-- Mosaic preview — slots are draggable -->
+      <div style="display:grid;grid-template-columns:2fr 1fr;grid-template-rows:150px 150px;gap:6px;max-width:400px;border-radius:10px;overflow:visible;margin-bottom:14px;">
+        <div id="lm-prev-0" style="grid-row:1/3;background:#333;border-radius:6px 0 0 6px;overflow:hidden;position:relative;cursor:grab;touch-action:none;user-select:none;">
+          <img id="lm-prev-img-0" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;pointer-events:none;"/>
+          <video id="lm-prev-vid-0" muted loop playsinline autoplay style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;pointer-events:none;"></video>
+          <span id="lm-prev-empty-0" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#666;font-size:.75rem;pointer-events:none;">לא נבחר</span>
+          <span style="position:absolute;bottom:4px;right:6px;background:rgba(0,0,0,.55);color:#fff;font-size:.6rem;padding:2px 6px;border-radius:6px;pointer-events:none;">גדולה</span>
+        </div>
+        <div id="lm-prev-1" style="background:#333;border-radius:0 6px 0 0;overflow:hidden;position:relative;cursor:grab;touch-action:none;user-select:none;">
+          <img id="lm-prev-img-1" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;pointer-events:none;"/>
+          <video id="lm-prev-vid-1" muted loop playsinline autoplay style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;pointer-events:none;"></video>
+          <span id="lm-prev-empty-1" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#666;font-size:.75rem;pointer-events:none;">לא נבחר</span>
+          <span style="position:absolute;bottom:4px;right:6px;background:rgba(0,0,0,.55);color:#fff;font-size:.6rem;padding:2px 6px;border-radius:6px;pointer-events:none;">קטנה 1</span>
+        </div>
+        <div id="lm-prev-2" style="background:#333;border-radius:0 0 6px 0;overflow:hidden;position:relative;cursor:grab;touch-action:none;user-select:none;">
+          <img id="lm-prev-img-2" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;pointer-events:none;"/>
+          <video id="lm-prev-vid-2" muted loop playsinline autoplay style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;pointer-events:none;"></video>
+          <span id="lm-prev-empty-2" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#666;font-size:.75rem;pointer-events:none;">לא נבחר</span>
+          <span style="position:absolute;bottom:4px;right:6px;background:rgba(0,0,0,.55);color:#fff;font-size:.6rem;padding:2px 6px;border-radius:6px;pointer-events:none;">קטנה 2</span>
+        </div>
       </div>
-      <!-- Mosaic preview -->
-      <div style="display:grid;grid-template-columns:2fr 1fr;grid-template-rows:auto auto;gap:6px;max-width:400px;border-radius:10px;overflow:hidden;">
-        <div id="lm-prev-0" style="grid-row:1/3;background:#333;border-radius:6px 0 0 6px;overflow:hidden;min-height:150px;position:relative;">
-          <img id="lm-prev-img-0" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;"/>
-          <video id="lm-prev-vid-0" muted loop playsinline autoplay style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;"></video>
-          <span id="lm-prev-empty-0" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#666;font-size:.75rem;">לא נבחר</span>
+      <!-- Crop controls for active slot -->
+      <div id="lm-crop-controls" style="max-width:400px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:14px;">
+        <p style="font-size:.78rem;color:var(--muted);margin:0 0 10px;">🎯 גרור בתוך החריץ כדי להזיז • זום:</p>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <input type="range" id="lm-zoom-slider" min="50" max="250" value="100" step="5" style="flex:1;" oninput="_applyLmZoom()">
+          <span id="lm-zoom-val" style="font-size:.75rem;color:var(--muted);width:32px;">1×</span>
+          <button class="btn" onclick="_resetLmZoom()" style="padding:0 10px;font-size:.75rem;" title="איפוס זום">↺</button>
         </div>
-        <div id="lm-prev-1" style="background:#333;border-radius:0 6px 0 0;overflow:hidden;min-height:72px;position:relative;">
-          <img id="lm-prev-img-1" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;"/>
-          <video id="lm-prev-vid-1" muted loop playsinline autoplay style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;"></video>
-          <span id="lm-prev-empty-1" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#666;font-size:.75rem;">לא נבחר</span>
-        </div>
-        <div id="lm-prev-2" style="background:#333;border-radius:0 0 6px 0;overflow:hidden;min-height:72px;position:relative;">
-          <img id="lm-prev-img-2" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;"/>
-          <video id="lm-prev-vid-2" muted loop playsinline autoplay style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;"></video>
-          <span id="lm-prev-empty-2" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#666;font-size:.75rem;">לא נבחר</span>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-primary" onclick="_saveLmSlotCrop()" style="flex:1;font-size:.85rem;">💾 שמור כיוון</button>
+          <button class="btn btn-secondary" onclick="clearLandingMedia()" style="font-size:.85rem;">↩️ איפוס הכל</button>
         </div>
       </div>
     </div>
@@ -1359,26 +1368,20 @@ function setHeroPickerMode(mode) {
   const title = document.getElementById('hero-section-title');
   const vidLabel = document.getElementById('hero-panel-video-label');
   const tabs = document.getElementById('hero-type-tabs');
-  const previewBox = document.getElementById('hero-preview-box');
-  const cropBox = document.getElementById('hero-crop-box');
-  const previewTitle = document.getElementById('hero-preview-label-title');
-  // aspect ratios: hero=16:9, big slot=portrait 3:4, small slots=square
-  const ratios = { 'hero': '56.25%', 'land-0': '130%', 'land-1': '100%', 'land-2': '100%' };
-  const ratio = ratios[mode] || '56.25%';
-  if (previewBox) previewBox.style.paddingTop = ratio;
-  if (cropBox) cropBox.style.paddingTop = ratio;
+  const heroPreview = document.getElementById('hero-preview-section');
   if (mode === 'hero') {
     if (title) title.textContent = '📺 דף הבית — בחירת מדיה ראשית (Hero)';
     if (vidLabel) vidLabel.textContent = 'בחרי וידאו לכותרת הראשית (דף הבית)';
     if (tabs) tabs.style.display = 'flex';
-    if (previewTitle) previewTitle.textContent = 'תצוגה מקדימה — כך ייראה ב-Hero';
+    if (heroPreview) heroPreview.style.display = '';
   } else {
     const idx = parseInt(mode.split('-')[1]);
     if (title) title.textContent = '🖼️ דף נחיתה — בחירת ' + _lmModeLabels[idx];
     if (vidLabel) vidLabel.textContent = 'כל הפריטים — דף נחיתה: ' + _lmModeLabels[idx];
     if (tabs) tabs.style.display = 'none';
-    if (previewTitle) previewTitle.textContent = 'תצוגה מקדימה — ' + _lmModeLabels[idx] + ' בדף נחיתה';
+    if (heroPreview) heroPreview.style.display = 'none';
   }
+  _highlightActiveLmSlot();
   renderHeroGrid();
   populateHeroImageSelect();
 }
@@ -1587,8 +1590,9 @@ function _saveLandingSlot(url, type) {
   renderHeroGrid();
   populateHeroImageSelect();
   refreshLandingPreview();
-  showHeroPreview(url, type);
-  loadHeroCropPreview(url, type);
+  // scroll to mosaic so user can immediately drag the slot
+  const lp = document.getElementById('landing-picker-section');
+  if (lp) lp.scrollIntoView({behavior:'smooth', block:'nearest'});
   // Auto-advance to next unfilled slot
   const keys = _lmModeKeys;
   const next = keys.findIndex((k, i) => i > idx && !s.landingMedia[k]);
@@ -1719,14 +1723,124 @@ function refreshLandingPreview() {
       img.style.display='none'; vid.style.display='none'; empty.style.display='flex'; return;
     }
     empty.style.display='none';
+    const pos = item.position || '50% 50%';
+    const scale = item.zoom ? (item.zoom / 100) : 1;
+    const mediaStyle = `object-position:${pos};transform:${scale !== 1 ? `scale(${scale})` : 'none'};transform-origin:${pos};`;
     if (item.type === 'video') {
       img.style.display='none';
-      vid.src = item.url; vid.style.display='block'; vid.load(); vid.play().catch(()=>{});
+      vid.src = item.url; vid.style.cssText += mediaStyle; vid.style.display='block'; vid.load(); vid.play().catch(()=>{});
     } else {
       vid.style.display='none'; vid.src='';
-      img.src = item.url; img.style.display='block';
+      img.src = item.url; img.style.cssText += mediaStyle; img.style.display='block';
     }
   });
+  _initLmDrag();
+  _highlightActiveLmSlot();
+}
+
+// ─── LANDING MOSAIC DRAG-TO-PAN ──────────────────────────────
+let _lmDrag = null;
+
+function _activeLmMedia(idx) {
+  const img = document.getElementById('lm-prev-img-' + idx);
+  const vid = document.getElementById('lm-prev-vid-' + idx);
+  if (img && img.style.display !== 'none') return img;
+  if (vid && vid.style.display !== 'none') return vid;
+  return null;
+}
+
+function _initLmDrag() {
+  [0,1,2].forEach(idx => {
+    const slotEl = document.getElementById('lm-prev-' + idx);
+    if (!slotEl) return;
+    slotEl.onpointerdown = function(e) {
+      if (e.button && e.button !== 0) return;
+      setHeroPickerMode('land-' + idx);
+      const mediaEl = _activeLmMedia(idx);
+      if (!mediaEl) return;
+      e.preventDefault();
+      try { slotEl.setPointerCapture(e.pointerId); } catch(_) {}
+      const op = mediaEl.style.objectPosition || '50% 50%';
+      const parts = op.split(' ');
+      _lmDrag = {
+        slotEl, mediaEl, idx,
+        startX: e.clientX, startY: e.clientY,
+        startObjX: parseFloat(parts[0]) || 50,
+        startObjY: parseFloat(parts[1]) || 50,
+        rect: slotEl.getBoundingClientRect()
+      };
+      slotEl.style.cursor = 'grabbing';
+    };
+    slotEl.onpointermove = function(e) {
+      if (!_lmDrag || _lmDrag.idx !== idx) return;
+      const dx = e.clientX - _lmDrag.startX;
+      const dy = e.clientY - _lmDrag.startY;
+      const newX = Math.max(0, Math.min(100, _lmDrag.startObjX - dx / _lmDrag.rect.width * 100));
+      const newY = Math.max(0, Math.min(100, _lmDrag.startObjY - dy / _lmDrag.rect.height * 100));
+      const pos = `${newX.toFixed(1)}% ${newY.toFixed(1)}%`;
+      _lmDrag.mediaEl.style.objectPosition = pos;
+      _lmDrag.mediaEl.style.transformOrigin = pos;
+    };
+    slotEl.onpointerup = slotEl.onpointercancel = function() {
+      if (_lmDrag && _lmDrag.idx === idx) {
+        slotEl.style.cursor = 'grab';
+        _lmDrag = null;
+      }
+    };
+  });
+}
+
+function _highlightActiveLmSlot() {
+  [0,1,2].forEach(i => {
+    const el = document.getElementById('lm-prev-' + i);
+    if (!el) return;
+    el.style.outline = (_heroPickerMode === 'land-' + i) ? '3px solid #C4866A' : '3px solid transparent';
+    el.style.outlineOffset = '2px';
+  });
+  if (_heroPickerMode !== 'hero') {
+    const idx = parseInt(_heroPickerMode.split('-')[1]);
+    const s = getSettings();
+    const item = (s.landingMedia || {})[_lmModeKeys[idx]] || {};
+    const zoomEl = document.getElementById('lm-zoom-slider');
+    const zoomValEl = document.getElementById('lm-zoom-val');
+    const zoom = item.zoom || 100;
+    if (zoomEl) zoomEl.value = zoom;
+    if (zoomValEl) zoomValEl.textContent = (zoom/100).toFixed(1) + '×';
+  }
+}
+
+function _applyLmZoom() {
+  if (_heroPickerMode === 'hero') return;
+  const idx = parseInt(_heroPickerMode.split('-')[1]);
+  const zoomEl = document.getElementById('lm-zoom-slider');
+  const zoomValEl = document.getElementById('lm-zoom-val');
+  if (!zoomEl) return;
+  const scale = parseInt(zoomEl.value) / 100;
+  if (zoomValEl) zoomValEl.textContent = scale.toFixed(1) + '×';
+  const mediaEl = _activeLmMedia(idx);
+  if (mediaEl) {
+    mediaEl.style.transform = scale !== 1 ? `scale(${scale})` : 'none';
+    mediaEl.style.transformOrigin = mediaEl.style.objectPosition || '50% 50%';
+  }
+}
+
+function _resetLmZoom() {
+  const zoomEl = document.getElementById('lm-zoom-slider');
+  if (zoomEl) { zoomEl.value = 100; _applyLmZoom(); }
+}
+
+function _saveLmSlotCrop() {
+  if (_heroPickerMode === 'hero') return;
+  const idx = parseInt(_heroPickerMode.split('-')[1]);
+  const key = _lmModeKeys[idx];
+  const zoomEl = document.getElementById('lm-zoom-slider');
+  const s = getSettings();
+  if (!s.landingMedia || !s.landingMedia[key]) { showToast('⚠️ בחרי קודם תמונה לחריץ הזה'); return; }
+  const mediaEl = _activeLmMedia(idx);
+  s.landingMedia[key].position = mediaEl ? (mediaEl.style.objectPosition || '50% 50%') : '50% 50%';
+  s.landingMedia[key].zoom = zoomEl ? parseInt(zoomEl.value) : 100;
+  saveSettings(s);
+  showToast('✅ כיוון ' + _lmModeLabels[idx] + ' נשמר');
 }
 
 function clearLandingMedia() {
