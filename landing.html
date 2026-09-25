@@ -715,13 +715,18 @@
         var el = document.getElementById(s.id);
         if (!item || !item.url || !el) return;
         el.innerHTML = '';
+        var pos = item.position || '50% 50%';
+        var zoom = item.zoom ? (item.zoom / 100) : 1;
+        var mediaStyle = 'width:100%;height:100%;object-fit:cover;display:block;' +
+          'object-position:' + pos + ';' +
+          (zoom !== 1 ? 'transform:scale(' + zoom + ');transform-origin:' + pos + ';' : '');
         if (item.type === 'video') {
           var v = document.createElement('video');
           v.src = item.url;
           v.setAttribute('muted',''); v.setAttribute('loop','');
           v.setAttribute('playsinline',''); v.setAttribute('autoplay','');
           v.setAttribute('preload','metadata');
-          v.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+          v.style.cssText = mediaStyle;
           el.appendChild(v);
           v.play().catch(function(){});
         } else {
@@ -729,6 +734,7 @@
           img.src = item.url;
           img.alt = '';
           img.loading = 'eager';
+          img.style.cssText = mediaStyle;
           el.appendChild(img);
         }
       });

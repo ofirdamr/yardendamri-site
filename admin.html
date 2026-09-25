@@ -1485,9 +1485,18 @@ function saveHeroCrop() {
   const y = parseInt(document.getElementById('hero-pos-y').value) || 50;
   const zoom = parseInt(document.getElementById('hero-zoom').value) || 100;
   const s = getSettings();
-  s.heroPosition = `${x}% ${y}%`; // always percentages, never keywords
-  s.heroZoom = zoom;
-  delete s.heroFit; // remove old conflicting values
+  if (_heroPickerMode !== 'hero') {
+    const idx = parseInt(_heroPickerMode.split('-')[1]);
+    const key = _lmModeKeys[idx];
+    if (!s.landingMedia) s.landingMedia = {};
+    if (!s.landingMedia[key]) s.landingMedia[key] = {};
+    s.landingMedia[key].position = `${x}% ${y}%`;
+    s.landingMedia[key].zoom = zoom;
+  } else {
+    s.heroPosition = `${x}% ${y}%`;
+    s.heroZoom = zoom;
+    delete s.heroFit;
+  }
   saveSettings(s);
   showToast('✅ כיוון נשמר');
 }
@@ -1556,6 +1565,8 @@ function _saveLandingSlot(url, type) {
   renderHeroGrid();
   populateHeroImageSelect();
   refreshLandingPreview();
+  showHeroPreview(url, type);
+  loadHeroCropPreview(url, type);
   // Auto-advance to next unfilled slot
   const keys = _lmModeKeys;
   const next = keys.findIndex((k, i) => i > idx && !s.landingMedia[k]);
