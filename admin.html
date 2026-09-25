@@ -399,6 +399,56 @@
       </div>
     </div>
 
+    <!-- ───────────── LANDING PAGE MOSAIC PICKER ───────────── -->
+    <div class="settings-section" style="margin-top:30px;" id="landing-picker-section">
+      <h2>🖼️ תמונות / וידאו בדף נחיתה (Google Ads)</h2>
+      <p style="font-size:.85rem;color:var(--text-muted,#888);margin-bottom:16px;">בחרי 3 פריטים למסגרת הצילומים בדף נחיתה. לחצי על פריט בכל חריץ כדי לבחור.</p>
+
+      <!-- 3 slot buttons -->
+      <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+        <button id="lm-tab-0" class="btn btn-primary" onclick="openLandingSlot(0)" style="font-size:.82rem;padding:7px 14px;">📸 תמונה גדולה</button>
+        <button id="lm-tab-1" class="btn btn-secondary" onclick="openLandingSlot(1)" style="font-size:.82rem;padding:7px 14px;">📸 תמונה קטנה 1</button>
+        <button id="lm-tab-2" class="btn btn-secondary" onclick="openLandingSlot(2)" style="font-size:.82rem;padding:7px 14px;">📸 תמונה קטנה 2</button>
+      </div>
+
+      <!-- Active slot label -->
+      <p id="lm-slot-label" style="font-size:.8rem;color:var(--muted);margin-bottom:8px;">בוחרים עבור: תמונה גדולה</p>
+
+      <!-- Search -->
+      <input type="search" id="lm-search" placeholder="חיפוש..." oninput="filterLandingGrid(this.value)"
+        style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;margin-bottom:10px;box-sizing:border-box;background:rgba(255,255,255,.06);color:var(--text);" />
+
+      <!-- Grid -->
+      <div id="lm-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;max-height:38vh;overflow-y:auto;padding:4px;margin-bottom:12px;"></div>
+      <p id="lm-grid-count" style="font-size:.8rem;color:var(--muted);text-align:center;margin:0 0 14px;"></p>
+
+      <!-- Mosaic preview -->
+      <div id="lm-preview-wrap" style="margin-top:10px;">
+        <label style="font-weight:600;display:block;margin-bottom:10px;font-size:.9rem;">תצוגה מקדימה — מוזאיקה</label>
+        <div style="display:grid;grid-template-columns:2fr 1fr;grid-template-rows:auto auto;gap:6px;max-width:400px;border-radius:10px;overflow:hidden;">
+          <div id="lm-prev-0" style="grid-row:1/3;background:#333;border-radius:6px 0 0 6px;overflow:hidden;min-height:150px;position:relative;">
+            <img id="lm-prev-img-0" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;"/>
+            <video id="lm-prev-vid-0" muted loop playsinline autoplay style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;"></video>
+            <span id="lm-prev-empty-0" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#666;font-size:.75rem;">לא נבחר</span>
+          </div>
+          <div id="lm-prev-1" style="background:#333;border-radius:0 6px 0 0;overflow:hidden;min-height:72px;position:relative;">
+            <img id="lm-prev-img-1" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;"/>
+            <video id="lm-prev-vid-1" muted loop playsinline autoplay style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;"></video>
+            <span id="lm-prev-empty-1" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#666;font-size:.75rem;">לא נבחר</span>
+          </div>
+          <div id="lm-prev-2" style="background:#333;border-radius:0 0 6px 0;overflow:hidden;min-height:72px;position:relative;">
+            <img id="lm-prev-img-2" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;"/>
+            <video id="lm-prev-vid-2" muted loop playsinline autoplay style="width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;"></video>
+            <span id="lm-prev-empty-2" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#666;font-size:.75rem;">לא נבחר</span>
+          </div>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn btn-secondary" onclick="clearLandingMedia()" style="font-size:.82rem;">↩️ איפוס לברירת מחדל</button>
+        </div>
+      </div>
+    </div>
+    <!-- ─────────────────────────────────────────────────────── -->
+
     <div class="settings-section" style="margin-top:30px;">
       <h2>⚙️ הגדרות</h2>
       <div class="field-group">
@@ -755,7 +805,7 @@ function getSettings() {
     const a = window.RemoteState.getAdmin();
     // include heroVideo/heroImage/heroFit/heroPosition from top-level so admin can read/write them
     const s = window.RemoteState.getCached() || {};
-    return { ...a, heroVideo: s.heroVideo || '', heroImage: s.heroImage || '', heroFit: s.heroFit || '', heroPosition: s.heroPosition || '', heroZoom: s.heroZoom || 100 };
+    return { ...a, heroVideo: s.heroVideo || '', heroImage: s.heroImage || '', heroFit: s.heroFit || '', heroPosition: s.heroPosition || '', heroZoom: s.heroZoom || 100, landingMedia: s.landingMedia || null };
   }
   try { return JSON.parse(localStorage.getItem('gallery_admin') || '{"hidden":[],"pinned":[],"order":[],"cats":{},"catList":[]}'); }
   catch(e) { return {hidden:[],pinned:[],order:[],cats:{},catList:[]}; }
@@ -763,12 +813,13 @@ function getSettings() {
 function saveSettings(s) {
   try { localStorage.setItem('gallery_admin', JSON.stringify(s)); } catch(e){}
   if (window.RemoteState && window.RemoteState.update) {
-    const { heroVideo, heroImage, heroFit, heroPosition, heroZoom, ...adminFields } = s;
+    const { heroVideo, heroImage, heroFit, heroPosition, heroZoom, landingMedia, ...adminFields } = s;
     const payload = { admin: adminFields };
     payload.heroVideo    = heroVideo    || null;
     payload.heroImage    = heroImage    || null;
     payload.heroPosition = heroPosition || null;
     payload.heroZoom     = heroZoom     || null;
+    payload.landingMedia = landingMedia || null;
     window.RemoteState.update(payload).then(result => {
       if (result && !result.ok) {
         if (result.error === 'not_synced') {
@@ -1453,6 +1504,116 @@ function populateHeroImageSelect(){
 function saveHeroFit(){ /* removed — use applyAutoFit instead */ }
 function saveHeroPosition(){ /* removed — use applyAutoFit instead */ }
 
+// ─── LANDING PAGE MOSAIC PICKER ────────────────────────────────
+let _lmActiveSlot = 0;
+let _lmAllItems   = [];
+let _lmFilter     = '';
+const _lmSlotLabels = ['תמונה גדולה', 'תמונה קטנה 1', 'תמונה קטנה 2'];
+
+function initLandingPicker() {
+  if (typeof GALLERY_IMAGES === 'undefined') return;
+  _lmAllItems = GALLERY_IMAGES.filter(i => !i.hidden);
+  renderLandingGrid();
+  refreshLandingPreview();
+}
+
+function openLandingSlot(slot) {
+  _lmActiveSlot = slot;
+  ['lm-tab-0','lm-tab-1','lm-tab-2'].forEach((id,i) => {
+    document.getElementById(id).className = i===slot ? 'btn btn-primary' : 'btn btn-secondary';
+  });
+  const lbl = document.getElementById('lm-slot-label');
+  if (lbl) lbl.textContent = 'בוחרים עבור: ' + _lmSlotLabels[slot];
+  renderLandingGrid();
+}
+
+function filterLandingGrid(q) {
+  _lmFilter = (q||'').toLowerCase();
+  renderLandingGrid();
+}
+
+function renderLandingGrid() {
+  const grid = document.getElementById('lm-grid');
+  const countEl = document.getElementById('lm-grid-count');
+  if (!grid) return;
+  const s = getSettings();
+  const saved = (s.landingMedia || {})[['big','sm1','sm2'][_lmActiveSlot]];
+  const MAX = 30;
+  const filtered = _lmFilter
+    ? _lmAllItems.filter(v => (v.a||'').toLowerCase().includes(_lmFilter))
+    : _lmAllItems;
+  const shown = filtered.slice(0, MAX);
+
+  grid.innerHTML = shown.map(item => {
+    const isVideo = !!(item.video || (item.u && item.u.match(/\.(mp4|mov|webm)$/i)));
+    const thumb = isVideo
+      ? (item.thumb || heroVidThumb(item.u))
+      : (item.u.includes('_thumb') ? item.u : item.u.replace(/\.(webp|jpg|jpeg|png)$/i,'_thumb.webp'));
+    const selected = saved && saved.url === item.u;
+    const caption = (item.a||'').substring(0,40).replace(/"/g,'&quot;');
+    return `<div onclick="selectLandingItem('${item.u.replace(/'/g,"\\'").replace(/"/g,'&quot;')}','${isVideo?'video':'image'}')"
+         style="position:relative;cursor:pointer;border-radius:8px;overflow:hidden;
+                border:3px solid ${selected?'#C4866A':'transparent'};
+                height:90px;background:#222;" title="${caption}">
+      <img src="${thumb}" alt="${caption}" loading="lazy"
+           onerror="this.src='${isVideo ? heroVidThumb(item.u) : item.u}'"
+           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"/>
+      ${isVideo ? '<span style="position:absolute;top:4px;right:4px;background:rgba(0,0,0,.7);color:#fff;font-size:.6rem;padding:2px 5px;border-radius:6px;">▶</span>' : ''}
+      ${selected ? '<span style="position:absolute;bottom:3px;left:3px;background:#C4866A;color:#fff;font-size:.6rem;padding:2px 5px;border-radius:5px;font-weight:600;">✓</span>' : ''}
+    </div>`;
+  }).join('');
+
+  if (countEl) countEl.textContent = filtered.length > MAX ? `מציג ${MAX} מתוך ${filtered.length}` : `${filtered.length} פריטים`;
+}
+
+function selectLandingItem(url, type) {
+  const s = getSettings();
+  if (!s.landingMedia) s.landingMedia = {};
+  const key = ['big','sm1','sm2'][_lmActiveSlot];
+  s.landingMedia[key] = { url, type };
+  saveSettings(s);
+  showToast('✓ ' + _lmSlotLabels[_lmActiveSlot] + ' עודכנה!');
+  renderLandingGrid();
+  refreshLandingPreview();
+  // Move to next unfilled slot automatically
+  const keys = ['big','sm1','sm2'];
+  const next = keys.findIndex((k,i) => i > _lmActiveSlot && !s.landingMedia[k]);
+  if (next !== -1) openLandingSlot(next);
+}
+
+function refreshLandingPreview() {
+  const s = getSettings();
+  const lm = s.landingMedia || {};
+  [['big',0],['sm1',1],['sm2',2]].forEach(([key,idx]) => {
+    const item = lm[key];
+    const img = document.getElementById(`lm-prev-img-${idx}`);
+    const vid = document.getElementById(`lm-prev-vid-${idx}`);
+    const empty = document.getElementById(`lm-prev-empty-${idx}`);
+    if (!img) return;
+    if (!item) {
+      img.style.display='none'; vid.style.display='none'; empty.style.display='flex'; return;
+    }
+    empty.style.display='none';
+    if (item.type === 'video') {
+      img.style.display='none';
+      vid.src = item.url; vid.style.display='block'; vid.load(); vid.play().catch(()=>{});
+    } else {
+      vid.style.display='none'; vid.src='';
+      img.src = item.url; img.style.display='block';
+    }
+  });
+}
+
+function clearLandingMedia() {
+  const s = getSettings();
+  s.landingMedia = null;
+  saveSettings(s);
+  showToast('↩️ מוזאיקה אופסה לברירת מחדל');
+  renderLandingGrid();
+  refreshLandingPreview();
+}
+// ───────────────────────────────────────────────────────────────
+
 // ─── DIAGNOSTIC + RESTORE ──────────────────────────────────────
 // ─── FIX GARBLED HEBREW ENCODING ──────────────────────────────
 function tryFixStr(s) {
@@ -1992,6 +2153,7 @@ function switchTab(name,el){
       const status = document.getElementById('hero-video-status');
       if (status) status.textContent = '✓ ' + (type==='image'?'תמונה':'וידאו') + ' פעיל';
     }
+    initLandingPicker();
   }
 }
 

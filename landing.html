@@ -94,7 +94,7 @@
       gap: 3px;
     }
     .mosaic-big { grid-row: 1 / 3; }
-    .mosaic img {
+    .mosaic img, .mosaic video {
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
@@ -431,14 +431,14 @@
 <div class="hero-wrap">
 
   <!-- Photo mosaic -->
-  <div class="mosaic" role="presentation">
-    <div class="mosaic-big">
+  <div class="mosaic" role="presentation" id="landingMosaic">
+    <div class="mosaic-big" id="mosaic-slot-0">
       <img src="https://images.yardendamri.co.il/yarden_18112997407975690.webp" alt="איפור כלות מקצועי – ירדן דמרי" loading="eager"/>
     </div>
-    <div>
+    <div id="mosaic-slot-1">
       <img src="https://images.yardendamri.co.il/yarden_18094933328435557.webp" alt="איפור ערב מקצועי" loading="eager"/>
     </div>
-    <div>
+    <div id="mosaic-slot-2">
       <img src="https://images.yardendamri.co.il/yarden_18105298487602795.webp" alt="מראה כלה טבעי ומדויק" loading="eager"/>
     </div>
   </div>
@@ -569,6 +569,44 @@
   }
 </script>
 
+<script>
+(function applyLandingMedia(){
+  fetch('/gallery-settings.json?_=' + Date.now())
+    .then(r => r.ok ? r.json() : null)
+    .catch(() => null)
+    .then(data => {
+      if (!data || !data.landingMedia) return;
+      var lm = data.landingMedia;
+      var slots = [
+        { key: 'big', id: 'mosaic-slot-0' },
+        { key: 'sm1', id: 'mosaic-slot-1' },
+        { key: 'sm2', id: 'mosaic-slot-2' }
+      ];
+      slots.forEach(function(s) {
+        var item = lm[s.key];
+        var el = document.getElementById(s.id);
+        if (!item || !item.url || !el) return;
+        el.innerHTML = '';
+        if (item.type === 'video') {
+          var v = document.createElement('video');
+          v.src = item.url;
+          v.setAttribute('muted',''); v.setAttribute('loop','');
+          v.setAttribute('playsinline',''); v.setAttribute('autoplay','');
+          v.setAttribute('preload','metadata');
+          v.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+          el.appendChild(v);
+          v.play().catch(function(){});
+        } else {
+          var img = document.createElement('img');
+          img.src = item.url;
+          img.alt = '';
+          img.loading = 'eager';
+          el.appendChild(img);
+        }
+      });
+    });
+})();
+</script>
 <script src="/site-content.js" defer></script>
 <script src="/cookie-banner.js?v=9" defer></script>
 </body>
