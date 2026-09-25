@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-25T23:25:25.159Z",
+  "updatedAt": "2026-09-25T23:25:28.069Z",
   "admin": {
     "hidden": [
       "https://images.yardendamri.co.il/yarden_17843112559037829.webp",
@@ -4128,5 +4128,5 @@
       "type": "image"
     }
   },
-  "landingTemplate": "2"
+  "landingTemplate": "1"
 }
