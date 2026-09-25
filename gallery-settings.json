@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-25T23:42:35.005Z",
+  "updatedAt": "2026-09-25T23:43:50.043Z",
   "admin": {
     "hidden": [
       "https://images.yardendamri.co.il/yarden_17843112559037829.webp",
@@ -4045,7 +4045,7 @@
   ],
   "reviews": [],
   "heroImage": "https://images.yardendamri.co.il/yarden_17852854302593480.webp",
-  "heroPosition": "36% 50%",
+  "heroPosition": null,
   "heroZoom": 100,
   "likes": {
     "aHR0cHM6Ly92": 0
