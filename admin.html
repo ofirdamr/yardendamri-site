@@ -399,6 +399,103 @@
       </div>
     </div>
 
+    <!-- ───────────── LANDING PAGE TEMPLATE PICKER ───────────── -->
+    <div class="settings-section" style="margin-top:30px;">
+      <h2>📐 עיצוב דף נחיתה (Google Ads)</h2>
+      <p style="font-size:.85rem;color:var(--text-muted,#888);margin-bottom:16px;">בחרי תבנית עיצוב לדף נחיתה. השינוי גלוי לכל המבקרים.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;" id="lm-template-cards">
+
+        <!-- Template 1 — Split -->
+        <div id="lm-tpl-card-1" onclick="selectLandingTemplate('1')"
+          style="cursor:pointer;border-radius:10px;overflow:hidden;border:3px solid transparent;background:#1a1210;transition:border-color .15s;">
+          <!-- SVG sketch -->
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;">
+            <rect width="160" height="100" fill="#1a1210"/>
+            <!-- topbar -->
+            <rect x="0" y="0" width="160" height="12" fill="#111"/>
+            <!-- mosaic left -->
+            <rect x="0" y="12" width="88" height="44" fill="#5a3a28"/>
+            <rect x="0" y="57" width="42" height="43" fill="#7a4a30"/>
+            <rect x="47" y="57" width="41" height="43" fill="#6a4228"/>
+            <!-- panel right -->
+            <rect x="89" y="12" width="71" height="88" fill="#111"/>
+            <rect x="97" y="24" width="55" height="4" rx="2" fill="#c9a96e" opacity=".7"/>
+            <rect x="97" y="32" width="55" height="6" rx="2" fill="#fff" opacity=".8"/>
+            <rect x="97" y="41" width="45" height="6" rx="2" fill="#fff" opacity=".8"/>
+            <rect x="97" y="52" width="55" height="3" rx="1" fill="#fff" opacity=".25"/>
+            <rect x="97" y="58" width="55" height="3" rx="1" fill="#fff" opacity=".25"/>
+            <rect x="97" y="70" width="55" height="14" rx="3" fill="#25D366" opacity=".85"/>
+            <rect x="97" y="88" width="55" height="8" rx="2" fill="#c9a96e" opacity=".5"/>
+          </svg>
+          <div style="padding:8px 10px;text-align:center;">
+            <div style="font-size:.75rem;font-weight:600;color:#e8c8b0;">Split</div>
+            <div style="font-size:.65rem;color:#7a5a48;margin-top:2px;">מוזאיקה + פאנל</div>
+          </div>
+        </div>
+
+        <!-- Template 2 — Cinematic -->
+        <div id="lm-tpl-card-2" onclick="selectLandingTemplate('2')"
+          style="cursor:pointer;border-radius:10px;overflow:hidden;border:3px solid transparent;background:#1a1210;transition:border-color .15s;">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;">
+            <rect width="160" height="100" fill="#1a1210"/>
+            <!-- topbar -->
+            <rect x="0" y="0" width="160" height="12" fill="#111"/>
+            <!-- bg photo fill -->
+            <rect x="0" y="12" width="160" height="88" fill="#5a3a28"/>
+            <!-- gradient overlay -->
+            <rect x="0" y="12" width="160" height="88" fill="url(#cin-grad)"/>
+            <defs>
+              <linearGradient id="cin-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#000" stop-opacity=".2"/>
+                <stop offset="100%" stop-color="#000" stop-opacity=".72"/>
+              </linearGradient>
+            </defs>
+            <!-- centered text -->
+            <rect x="42" y="26" width="76" height="4" rx="2" fill="#c9a96e" opacity=".8"/>
+            <rect x="30" y="34" width="100" height="8" rx="3" fill="#fff" opacity=".85"/>
+            <rect x="38" y="45" width="84" height="8" rx="3" fill="#fff" opacity=".85"/>
+            <rect x="50" y="57" width="60" height="4" rx="2" fill="#fff" opacity=".3"/>
+            <rect x="34" y="65" width="92" height="14" rx="3" fill="#25D366" opacity=".85"/>
+            <rect x="50" y="83" width="60" height="7" rx="2" fill="#c9a96e" opacity=".5"/>
+          </svg>
+          <div style="padding:8px 10px;text-align:center;">
+            <div style="font-size:.75rem;font-weight:600;color:#e8c8b0;">Cinematic</div>
+            <div style="font-size:.65rem;color:#7a5a48;margin-top:2px;">רקע מלא + טקסט</div>
+          </div>
+        </div>
+
+        <!-- Template 3 — Editorial -->
+        <div id="lm-tpl-card-3" onclick="selectLandingTemplate('3')"
+          style="cursor:pointer;border-radius:10px;overflow:hidden;border:3px solid transparent;background:#1a1210;transition:border-color .15s;">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;">
+            <rect width="160" height="100" fill="#1a1210"/>
+            <!-- topbar -->
+            <rect x="0" y="0" width="160" height="12" fill="#111"/>
+            <!-- light bg -->
+            <rect x="0" y="12" width="160" height="60" fill="#fdf8f5" opacity=".12"/>
+            <!-- centered text block -->
+            <rect x="52" y="18" width="56" height="3" rx="1.5" fill="#c9a96e" opacity=".8"/>
+            <rect x="24" y="25" width="112" height="8" rx="3" fill="#fdf8f5" opacity=".85"/>
+            <rect x="32" y="36" width="96" height="8" rx="3" fill="#fdf8f5" opacity=".85"/>
+            <rect x="40" y="48" width="80" height="3" rx="1.5" fill="#fdf8f5" opacity=".3"/>
+            <!-- 3 equal photos strip -->
+            <rect x="1" y="57" width="51" height="28" rx="1" fill="#5a3a28"/>
+            <rect x="55" y="57" width="50" height="28" rx="1" fill="#7a4a30"/>
+            <rect x="108" y="57" width="51" height="28" rx="1" fill="#6a4228"/>
+            <!-- dark CTA bottom -->
+            <rect x="0" y="86" width="160" height="14" fill="#111"/>
+            <rect x="50" y="89" width="60" height="8" rx="3" fill="#25D366" opacity=".75"/>
+          </svg>
+          <div style="padding:8px 10px;text-align:center;">
+            <div style="font-size:.75rem;font-weight:600;color:#e8c8b0;">Editorial</div>
+            <div style="font-size:.65rem;color:#7a5a48;margin-top:2px;">טקסט + פס תמונות</div>
+          </div>
+        </div>
+      </div>
+      <p id="lm-tpl-active-label" style="font-size:.8rem;color:var(--muted);margin-top:10px;text-align:center;"></p>
+    </div>
+    <!-- ─────────────────────────────────────────────────────────── -->
+
     <!-- ───────────── LANDING PAGE MOSAIC PICKER ───────────── -->
     <div class="settings-section" style="margin-top:30px;" id="landing-picker-section">
       <h2>🖼️ תמונות / וידאו בדף נחיתה (Google Ads)</h2>
@@ -805,7 +902,7 @@ function getSettings() {
     const a = window.RemoteState.getAdmin();
     // include heroVideo/heroImage/heroFit/heroPosition from top-level so admin can read/write them
     const s = window.RemoteState.getCached() || {};
-    return { ...a, heroVideo: s.heroVideo || '', heroImage: s.heroImage || '', heroFit: s.heroFit || '', heroPosition: s.heroPosition || '', heroZoom: s.heroZoom || 100, landingMedia: s.landingMedia || null };
+    return { ...a, heroVideo: s.heroVideo || '', heroImage: s.heroImage || '', heroFit: s.heroFit || '', heroPosition: s.heroPosition || '', heroZoom: s.heroZoom || 100, landingMedia: s.landingMedia || null, landingTemplate: s.landingTemplate || '1' };
   }
   try { return JSON.parse(localStorage.getItem('gallery_admin') || '{"hidden":[],"pinned":[],"order":[],"cats":{},"catList":[]}'); }
   catch(e) { return {hidden:[],pinned:[],order:[],cats:{},catList:[]}; }
@@ -813,13 +910,14 @@ function getSettings() {
 function saveSettings(s) {
   try { localStorage.setItem('gallery_admin', JSON.stringify(s)); } catch(e){}
   if (window.RemoteState && window.RemoteState.update) {
-    const { heroVideo, heroImage, heroFit, heroPosition, heroZoom, landingMedia, ...adminFields } = s;
+    const { heroVideo, heroImage, heroFit, heroPosition, heroZoom, landingMedia, landingTemplate, ...adminFields } = s;
     const payload = { admin: adminFields };
-    payload.heroVideo    = heroVideo    || null;
-    payload.heroImage    = heroImage    || null;
-    payload.heroPosition = heroPosition || null;
-    payload.heroZoom     = heroZoom     || null;
-    payload.landingMedia = landingMedia || null;
+    payload.heroVideo       = heroVideo       || null;
+    payload.heroImage       = heroImage       || null;
+    payload.heroPosition    = heroPosition    || null;
+    payload.heroZoom        = heroZoom        || null;
+    payload.landingMedia    = landingMedia    || null;
+    payload.landingTemplate = landingTemplate || null;
     window.RemoteState.update(payload).then(result => {
       if (result && !result.ok) {
         if (result.error === 'not_synced') {
@@ -1515,6 +1613,27 @@ function initLandingPicker() {
   _lmAllItems = GALLERY_IMAGES.filter(i => !i.hidden);
   renderLandingGrid();
   refreshLandingPreview();
+  refreshTemplateCards();
+}
+
+function refreshTemplateCards() {
+  const cur = (getSettings().landingTemplate) || '1';
+  ['1','2','3'].forEach(t => {
+    const card = document.getElementById('lm-tpl-card-' + t);
+    if (card) card.style.borderColor = t===cur ? '#C4866A' : 'transparent';
+  });
+  const lbl = document.getElementById('lm-tpl-active-label');
+  const names = {'1':'Split — מוזאיקה + פאנל', '2':'Cinematic — רקע מלא', '3':'Editorial — טקסט + פס תמונות'};
+  if (lbl) lbl.textContent = '✓ פעיל: ' + (names[cur] || cur);
+}
+
+function selectLandingTemplate(tpl) {
+  const s = getSettings();
+  s.landingTemplate = tpl;
+  saveSettings(s);
+  refreshTemplateCards();
+  const names = {'1':'Split','2':'Cinematic','3':'Editorial'};
+  showToast('✓ תבנית ' + (names[tpl]||tpl) + ' נבחרה! גלויה לכל המבקרים תוך כדקה.');
 }
 
 function openLandingSlot(slot) {

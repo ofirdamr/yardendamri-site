@@ -414,6 +414,130 @@
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
     }
+
+    /* ────────────────────────────────────────────────────────────
+       TEMPLATE 2 — Cinematic / Full-bleed
+       Big mosaic image fills the entire hero as background.
+       Panel floats on top with gradient overlay, centered text.
+    ──────────────────────────────────────────────────────────── */
+    body[data-template="2"] .hero-wrap {
+      display: block;
+      position: relative;
+      min-height: 100svh;
+      min-height: 100vh;
+    }
+    body[data-template="2"] #landingMosaic {
+      position: absolute;
+      inset: 0;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      z-index: 0;
+    }
+    body[data-template="2"] .mosaic-big { grid-row: 1; }
+    body[data-template="2"] #mosaic-slot-1,
+    body[data-template="2"] #mosaic-slot-2 { display: none; }
+    body[data-template="2"] .hero-panel {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(170deg, rgba(10,5,0,.32) 0%, rgba(10,5,0,.78) 100%);
+      min-height: 100svh;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 72px 28px 52px;
+    }
+    body[data-template="2"] .hero-text {
+      background: transparent;
+      text-align: center;
+      padding: 0 0 28px;
+      border-bottom: 1px solid rgba(255,255,255,.14);
+      margin-bottom: 24px;
+    }
+    body[data-template="2"] .hero-title { color: #fff; font-size: clamp(2rem, 7vw, 3.2rem); }
+    body[data-template="2"] .hero-eyebrow { color: var(--gold-d); }
+    body[data-template="2"] .hero-sub { color: rgba(255,255,255,.6); max-width: 440px; }
+    body[data-template="2"] .trust {
+      background: transparent; border-color: rgba(255,255,255,.14);
+      padding: 0 0 24px; margin-bottom: 24px;
+      justify-content: center;
+    }
+    body[data-template="2"] .trust-num { color: #fff; }
+    body[data-template="2"] .trust-label { color: rgba(255,255,255,.45); }
+    body[data-template="2"] .trust-stars { color: var(--gold-d); }
+    body[data-template="2"] .cta-section { background: transparent; padding: 0; text-align: center; }
+    body[data-template="2"] .cta-title,
+    body[data-template="2"] .cta-sub { display: none; }
+    body[data-template="2"] .btn-wa { margin: 0 auto 16px; }
+    body[data-template="2"] .or-divider { max-width: 380px; margin: 0 auto 16px; }
+    body[data-template="2"] .form-wrap { max-width: 420px; margin: 0 auto; }
+    @media (min-width: 768px) {
+      body[data-template="2"] .hero-panel { padding: 80px 60px; }
+      body[data-template="2"] .hero-title { font-size: 3.4rem; }
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       TEMPLATE 3 — Minimal Editorial
+       Clean cream background, large centered headline.
+       Mosaic moves BELOW the text as a 3-column image strip.
+    ──────────────────────────────────────────────────────────── */
+    body[data-template="3"] .hero-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    body[data-template="3"] #landingMosaic {
+      order: 2;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 230px;
+      height: 230px;
+    }
+    body[data-template="3"] .mosaic-big { grid-row: 1; }
+    body[data-template="3"] .hero-panel {
+      order: 1;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px 28px 40px;
+    }
+    body[data-template="3"] .hero-text {
+      background: transparent;
+      text-align: center;
+      padding: 0 0 28px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(201,169,110,.2);
+    }
+    body[data-template="3"] .hero-title {
+      color: var(--charcoal);
+      font-size: clamp(2.2rem, 8vw, 3.4rem);
+    }
+    body[data-template="3"] .hero-sub { color: var(--muted); max-width: 400px; margin: 0 auto; }
+    body[data-template="3"] .trust {
+      justify-content: center;
+      background: transparent;
+      border-color: rgba(201,169,110,.2);
+    }
+    body[data-template="3"] .cta-section {
+      background: var(--charcoal);
+      padding: 32px 20px;
+      text-align: center;
+    }
+    body[data-template="3"] .cta-title { display: block; }
+    body[data-template="3"] .cta-sub { display: block; }
+    body[data-template="3"] .btn-wa { margin: 0 auto 16px; }
+    body[data-template="3"] .or-divider { max-width: 380px; margin: 0 auto 16px; }
+    body[data-template="3"] .form-wrap { max-width: 420px; margin: 0 auto; }
+    @media (min-width: 768px) {
+      body[data-template="3"] .hero-wrap { display: flex; }
+      body[data-template="3"] #landingMosaic {
+        height: 320px;
+        grid-template-rows: 320px;
+      }
+      body[data-template="3"] .hero-panel { padding: 72px 60px 56px; }
+      body[data-template="3"] .hero-title { font-size: 3.8rem; }
+    }
   </style>
 </head>
 <body>
@@ -575,7 +699,11 @@
     .then(r => r.ok ? r.json() : null)
     .catch(() => null)
     .then(data => {
-      if (!data || !data.landingMedia) return;
+      if (!data) return;
+      // Apply template
+      var tpl = data.landingTemplate;
+      if (tpl && tpl !== '1') document.body.dataset.template = tpl;
+      if (!data.landingMedia) return;
       var lm = data.landingMedia;
       var slots = [
         { key: 'big', id: 'mosaic-slot-0' },
