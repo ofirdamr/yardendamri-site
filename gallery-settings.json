@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-25T23:34:25.360Z",
+  "updatedAt": "2026-09-25T23:35:05.981Z",
   "admin": {
     "hidden": [
       "https://images.yardendamri.co.il/yarden_17843112559037829.webp",
@@ -3927,7 +3927,7 @@
     ],
     "heroZoom": 50
   },
-  "heroVideo": "https://videos-new.yardendamri.co.il/yarden_18352618189204100.mp4",
+  "heroVideo": null,
   "pricing": [
     {
       "icon": "💍",
@@ -4045,7 +4045,7 @@
   ],
   "reviews": [],
   "heroImage": null,
-  "heroPosition": "100% 30%",
+  "heroPosition": null,
   "heroZoom": 100,
   "likes": {
     "aHR0cHM6Ly92": 0
