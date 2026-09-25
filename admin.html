@@ -355,9 +355,9 @@
 
       <!-- Live preview + auto-fit -->
       <div id="hero-preview-section" style="display:none;margin-top:18px;padding-top:18px;border-top:1px solid var(--border);">
-        <label style="font-weight:600;display:block;margin-bottom:10px;">תצוגה מקדימה — כך ייראה ב-Hero</label>
-        <!-- 16:9 preview box -->
-        <div style="position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#111;margin-bottom:14px;">
+        <label id="hero-preview-label-title" style="font-weight:600;display:block;margin-bottom:10px;">תצוגה מקדימה — כך ייראה ב-Hero</label>
+        <!-- preview box — aspect ratio set dynamically via JS -->
+        <div id="hero-preview-box" style="position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#111;margin-bottom:14px;">
           <img id="hero-preview-img" src="" alt="תצוגה מקדימה" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;"/>
           <video id="hero-preview-vid" muted loop playsinline autoplay style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;" onclick="this.play()"></video>
           <div id="hero-preview-label" style="position:absolute;bottom:8px;right:10px;background:rgba(0,0,0,.6);color:#fff;font-size:.7rem;padding:3px 8px;border-radius:8px;pointer-events:none;"></div>
@@ -372,7 +372,7 @@
           <label style="font-size:.82rem;font-weight:600;display:block;margin-bottom:6px;">🎯 כיוון ידני — גרור להזזה, זום להתקרבות</label>
           <p style="font-size:.72rem;color:var(--muted);margin:0 0 8px;">תצוגה מקדימה: מסך רחב בלבד. זום לא מופעל במובייל.</p>
 
-          <!-- Drag preview box -->
+          <!-- Drag preview box — aspect ratio set dynamically via JS -->
           <div id="hero-crop-box"
             style="position:relative;width:100%;padding-top:56.25%;border-radius:8px;overflow:hidden;cursor:grab;background:#111;margin-bottom:10px;touch-action:none;user-select:none;"
             onmousedown="heroCropStart(event)" ontouchstart="heroCropStart(event)">
@@ -1359,15 +1359,25 @@ function setHeroPickerMode(mode) {
   const title = document.getElementById('hero-section-title');
   const vidLabel = document.getElementById('hero-panel-video-label');
   const tabs = document.getElementById('hero-type-tabs');
+  const previewBox = document.getElementById('hero-preview-box');
+  const cropBox = document.getElementById('hero-crop-box');
+  const previewTitle = document.getElementById('hero-preview-label-title');
+  // aspect ratios: hero=16:9, big slot=portrait 3:4, small slots=square
+  const ratios = { 'hero': '56.25%', 'land-0': '130%', 'land-1': '100%', 'land-2': '100%' };
+  const ratio = ratios[mode] || '56.25%';
+  if (previewBox) previewBox.style.paddingTop = ratio;
+  if (cropBox) cropBox.style.paddingTop = ratio;
   if (mode === 'hero') {
     if (title) title.textContent = '📺 דף הבית — בחירת מדיה ראשית (Hero)';
     if (vidLabel) vidLabel.textContent = 'בחרי וידאו לכותרת הראשית (דף הבית)';
     if (tabs) tabs.style.display = 'flex';
+    if (previewTitle) previewTitle.textContent = 'תצוגה מקדימה — כך ייראה ב-Hero';
   } else {
     const idx = parseInt(mode.split('-')[1]);
     if (title) title.textContent = '🖼️ דף נחיתה — בחירת ' + _lmModeLabels[idx];
     if (vidLabel) vidLabel.textContent = 'כל הפריטים — דף נחיתה: ' + _lmModeLabels[idx];
     if (tabs) tabs.style.display = 'none';
+    if (previewTitle) previewTitle.textContent = 'תצוגה מקדימה — ' + _lmModeLabels[idx] + ' בדף נחיתה';
   }
   renderHeroGrid();
   populateHeroImageSelect();
@@ -1451,15 +1461,27 @@ function loadHeroCropPreview(url, type) {
     img.style.display = ''; vid.style.display = 'none';
     img.src = url;
   }
-  // Restore saved crop
+  // Restore saved crop for this mode (slot or hero)
   const s = getSettings();
-  if (s.heroPosition) {
-    const parts = s.heroPosition.split(' ');
+  let savedPos, savedZoom;
+  if (_heroPickerMode !== 'hero') {
+    const idx = parseInt(_heroPickerMode.split('-')[1]);
+    const item = (s.landingMedia || {})[_lmModeKeys[idx]] || {};
+    savedPos = item.position; savedZoom = item.zoom;
+  } else {
+    savedPos = s.heroPosition; savedZoom = s.heroZoom;
+  }
+  if (savedPos) {
+    const parts = savedPos.split(' ');
     const x = parseFloat(parts[0])||50, y = parseFloat(parts[1])||50;
     document.getElementById('hero-pos-x').value = x;
     document.getElementById('hero-pos-y').value = y;
+  } else {
+    document.getElementById('hero-pos-x').value = 50;
+    document.getElementById('hero-pos-y').value = 50;
   }
-  if (s.heroZoom) document.getElementById('hero-zoom').value = s.heroZoom;
+  if (savedZoom) document.getElementById('hero-zoom').value = savedZoom;
+  else document.getElementById('hero-zoom').value = 100;
   applyHeroCrop();
 }
 
