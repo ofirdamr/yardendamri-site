@@ -22,7 +22,7 @@
       --muted:rgba(240,230,220,.5); --green:#25D366; --red:#e05a5a; --gold:#D4AF6A;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Tahoma,sans-serif;min-height:100vh}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Tahoma,sans-serif;min-height:100vh;overflow-x:hidden}
     /* LOGIN */
     #login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1008 0%,#2d1a0e 50%,#1a1008 100%)}
     .login-box{background:rgba(255,255,255,.04);backdrop-filter:blur(20px);border:1px solid rgba(196,154,108,.2);border-radius:24px;padding:48px 40px;width:100%;max-width:400px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.5)}
@@ -51,7 +51,8 @@
     .btn-secondary{background:rgba(255,255,255,.08);color:var(--text)}
     .btn-danger{background:var(--red);color:#fff}
     /* TABS */
-    .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 28px}
+    .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 28px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-shrink:0}
+    .tabs::-webkit-scrollbar{display:none}
     .tab{padding:12px 20px;cursor:pointer;font-size:.85rem;color:var(--muted);border-bottom:2px solid transparent;transition:.2s}
     .tab.active{color:var(--blush);border-bottom-color:var(--blush)}
     /* TOOLBAR */
@@ -115,6 +116,9 @@
     @media(max-width:600px){
       #grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));padding:12px 14px}
       .toolbar,.tabs,header{padding-left:14px;padding-right:14px}
+      #tab-settings,#tab-cats,#tab-analytics,#tab-pricing,#tab-content{padding-left:14px;padding-right:14px}
+      .toolbar input[type=text]{width:100%;flex:1;min-width:0}
+      .tab{padding:10px 14px;font-size:.78rem;white-space:nowrap}
     }
   </style>
 </head>
