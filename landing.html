@@ -241,8 +241,8 @@
     .form-wrap input, .form-wrap select {
       width: 100%;
       padding: 13px 14px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.45);
       border-radius: 4px;
       color: #fff;
       font-family: 'Heebo', sans-serif;
@@ -251,12 +251,27 @@
       direction: rtl;
       appearance: none;
     }
-    .form-wrap input::placeholder { color: rgba(255,255,255,0.35); }
+    .form-wrap input::placeholder { color: rgba(255,255,255,0.65); }
     .form-wrap input:focus, .form-wrap select:focus {
       outline: none;
       border-color: var(--gold);
+      background: rgba(255,255,255,0.22);
     }
     .form-wrap select option { background: #222; color: #fff; }
+    /* Light-background form override (templates 4, 5, 6) */
+    .form-light .form-wrap input, .form-light .form-wrap select {
+      background: #fff;
+      border: 1.5px solid rgba(0,0,0,0.2);
+      color: var(--text);
+    }
+    .form-light .form-wrap input::placeholder { color: rgba(0,0,0,0.38); }
+    .form-light .form-wrap input:focus, .form-light .form-wrap select:focus {
+      border-color: var(--gold);
+      background: #fff;
+    }
+    .form-light .form-wrap select option { background: #fff; color: var(--text); }
+    .form-light .or-divider::before, .form-light .or-divider::after { background: rgba(0,0,0,0.12); }
+    .form-light .or-divider span { color: rgba(0,0,0,0.38); }
     .btn-submit {
       width: 100%;
       padding: 14px 24px;
@@ -538,6 +553,149 @@
       body[data-template="3"] .hero-panel { padding: 72px 60px 56px; }
       body[data-template="3"] .hero-title { font-size: 3.8rem; }
     }
+    /* ────────────────────────────────────────────────────────────
+       TEMPLATE 4 — Light Panel
+       Same mosaic+panel split as Template 1, but the panel is
+       warm cream instead of charcoal. Bright readable on-light form.
+    ──────────────────────────────────────────────────────────── */
+    body[data-template="4"] .hero-panel { background: var(--warm); }
+    body[data-template="4"] .hero-text {
+      background: transparent; text-align: center; padding: 28px 20px 20px; border: none; margin: 0;
+    }
+    body[data-template="4"] .hero-eyebrow { color: var(--gold); }
+    body[data-template="4"] .hero-title { color: var(--charcoal); }
+    body[data-template="4"] .hero-sub { color: var(--muted); }
+    body[data-template="4"] .trust {
+      background: transparent; border-color: rgba(201,169,110,.25); justify-content: center;
+    }
+    body[data-template="4"] .trust-num { color: var(--charcoal); }
+    body[data-template="4"] .trust-label { color: var(--muted); }
+    body[data-template="4"] .trust-stars { color: var(--gold); }
+    body[data-template="4"] .cta-section { background: transparent; padding: 20px 20px 32px; text-align: center; }
+    body[data-template="4"] .cta-title { color: var(--charcoal); display: block; }
+    body[data-template="4"] .cta-sub { color: var(--muted); display: block; }
+    body[data-template="4"] .cta-section { @apply form-light; }
+    body[data-template="4"] .hero-panel { } /* inherits .form-light via JS class */
+    @media (min-width: 768px) {
+      body[data-template="4"] .hero-wrap {
+        display: grid; grid-template-columns: 55% 45%; min-height: 580px;
+      }
+      body[data-template="4"] .mosaic { grid-template-rows: 1fr 1fr; height: 100%; }
+      body[data-template="4"] .hero-panel {
+        display: flex; flex-direction: column; justify-content: center; padding: 52px 44px;
+      }
+      body[data-template="4"] .hero-text {
+        text-align: right; padding: 0 0 28px; border-bottom: 1px solid rgba(201,169,110,.25); margin-bottom: 28px;
+      }
+      body[data-template="4"] .trust { justify-content: flex-start; gap: 32px; padding: 0 0 28px; border-bottom: 1px solid rgba(201,169,110,.25); margin-bottom: 28px; }
+      body[data-template="4"] .cta-section { background: transparent; padding: 0; text-align: right; }
+      body[data-template="4"] .cta-title,
+      body[data-template="4"] .cta-sub { display: none; }
+      body[data-template="4"] .btn-wa { max-width: 100%; margin: 0 0 16px; }
+      body[data-template="4"] .or-divider { max-width: 100%; }
+      body[data-template="4"] .form-wrap { max-width: 100%; }
+      body[data-template="4"] .bottom-cta { display: none; }
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       TEMPLATE 5 — Top Banner
+       All 3 photos in a wide horizontal strip at the top.
+       Text + form below on clean cream background.
+       Form is on light = clearly visible dark inputs.
+    ──────────────────────────────────────────────────────────── */
+    body[data-template="5"] .hero-wrap { display: flex; flex-direction: column; }
+    body[data-template="5"] #landingMosaic {
+      order: 1; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 260px; height: 260px;
+    }
+    body[data-template="5"] .mosaic-big { grid-row: 1; }
+    body[data-template="5"] .hero-panel {
+      order: 2; background: var(--cream); text-align: center; padding: 36px 28px 48px;
+    }
+    body[data-template="5"] .hero-text {
+      background: transparent; text-align: center; padding: 0 0 24px;
+      border-bottom: 1px solid rgba(201,169,110,.2); margin-bottom: 24px;
+    }
+    body[data-template="5"] .hero-eyebrow { color: var(--gold); }
+    body[data-template="5"] .hero-title { color: var(--charcoal); font-size: clamp(1.9rem, 7vw, 2.8rem); }
+    body[data-template="5"] .hero-sub { color: var(--muted); }
+    body[data-template="5"] .trust {
+      background: transparent; border-color: rgba(201,169,110,.2); justify-content: center;
+    }
+    body[data-template="5"] .trust-num { color: var(--charcoal); }
+    body[data-template="5"] .trust-label { color: var(--muted); }
+    body[data-template="5"] .cta-section { background: transparent; padding: 0; text-align: center; }
+    body[data-template="5"] .cta-title,
+    body[data-template="5"] .cta-sub { display: none; }
+    body[data-template="5"] .btn-wa { margin: 0 auto 16px; }
+    body[data-template="5"] .or-divider { max-width: 380px; margin: 0 auto 16px; }
+    body[data-template="5"] .form-wrap { max-width: 420px; margin: 0 auto; }
+    @media (min-width: 768px) {
+      body[data-template="5"] #landingMosaic { height: 380px; grid-template-rows: 380px; }
+      body[data-template="5"] .hero-panel { padding: 56px 48px 64px; }
+      body[data-template="5"] .bottom-cta { display: none; }
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       TEMPLATE 6 — Floating Card
+       Full-screen photo background (like Cinematic) but the
+       text + form sit inside a bright white card — guaranteed
+       contrast regardless of photo brightness.
+    ──────────────────────────────────────────────────────────── */
+    body[data-template="6"] .hero-wrap {
+      position: relative; min-height: 100svh; min-height: 100vh;
+    }
+    body[data-template="6"] #landingMosaic {
+      position: absolute; inset: 0;
+      grid-template-columns: 1fr; grid-template-rows: 1fr; z-index: 0;
+    }
+    body[data-template="6"] .mosaic-big { grid-row: 1; }
+    body[data-template="6"] #mosaic-slot-1,
+    body[data-template="6"] #mosaic-slot-2 { display: none; }
+    body[data-template="6"] .hero-panel {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 100svh; min-height: 100vh;
+      padding: 60px 20px;
+      background: linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.5) 100%);
+    }
+    body[data-template="6"] .hero-text,
+    body[data-template="6"] .trust,
+    body[data-template="6"] .cta-section {
+      width: 100%; max-width: 440px;
+    }
+    body[data-template="6"] .hero-text {
+      background: rgba(253,248,245,0.97);
+      border-radius: 12px 12px 0 0;
+      text-align: center; padding: 28px 24px 20px; margin: 0;
+      border-bottom: 1px solid rgba(201,169,110,.2);
+    }
+    body[data-template="6"] .trust {
+      background: rgba(253,248,245,0.97);
+      border: none; border-top: 1px solid rgba(201,169,110,.15);
+      padding: 16px 24px; justify-content: center; margin: 0;
+    }
+    body[data-template="6"] .cta-section {
+      background: #fff;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.45);
+      padding: 20px 24px 28px; text-align: center;
+    }
+    body[data-template="6"] .hero-eyebrow { color: var(--gold); }
+    body[data-template="6"] .hero-title { color: var(--charcoal); font-size: clamp(1.7rem, 6vw, 2.4rem); }
+    body[data-template="6"] .hero-sub { color: var(--muted); }
+    body[data-template="6"] .trust-num { color: var(--charcoal); }
+    body[data-template="6"] .trust-label { color: var(--muted); }
+    body[data-template="6"] .cta-title { display: none; }
+    body[data-template="6"] .cta-sub { display: none; }
+    body[data-template="6"] .btn-wa { margin: 0 auto 16px; }
+    body[data-template="6"] .or-divider { max-width: 100%; margin: 0 0 16px; }
+    body[data-template="6"] .or-divider::before, body[data-template="6"] .or-divider::after { background: rgba(0,0,0,.12); }
+    body[data-template="6"] .or-divider span { color: rgba(0,0,0,.38); }
+    body[data-template="6"] .form-wrap { max-width: 100%; margin: 0; }
+    @media (min-width: 768px) {
+      body[data-template="6"] .bottom-cta { display: none; }
+    }
+
   </style>
   <style>
     #a11y-trigger,#scroll-top,#wa-float-btn,.wa-float{width:36px !important;height:36px !important;min-width:36px !important;max-width:36px !important;min-height:36px !important;max-height:36px !important;border-radius:50% !important;position:fixed !important;bottom:18px !important;z-index:99999 !important;display:flex !important;align-items:center !important;justify-content:center !important;padding:0 !important;box-sizing:border-box !important;background:#444 !important;color:#fff !important;border:none !important;filter:none !important;opacity:.55 !important;box-shadow:0 4px 16px rgba(0,0,0,.3) !important;transition:opacity .2s !important;}
