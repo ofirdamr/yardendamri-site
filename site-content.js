@@ -63,6 +63,14 @@
         var content = (data && data.content) || {};
         applyContent(content);
         writeCache(content);
+        // Apply custom WA message to all WA buttons that carry a ?text= param
+        var waMsg = data && data.waMsg;
+        if (waMsg) {
+          var encoded = encodeURIComponent(waMsg);
+          document.querySelectorAll('a[href*="wa.me/972"][href*="text="]').forEach(function(a) {
+            a.href = a.href.replace(/text=[^&]*/, 'text=' + encoded);
+          });
+        }
       })
       .catch(function () { /* offline → baked defaults / cache stand */ });
   }

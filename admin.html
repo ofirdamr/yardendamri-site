@@ -587,6 +587,20 @@
     </div>
     <!-- ─────────────────────────────────────────────────────────── -->
 
+    <!-- ───────────── LANDING WA MESSAGE ───────────── -->
+    <div class="settings-section" style="margin-top:30px;">
+      <h2>💬 הודעת WhatsApp אוטומטית — כל הדפים</h2>
+      <p style="font-size:.85rem;color:var(--text-muted,#888);margin-bottom:14px;">הטקסט שיישלח אוטומטית כשמישהי לוחצת על כפתור וואטסאפ בכל דפי האתר.</p>
+      <div class="field-group">
+        <label for="lm-wa-msg">נוסח ההודעה</label>
+        <textarea id="lm-wa-msg" rows="3" dir="rtl"
+          style="width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);font-size:.9rem;resize:vertical;font-family:inherit;"
+          placeholder="היי ירדן, ראיתי את הפרסומת שלך ואני מעוניינת לשמוע פרטים"></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="saveWaMsg()" style="margin-top:4px;">💾 שמירה</button>
+    </div>
+    <!-- ─────────────────────────────────────────────────────────── -->
+
     <!-- ───────────── LANDING PAGE MOSAIC PREVIEW ───────────── -->
     <div class="settings-section" style="margin-top:30px;" id="landing-picker-section">
       <h2>🖼️ תצוגה מקדימה — מוזאיקת דף נחיתה</h2>
@@ -984,7 +998,7 @@ function getSettings() {
     const a = window.RemoteState.getAdmin();
     // include heroVideo/heroImage/heroFit/heroPosition from top-level so admin can read/write them
     const s = window.RemoteState.getCached() || {};
-    return { ...a, heroVideo: s.heroVideo || '', heroImage: s.heroImage || '', heroFit: s.heroFit || '', heroPosition: s.heroPosition || '', heroZoom: s.heroZoom || 100, landingMedia: s.landingMedia || null, landingTemplate: s.landingTemplate || '1' };
+    return { ...a, heroVideo: s.heroVideo || '', heroImage: s.heroImage || '', heroFit: s.heroFit || '', heroPosition: s.heroPosition || '', heroZoom: s.heroZoom || 100, landingMedia: s.landingMedia || null, landingTemplate: s.landingTemplate || '1', waMsg: s.waMsg || '' };
   }
   try { return JSON.parse(localStorage.getItem('gallery_admin') || '{"hidden":[],"pinned":[],"order":[],"cats":{},"catList":[]}'); }
   catch(e) { return {hidden:[],pinned:[],order:[],cats:{},catList:[]}; }
@@ -992,7 +1006,7 @@ function getSettings() {
 function saveSettings(s) {
   try { localStorage.setItem('gallery_admin', JSON.stringify(s)); } catch(e){}
   if (window.RemoteState && window.RemoteState.update) {
-    const { heroVideo, heroImage, heroFit, heroPosition, heroZoom, landingMedia, landingTemplate, ...adminFields } = s;
+    const { heroVideo, heroImage, heroFit, heroPosition, heroZoom, landingMedia, landingTemplate, waMsg, ...adminFields } = s;
     const payload = { admin: adminFields };
     payload.heroVideo       = heroVideo       || null;
     payload.heroImage       = heroImage       || null;
@@ -1000,6 +1014,7 @@ function saveSettings(s) {
     payload.heroZoom        = heroZoom        || null;
     payload.landingMedia    = landingMedia    || null;
     payload.landingTemplate = landingTemplate || null;
+    payload.waMsg           = waMsg           || null;
     window.RemoteState.update(payload).then(result => {
       if (result && !result.ok) {
         if (result.error === 'not_synced') {
@@ -1768,6 +1783,17 @@ function saveHeroPosition(){ /* removed — use applyAutoFit instead */ }
 function initLandingPicker() {
   refreshLandingPreview();
   refreshTemplateCards();
+  const ta = document.getElementById('lm-wa-msg');
+  if (ta) ta.value = getSettings().waMsg || '';
+}
+
+function saveWaMsg() {
+  const ta = document.getElementById('lm-wa-msg');
+  if (!ta) return;
+  const s = getSettings();
+  s.waMsg = ta.value.trim();
+  saveSettings(s);
+  showToast('✓ הודעת הוואטסאפ עודכנה לכל הדפים!');
 }
 
 function refreshTemplateCards() {
