@@ -587,17 +587,12 @@
     </div>
     <!-- ─────────────────────────────────────────────────────────── -->
 
-    <!-- ───────────── LANDING WA MESSAGE ───────────── -->
-    <div class="settings-section" style="margin-top:30px;">
-      <h2>💬 הודעת WhatsApp אוטומטית — כל הדפים</h2>
-      <p style="font-size:.85rem;color:var(--text-muted,#888);margin-bottom:14px;">הטקסט שיישלח אוטומטית כשמישהי לוחצת על כפתור וואטסאפ בכל דפי האתר.</p>
-      <div class="field-group">
-        <label for="lm-wa-msg">נוסח ההודעה</label>
-        <textarea id="lm-wa-msg" rows="3" dir="rtl"
-          style="width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);font-size:.9rem;resize:vertical;font-family:inherit;"
-          placeholder="היי ירדן, ראיתי את הפרסומת שלך ואני מעוניינת לשמוע פרטים"></textarea>
-      </div>
-      <button class="btn btn-primary" onclick="saveWaMsg()" style="margin-top:4px;">💾 שמירה</button>
+    <!-- ───────────── WA MESSAGES PER BUTTON ───────────── -->
+    <div class="settings-section" style="margin-top:30px;max-width:560px;">
+      <h2>💬 הודעות WhatsApp — לפי כפתור</h2>
+      <p style="font-size:.85rem;color:var(--text-muted,#888);margin-bottom:16px;">ערכי את הטקסט שיישלח אוטומטית בכל כפתור וואטסאפ. ריק = יישאר הנוסח המקורי.</p>
+      <div id="wa-msgs-fields"></div>
+      <button class="btn btn-primary" onclick="saveWaMessages()" style="margin-top:8px;">💾 שמירת כל ההודעות</button>
     </div>
     <!-- ─────────────────────────────────────────────────────────── -->
 
@@ -998,7 +993,7 @@ function getSettings() {
     const a = window.RemoteState.getAdmin();
     // include heroVideo/heroImage/heroFit/heroPosition from top-level so admin can read/write them
     const s = window.RemoteState.getCached() || {};
-    return { ...a, heroVideo: s.heroVideo || '', heroImage: s.heroImage || '', heroFit: s.heroFit || '', heroPosition: s.heroPosition || '', heroZoom: s.heroZoom || 100, landingMedia: s.landingMedia || null, landingTemplate: s.landingTemplate || '1', waMsg: s.waMsg || '' };
+    return { ...a, heroVideo: s.heroVideo || '', heroImage: s.heroImage || '', heroFit: s.heroFit || '', heroPosition: s.heroPosition || '', heroZoom: s.heroZoom || 100, landingMedia: s.landingMedia || null, landingTemplate: s.landingTemplate || '1', waMessages: s.waMessages || {} };
   }
   try { return JSON.parse(localStorage.getItem('gallery_admin') || '{"hidden":[],"pinned":[],"order":[],"cats":{},"catList":[]}'); }
   catch(e) { return {hidden:[],pinned:[],order:[],cats:{},catList:[]}; }
@@ -1006,7 +1001,7 @@ function getSettings() {
 function saveSettings(s) {
   try { localStorage.setItem('gallery_admin', JSON.stringify(s)); } catch(e){}
   if (window.RemoteState && window.RemoteState.update) {
-    const { heroVideo, heroImage, heroFit, heroPosition, heroZoom, landingMedia, landingTemplate, waMsg, ...adminFields } = s;
+    const { heroVideo, heroImage, heroFit, heroPosition, heroZoom, landingMedia, landingTemplate, waMessages, ...adminFields } = s;
     const payload = { admin: adminFields };
     payload.heroVideo       = heroVideo       || null;
     payload.heroImage       = heroImage       || null;
@@ -1014,7 +1009,7 @@ function saveSettings(s) {
     payload.heroZoom        = heroZoom        || null;
     payload.landingMedia    = landingMedia    || null;
     payload.landingTemplate = landingTemplate || null;
-    payload.waMsg           = waMsg           || null;
+    payload.waMessages      = waMessages       || null;
     window.RemoteState.update(payload).then(result => {
       if (result && !result.ok) {
         if (result.error === 'not_synced') {
@@ -1780,20 +1775,47 @@ function saveHeroPosition(){ /* removed — use applyAutoFit instead */ }
 
 // ─── LANDING PAGE MOSAIC ────────────────────────────────────────
 
+const _waKeys = [
+  { key:'hero',     label:'כפתור ראשי Hero — דף הבית',        placeholder:'היי ירדן, אני רוצה לקבוע תור לאיפור כלה' },
+  { key:'trial',    label:'איפור ניסיון — דף הבית / שירותים', placeholder:'היי ירדן, אני רוצה לקבוע איפור ניסיון' },
+  { key:'prod',     label:'הפקות וצילומים',                    placeholder:'היי ירדן, אני מתעניינת בהפקה' },
+  { key:'bday',     label:'ימי הולדת',                         placeholder:'היי ירדן, אני מתעניינת באיפור יום הולדת' },
+  { key:'workshop', label:'סדנת איפור',                        placeholder:'היי ירדן, אני מתעניינת בסדנת איפור' },
+  { key:'evening',  label:'איפור ערב ואירועים — שירותים',     placeholder:'היי ירדן, אני מתעניינת באיפור ערב' },
+  { key:'escorts',  label:'איפור מלוות — שירותים',            placeholder:'היי ירדן, אני מתעניינת באיפור מלוות' },
+  { key:'other',    label:'שירותים נוספים',                    placeholder:'היי ירדן, אני מתעניינת בשירות נוסף' },
+  { key:'landing',  label:'דף נחיתה (כל כפתורי הוואטסאפ)',   placeholder:'היי ירדן, ראיתי את הפרסומת שלך ואני מעוניינת לשמוע פרטים' },
+];
+
+function initWaMsgsFields() {
+  const wrap = document.getElementById('wa-msgs-fields');
+  if (!wrap) return;
+  const saved = getSettings().waMessages || {};
+  wrap.innerHTML = _waKeys.map(({key, label, placeholder}) => `
+    <div class="field-group">
+      <label style="font-size:.82rem;color:var(--muted);">${label}</label>
+      <input type="text" id="wa-msg-${key}" dir="rtl" value="${(saved[key]||'').replace(/"/g,'&quot;')}"
+        placeholder="${placeholder}"
+        style="width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);font-size:.88rem;font-family:inherit;"/>
+    </div>`).join('');
+}
+
+function saveWaMessages() {
+  const s = getSettings();
+  const msgs = {};
+  _waKeys.forEach(({key}) => {
+    const el = document.getElementById('wa-msg-' + key);
+    if (el && el.value.trim()) msgs[key] = el.value.trim();
+  });
+  s.waMessages = msgs;
+  saveSettings(s);
+  showToast('✓ הודעות הוואטסאפ עודכנו!');
+}
+
 function initLandingPicker() {
   refreshLandingPreview();
   refreshTemplateCards();
-  const ta = document.getElementById('lm-wa-msg');
-  if (ta) ta.value = getSettings().waMsg || '';
-}
-
-function saveWaMsg() {
-  const ta = document.getElementById('lm-wa-msg');
-  if (!ta) return;
-  const s = getSettings();
-  s.waMsg = ta.value.trim();
-  saveSettings(s);
-  showToast('✓ הודעת הוואטסאפ עודכנה לכל הדפים!');
+  initWaMsgsFields();
 }
 
 function refreshTemplateCards() {

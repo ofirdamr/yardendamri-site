@@ -63,14 +63,12 @@
         var content = (data && data.content) || {};
         applyContent(content);
         writeCache(content);
-        // Apply custom WA message to all WA buttons that carry a ?text= param
-        var waMsg = data && data.waMsg;
-        if (waMsg) {
-          var encoded = encodeURIComponent(waMsg);
-          document.querySelectorAll('a[href*="wa.me/972"][href*="text="]').forEach(function(a) {
-            a.href = a.href.replace(/text=[^&]*/, 'text=' + encoded);
-          });
-        }
+        // Apply per-button WA messages via data-wa-key
+        var waMsgs = (data && data.waMessages) || {};
+        document.querySelectorAll('a[data-wa-key]').forEach(function(a) {
+          var msg = waMsgs[a.dataset.waKey];
+          if (msg) a.href = a.href.replace(/text=[^&]*/, 'text=' + encodeURIComponent(msg));
+        });
       })
       .catch(function () { /* offline → baked defaults / cache stand */ });
   }
