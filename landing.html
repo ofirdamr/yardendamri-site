@@ -703,6 +703,18 @@
     #a11y-trigger{left:12px !important;right:auto !important;}
     #scroll-top{left:56px !important;right:auto !important;font-size:14px !important;}
     #a11y-trigger svg{width:16px !important;height:16px !important;fill:#fff !important;}
+    #a11y-panel{position:fixed;bottom:86px;left:88px;width:280px;background:#2d1f17;border:1px solid rgba(232,200,176,.2);border-radius:20px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.5);z-index:499;display:none;flex-direction:column;gap:10px;direction:rtl;}
+    #a11y-panel.open{display:flex;}
+    #a11y-panel h3{color:#E8C8B0;font-size:.95rem;font-weight:700;letter-spacing:.08em;margin-bottom:4px;text-align:center;}
+    .a11y-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+    .a11y-row:last-child{border-bottom:none;}
+    .a11y-label{color:rgba(255,255,255,.8);font-size:.88rem;}
+    .a11y-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:6px 14px;border-radius:20px;font-size:.82rem;cursor:pointer;transition:background .2s;font-family:inherit;}
+    .a11y-btn:hover,.a11y-btn:focus{background:rgba(255,255,255,.2);}
+    .a11y-btn.active{background:#C4805A;border-color:#C4805A;}
+    #a11y-reset{width:100%;padding:10px;background:rgba(196,134,106,.15);border:1px solid rgba(196,134,106,.3);color:#E8C8B0;border-radius:10px;font-size:.88rem;cursor:pointer;font-family:inherit;margin-top:4px;transition:background .2s;}
+    #a11y-reset:hover{background:rgba(196,134,106,.3);}
+    @media(max-width:600px){#a11y-panel{bottom:76px;left:14px;right:14px;width:auto;}}
   </style>
   <script src="/a11y.js" defer></script>
 </head>
