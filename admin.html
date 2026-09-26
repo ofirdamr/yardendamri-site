@@ -1776,13 +1776,13 @@ function saveHeroPosition(){ /* removed — use applyAutoFit instead */ }
 // ─── LANDING PAGE MOSAIC ────────────────────────────────────────
 
 const _waKeys = [
-  { key:'hero',     label:'כפתור ראשי Hero — דף הבית',        placeholder:'היי ירדן, אני רוצה לקבוע תור לאיפור כלה' },
-  { key:'trial',    label:'איפור ניסיון — דף הבית / שירותים', placeholder:'היי ירדן, אני רוצה לקבוע איפור ניסיון' },
+  { key:'hero',     label:'כפתור ראשי Hero - דף הבית',        placeholder:'היי ירדן, אני רוצה לקבוע תור לאיפור כלה' },
+  { key:'trial',    label:'איפור ניסיון - דף הבית / שירותים', placeholder:'היי ירדן, אני רוצה לקבוע איפור ניסיון' },
   { key:'prod',     label:'הפקות וצילומים',                    placeholder:'היי ירדן, אני מתעניינת בהפקה' },
   { key:'bday',     label:'ימי הולדת',                         placeholder:'היי ירדן, אני מתעניינת באיפור יום הולדת' },
   { key:'workshop', label:'סדנת איפור',                        placeholder:'היי ירדן, אני מתעניינת בסדנת איפור' },
-  { key:'evening',  label:'איפור ערב ואירועים — שירותים',     placeholder:'היי ירדן, אני מתעניינת באיפור ערב' },
-  { key:'escorts',  label:'איפור מלוות — שירותים',            placeholder:'היי ירדן, אני מתעניינת באיפור מלוות' },
+  { key:'evening',  label:'איפור ערב ואירועים - שירותים',     placeholder:'היי ירדן, אני מתעניינת באיפור ערב' },
+  { key:'escorts',  label:'איפור מלוות - שירותים',            placeholder:'היי ירדן, אני מתעניינת באיפור מלוות' },
   { key:'other',    label:'שירותים נוספים',                    placeholder:'היי ירדן, אני מתעניינת בשירות נוסף' },
   { key:'landing',  label:'דף נחיתה (כל כפתורי הוואטסאפ)',   placeholder:'היי ירדן, ראיתי את הפרסומת שלך ואני מעוניינת לשמוע פרטים' },
 ];
@@ -1791,13 +1791,24 @@ function initWaMsgsFields() {
   const wrap = document.getElementById('wa-msgs-fields');
   if (!wrap) return;
   const saved = getSettings().waMessages || {};
-  wrap.innerHTML = _waKeys.map(({key, label, placeholder}) => `
-    <div class="field-group">
-      <label style="font-size:.82rem;color:var(--muted);">${label}</label>
-      <input type="text" id="wa-msg-${key}" dir="rtl" value="${(saved[key]||'').replace(/"/g,'&quot;')}"
-        placeholder="${placeholder}"
-        style="width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);font-size:.88rem;font-family:inherit;"/>
-    </div>`).join('');
+  wrap.innerHTML = '';
+  _waKeys.forEach(({key, label, placeholder}) => {
+    const div = document.createElement('div');
+    div.className = 'field-group';
+    const lbl = document.createElement('label');
+    lbl.style.cssText = 'display:block;font-size:.82rem;color:var(--muted);margin-bottom:6px;';
+    lbl.textContent = label;
+    const ta = document.createElement('textarea');
+    ta.id = 'wa-msg-' + key;
+    ta.dir = 'rtl';
+    ta.rows = 2;
+    ta.placeholder = placeholder;
+    ta.value = saved[key] || '';
+    ta.style.cssText = 'width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);font-size:.88rem;font-family:inherit;resize:vertical;';
+    div.appendChild(lbl);
+    div.appendChild(ta);
+    wrap.appendChild(div);
+  });
 }
 
 function saveWaMessages() {
