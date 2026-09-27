@@ -680,6 +680,15 @@
         <div id="restore-result" style="margin-top:14px;"></div>
       </div>
 
+      <div class="field-group" style="margin-top:30px;padding-top:20px;border-top:1px solid var(--border)" id="gads-settings">
+        <label>📊 Google Ads API</label>
+        <div id="gads-status-msg" style="font-size:.85rem;color:var(--text-muted,#888);margin-bottom:12px;">בודקת חיבור...</div>
+        <div id="gads-connect-btn-wrap">
+          <button class="btn btn-primary" onclick="gadsConnect()" id="gads-connect-btn">🔗 חבר חשבון Google Ads</button>
+          <button class="btn btn-danger" onclick="gadsDisconnect()" id="gads-disconnect-btn" style="display:none;margin-right:8px;">✂️ נתק</button>
+        </div>
+      </div>
+
       <div class="field-group" style="margin-top:30px;padding-top:20px;border-top:1px solid var(--border)">
         <label style="color:var(--red)">אזור מסוכן</label>
         <button class="btn btn-danger" onclick="clearAllSettings()">🗑️ מחק את כל הגדרות הגלריה</button>
@@ -1433,6 +1442,75 @@ function clearAllSettings(){
     initAdmin(); showToast('🗑️ אופס הכל');
   }
 }
+
+// ─── GOOGLE ADS ──────────────────────────────────────────────────
+async function gadsLoadStatus() {
+  const msg  = document.getElementById('gads-status-msg');
+  const conn = document.getElementById('gads-connect-btn');
+  const disc = document.getElementById('gads-disconnect-btn');
+  if (!msg) return;
+  try {
+    const token = window.RemoteState && window.RemoteState.getPwd ? window.RemoteState.getPwd() : '';
+    const res = await fetch('https://api.yardendamri.co.il/google-ads/status', {
+      headers: { Authorization: 'Bearer ' + token },
+    });
+    const data = await res.json();
+    if (!data.configured) {
+      msg.textContent = '⚠️ נדרש להגדיר GOOGLE_ADS_CLIENT_ID ו-GOOGLE_ADS_CLIENT_SECRET ב-Cloudflare Worker.';
+      if (conn) conn.disabled = true;
+    } else if (data.connected) {
+      const since = data.connectedAt ? new Date(data.connectedAt).toLocaleDateString('he-IL') : '';
+      msg.textContent = '✅ מחובר לGoogle Ads' + (since ? ' (חובר ב-' + since + ')' : '');
+      if (conn) conn.style.display = 'none';
+      if (disc) disc.style.display = '';
+    } else {
+      msg.textContent = 'לא מחובר. לחצי "חבר" כדי להתחיל.';
+      if (conn) conn.style.display = '';
+      if (disc) disc.style.display = 'none';
+    }
+  } catch (e) {
+    if (msg) msg.textContent = '❌ שגיאה בטעינת סטטוס.';
+  }
+}
+
+async function gadsConnect() {
+  try {
+    const token = window.RemoteState && window.RemoteState.getPwd ? window.RemoteState.getPwd() : '';
+    const res  = await fetch('https://api.yardendamri.co.il/google-ads/auth-url', {
+      headers: { Authorization: 'Bearer ' + token },
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      showToast('❌ ' + (data.error || 'שגיאה'));
+    }
+  } catch (e) {
+    showToast('❌ שגיאת רשת');
+  }
+}
+
+async function gadsDisconnect() {
+  if (!confirm('לנתק את חשבון Google Ads?')) return;
+  try {
+    const token = window.RemoteState && window.RemoteState.getPwd ? window.RemoteState.getPwd() : '';
+    await fetch('https://api.yardendamri.co.il/google-ads/disconnect', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + token },
+    });
+    showToast('✅ נותק');
+    gadsLoadStatus();
+  } catch (e) {
+    showToast('❌ שגיאת רשת');
+  }
+}
+
+// Check for callback result params on page load
+(function() {
+  const p = new URLSearchParams(location.search);
+  if (p.get('gads_connected')) { showToast('✅ Google Ads חובר בהצלחה!'); history.replaceState({}, '', location.pathname); }
+  if (p.get('gads_error'))     { showToast('❌ Google Ads: ' + p.get('gads_error')); history.replaceState({}, '', location.pathname); }
+})();
 
 // ─── HERO VIDEO PICKER (visual grid) ──────────────────────────
 function heroVidThumb(url){
@@ -2537,6 +2615,7 @@ function switchTab(name,el){
       if (status) status.textContent = '✓ ' + (type==='image'?'תמונה':'וידאו') + ' פעיל';
     }
     initLandingPicker();
+    gadsLoadStatus();
   }
 }
 
